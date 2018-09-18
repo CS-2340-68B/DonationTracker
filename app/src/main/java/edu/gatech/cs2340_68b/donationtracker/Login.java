@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Login extends AppCompatActivity {
 
     private TextView username;
@@ -15,11 +19,12 @@ public class Login extends AppCompatActivity {
     private Button login;
     private Button cancel;
 
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
         username = (TextView)findViewById(R.id.username);
         password = (TextView)findViewById(R.id.password);
         cancel = (Button)findViewById(R.id.cancel);
@@ -28,6 +33,8 @@ public class Login extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseReference myRef = database.getReference();
+                myRef.setValue("Tuan");
                 Intent intent = new Intent(Login.this, Welcome.class);
                 startActivity(intent);
             }
