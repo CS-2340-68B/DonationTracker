@@ -16,7 +16,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/layout"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="14dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -32,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.622"
-            app:srcCompat="@drawable/app" />
+            app:srcCompat="@drawable/appd" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
