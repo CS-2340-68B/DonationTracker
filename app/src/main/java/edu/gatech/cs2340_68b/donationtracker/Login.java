@@ -17,6 +17,7 @@ public class Login extends AppCompatActivity {
     private TextView password;
     private Button login;
     private Button cancel;
+    public User currentUser;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -47,17 +48,22 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verify(username.getText().toString(), password.getText().toString());
+                User temp = new User ((String) username.getText(),
+                        (String) password.getText());
+
+                //Basic implementation of account lock out
+                if (currentUser.getUsername() == username.getText() &&
+                        currentUser.getPassword() != password.getText()) {
+                    currentUser.incrementFailed();
+                }
+
+                if (temp.getUsername().equals("user") &&
+                        temp.getPassword().equals("pass")) {
+                        Intent intent = new Intent(Login.this, MainPage.class);
+                        startActivity(intent);
+                }
+
             }
         });
-    }
-
-    private void verify(String username, String password) {
-        if (username.equals("user") && password.equals("pass")) {
-            Intent intent = new Intent(Login.this, MainPage.class);
-            startActivity(intent);
-        } else {
-
-        }
     }
 }
