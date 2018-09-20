@@ -1,8 +1,10 @@
 package edu.gatech.cs2340_68b.donationtracker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ public class Login extends AppCompatActivity {
     private Button login;
     private Button cancel;
     public User currentUser;
+    private int loginClick = 0;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -48,19 +51,41 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User temp = new User ((String) username.getText(),
-                        (String) password.getText());
-
-                //Basic implementation of account lock out
-                if (currentUser.getUsername() == username.getText() &&
-                        currentUser.getPassword() != password.getText()) {
-                    currentUser.incrementFailed();
+                if (loginClick++ == 0) {
+                    currentUser = new User(username.getText().toString(),
+                            password.getText().toString());
                 }
 
-                if (temp.getUsername().equals("user") &&
-                        temp.getPassword().equals("pass")) {
-                        Intent intent = new Intent(Login.this, MainPage.class);
-                        startActivity(intent);
+                // When verified, move to main page
+                if (currentUser.getUsername().equals("user") &&
+                        currentUser.getPassword().equals("pass")) {
+                    Intent intent = new Intent(Login.this, MainPage.class);
+                    startActivity(intent);
+                } //Basic implementation of account lock out
+                else if (currentUser.getUsername().equals("user") &&
+                        !currentUser.getPassword().equals("pass")) {
+                    currentUser.incrementFailed();
+
+                    // Username or password false, display and an error
+                    AlertDialog.Builder alert  = new AlertDialog.Builder(Login.this);
+
+                    alert.setMessage("Wrong Username and/or Password");
+                    alert.setTitle("Oops!");
+                    alert.setPositiveButton("OK", null);
+                    alert.setCancelable(true);
+                    alert.create().show();
+
+                    alert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                }
+
+                if (currentUser.getFailedAttempts() >= 3) {
+                    // Lock Account
                 }
 
             }

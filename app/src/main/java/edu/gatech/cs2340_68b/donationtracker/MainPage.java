@@ -19,8 +19,7 @@ public class MainPage extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this, Login.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

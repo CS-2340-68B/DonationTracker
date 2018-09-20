@@ -1,8 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker;
 
 public class User {
-    private String username = "";
-    private String password = "";
+    private String username = "user";
+    private String password = "pass";
     private int failedAttempts = 0;
     private int lastFailed = 0;
     private int lastLogin = 0;
