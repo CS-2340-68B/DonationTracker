@@ -2,8 +2,10 @@ package edu.gatech.cs2340_68b.donationtracker;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,48 +25,19 @@ public class Welcome extends AppCompatActivity {
     private ImageButton imageButton;
     private Button loginButton;
     private Button registerButton;
+    private ActionBar actionBar;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-//        final ConstraintLayout current = (ConstraintLayout) findViewById(R.id.layout);
-//        current.setBackgroundColor(Color.WHITE);
-//        final ConstraintLayout current2 = (ConstraintLayout) findViewById(R.id.layout2);
-//        current2.setVisibility(View.GONE);
-//        current2.setBackgroundColor(Color.WHITE);
 
-
-//        imageButton  = (ImageButton) findViewById(R.id.imageButton);
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = (Button) findViewById(R.id.LoginButton);
-//        loginButton.setVisibility(View.GONE);
         registerButton = (Button) findViewById(R.id.RegisterButton);
-//        registerButton.setVisibility(View.GONE);
 
-
-
-//        imageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imageButton.animate().alpha(0);
-//                current.setVisibility(View.GONE);
-//                current2.setVisibility(View.VISIBLE);
-//                loginButton.setVisibility(View.VISIBLE);
-//                registerButton.setVisibility(View.VISIBLE);
-//            }
-//            });
-//
-//        current2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imageButton.animate().alpha(1);
-//                current.setVisibility(View.VISIBLE);
-//                current2.setVisibility(View.GONE);
-//                loginButton.setVisibility(View.GONE);
-//                registerButton.setVisibility(View.GONE);
-//            }
-//        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
