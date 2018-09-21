@@ -7,28 +7,45 @@
     tools:context=".Welcome">
 
     <Button
-        android:id="@+id/welcomeLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/RegisterButton"
+        android:layout_width="172dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:autoText="true"
+        android:background="#5d72e8"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="172dp"
+        android:layout_height="63dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        android:background="@android:color/holo_blue_dark"
+        android:layout_marginTop="68dp"
+        android:autoText="false"
+        android:background="#5d72e8"
+        android:elevation="0dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
-    <Button
-        android:id="@+id/welcomeRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="280dp"
+        android:layout_height="110dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:background="?attr/colorControlActivated"
-        android:text="Register"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeLogin" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/appd" />
+
 </android.support.constraint.ConstraintLayout>
