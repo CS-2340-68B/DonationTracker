@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker;
 
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -88,7 +89,11 @@ public class Login extends AppCompatActivity {
                     // Lock Account
                 }
 
+
             }
         });
+
+
     }
+
 }
