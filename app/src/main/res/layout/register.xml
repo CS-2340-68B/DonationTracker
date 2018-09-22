@@ -14,11 +14,11 @@
         android:layout_height="43dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="32dp"
         android:autoText="true"
-        android:background="@drawable/cancelbuttonregister"
+        android:background="@drawable/cancelbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword" />
 
@@ -28,11 +28,11 @@
         android:layout_height="43dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="32dp"
         android:autoText="true"
-        android:background="@drawable/registerbuttonregister"
+        android:background="@drawable/registerbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.239"
+        app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword" />
 

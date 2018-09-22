@@ -63,7 +63,7 @@
         android:layout_marginEnd="76dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="76dp"
-        android:background="@drawable/canclebutton"
+        android:background="@drawable/cancelbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/login"
