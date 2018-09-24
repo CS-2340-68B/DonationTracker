@@ -1,24 +1,25 @@
 package edu.gatech.cs2340_68b.donationtracker;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.google.firebase.database.FirebaseDatabase;
+
 
 public class Login extends AppCompatActivity {
 
     private TextView username;
     private TextView password;
+    private TextView forgetPassword;
     private Button login;
     private Button cancel;
     public User currentUser;
@@ -38,6 +39,7 @@ public class Login extends AppCompatActivity {
         password = (TextView)findViewById(R.id.registerPassword);
         cancel = (Button)findViewById(R.id.cancel);
         login = (Button)findViewById(R.id.login);
+        forgetPassword = (TextView)findViewById(R.id.forgetPassword);
 //        ConstraintLayout current = (ConstraintLayout) findViewById(R.id.layout);
 //        current.setBackgroundColor(Color.WHITE);
 
@@ -51,6 +53,14 @@ public class Login extends AppCompatActivity {
 //                Intent intent = new Intent(Login.this, Welcome.class);
 //                startActivity(intent);
                 finish();
+            }
+        });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, ForgetPassword.class);
+                startActivity(intent);
             }
         });
 
