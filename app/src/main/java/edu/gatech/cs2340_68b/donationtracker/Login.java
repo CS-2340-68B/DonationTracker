@@ -1,9 +1,12 @@
 package edu.gatech.cs2340_68b.donationtracker;
 
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +24,15 @@ public class Login extends AppCompatActivity {
     private Button cancel;
     public User currentUser;
     private int loginClick = 0;
+    private ActionBar actionBar;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         username = (TextView)findViewById(R.id.registerUsername);
@@ -88,7 +95,11 @@ public class Login extends AppCompatActivity {
                     // Lock Account
                 }
 
+
             }
         });
+
+
     }
+
 }
