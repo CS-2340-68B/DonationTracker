@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker;
+package edu.gatech.cs2340_68b.donationtracker.Controllers;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Register extends AppCompatActivity {
 

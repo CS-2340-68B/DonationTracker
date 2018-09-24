@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:padding="16dp"
-    tools:context=".Welcome">
+    tools:context=".Controllers.Welcome">
 
     <Button
         android:id="@+id/RegisterButton"
