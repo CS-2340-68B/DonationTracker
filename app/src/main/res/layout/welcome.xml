@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.Welcome">
+    tools:context=".Controllers.Welcome"
+    android:background="#fff">
 
     <Button
         android:id="@+id/RegisterButton"
@@ -12,10 +13,9 @@
         android:layout_height="63dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:autoText="true"
-        android:background="#5d72e8"
-        android:text="Register"
+        android:background="@drawable/registerbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,25 +27,24 @@
         android:layout_height="63dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="52dp"
         android:autoText="false"
-        android:background="#5d72e8"
+        android:background="@drawable/loginbutton"
         android:elevation="0dp"
-        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="280dp"
-        android:layout_height="110dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/appd" />
+        app:srcCompat="@drawable/donapp" />
 
 </android.support.constraint.ConstraintLayout>
