@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker;
+package edu.gatech.cs2340_68b.donationtracker.Models;
 
 public class User {
     private String username = "user";
