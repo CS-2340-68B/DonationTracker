@@ -3,11 +3,9 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,6 +13,8 @@ import android.widget.ImageButton;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
+import edu.gatech.cs2340_68b.donationtracker.Models.TempDataBase;
+import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Welcome extends AppCompatActivity {
@@ -23,6 +23,8 @@ public class Welcome extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     private ActionBar actionBar;
+    public static User currentUser;
+    public static TempDataBase tempDB;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
@@ -30,11 +32,12 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
+        tempDB = new TempDataBase();
+
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

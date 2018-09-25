@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
-    private String username = "user";
+    private String username = "user@gmail.com";
     private String password = "pass";
     private int failedAttempts = 0;
     private int lastFailed = 0;
