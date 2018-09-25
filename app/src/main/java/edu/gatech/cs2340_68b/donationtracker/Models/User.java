@@ -1,4 +1,8 @@
-package edu.gatech.cs2340_68b.donationtracker;
+package edu.gatech.cs2340_68b.donationtracker.Models;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class User {
     private String username = "user";
@@ -62,4 +66,6 @@ public class User {
     public void setLastLogin(int lastLogin) {
         this.lastLogin = lastLogin;
     }
+
+
 }

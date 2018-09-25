@@ -1,6 +1,9 @@
-package edu.gatech.cs2340_68b.donationtracker;
+package edu.gatech.cs2340_68b.donationtracker.Controllers;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import edu.gatech.cs2340_68b.donationtracker.R;
+
 public class Register extends AppCompatActivity {
 
     private TextView username;
@@ -16,11 +21,16 @@ public class Register extends AppCompatActivity {
     private TextView confirmPassword;
     private Button register;
     private Button cancel;
+    private ActionBar actionBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
 
         username = (TextView)findViewById(R.id.registerUsername);
         password = (TextView)findViewById(R.id.registerPassword);
