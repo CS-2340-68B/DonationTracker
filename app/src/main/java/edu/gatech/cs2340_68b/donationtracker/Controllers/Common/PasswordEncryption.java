@@ -1,26 +1,19 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 
 public class PasswordEncryption {
-    private String password;
-    private String encoded;
 
-    public PasswordEncryption(String password) {
-        this.password = password;
-    }
-
-    public String encode() {
+    public static String encode(String password) {
         String encodedPass = "";
         for (Character each : password.toCharArray()) {
-            encodedPass += (char) (each + 1);
+            encodedPass += (char) ((each + 77) % 94 + 33);
         }
-        encoded = encodedPass;
         return encodedPass;
     }
 
-    public String decode() {
+    public static String decode(String encodedPassword) {
         String decodedPass = "";
-        for (Character each : encoded.toCharArray()) {
-            decodedPass += (char) (each - 1);
+        for (Character each : encodedPassword.toCharArray()) {
+            decodedPass += (char) (each);
         }
         return decodedPass;
     }
