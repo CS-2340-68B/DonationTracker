@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 
 public class PasswordEncryption {
     private String password;
