@@ -3,8 +3,6 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +13,7 @@ import android.widget.ImageButton;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Welcome extends AppCompatActivity {

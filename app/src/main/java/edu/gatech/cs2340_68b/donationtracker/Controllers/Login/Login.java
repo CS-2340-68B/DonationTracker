@@ -24,9 +24,9 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
-import edu.gatech.cs2340_68b.donationtracker.Models.AccountAttempt;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
 
 public class Login extends AppCompatActivity {
 

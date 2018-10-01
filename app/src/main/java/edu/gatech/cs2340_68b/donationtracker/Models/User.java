@@ -5,11 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
-    private String username = "user";
+    private String username = "user@gmail.com";
     private String password = "pass";
-    private int failedAttempts = 0;
-    private int lastFailed = 0;
-    private int lastLogin = 0;
+    private int failedAttempts;
+    private int lastFailed;
+    private int lastLogin;
+
+    public User() {}
 
     public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin) {
         this.username = username;
