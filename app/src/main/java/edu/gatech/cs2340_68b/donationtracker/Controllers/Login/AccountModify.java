@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Login;
 
+import android.app.AlertDialog;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 
 public class AccountModify {
@@ -37,9 +39,28 @@ public class AccountModify {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+    }
 
+    public static void resetAttemptCount(String email) {
+        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = firebase.getReference("accounts");
+        Query accountQuery = ref.orderByChild("username").equalTo(email);
+        accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot i : dataSnapshot.getChildren()) {
+                    User account = i.getValue(User.class);
+                    account.setFailedAttempts(0);
+                    account.setIsLock(false);
+                    ref.child(i.getKey()).setValue(account);
+                }
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
 }
