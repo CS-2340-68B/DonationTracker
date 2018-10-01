@@ -29,6 +29,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -41,6 +42,7 @@ public class Login extends AppCompatActivity {
     private Button cancel;
     public User currentUser;
     private int loginClick = 0;
+    private TextView resetPassword;
     private Map<String, Integer> typedUsername = new HashMap<>();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -57,6 +59,7 @@ public class Login extends AppCompatActivity {
         password = (TextView)findViewById(R.id.registerPassword);
         cancel = (Button)findViewById(R.id.cancel);
         login = (Button)findViewById(R.id.login);
+        resetPassword = (TextView)findViewById(R.id.forgetPassword);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +71,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String inputUsername = username.getText().toString();
                 String inputPassword = password.getText().toString();
                 inputPassword = PasswordEncryption.encode(inputPassword);
@@ -123,5 +127,15 @@ public class Login extends AppCompatActivity {
                 });
             }
         });
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, ForgetPassword.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
