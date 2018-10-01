@@ -5,24 +5,26 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
-    private String username = "user";
+    private String username = "user@gmail.com";
     private String password = "pass";
     private int failedAttempts;
     private int lastFailed;
     private int lastLogin;
+    private UserType type;
 
     public User() {}
 
-    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin) {
+    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin, UserType type) {
         this.username = username;
         this.password = password;
         this.failedAttempts = failedAttempts;
         this.lastFailed = lastFailed;
         this.lastLogin = lastLogin;
+        this.type = type;
     }
 
     public User(String username, String password) {
-        this(username, password, 0, 0, 0);
+        this(username, password, 0, 0, 0, UserType.USER);
     }
 
     public String getUsername() {
@@ -69,5 +71,11 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
+    public UserType getType() {
+        return this.type;
+    }
 
+    public void setType(UserType type) {
+        this.type = type;
+    }
 }

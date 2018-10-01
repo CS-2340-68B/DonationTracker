@@ -24,8 +24,12 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.currentUser;
+import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.tempDB;
 
 
 public class Login extends AppCompatActivity {
@@ -34,7 +38,6 @@ public class Login extends AppCompatActivity {
     private TextView password;
     private Button login;
     private Button cancel;
-    public User currentUser;
     private int loginClick = 0;
     private Map<String, Integer> typedUsername = new HashMap<>();
 
@@ -61,7 +64,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String inputUsername = username.getText().toString();
-                String inputPassword = username.getText().toString();
+                String inputPassword = password.getText().toString();
 
                 if (!VerifyFormat.verifyEmailFormat(inputUsername)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
@@ -70,22 +73,24 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                currentUser = new User(inputUsername, inputPassword);
-
                 // When verified, move to main page
-                if (currentUser.getUsername().equals("user") &&
-                        currentUser.getPassword().equals("pass")) {
+                if (inputUsername.equals(tempDB.getTempUser().getUsername()) &&
+                        inputPassword.equals(tempDB.getTempUser().getPassword())) {
+                    Welcome.currentUser = tempDB.getTempUser();
                     Intent intent = new Intent(Login.this, MainPage.class);
                     startActivity(intent);
                 }
 
                 //Basic implementation of account lock out
                 else {
+                    currentUser.setFailedAttempts(currentUser.getFailedAttempts()+1);
+                    if (currentUser.getFailedAttempts() >= 3) {
+                        AccountModify.lockAccount(currentUser.getUsername());
+                    }
                     // Username or password false, display and an error
                     AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                             "Oops", "Wrong Username and/or Password");
                     alert.create().show();
-                    AccountModify.lockAccount(inputUsername);
                 }
             }
         });
