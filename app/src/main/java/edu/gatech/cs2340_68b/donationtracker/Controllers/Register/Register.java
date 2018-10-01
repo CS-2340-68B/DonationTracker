@@ -26,6 +26,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -81,13 +82,15 @@ public class Register extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                                        "Error", "Account already exist.");
+                                        "Registration Error", "Username already exists");
                                 alert.create().show();
                             }
                             else {
                                 User newAccount = new User(username, PasswordEncryption.encode(password));
                                 DatabaseReference newRef = ref.push();
                                 newRef.setValue(newAccount);
+                                Intent intent = new Intent(Register.this, MainPage.class);
+                                startActivity(intent);
                             }
                         }
 
