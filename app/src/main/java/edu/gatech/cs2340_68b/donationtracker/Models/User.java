@@ -10,19 +10,21 @@ public class User {
     private int failedAttempts;
     private int lastFailed;
     private int lastLogin;
+    private boolean isLock;
 
     public User() {}
 
-    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin) {
+    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin, boolean isLock) {
         this.username = username;
         this.password = password;
         this.failedAttempts = failedAttempts;
         this.lastFailed = lastFailed;
         this.lastLogin = lastLogin;
+        this.isLock = isLock;
     }
 
     public User(String username, String password) {
-        this(username, password, 0, 0, 0);
+        this(username, password, 0, 0, 0, false);
     }
 
     public String getUsername() {
@@ -69,5 +71,7 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
+    public boolean getIsLock() { return isLock; }
 
+    public void setIsLock(boolean status) { this.isLock = status; }
 }

@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
                 currentUser = new User(inputUsername, inputPassword);
 
                 // When verified, move to main page
-                if (currentUser.getUsername().equals("user") &&
+                if (currentUser.getUsername().equals("user@gmail.com") &&
                         currentUser.getPassword().equals("pass")) {
                     Intent intent = new Intent(Login.this, MainPage.class);
                     startActivity(intent);
