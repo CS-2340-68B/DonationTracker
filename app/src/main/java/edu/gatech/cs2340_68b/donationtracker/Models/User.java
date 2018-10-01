@@ -5,26 +5,46 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
-    private String username = "user@gmail.com";
-    private String password = "pass";
+    private String userID;
+    private String username;
+    private String password;
     private int failedAttempts;
     private int lastFailed;
     private int lastLogin;
     private boolean isLock;
+    private UserType userType;
+    private Contact contact;
 
     public User() {}
 
-    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin, boolean isLock) {
+    public User(String username, String password) {
+        this.userID = java.util.UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
-        this.failedAttempts = failedAttempts;
-        this.lastFailed = lastFailed;
-        this.lastLogin = lastLogin;
-        this.isLock = isLock;
     }
 
-    public User(String username, String password) {
-        this(username, password, 0, 0, 0, false);
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public String getUsername() {
