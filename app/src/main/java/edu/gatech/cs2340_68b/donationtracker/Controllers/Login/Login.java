@@ -96,7 +96,12 @@ public class Login extends AppCompatActivity {
                         }
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
-                            if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
+                            if (user.getIsLock()) {
+                                AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
+                                        "Sorry", "Account is currently lock. " +
+                                                "Please reset your password or check your email");
+                                alert.create().show();
+                            } else if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
                                 AccountModify.resetAttemptCount(userName);
                                 Intent intent = new Intent(Login.this, MainPage.class);
                                 startActivity(intent);
