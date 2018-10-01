@@ -2,10 +2,13 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers.Login;
 
 import android.content.Intent;
 import android.app.AlertDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.http.SslCertificate;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +49,7 @@ public class Login extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("accounts");
     private ChildEventListener mChildListener;
+    private ActionBar actionBar;
 
     private boolean validAccount;
 
@@ -53,6 +57,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         username = (TextView)findViewById(R.id.registerUsername);
         password = (TextView)findViewById(R.id.registerPassword);
         cancel = (Button)findViewById(R.id.cancel);
