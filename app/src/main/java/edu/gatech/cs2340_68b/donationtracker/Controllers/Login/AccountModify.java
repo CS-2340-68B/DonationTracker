@@ -29,6 +29,9 @@ public class AccountModify {
                 for (DataSnapshot i : dataSnapshot.getChildren()) {
                     User account = i.getValue(User.class);
                     account.incrementFailed();
+                    if (account.getFailedAttempts() >= 3) {
+                        account.setIsLock(true);
+                    }
                     ref.child(i.getKey()).setValue(account);
                 }
             }
