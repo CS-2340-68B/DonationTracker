@@ -50,28 +50,22 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="88dp"
         android:background="@drawable/loginbutton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgetPassword"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintStart_toStartOf="@+id/registerPassword"
+        app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginTop="412dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="88dp"
         android:background="@drawable/cancelbutton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintEnd_toEndOf="@+id/registerPassword"
+        app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -93,14 +87,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
         android:clickable="true"
         android:text="Forget Your Password?"
         android:textSize="20dip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registerPassword"
+        app:layout_constraintStart_toStartOf="@+id/registerPassword"
         app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
 </android.support.constraint.ConstraintLayout>

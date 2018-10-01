@@ -114,13 +114,15 @@ public class Register extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                                        "Error", "Account already exist.");
+                                        "Registration Error", "Username already exists");
                                 alert.create().show();
                             }
                             else {
                                 User newAccount = new User(username, PasswordEncryption.encode(password));
                                 DatabaseReference newRef = ref.push();
                                 newRef.setValue(newAccount);
+                                Intent intent = new Intent(Register.this, MainPage.class);
+                                startActivity(intent);
                             }
                         }
 

@@ -5,14 +5,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
+    private String userID;
     private String username = "user@gmail.com";
     private String password = "pass";
     private int failedAttempts;
     private int lastFailed;
     private int lastLogin;
     private UserType type;
+    private boolean isLock;
+    private UserType userType;
+    private Contact contact;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin, UserType type) {
         this.username = username;
@@ -24,7 +29,24 @@ public class User {
     }
 
     public User(String username, String password) {
+        //this.userID = java.util.UUID.randomUUID().toString();
         this(username, password, 0, 0, 0, UserType.USER);
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public String getUsername() {
@@ -77,5 +99,18 @@ public class User {
 
     public void setType(UserType type) {
         this.type = type;
+    }
+
+    public boolean getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(boolean status) {
+        this.isLock = status;
+    }
+
+    @Override
+    public String toString() {
+        return username + " " + password + " isLock: " + isLock;
     }
 }
