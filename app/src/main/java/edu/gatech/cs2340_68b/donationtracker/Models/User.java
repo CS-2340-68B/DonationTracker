@@ -74,4 +74,9 @@ public class User {
     public boolean getIsLock() { return isLock; }
 
     public void setIsLock(boolean status) { this.isLock = status; }
+
+    @Override
+    public String toString() {
+        return username + " " + password + " isLock: " + isLock;
+    }
 }
