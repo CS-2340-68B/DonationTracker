@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.view.MenuInflater;
+import android.view.Menu;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -36,5 +38,12 @@ public class MainPage extends AppCompatActivity {
 //        actionBar.setIcon(R.drawable.icon);
 //        actionBar.setDisplayUseLogoEnabled(true);
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.mainmenu, menu);
+//        return true;
+//    }
 }
 
