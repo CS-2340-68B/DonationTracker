@@ -32,9 +32,13 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.currentUser;
+import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.tempDB;
 
 
 public class Login extends AppCompatActivity {
@@ -43,7 +47,6 @@ public class Login extends AppCompatActivity {
     private TextView password;
     private Button login;
     private Button cancel;
-    public User currentUser;
     private int loginClick = 0;
     private TextView resetPassword;
     private Map<String, Integer> typedUsername = new HashMap<>();
@@ -80,7 +83,7 @@ public class Login extends AppCompatActivity {
 
                 String inputUsername = username.getText().toString();
                 String inputPassword = password.getText().toString();
-                inputPassword = PasswordEncryption.encode(inputPassword);
+                //inputPassword = PasswordEncryption.encode(inputPassword);
 
                 if (!VerifyFormat.verifyEmailFormat(inputUsername)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
@@ -88,6 +91,27 @@ public class Login extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
+
+                // When verified, move to main page
+                if (inputUsername.equals(tempDB.getTempUser().getUsername()) &&
+                        inputPassword.equals(tempDB.getTempUser().getPassword())) {
+                    Welcome.currentUser = tempDB.getTempUser();
+                    Intent intent = new Intent(Login.this, MainPage.class);
+                    startActivity(intent);
+                }
+
+                //Basic implementation of account lock out
+                else {
+                    currentUser.setFailedAttempts(currentUser.getFailedAttempts()+1);
+                    if (currentUser.getFailedAttempts() >= 3) {
+                        AccountModify.lockAccount(currentUser.getUsername());
+                    }
+                    // Username or password false, display and an error
+                    AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
+                            "Oops", "Wrong Username and/or Password");
+                    alert.create().show();
+                }
+                /*
                 currentUser = new User(inputUsername, inputPassword);
                 gatewayLogin(inputUsername, inputPassword);
             }
@@ -130,7 +154,7 @@ public class Login extends AppCompatActivity {
                                 "Critical Error", "Database Error. Please try again later.");
                         alert.create().show();
                     }
-                });
+                });*/
             }
         });
 

@@ -6,21 +6,31 @@ import java.security.NoSuchAlgorithmException;
 
 public class User {
     private String userID;
-    private String username;
-    private String password;
+    private String username = "user@gmail.com";
+    private String password = "pass";
     private int failedAttempts;
     private int lastFailed;
     private int lastLogin;
+    private UserType type;
     private boolean isLock;
     private UserType userType;
     private Contact contact;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String username, String password) {
-        this.userID = java.util.UUID.randomUUID().toString();
+    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin, UserType type) {
         this.username = username;
         this.password = password;
+        this.failedAttempts = failedAttempts;
+        this.lastFailed = lastFailed;
+        this.lastLogin = lastLogin;
+        this.type = type;
+    }
+
+    public User(String username, String password) {
+        //this.userID = java.util.UUID.randomUUID().toString();
+        this(username, password, 0, 0, 0, UserType.USER);
     }
 
     public String getUserID() {
@@ -29,14 +39,6 @@ public class User {
 
     public void setUserID(String userID) {
         this.userID = userID;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
     }
 
     public Contact getContact() {
@@ -91,9 +93,21 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public boolean getIsLock() { return isLock; }
+    public UserType getType() {
+        return this.type;
+    }
 
-    public void setIsLock(boolean status) { this.isLock = status; }
+    public void setType(UserType type) {
+        this.type = type;
+    }
+
+    public boolean getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(boolean status) {
+        this.isLock = status;
+    }
 
     @Override
     public String toString() {
