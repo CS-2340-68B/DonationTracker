@@ -20,7 +20,7 @@
         <activity android:name=".Controllers.MainPage" />
         <activity android:name=".Controllers.Register.Register"/>
         <activity android:name=".Controllers.Register.ForgetPassword"/>
-        <activity android:name=".Controllers.Register.resetPassword"/>
+        <activity android:name=".Controllers.Register.ResetPassword"/>
 
     </application>
 

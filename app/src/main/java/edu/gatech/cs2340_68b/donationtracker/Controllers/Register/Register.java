@@ -98,13 +98,6 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-//                else {
-//                    Welcome.tempDB.getTempUser().setUsername(username);
-//                    Welcome.tempDB.getTempUser().setPassword(password);
-//                    Welcome.tempDB.getTempUser().setType(type);
-//                }
-//                Intent intent = new Intent(Register.this, MainPage.class);
-//                startActivity(intent);
                 else {
                     Query accountQuery = ref.orderByChild("username").equalTo(username);
                     accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -122,6 +115,7 @@ public class Register extends AppCompatActivity {
                                 newRef.setValue(newAccount);
                                 Intent intent = new Intent(Register.this, MainPage.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }
 

@@ -83,7 +83,6 @@ public class Login extends AppCompatActivity {
 
                 String inputUsername = username.getText().toString();
                 String inputPassword = password.getText().toString();
-                //inputPassword = PasswordEncryption.encode(inputPassword);
 
                 if (!VerifyFormat.verifyEmailFormat(inputUsername)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
@@ -93,25 +92,7 @@ public class Login extends AppCompatActivity {
                 }
 
                 // When verified, move to main page
-//                if (inputUsername.equals(tempDB.getTempUser().getUsername()) &&
-//                        inputPassword.equals(tempDB.getTempUser().getPassword())) {
-//                    Welcome.currentUser = tempDB.getTempUser();
-//                    Intent intent = new Intent(Login.this, MainPage.class);
-//                    startActivity(intent);
-//                }
-//
-//                //Basic implementation of account lock out
-//                else {
-//                    currentUser.setFailedAttempts(currentUser.getFailedAttempts()+1);
-//                    if (currentUser.getFailedAttempts() >= 3) {
-//                        AccountModify.lockAccount(currentUser.getUsername());
-//                    }
-//                    // Username or password false, display and an error
-//                    AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
-//                            "Oops", "Wrong Username and/or Password");
-//                    alert.create().show();
-//                }
-
+                inputPassword = PasswordEncryption.encode(inputPassword);
                 currentUser = new User(inputUsername, inputPassword);
                 gatewayLogin(inputUsername, inputPassword);
             }
@@ -139,6 +120,7 @@ public class Login extends AppCompatActivity {
                                 AccountModify.resetAttemptCount(userName);
                                 Intent intent = new Intent(Login.this, MainPage.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                         "Oops", "Wrong Username and/or Password");

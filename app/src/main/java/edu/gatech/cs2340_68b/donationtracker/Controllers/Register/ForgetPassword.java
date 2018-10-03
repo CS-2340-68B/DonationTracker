@@ -81,7 +81,7 @@ public class ForgetPassword extends AppCompatActivity {
                             } else {
                                 // Move to reset page
                                 status = false;
-                                Intent intent = new Intent(ForgetPassword.this, resetPassword.class);
+                                Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
                             }
