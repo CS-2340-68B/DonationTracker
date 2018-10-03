@@ -76,6 +76,7 @@ public class ResetPassword extends AppCompatActivity {
                             User user = singleSnapShot.getValue(User.class);
                             user.setPassword(PasswordEncryption.encode(newPassword));
                             System.out.println("Line 71: " + user.getPassword());
+                            finishedFlag = true;
                             ref.child(singleSnapShot.getKey()).setValue(user);
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
@@ -85,7 +86,6 @@ public class ResetPassword extends AppCompatActivity {
                                 new Runnable() {
                                     @Override
                                     public void run() {
-                                        finishedFlag = true;
                                         finish();
                                     }
                                 },
