@@ -31,6 +31,7 @@ public class ResetPassword extends AppCompatActivity {
     private Button resetPasswordButton;
     private TextInputLayout til;
     private String currentUserEmail;
+    public static boolean finishedFlag = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,8 +85,8 @@ public class ResetPassword extends AppCompatActivity {
                                 new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent intent = new Intent(ResetPassword.this, Login.class);
-                                        startActivity(intent);
+                                        finishedFlag = true;
+                                        finish();
                                     }
                                 },
                             3500);

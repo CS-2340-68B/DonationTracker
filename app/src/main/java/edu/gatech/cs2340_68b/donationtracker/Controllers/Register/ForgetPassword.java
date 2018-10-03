@@ -80,6 +80,10 @@ public class ForgetPassword extends AppCompatActivity {
                                 Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
+                                if (ResetPassword.finishedFlag == true) {
+                                    ResetPassword.finishedFlag = false;
+                                    finish();
+                                }
                             }
                         }
                         if (!status) {
