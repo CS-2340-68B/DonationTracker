@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference();
+        final DatabaseReference ref = firebase.getReference("accounts");
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
@@ -85,14 +85,8 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-                if (username.equals(Welcome.tempDB.getTempUser().getUsername())) {
-                    AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                            "Registration Error", "Username already exists");
-                    alert.create().show();
-                    return;
-                }
 
-                if (!password.equals(confirmPassword)) {
+                else if (!password.equals(confirmPassword)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "Password are not the same.");
                     alert.create().show();
