@@ -14,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
-import edu.gatech.cs2340_68b.donationtracker.Models.TempDataBase;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -25,7 +24,6 @@ public class Welcome extends AppCompatActivity {
     private Button registerButton;
     private ActionBar actionBar;
     public static User currentUser = new User();
-    public static TempDataBase tempDB = new TempDataBase();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
