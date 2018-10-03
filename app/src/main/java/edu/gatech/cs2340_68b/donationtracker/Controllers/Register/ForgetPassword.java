@@ -1,13 +1,11 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Register;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,11 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 
@@ -81,7 +77,7 @@ public class ForgetPassword extends AppCompatActivity {
                             } else {
                                 // Move to reset page
                                 status = false;
-                                Intent intent = new Intent(ForgetPassword.this, resetPassword.class);
+                                Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
                             }
