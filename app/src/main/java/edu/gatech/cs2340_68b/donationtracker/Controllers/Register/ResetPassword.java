@@ -86,9 +86,10 @@ public class ResetPassword extends AppCompatActivity {
                                     public void run() {
                                         Intent intent = new Intent(ResetPassword.this, Login.class);
                                         startActivity(intent);
+                                        finish();
                                     }
                                 },
-                            3500);
+                            1500);
                         }
                     }
 
