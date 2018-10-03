@@ -1,19 +1,26 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Register;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.ActionBar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 
@@ -21,30 +28,70 @@ public class ForgetPassword extends AppCompatActivity {
     private Button resetButton;
     private Button goBack;
     private TextInputEditText userEmail;
+    private TextInputLayout til;
+    private ProgressBar progressBar;
+    private Handler progressHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password);
-        resetButton = (Button)findViewById(R.id.resetButton);
-        goBack = (Button)findViewById(R.id.goBack);
+        resetButton = (Button) findViewById(R.id.resetButton);
+        goBack = (Button) findViewById(R.id.goBack);
         userEmail = findViewById(R.id.emailUser);
+        til = (TextInputLayout) findViewById(R.id.emailInput);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         // Reset button click
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(ProgressBar.VISIBLE);
                 String inputEmail = userEmail.getText().toString().trim();
                 if (inputEmail.length() != 0 && VerifyFormat.verifyEmailFormat(inputEmail)) {
-                    // Move to reset page
-                    Intent intent = new Intent(ForgetPassword.this, resetPassword.class);
-//                    intent.putExtra(inputEmail, )
-                    startActivity(intent);
+                    checkIfExistInDB(inputEmail);
                 } else {
-                    AlertDialog.Builder alert = CustomDialog.errorDialog(ForgetPassword.this,
-                            "Format Error", "Email format is not correct");
-                    alert.create().show();
-                    return;
+                    til.setError("Email format is not correct.");
                 }
+            }
+
+            // Helper method to check if email is in DB
+            private void checkIfExistInDB(final String inputEmail) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                Query query = reference.child("accounts").orderByChild("username").equalTo(inputEmail);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        boolean status = true;
+                        while (status) {
+                            progressHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar.setProgress(1);
+                                }
+                            });
+                            if (!dataSnapshot.exists()) {
+                                til.setError("Email does not exist in out database");
+                                status = false;
+                            } else {
+                                // Move to reset page
+                                status = false;
+                                Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
+                                intent.putExtra("userEmail", inputEmail);
+                                startActivity(intent);
+                            }
+                        }
+                        if (!status) {
+                            progressBar.setVisibility(ProgressBar.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Need to throw exception
+                    }
+                });
             }
         });
 
@@ -55,6 +102,5 @@ public class ForgetPassword extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

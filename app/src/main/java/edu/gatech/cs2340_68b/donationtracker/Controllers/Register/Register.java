@@ -85,27 +85,14 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-                if (username.equals(Welcome.tempDB.getTempUser().getUsername())) {
-                    AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                            "Registration Error", "Username already exists");
-                    alert.create().show();
-                    return;
-                }
 
-                if (!password.equals(confirmPassword)) {
+                else if (!password.equals(confirmPassword)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "Password are not the same.");
                     alert.create().show();
                     return;
                 }
-                else {
-                    Welcome.tempDB.getTempUser().setUsername(username);
-                    Welcome.tempDB.getTempUser().setPassword(password);
-                    Welcome.tempDB.getTempUser().setType(type);
-                }
-                Intent intent = new Intent(Register.this, MainPage.class);
-                startActivity(intent);
-                /*
+
                 else {
                     Query accountQuery = ref.orderByChild("username").equalTo(username);
                     accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,6 +110,7 @@ public class Register extends AppCompatActivity {
                                 newRef.setValue(newAccount);
                                 Intent intent = new Intent(Register.this, MainPage.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }
 
@@ -131,7 +119,7 @@ public class Register extends AppCompatActivity {
 
                         }
                     });
-                }*/
+                }
             }
         });
 
