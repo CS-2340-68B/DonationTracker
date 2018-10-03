@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
+        final DatabaseReference ref = firebase.getReference();
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
@@ -98,13 +98,6 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-//                else {
-//                    Welcome.tempDB.getTempUser().setUsername(username);
-//                    Welcome.tempDB.getTempUser().setPassword(password);
-//                    Welcome.tempDB.getTempUser().setType(type);
-//                }
-//                Intent intent = new Intent(Register.this, MainPage.class);
-//                startActivity(intent);
 
                 else {
                     Query accountQuery = ref.orderByChild("username").equalTo(username);
