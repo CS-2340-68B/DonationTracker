@@ -37,9 +37,6 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.currentUser;
-import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.tempDB;
-
 
 public class Login extends AppCompatActivity {
 
@@ -90,10 +87,7 @@ public class Login extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-
-                // When verified, move to main page
                 inputPassword = PasswordEncryption.encode(inputPassword);
-                currentUser = new User(inputUsername, inputPassword);
                 gatewayLogin(inputUsername, inputPassword);
             }
 
