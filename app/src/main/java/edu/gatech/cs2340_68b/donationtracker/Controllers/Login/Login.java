@@ -93,25 +93,25 @@ public class Login extends AppCompatActivity {
                 }
 
                 // When verified, move to main page
-                if (inputUsername.equals(tempDB.getTempUser().getUsername()) &&
-                        inputPassword.equals(tempDB.getTempUser().getPassword())) {
-                    Welcome.currentUser = tempDB.getTempUser();
-                    Intent intent = new Intent(Login.this, MainPage.class);
-                    startActivity(intent);
-                }
+//                if (inputUsername.equals(tempDB.getTempUser().getUsername()) &&
+//                        inputPassword.equals(tempDB.getTempUser().getPassword())) {
+//                    Welcome.currentUser = tempDB.getTempUser();
+//                    Intent intent = new Intent(Login.this, MainPage.class);
+//                    startActivity(intent);
+//                }
+//
+//                //Basic implementation of account lock out
+//                else {
+//                    currentUser.setFailedAttempts(currentUser.getFailedAttempts()+1);
+//                    if (currentUser.getFailedAttempts() >= 3) {
+//                        AccountModify.lockAccount(currentUser.getUsername());
+//                    }
+//                    // Username or password false, display and an error
+//                    AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
+//                            "Oops", "Wrong Username and/or Password");
+//                    alert.create().show();
+//                }
 
-                //Basic implementation of account lock out
-                else {
-                    currentUser.setFailedAttempts(currentUser.getFailedAttempts()+1);
-                    if (currentUser.getFailedAttempts() >= 3) {
-                        AccountModify.lockAccount(currentUser.getUsername());
-                    }
-                    // Username or password false, display and an error
-                    AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
-                            "Oops", "Wrong Username and/or Password");
-                    alert.create().show();
-                }
-                /*
                 currentUser = new User(inputUsername, inputPassword);
                 gatewayLogin(inputUsername, inputPassword);
             }
@@ -154,7 +154,7 @@ public class Login extends AppCompatActivity {
                                 "Critical Error", "Database Error. Please try again later.");
                         alert.create().show();
                     }
-                });*/
+                });
             }
         });
 
