@@ -59,7 +59,7 @@ public class ResetPassword extends AppCompatActivity {
                 if (!newRepeatPasswordFromUser.equals(newPasswordFromUser)) {
                     til.setError("You password does not match.");
                 } else if(newPasswordFromUser.length() < 8) {
-                    til.setError("You password length can not less than 8 characters." + newPasswordFromUser);
+                    til.setError("You password length can not less than 8 characters.");
                 } else if (!VerifyFormat.verifyPassword(newPasswordFromUser)) {
                     til.setError("Your password must contain at least 1 letter, 1 number, and " +
                             "one upper case letter");
@@ -80,6 +80,7 @@ public class ResetPassword extends AppCompatActivity {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
                             user.setPassword(PasswordEncryption.encode(newPassword));
+                            user.setFailedAttempts(0);
                             System.out.println("Line 71: " + user.getPassword());
                             finishedFlag = true;
                             ref.child(singleSnapShot.getKey()).setValue(user);
