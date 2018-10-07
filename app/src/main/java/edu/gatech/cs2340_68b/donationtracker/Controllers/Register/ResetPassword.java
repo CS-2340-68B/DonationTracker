@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
@@ -54,10 +55,14 @@ public class ResetPassword extends AppCompatActivity {
 
                 String newPasswordFromUser = newPassword.getText().toString().trim();
                 String newRepeatPasswordFromUser = repeatNewPassword.getText().toString().trim();
+
                 if (!newRepeatPasswordFromUser.equals(newPasswordFromUser)) {
                     til.setError("You password does not match.");
                 } else if(newPasswordFromUser.length() < 8) {
-                    til.setError("You password length can not less than 8 characters.");
+                    til.setError("You password length can not less than 8 characters." + newPasswordFromUser);
+                } else if (!VerifyFormat.verifyPassword(newPasswordFromUser)) {
+                    til.setError("Your password must contain at least 1 letter, 1 number, and " +
+                            "one upper case letter");
                 } else {
                     updatePasswordToDB(newPasswordFromUser);
                 }
