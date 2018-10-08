@@ -20,7 +20,7 @@ public class LocationControl {
         try {
             //Open a stream on the raw file
             InputStream is = new FileInputStream(new File("./raw/LocationData.csv"));
-                //getResources().openRawResource(R.raw.LocationData);
+            // InputStream is = new getResources().openRawResource(R.raw.LocationData);
 
             //From here we probably should call a model method and pass the InputStream
             //Wrap it in a BufferedReader so that we get the readLine() method
