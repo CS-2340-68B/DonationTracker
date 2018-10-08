@@ -12,10 +12,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
+import edu.gatech.cs2340_68b.donationtracker.Models.LocationList;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class LocationControl {
-    public static Location locdata[];
     public static void readCSVFile() {
         try {
             //Open a stream on the raw file
@@ -34,8 +34,8 @@ public class LocationControl {
             }
             br1.close();
 
-            // Array of lcoations with appropriate size
-            locdata = new Location[length];
+            // Array of locations with appropriate size
+            LocationList.locdata = new Location[length];
 
             // Initialize each location element in the locdata array
             // with parsed tokens from the csv file
@@ -45,7 +45,7 @@ public class LocationControl {
             br2.readLine(); //get rid of header line
             while ((readline = br2.readLine()) != null) {
                 String[] token = line.split(",");
-                locdata[idx] = new Location(token[0], token[1], token[2], token[3], token[4], token[5],
+                LocationList.locdata[idx] = new Location(token[0], token[1], token[2], token[3], token[4], token[5],
                         token[6], token[7], token[8], token[9], token[10]);
                 idx++;
             }
