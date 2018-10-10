@@ -117,4 +117,18 @@ public class Location {
         this.website = website;
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        s += "Key: " + this.key + "\n";
+        s += "Location Name: " + this.locationName + "\n";
+        s += "Longitude: " + this.longitude + "\n";
+        s += "Latitude: " + this.latitude + "\n";
+        s += "Street Address: " + this.streetAddress + "\n";
+        s += "City: " + this.city + "\n";
+        s += "State: " + this.state + "\n";
+        s += "Zip: " + this.zip + "\n\n\n\n";
+        return s;
+    }
+
 }
