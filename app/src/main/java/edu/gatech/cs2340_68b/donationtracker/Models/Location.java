@@ -13,7 +13,7 @@ public class Location {
     private String phone;
     private String website;
 
-    public Location(String key, String locationName, String longitude, String latitude,
+    public Location(String key, String locationName, String latitude, String longitude,
                     String streetAddress, String city, String state, String zip,
                     String locationType, String phone, String website) {
         this.key = key;
