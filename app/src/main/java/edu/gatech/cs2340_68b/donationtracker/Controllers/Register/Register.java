@@ -89,6 +89,14 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
+
+                else if (!VerifyFormat.verifyPassword(password)) {
+                    AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
+                            "Error", "Your password must contain at least 1 letter, 1 number, and " +
+                            "one upper case letter, and be at least 8 characters long");
+                    alert.create().show();
+                    return;
+                }
                 else {
                     Query accountQuery = ref.orderByChild("username").equalTo(username);
                     accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
