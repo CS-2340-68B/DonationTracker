@@ -1,22 +1,72 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
 public class Location {
-    private String addressLine;
+    private String key;
+    private String locationName;
+    private String longitude;
+    private String latitude;
+    private String streetAddress;
     private String city;
     private String state;
-    private String zipcode;
-    private String country;
-    private String latitude;
-    private String longitude;
+    private String zip;
+    private String locationType;
+    private String phone;
+    private String website;
 
-    public Location() {}
-
-    public String getAddressLine() {
-        return addressLine;
+    public Location(String key, String locationName, String longitude, String latitude,
+                    String streetAddress, String city, String state, String zip,
+                    String locationType, String phone, String website) {
+        this.key = key;
+        this.locationName = locationName;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.locationType = locationType;
+        this.phone = phone;
+        this.website = website;
     }
 
-    public void setAddressLine(String addressLine) {
-        this.addressLine = addressLine;
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
 
     public String getCity() {
@@ -35,35 +85,36 @@ public class Location {
         this.state = state;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZip() {
+        return zip;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
-    public String getCountry() {
-        return country;
+    public String getLocationType() {
+        return locationType;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
     }
 
-    public String getLatitude() {
-        return latitude;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setWebsite(String website) {
+        this.website = website;
     }
+
 }

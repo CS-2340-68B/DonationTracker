@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
@@ -54,10 +55,14 @@ public class ResetPassword extends AppCompatActivity {
 
                 String newPasswordFromUser = newPassword.getText().toString().trim();
                 String newRepeatPasswordFromUser = repeatNewPassword.getText().toString().trim();
+
                 if (!newRepeatPasswordFromUser.equals(newPasswordFromUser)) {
                     til.setError("You password does not match.");
                 } else if(newPasswordFromUser.length() < 8) {
                     til.setError("You password length can not less than 8 characters.");
+                } else if (!VerifyFormat.verifyPassword(newPasswordFromUser)) {
+                    til.setError("Your password must contain at least 1 letter, 1 number, and " +
+                            "one upper case letter");
                 } else {
                     updatePasswordToDB(newPasswordFromUser);
                 }
@@ -75,7 +80,9 @@ public class ResetPassword extends AppCompatActivity {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
                             user.setPassword(PasswordEncryption.encode(newPassword));
+                            user.setFailedAttempts(0);
                             System.out.println("Line 71: " + user.getPassword());
+                            finishedFlag = true;
                             ref.child(singleSnapShot.getKey()).setValue(user);
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
@@ -85,7 +92,6 @@ public class ResetPassword extends AppCompatActivity {
                                 new Runnable() {
                                     @Override
                                     public void run() {
-                                        finishedFlag = true;
                                         finish();
                                     }
                                 },
