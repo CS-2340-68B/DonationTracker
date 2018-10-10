@@ -95,7 +95,7 @@ public class ResetPassword extends AppCompatActivity {
                                         finish();
                                     }
                                 },
-                            3500);
+                            1500);
                         }
                     }
 
