@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
+import edu.gatech.cs2340_68b.donationtracker.Models.LocationList;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -37,6 +39,7 @@ public class Welcome extends AppCompatActivity {
         registerButton = (Button) findViewById(R.id.RegisterButton);
 
         LocationControl.readCSVFile();
+        Log.d("CSVFILE", LocationList.locdata.toString());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
