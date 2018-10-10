@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference();
+        final DatabaseReference ref = firebase.getReference("accounts");
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
@@ -69,8 +69,6 @@ public class Register extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         utspinner.setAdapter(adapter);
 
-        //standingSpinner.setSelection(Student.findPosition(_student.getClassStanding()));
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +80,12 @@ public class Register extends AppCompatActivity {
                 if (!VerifyFormat.verifyEmailFormat(username)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "User account format is not correct.");
+                    alert.create().show();
+                    return;
+                }
+                else if (!password.equals(confirmPassword)) {
+                    AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
+                            "Error", "Password are not the same.");
                     alert.create().show();
                     return;
                 }

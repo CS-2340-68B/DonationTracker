@@ -73,7 +73,6 @@ public class ResetPassword extends AppCompatActivity {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
                             user.setPassword(PasswordEncryption.encode(newPassword));
-                            System.out.println("Line 71: " + user.getPassword());
                             ref.child(singleSnapShot.getKey()).setValue(user);
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
