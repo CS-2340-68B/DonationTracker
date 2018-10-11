@@ -6,16 +6,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
-import edu.gatech.cs2340_68b.donationtracker.Models.LocationList;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 

@@ -1,10 +1,13 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.util.Log;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,35 +42,24 @@ public class LocationControl {
             //From here we probably should call a model method and pass the InputStream
             //Wrap it in a BufferedReader so that we get the readLine() method
             BufferedReader br1 = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-//            String line;
-//            int length = 0;
-//            br1.readLine(); //get rid of header line
-//            // Get number of locations
-//            while ((line = br1.readLine()) != null) {
-//                length++;
-//            }
-//            br1.close();
-
-            // Array of locations with appropriate size
-            LocationList.locdata = new ArrayList<>();
-
-            // Initialize each location element in the locdata array
-            // with parsed tokens from the csv file
-            BufferedReader br2 = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
             String readline;
-            int idx = 0;
-            br2.readLine(); //get rid of header line
-            while ((readline = br2.readLine()) != null) {
+            br1.readLine(); //get rid of header line
+            while ((readline = br1.readLine()) != null) {
                 String[] token = readline.split(",");
-                LocationList.locdata.add(new Location(token[0], token[1], token[2], token[3], token[4], token[5],
-                        token[6], token[7], token[8], token[9], token[10]));
-                idx++;
+                Location location = new Location(token[0], token[1], token[2], token[3], token[4], token[5],
+                        token[6], token[7], token[8], token[9], token[10]);
+                addLocationToDB(location);
             }
-//            Log.e("abc", LocationList.locdata.toString());
-            br2.close();
+            br1.close();
 
         } catch (IOException e) {
             Log.e("Location Control", "error reading assets", e);
         }
+    }
+
+    public void addLocationToDB(Location location) {
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebase.getReference("locations").push();
+        ref.setValue(location);
     }
 }
