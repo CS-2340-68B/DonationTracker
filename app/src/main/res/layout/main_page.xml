@@ -7,6 +7,21 @@
     tools:context=".Controllers.MainPage"
     android:background="#fff">
 
+    <Button
+        android:id="@+id/search"
+        android:layout_width="272dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="228dp"
+        android:background="@drawable/search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.013" />
+
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="286dp"
@@ -19,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056"
+        app:layout_constraintVertical_bias="0.113"
         app:srcCompat="@drawable/donapp" />
 
     <Button
@@ -70,16 +85,16 @@
         android:id="@+id/donationLocationListButton"
         android:layout_width="272dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="160dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/donationlocationlist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/donationMapButton"
@@ -95,38 +110,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/doationLocationMapbutton"
         app:layout_constraintVertical_bias="0.125" />
-
-    <TextView
-        android:id="@+id/searchText"
-        android:layout_width="126dp"
-        android:layout_height="33dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="200dp"
-        android:text="Search"
-        app:layout_constraintBottom_toTopOf="@+id/searchBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/searchBar"
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Type here"
-        android:inputType="textEmailAddress|textPersonName"
-        android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/donationLocationListButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
