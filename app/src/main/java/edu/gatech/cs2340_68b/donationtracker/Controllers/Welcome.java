@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
@@ -38,8 +39,13 @@ public class Welcome extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
 
+<<<<<<< HEAD
         LocationControl.readCSVFile();
         Log.d("CSVFILE READ: ", LocationList.locdata.toString());
+=======
+        LocationControl a = new LocationControl(this);
+        a.readCSVFile();
+>>>>>>> 18abc0d4235da56672bf26316bf0b1e281a1537c
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

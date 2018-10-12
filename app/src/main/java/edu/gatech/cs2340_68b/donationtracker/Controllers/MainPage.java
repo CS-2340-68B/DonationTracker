@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.LocationPage;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationPage;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class MainPage extends AppCompatActivity {

@@ -13,7 +13,7 @@ public class Location {
     private String phone;
     private String website;
 
-    public Location(String key, String locationName, String longitude, String latitude,
+    public Location(String key, String locationName, String latitude, String longitude,
                     String streetAddress, String city, String state, String zip,
                     String locationType, String phone, String website) {
         this.key = key;
@@ -115,6 +115,20 @@ public class Location {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "Key: " + this.key + "\n";
+        s += "Location Name: " + this.locationName + "\n";
+        s += "Longitude: " + this.longitude + "\n";
+        s += "Latitude: " + this.latitude + "\n";
+        s += "Street Address: " + this.streetAddress + "\n";
+        s += "City: " + this.city + "\n";
+        s += "State: " + this.state + "\n";
+        s += "Zip: " + this.zip + "\n\n\n\n";
+        return s;
     }
 
 }
