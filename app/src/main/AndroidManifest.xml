@@ -21,6 +21,7 @@
         <activity android:name=".Controllers.Register.Register"/>
         <activity android:name=".Controllers.Register.ForgetPassword"/>
         <activity android:name=".Controllers.Register.ResetPassword"/>
+        <activity android:name=".Controllers.UserProfile"/>
 
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
