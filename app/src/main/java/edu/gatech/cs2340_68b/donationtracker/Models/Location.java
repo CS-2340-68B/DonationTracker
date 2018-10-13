@@ -134,4 +134,7 @@ public class Location {
         return s;
     }
 
+    public String getAddress() {
+        return streetAddress + ", " + city + ", " + state + ", " + zip;
+    }
 }
