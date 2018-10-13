@@ -1,8 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
 public class User {
     private String userID;
@@ -16,6 +14,7 @@ public class User {
     private UserType userType;
     private Contact contact;
 
+    // For the purpose of create instance from Firebase
     public User() {
     }
 

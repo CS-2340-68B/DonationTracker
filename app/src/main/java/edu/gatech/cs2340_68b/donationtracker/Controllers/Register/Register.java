@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,16 +21,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
-import edu.gatech.cs2340_68b.donationtracker.Models.UserType;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Register extends AppCompatActivity {
