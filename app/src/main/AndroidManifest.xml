@@ -23,10 +23,6 @@
         <activity android:name=".Controllers.Register.Register" />
         <activity android:name=".Controllers.Register.ForgetPassword" />
         <activity android:name=".Controllers.Register.ResetPassword" />
-        <activity
-            android:name=".Controllers.Location.LocationView"
-            android:label="@string/title_activity_location_view"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Controllers.Location.LocationListView"></activity>
     </application>
 
