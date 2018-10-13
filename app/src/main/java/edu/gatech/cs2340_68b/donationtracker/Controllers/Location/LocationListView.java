@@ -1,7 +1,10 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,41 +20,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class LocationListView extends AppCompatActivity {
 
-    private ListView locationList;
+    private ListView locationListView;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_list_view);
-        locationList = findViewById(R.id.locationList);
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+        locationListView = findViewById(R.id.locationList);
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                int count = 0;
-                ArrayList<String> locationNamesList = new ArrayList<>();
-                ArrayList<String> locationAddressesList = new ArrayList<>();
+                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Location place = snapshot.getValue(Location.class);
-                    locationNamesList.add(place.getLocationName());
-                    locationAddressesList.add(place.getAddress());
+                    Map.Entry<String,String> entry =
+                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                    locationInfo.add(entry);
                 }
-
-                String[] locationNamesArray = new String[locationNamesList.size()];
-                String[] locationAddressesArray = new String[locationAddressesList.size()];
-                locationNamesArray = locationNamesList.toArray(locationNamesArray);
-                locationAddressesArray = locationAddressesList.toArray(locationAddressesArray);
-                locationList.setAdapter(new dataListAdapter(
-                        locationNamesArray,
-                        locationAddressesArray
-                ));
+                Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {
+                    @Override
+                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
+                        return o1.getKey().compareTo(o2.getKey());
+                    }
+                });
+                locationListView.setAdapter(new dataListAdapter(locationInfo));
             }
 
             @Override
@@ -61,25 +69,30 @@ public class LocationListView extends AppCompatActivity {
         });
     }
     class dataListAdapter extends BaseAdapter {
-        String[] Title, Detail;
+//        String[] Title, Detail;
+        ArrayList<Map.Entry<String, String>> data;
 //        int[] imge;
 
         dataListAdapter() {
-            Title = null;
-            Detail = null;
+//            Title = null;
+//            Detail = null;
 //            imge=null;
+            data = null;
         }
 
-        public dataListAdapter(String[] text, String[] text1) {
-            Title = text;
-            Detail = text1;
+//        public dataListAdapter(String[] text, String[] text1) {
+//            Title = text;
+//            Detail = text1;
 //            imge = text3;
+//        }
 
+        public dataListAdapter(ArrayList<Map.Entry<String, String>> data) {
+            this.data = data;
         }
 
         public int getCount() {
             // TODO Auto-generated method stub
-            return Title.length;
+            return data.size();
         }
 
         public Object getItem(int arg0) {
@@ -102,9 +115,11 @@ public class LocationListView extends AppCompatActivity {
             title = (TextView) row.findViewById(R.id.title);
             detail = (TextView) row.findViewById(R.id.detail);
 //            i1=(ImageView)row.findViewById(R.id.img);
-            title.setText(Title[position]);
-            detail.setText(Detail[position]);
+//            title.setText(Title[position]);
+//            detail.setText(Detail[position]);
 //            i1.setImageResource(imge[position]);
+            title.setText(data.get(position).getKey());
+            detail.setText(data.get(position).getValue());
 
             return (row);
         }
