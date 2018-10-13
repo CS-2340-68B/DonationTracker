@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationPage;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -36,7 +37,7 @@ public class MainPage extends AppCompatActivity {
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this, LocationPage.class);
+                Intent intent = new Intent(MainPage.this, LocationListView.class);
                 startActivity(intent);
             }
         });
