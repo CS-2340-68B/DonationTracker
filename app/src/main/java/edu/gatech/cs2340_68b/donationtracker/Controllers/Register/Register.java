@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,16 +21,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
-import edu.gatech.cs2340_68b.donationtracker.Models.UserType;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Register extends AppCompatActivity {
@@ -85,27 +80,22 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-                if (username.equals(Welcome.tempDB.getTempUser().getUsername())) {
-                    AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                            "Registration Error", "Username already exists");
-                    alert.create().show();
-                    return;
-                }
 
-                if (!password.equals(confirmPassword)) {
+                else if (!password.equals(confirmPassword)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "Password are not the same.");
                     alert.create().show();
                     return;
                 }
-                else {
-                    Welcome.tempDB.getTempUser().setUsername(username);
-                    Welcome.tempDB.getTempUser().setPassword(password);
-                    Welcome.tempDB.getTempUser().setType(type);
+
+                else if (!VerifyFormat.verifyPassword(password)) {
+                    AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
+                            "Error", "Your password must contain at least 1 letter, 1 number, and " +
+                            "one upper case letter, and be at least 8 characters long");
+                    alert.create().show();
+                    return;
                 }
-                Intent intent = new Intent(Register.this, MainPage.class);
-                startActivity(intent);
-                /*
+
                 else {
                     Query accountQuery = ref.orderByChild("username").equalTo(username);
                     accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,6 +113,7 @@ public class Register extends AppCompatActivity {
                                 newRef.setValue(newAccount);
                                 Intent intent = new Intent(Register.this, MainPage.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }
 
@@ -131,7 +122,7 @@ public class Register extends AppCompatActivity {
 
                         }
                     });
-                }*/
+                }
             }
         });
 
