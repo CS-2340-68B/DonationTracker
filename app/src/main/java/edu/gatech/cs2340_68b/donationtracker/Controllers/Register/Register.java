@@ -64,8 +64,6 @@ public class Register extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         utspinner.setAdapter(adapter);
 
-        //standingSpinner.setSelection(Student.findPosition(_student.getClassStanding()));
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +107,7 @@ public class Register extends AppCompatActivity {
                             }
                             else {
                                 User newAccount = new User(username, PasswordEncryption.encode(password));
+                                newAccount.setType(type);
                                 DatabaseReference newRef = ref.push();
                                 newRef.setValue(newAccount);
                                 Intent intent = new Intent(Register.this, MainPage.class);
