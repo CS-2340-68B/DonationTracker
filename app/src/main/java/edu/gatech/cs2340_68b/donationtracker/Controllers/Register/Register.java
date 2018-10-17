@@ -108,6 +108,7 @@ public class Register extends AppCompatActivity {
                             else {
                                 User newAccount = new User(username, PasswordEncryption.encode(password));
                                 newAccount.setType(type);
+                                newAccount.setAssignedLocation("AFD Station 4");
                                 DatabaseReference newRef = ref.push();
                                 newRef.setValue(newAccount);
                                 Intent intent = new Intent(Register.this, MainPage.class);
