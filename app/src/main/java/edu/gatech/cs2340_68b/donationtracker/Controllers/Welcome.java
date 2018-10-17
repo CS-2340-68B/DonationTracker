@@ -38,7 +38,7 @@ public class Welcome extends AppCompatActivity {
         registerButton = (Button) findViewById(R.id.RegisterButton);
 
         LocationControl a = new LocationControl(this);
-        a.readCSVFile();
+//        a.readCSVFile();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
