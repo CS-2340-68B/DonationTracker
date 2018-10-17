@@ -64,8 +64,6 @@ public class Register extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         utspinner.setAdapter(adapter);
 
-        //standingSpinner.setSelection(Student.findPosition(_student.getClassStanding()));
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +78,6 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-
                 else if (!password.equals(confirmPassword)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "Password are not the same.");
@@ -95,7 +92,6 @@ public class Register extends AppCompatActivity {
                     alert.create().show();
                     return;
                 }
-
                 else {
                     Query accountQuery = ref.orderByChild("username").equalTo(username);
                     accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {

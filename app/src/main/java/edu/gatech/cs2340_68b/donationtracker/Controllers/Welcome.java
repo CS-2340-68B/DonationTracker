@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,8 +38,9 @@ public class Welcome extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
 
+
         LocationControl a = new LocationControl(this);
-//        a.readCSVFile();
+        a.readCSVFile();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

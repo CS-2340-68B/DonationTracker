@@ -80,6 +80,13 @@ public class Login extends AppCompatActivity {
 
                 String inputUsername = username.getText().toString();
                 String inputPassword = password.getText().toString();
+
+                if (!VerifyFormat.verifyEmailFormat(inputUsername)) {
+                    AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
+                            "Format Error", "Email format is not correct");
+                    alert.create().show();
+                    return;
+                }
                 inputPassword = PasswordEncryption.encode(inputPassword);
                 gatewayLogin(inputUsername, inputPassword);
             }
