@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +30,8 @@
         <activity android:name=".Controllers.Register.ResetPassword"/>
         <activity android:name=".Controllers.Location.LocationPage"/>
         <activity android:name=".Controllers.Location.LocationBuild"/>
-
+        <activity android:name=".Controllers.Location.LocationListView"></activity>
+        <activity android:name=".Controllers.UserProfile"></activity>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>

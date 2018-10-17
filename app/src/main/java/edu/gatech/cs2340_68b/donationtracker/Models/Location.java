@@ -13,6 +13,9 @@ public class Location {
     private String phone;
     private String website;
 
+    // For the purpose of create instance from Firebase
+    public Location() {}
+
     public Location(String key, String locationName, String latitude, String longitude,
                     String streetAddress, String city, String state, String zip,
                     String locationType, String phone, String website) {
@@ -131,4 +134,32 @@ public class Location {
         return s;
     }
 
+    public String getAddress() {
+        return streetAddress + ", " + city + ", " + state + ", " + zip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(o instanceof Location)) {
+            return false;
+        }
+        Location l = (Location) o;
+        boolean sameName = locationName.equals(l.locationName)
+                || locationName.isEmpty() || l.locationName.isEmpty();
+        boolean sameAddress = streetAddress.equals(l.streetAddress)
+                || streetAddress.isEmpty() || l.streetAddress.isEmpty();
+        boolean sameCity = city.equals(l.city)
+                || city.isEmpty() || l.city.isEmpty();
+        boolean sameState = state.equals(l.state)
+                || state.isEmpty() || l.state.isEmpty();
+        boolean sameZip = zip.equals(l.zip)
+                || zip.isEmpty() || l.zip.isEmpty();
+        return sameName && sameAddress && sameCity && sameState && sameZip;
+    }
 }
