@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Controllers.Location.LocationListView">
 
+    <Button
+        android:id="@+id/modifyLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <ListView
         android:id="@+id/locationList"
         android:layout_width="wrap_content"

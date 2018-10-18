@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +27,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -32,6 +36,7 @@ public class LocationListViewPriv extends AppCompatActivity {
 
     private ListView locationListView;
     private ActionBar actionBar;
+    private Button modifyLocationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class LocationListViewPriv extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
+        modifyLocationButton = (Button) findViewById(R.id.modifyLocationButton);
+
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -63,6 +70,14 @@ public class LocationListViewPriv extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        modifyLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LocationListViewPriv.this, DonationList.class);
+                startActivity(intent);
             }
         });
     }
