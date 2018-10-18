@@ -23,8 +23,9 @@
         <activity android:name=".Controllers.Register.Register" />
         <activity android:name=".Controllers.Register.ForgetPassword" />
         <activity android:name=".Controllers.Register.ResetPassword" />
-        <activity android:name=".Controllers.Location.LocationListView"></activity>
-        <activity android:name=".Controllers.UserProfile"></activity>
+        <activity android:name=".Controllers.Location.LocationListView" />
+        <activity android:name=".Controllers.UserProfile" />
+        <activity android:name=".Controllers.Location.LocationDetail"></activity>
     </application>
 
 </manifest>

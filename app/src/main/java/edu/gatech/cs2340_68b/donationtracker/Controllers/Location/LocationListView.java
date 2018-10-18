@@ -1,15 +1,18 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,8 +50,10 @@ public class LocationListView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                final ArrayList<Location> locationList = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Location place = snapshot.getValue(Location.class);
+                    locationList.add(place);
                     Map.Entry<String,String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
@@ -60,6 +65,15 @@ public class LocationListView extends AppCompatActivity {
                     }
                 });
                 locationListView.setAdapter(new dataListAdapter(locationInfo));
+                locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Location l = locationList.get(position);
+                        Intent detail = new Intent(LocationListView.this, LocationDetail.class);
+                        detail.putExtra("LOCATION", l);
+                        startActivity(detail);
+                    }
+                });
             }
 
             @Override
