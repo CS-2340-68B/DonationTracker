@@ -27,6 +27,7 @@
         <activity android:name=".Controllers.UserProfile" />
         <activity android:name=".Controllers.Location.LocationDetail" />
         <activity android:name=".Controllers.Location.LocationSet"/>
+        <activity android:name=".Controllers.Location.DonationDetail"/>
     </application>
 
 </manifest>
