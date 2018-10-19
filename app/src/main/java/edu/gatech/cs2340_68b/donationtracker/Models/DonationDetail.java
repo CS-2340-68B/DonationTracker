@@ -10,7 +10,7 @@ public class DonationDetail {
     private Category category;
     private String comment;
 
-    public DonationDetail {};
+    public DonationDetail() {};
 
     public String getTime() {
         return time;
