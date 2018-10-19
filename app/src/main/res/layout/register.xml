@@ -12,21 +12,21 @@
         android:id="@+id/cancel"
         android:layout_width="105dp"
         android:layout_height="43dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:autoText="true"
         android:background="@drawable/cancelbutton"
-        app:layout_constraintEnd_toEndOf="@+id/registerConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/userTypeSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="105dp"
         android:layout_height="43dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:autoText="true"
         android:background="@drawable/registerbutton"
-        app:layout_constraintStart_toStartOf="@+id/registerConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword" />
+        app:layout_constraintStart_toStartOf="@+id/userTypeSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textEmailAddress|textPersonName"
@@ -66,13 +66,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
 
@@ -82,20 +82,25 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
     <Spinner
         android:id="@+id/userTypeSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="245dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/registerConfirmPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/registerConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword"
