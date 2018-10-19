@@ -1,6 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private String key;
     private String locationName;
     private String longitude;
