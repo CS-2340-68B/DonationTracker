@@ -12,6 +12,7 @@ public class DonationDetail extends AppCompatActivity {
     private ActionBar actionBar;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
