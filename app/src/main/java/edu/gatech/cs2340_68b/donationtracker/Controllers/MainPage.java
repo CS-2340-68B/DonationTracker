@@ -11,7 +11,6 @@ import android.widget.Button;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListViewPriv;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationPage;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 

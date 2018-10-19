@@ -26,6 +26,7 @@
         <activity android:name=".Controllers.Location.LocationListView" />
         <activity android:name=".Controllers.UserProfile" />
         <activity android:name=".Controllers.Location.LocationDetail" />
+        <activity android:name=".Controllers.Location.LocationSet"/>
     </application>
 
 </manifest>
