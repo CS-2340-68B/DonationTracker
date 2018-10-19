@@ -25,13 +25,14 @@
         </activity>
         <activity android:name=".Controllers.Login.Login" />
         <activity android:name=".Controllers.MainPage" />
-        <activity android:name=".Controllers.Register.Register"/>
+s       <activity android:name=".Controllers.Register.Register"/>
         <activity android:name=".Controllers.Register.ForgetPassword"/>
         <activity android:name=".Controllers.Register.ResetPassword"/>
         <activity android:name=".Controllers.Location.LocationPage"/>
         <activity android:name=".Controllers.Location.LocationBuild"/>
-        <activity android:name=".Controllers.Location.LocationListView"></activity>
-        <activity android:name=".Controllers.UserProfile"></activity>
+        <activity android:name=".Controllers.Location.LocationListView"/>
+        <activity android:name=".Controllers.UserProfile"/>
+        <activity android:name=".Controllers.Location.LocationDetail" />
     </application>
 
 </manifest>

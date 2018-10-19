@@ -13,23 +13,26 @@ public class User {
     private boolean isLock;
     private UserType userType;
     private Contact contact;
+    private String assignedLocation;
 
     // For the purpose of create instance from Firebase
     public User() {
     }
 
-    public User(String username, String password, int failedAttempts, int lastFailed, int lastLogin, UserType type) {
+    public User(String username, String password, int failedAttempts, int lastFailed,
+                int lastLogin, UserType type, String assignedLocation) {
         this.username = username;
         this.password = password;
         this.failedAttempts = failedAttempts;
         this.lastFailed = lastFailed;
         this.lastLogin = lastLogin;
         this.type = type;
+        this.assignedLocation = assignedLocation;
     }
 
     public User(String username, String password) {
         //this.userID = java.util.UUID.randomUUID().toString();
-        this(username, password, 0, 0, 0, UserType.USER);
+        this(username, password, 0, 0, 0, UserType.USER, null);
     }
 
     public String getUserID() {
@@ -106,6 +109,14 @@ public class User {
 
     public void setIsLock(boolean status) {
         this.isLock = status;
+    }
+
+    public void setAssignedLocation(String assignedLocation) {
+        this.assignedLocation = assignedLocation;
+    }
+
+    public String getAssignedLocation() {
+        return this.assignedLocation;
     }
 
     @Override

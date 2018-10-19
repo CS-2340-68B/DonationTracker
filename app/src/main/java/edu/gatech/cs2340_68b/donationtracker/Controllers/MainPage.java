@@ -20,7 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListView;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListViewPriv;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationPage;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class MainPage extends AppCompatActivity {
@@ -51,8 +53,15 @@ public class MainPage extends AppCompatActivity {
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this, LocationListView.class);
-                startActivity(intent);
+                if (Welcome.currentUser.getType().equals(UserType.MANAGER) ||
+                        Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE) ) {
+                    Intent intent = new Intent(MainPage.this, LocationListViewPriv.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainPage.this, LocationListView.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
