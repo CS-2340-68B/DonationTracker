@@ -64,6 +64,12 @@ public class LocationListView extends AppCompatActivity {
                         return o1.getKey().compareTo(o2.getKey());
                     }
                 });
+                Collections.sort(locationList, new Comparator<Location>() {
+                    @Override
+                    public int compare(Location o1, Location o2) {
+                        return o1.getLocationName().compareTo(o2.getLocationName());
+                    }
+                });
                 locationListView.setAdapter(new dataListAdapter(locationInfo));
                 locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

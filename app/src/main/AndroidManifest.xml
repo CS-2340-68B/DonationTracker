@@ -25,7 +25,7 @@
         <activity android:name=".Controllers.Register.ResetPassword" />
         <activity android:name=".Controllers.Location.LocationListView" />
         <activity android:name=".Controllers.UserProfile" />
-        <activity android:name=".Controllers.Location.LocationDetail"></activity>
+        <activity android:name=".Controllers.Location.LocationDetail" />
     </application>
 
 </manifest>
