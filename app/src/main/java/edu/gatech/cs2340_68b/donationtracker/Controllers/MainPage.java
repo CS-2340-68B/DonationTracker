@@ -65,13 +65,6 @@ public class MainPage extends AppCompatActivity {
             }
         });
         actionBar = getSupportActionBar();
-
-
-
-
-//        actionBar.setTitle("");
-//        actionBar.setIcon(R.drawable.icon);
-//        actionBar.setDisplayUseLogoEnabled(true);
     }
 
 }
