@@ -14,6 +14,8 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListVi
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.currentUser;
+
 public class MainPage extends AppCompatActivity {
 
     private Button logout;
@@ -39,8 +41,9 @@ public class MainPage extends AppCompatActivity {
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Welcome.currentUser.getType().equals(UserType.MANAGER) ||
-                        Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE) ) {
+                if (currentUser.getType().equals(UserType.MANAGER) ||
+                        currentUser.getType().equals(UserType.LOCATIONEMPLOYEE) ) {
+                    currentUser.setAssignedLocation("AFD Station 4");
                     Intent intent = new Intent(MainPage.this, LocationListViewPriv.class);
                     startActivity(intent);
                 } else {
