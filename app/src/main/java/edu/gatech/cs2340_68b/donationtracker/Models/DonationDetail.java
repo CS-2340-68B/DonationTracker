@@ -3,7 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 public class DonationDetail {
 
     private String time;
-    private  Location location;
+    private String location;
     private String fullDescription;
     private String shortDescription;
     private String value;
@@ -20,11 +20,11 @@ public class DonationDetail {
         this.time = time;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
