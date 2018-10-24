@@ -74,6 +74,7 @@ public class LocationListView extends AppCompatActivity {
                 locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // Sending information through intent
                         Location l = locationList.get(position);
                         Intent detail = new Intent(LocationListView.this, LocationDetail.class);
                         detail.putExtra("LOCATION", l);
