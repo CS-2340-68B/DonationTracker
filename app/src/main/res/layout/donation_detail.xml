@@ -186,13 +186,21 @@
 
     <EditText
         android:id="@+id/commentEdit"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="180dp"
+        android:layout_height="39dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/categorySpinner"
         app:layout_constraintStart_toStartOf="@+id/commentText"
         app:layout_constraintTop_toBottomOf="@+id/commentText" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="@+id/categorySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
 
 </android.support.constraint.ConstraintLayout>
