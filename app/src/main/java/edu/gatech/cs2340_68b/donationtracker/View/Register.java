@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers.Register;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;

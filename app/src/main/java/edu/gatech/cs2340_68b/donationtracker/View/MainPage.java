@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,12 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListView;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListViewPriv;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-import static edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome.currentUser;
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class MainPage extends AppCompatActivity {
 
