@@ -10,7 +10,7 @@ import android.widget.Spinner;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-public class DonationDetail extends AppCompatActivity {
+public class DonationDetailControl extends AppCompatActivity {
     private ActionBar actionBar;
     private EditText time;
     private EditText location;
@@ -29,6 +29,8 @@ public class DonationDetail extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.donation_detail);
         actionBar = getSupportActionBar();
+
+
 
     }
 
