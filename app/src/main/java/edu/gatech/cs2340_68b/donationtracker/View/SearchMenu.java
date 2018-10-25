@@ -60,10 +60,6 @@ public class SearchMenu extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
 }
