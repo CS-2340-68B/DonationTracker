@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
                                 alert.create().show();
                             } else if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
                                 AccountModify.resetAttemptCount(userName);
-                                Welcome.currentUser = singleSnapShot.getValue(User.class);
+                                Welcome.currentUser = user;
                                 Intent intent = new Intent(Login.this, MainPage.class);
                                 startActivity(intent);
                                 finish();

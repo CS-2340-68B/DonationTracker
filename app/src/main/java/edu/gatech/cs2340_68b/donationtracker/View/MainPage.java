@@ -20,6 +20,7 @@ public class MainPage extends AppCompatActivity {
     private ActionBar actionBar;
     private Button locationList;
     private Button userProfile;
+    private Button search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +63,14 @@ public class MainPage extends AppCompatActivity {
         });
         actionBar = getSupportActionBar();
 
-
-
-
-//        actionBar.setTitle("");
-//        actionBar.setIcon(R.drawable.icon);
-//        actionBar.setDisplayUseLogoEnabled(true);
+        search = (Button) findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, SearchMenu.class);
+                startActivity(intent);
+            }
+        });
     }
-
 }
 
