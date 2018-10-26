@@ -14,6 +14,13 @@ import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
@@ -34,7 +41,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
     private Spinner category;
     private Button submit;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ref = database.getReference("donations");
+    private DatabaseReference myRef = database.getReference("donations");
 
 
 
@@ -65,7 +72,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DonationDetail item = new DonationDetail();
+
 
                 final String timeI = time.getText().toString();
                 final String locationI = location.getText().toString();
@@ -76,13 +83,28 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 final String commentI = comment.getText().toString();
 
 
-                item.setTime(timeI);
-                item.setLocation(locationI);
-                item.setFullDescription(fullDescriptionI);
-                item.setCategory(type);
-                item.setShortDescription(shortDescriptionI);
-                item.setValue(valueI);
-                item.setComment(commentI);
+
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        DonationDetail item = new DonationDetail();
+                        item.setTime(timeI);
+                        item.setLocation(locationI);
+                        item.setFullDescription(fullDescriptionI);
+                        item.setCategory(type);
+                        item.setShortDescription(shortDescriptionI);
+                        item.setValue(valueI);
+                        item.setComment(commentI);
+                        DatabaseReference newRef = myRef.push();
+                        newRef.setValue(item);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+
+                    }
+                });
 
                 Intent detail = new Intent(DonationDetailControl_New.this, DonationList_Own.class);
                 startActivity(detail);
