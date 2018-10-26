@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
+import edu.gatech.cs2340_68b.donationtracker.View.Register;
+import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -60,10 +60,10 @@ public class LocationDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Welcome.currentUser.getType().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
-                    Intent intent = new Intent(LocationDetail.this, Register.class);
+                    Intent intent = new Intent(LocationDetail.this, DonationList.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(LocationDetail.this, Register.class);
+                    Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
                     startActivity(intent);
                 }
             }
