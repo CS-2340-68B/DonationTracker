@@ -30,6 +30,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ResetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
+import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.DonationList;
 import edu.gatech.cs2340_68b.donationtracker.View.DonationList_Own;
@@ -51,9 +52,6 @@ public class DonationDetailControl extends AppCompatActivity {
     private Button submit;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("donations");
-    public static boolean finishedFlag = false;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,89 +100,51 @@ public class DonationDetailControl extends AppCompatActivity {
         }
 
         submit.setOnClickListener(new View.OnClickListener() {
-
-            String timeI = time.getText().toString();
-            String locationI = location.getText().toString();
-            //                Category type = (Category) category.getSelectedItem();
-            String type = (String) category.getSelectedItem().toString();
-            String fullDescriptionI = fullDescription.getText().toString();
-            String shortDescriptionI = shortDescription.getText().toString();
-            String valueI = value.getText().toString();
-            String commentI = comment.getText().toString();
-            String nameI = name.getText().toString();
-
-//            @Override
-//            public void onClick(View v) {
-//                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-//                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
-//                ref.addChildEventListener(new ChildEventListener() {
-//                    @Override
-//                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
-//
-//                    @Override
-//                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                        DonationDetail detail = dataSnapshot.getValue(DonationDetail.class);
-//                        DonationDetail newDetail = new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, type, commentI, nameI);
-//                        detail.setValues(newDetail);
-//                        ref.child(dataSnapshot.getKey()).setValue(detail);
-//                    }
-//
-//                    @Override
-//                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) { }
-//
-//                    @Override
-//                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {}
-//                });
-//            }
-
-                        @Override
+            @Override
             public void onClick(View v) {
-                System.out.println("Ladadad: " + nameI);
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
                 final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
-//                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////                        DonationDetail detail = new DonationDetail();
-//                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-//                            System.out.println(snapshot.getKey());
-//                            System.out.println(keyUsed);
-//                            if (snapshot.getKey().equals(keyUsed)) {
-//                                System.out.println("HERE");
-//                                DonationDetail detail = snapshot.getValue(DonationDetail.class);
-//                                DonationDetail newDetail = new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, type, commentI, nameI);
-//                                System.out.println("line 159: " + newDetail.getName());
-//                                detail.setTime(timeI);
-//                                detail.setLocation(locationI);
-//                                detail.setFullDescription(fullDescriptionI);
-//                                detail.setShortDescription(shortDescriptionI);
-//                                detail.setValue(valueI);
-//                                detail.setValue(commentI);
-//                                detail.setName(nameI);
-//                                detail.setCategory(type);
-//                                System.out.println(detail.getName());
-//                                ref.child(snapshot.getKey()).setValue(detail);
-////                                AlertDialog.Builder alert  = CustomDialog.errorDialog(DonationDetailControl.this,
-////                                        "Congratulation", "You have successfully changed your donation detail.");
-////                                alert.create().show();
-////                                new android.os.Handler().postDelayed(
-////                                        new Runnable() {
-////                                            @Override
-////                                            public void run() {
-////                                                finish();
-////                                            }
-////                                        },
-////                                        1500);
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) { }
-//                });
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                            System.out.println(snapshot.getKey());
+                            if (snapshot.getKey().equals(keyUsed)) {
+                                DonationDetail item = snapshot.getValue(DonationDetail.class);
+                                String timeI = time.getText().toString();
+                                String locationI = location.getText().toString();
+                                String type = category.getSelectedItem().toString();
+                                String fullDescriptionI = fullDescription.getText().toString();
+                                String shortDescriptionI = shortDescription.getText().toString();
+                                String valueI = value.getText().toString();
+                                String commentI = comment.getText().toString();
+                                String nameI = name.getText().toString();
+                                item.setValue(valueI);
+                                item.setName(nameI);
+                                item.setLocation(locationI);
+                                item.setFullDescription(fullDescriptionI);
+                                item.setShortDescription(shortDescriptionI);
+                                item.setComment(commentI);
+                                item.setCategory(type);
+                                item.setTime(timeI);
+                                ref.child(keyUsed).setValue(item);
+                                new android.os.Handler().postDelayed(
+                                        new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Intent detail = new Intent(DonationDetailControl.this, LocationListViewPriv.class);
+                                                startActivity(detail);
+                                                finish();
+                                            }
+                                        },
+                                        1000);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+                });
             }
         });
 
