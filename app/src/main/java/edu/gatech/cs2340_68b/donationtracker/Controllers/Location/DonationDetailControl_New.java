@@ -61,17 +61,6 @@ public class DonationDetailControl_New extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
-        if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
-            submit.setVisibility(View.GONE);
-            time.setTag(time.getKeyListener());
-            time.setKeyListener(null);
-
-            location.setTag(location.getKeyListener());
-            location.setKeyListener(null);
-
-
-
-        }
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +74,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 final String shortDescriptionI = shortDescription.getText().toString();
                 final String valueI = value.getText().toString();
                 final String commentI = comment.getText().toString();
+
 
                 item.setTime(timeI);
                 item.setLocation(locationI);
