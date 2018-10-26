@@ -93,6 +93,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
                         DonationDetail item = new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, category.getSelectedItem().toString(), commentI, nameI);
                         DatabaseReference newRef = myRef.push();
                         newRef.setValue(item);
+                        finish();
                         Intent detail = new Intent(DonationDetailControl_New.this, LocationListViewPriv.class);
                         startActivity(detail);
                         finish();

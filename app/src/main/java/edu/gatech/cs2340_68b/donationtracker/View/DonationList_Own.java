@@ -61,11 +61,11 @@ public class DonationList_Own extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                 final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                final ArrayList<String> keyHashFromFB = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                    keyHashFromFB.add(snapshot.getKey());
                     donationList.add(detail);
-                    System.out.println("LINE 98");
-                    System.out.println(detail.getName());
                     Map.Entry<String,String> entry =
                         new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
                     donationInfo.add(entry);
@@ -88,6 +88,7 @@ public class DonationList_Own extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         DonationDetail l = donationList.get(position);
+                        String keyUsed = keyHashFromFB.get(position);
                         String array[] = new String[8];
                         array[0] = l.getName();
                         array[1] = l.getCategory();
@@ -99,6 +100,7 @@ public class DonationList_Own extends AppCompatActivity {
                         array[7] = l.getValue();
                         Intent detail = new Intent(DonationList_Own.this, DonationDetailControl.class);
                         detail.putExtra("DATA", array);
+                        detail.putExtra("KEY", keyUsed);
                         startActivity(detail);
                     }
                 });

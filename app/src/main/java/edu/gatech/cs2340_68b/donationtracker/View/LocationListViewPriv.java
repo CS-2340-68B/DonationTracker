@@ -62,12 +62,13 @@ public class LocationListViewPriv extends AppCompatActivity {
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
                 }
-                Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {
-                    @Override
-                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-                        return o1.getKey().compareTo(o2.getKey());
-                    }
-                });
+                // TODO it messing around in listview
+//                Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {
+//                    @Override
+//                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
+//                        return o1.getKey().compareTo(o2.getKey());
+//                    }
+//                });
                 locationListView.setAdapter(new dataListAdapter(locationInfo));
                 locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

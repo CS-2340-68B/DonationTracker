@@ -53,10 +53,9 @@ public class DonationDetailControl extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
+        final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
 
-//        for (int i =0; i < arrayOutput.length; i++) {
-//            System.out.println(arrayOutput[i]);
-//        }
+        System.out.println(keyUsed);
 
         time = (EditText) findViewById(R.id.timeInput);
         location = (EditText) findViewById(R.id.locationDonationEdit);
