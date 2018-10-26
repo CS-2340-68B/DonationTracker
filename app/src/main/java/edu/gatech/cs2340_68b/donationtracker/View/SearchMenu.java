@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 
 import org.w3c.dom.Text;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class SearchMenu extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class SearchMenu extends AppCompatActivity {
         searchbar = (TextInputEditText) findViewById(R.id.searchbar);
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchRadioGroup);
         searchTypeFlag = -1;
+        Location location;
 
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -40,23 +42,32 @@ public class SearchMenu extends AppCompatActivity {
                 int index = searchRadioGroup.indexOfChild(radioButton);
 
                 switch (index) {
-                    case 0: // first button
+                    case 0: // searchItemAll
                         searchTypeFlag = 0;
                         break;
-                    case 1: // secondbutton
+                    case 1: // searchCatAll
                         searchTypeFlag = 1;
                         break;
-                    case 2:
+                    case 2: // searchItemLoc
                         searchTypeFlag = 2;
+                        // Location List --> Come back with info?
+
+                        //location = (Location) getIntent().getSerializableExtra("LOCATION");
+
                         break;
-                    case 3:
+                    case 3: // searchCatLoc
                         searchTypeFlag = 3;
+                        // Location List --> Come back with info?
+
+                        //location = (Location) getIntent().getSerializableExtra("LOCATION");
+
                         break;
                 }
 
                 Intent intent = new Intent(SearchMenu.this, SearchResult.class);
                 startActivity(intent);
                 intent.putExtra("SearchFlag", searchTypeFlag);
+                //intent.putExtra("LOCATION", location);
             }
         });
 
