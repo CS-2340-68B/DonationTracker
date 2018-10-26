@@ -54,6 +54,7 @@ public class DonationDetailControl extends AppCompatActivity {
 
         final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
         final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
+        final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
 
         System.out.println(keyUsed);
 
@@ -93,8 +94,8 @@ public class DonationDetailControl extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-//                final DatabaseReference ref = firebase.getReference("donations/" + arrayOutput[0]);
+                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
 
                 DonationDetail item = new DonationDetail();
 
@@ -117,6 +118,7 @@ public class DonationDetailControl extends AppCompatActivity {
 
                 Intent detail = new Intent(DonationDetailControl.this, DonationList_Own.class);
                 startActivity(detail);
+                finish();
             }
         });
 
