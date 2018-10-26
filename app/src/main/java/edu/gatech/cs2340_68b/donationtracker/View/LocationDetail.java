@@ -44,7 +44,6 @@ public class LocationDetail extends AppCompatActivity {
         longtitude = findViewById(R.id.longtitude);
         DonationListBt = findViewById(R.id.donationListBt);
 
-
         name.setText(location.getLocationName());
         streetAddress.setText(location.getStreetAddress());
         city.setText(location.getCity());

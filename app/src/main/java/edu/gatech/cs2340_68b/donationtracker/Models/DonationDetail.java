@@ -9,12 +9,17 @@ public class DonationDetail {
     private String value;
     private Category category;
     private String comment;
+    private String name;
 
     public DonationDetail() {};
 
     public String getTime() {
         return time;
     }
+
+    public String getName() { return name; }
+
+    public void setName() { this.name = name; }
 
     public void setTime(String time) {
         this.time = time;
