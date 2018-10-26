@@ -25,12 +25,7 @@ public class LocationControl {
     public void readCSVFile() {
         try {
             //Open a stream on the raw file
-//            InputStream is = new FileInputStream(new File( "./raw/locationdata.csv"));
             InputStream is =  context.getResources().openRawResource(R.raw.locationdata);
-//             InputStream is =  getResources().openRawResource(R.raw.LocationData);
-
-            //From here we probably should call a model method and pass the InputStream
-            //Wrap it in a BufferedReader so that we get the readLine() method
             BufferedReader br1 = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
             String readline;
             br1.readLine(); //get rid of header line
