@@ -40,8 +40,29 @@
                 android:text="Location of Donation Name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"/>
+
+
             <EditText
                 android:id="@+id/locationDonationEdit"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:inputType="textPersonName"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="4dp"
+                android:text="Name"
+                android:textColor="@android:color/background_dark"
+                android:textSize="16sp"/>
+
+
+            <EditText
+                android:id="@+id/nameEdit"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
