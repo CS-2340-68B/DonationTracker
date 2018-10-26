@@ -28,6 +28,7 @@ public class Welcome extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
@@ -39,6 +40,7 @@ public class Welcome extends AppCompatActivity {
 //        DatabaseReference ref = firebase.getReference("donations");
 //        ref.setValue(null);
 
+//        System.out.println("START");
 //        LocationControl a = new LocationControl(this);
 //        a.readCSVFile();
 
