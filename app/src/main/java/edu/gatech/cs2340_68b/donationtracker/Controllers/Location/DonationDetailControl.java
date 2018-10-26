@@ -38,7 +38,6 @@ public class DonationDetailControl extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.donation_detail);
@@ -77,7 +76,8 @@ public class DonationDetailControl extends AppCompatActivity {
 
                 String timeI = time.getText().toString();
                 String locationI = location.getText().toString();
-                Category type = (Category) category.getSelectedItem();
+//                Category type = (Category) category.getSelectedItem();
+                String type = (String) category.getSelectedItem();
                 String fullDescriptionI = fullDescription.getText().toString();
                 String shortDescriptionI = shortDescription.getText().toString();
                 String valueI = value.getText().toString();

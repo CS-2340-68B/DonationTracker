@@ -7,7 +7,7 @@ public class DonationDetail {
     private String fullDescription;
     private String shortDescription;
     private String value;
-    private Category category;
+    private String category;
     private String comment;
     private String name;
 
@@ -57,11 +57,11 @@ public class DonationDetail {
         this.value = value;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
