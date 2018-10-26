@@ -48,13 +48,14 @@ public class DonationList_Own extends AppCompatActivity {
         donationListView = findViewById(R.id.donationList);
         addButton = findViewById(R.id.add_button);
 
-//        if (donation == null || donation == "") {
-//            newLocation = defaultLocation;
-//        } else {
-//            newLocation = donation;
-//        }
+        if (donation == null) {
+            newLocation = defaultLocation;
+        } else {
+            newLocation = donation;
+        }
 
-        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("donations/" + donation);
+        System.out.println(newLocation);
+        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("donations/" + newLocation);
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,6 +64,8 @@ public class DonationList_Own extends AppCompatActivity {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     donationList.add(detail);
+                    System.out.println("LINE 98");
+                    System.out.println(detail.getName());
                     Map.Entry<String,String> entry =
                         new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
                     donationInfo.add(entry);
@@ -111,7 +114,7 @@ public class DonationList_Own extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DonationList_Own.this, DonationDetailControl_New.class);
-                intent.putExtra("LOCATION", donation);
+                intent.putExtra("LOCATION", newLocation);
                 startActivity(intent);
             }
         });

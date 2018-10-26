@@ -90,6 +90,7 @@ public class LocationListViewPriv extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
+                System.out.println(currentUser.getAssignedLocation());
                 intent.putExtra("DEFAULT", currentUser.getAssignedLocation());
                 startActivity(intent);
             }
