@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,11 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -29,6 +28,7 @@ public class Welcome extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
@@ -36,9 +36,13 @@ public class Welcome extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
+//        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = firebase.getReference("donations");
+//        ref.setValue(null);
 
-        LocationControl a = new LocationControl(this);
-        a.readCSVFile();
+//        System.out.println("START");
+//        LocationControl a = new LocationControl(this);
+//        a.readCSVFile();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,21 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controllers.Welcome">
+        <activity android:name=".View.Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controllers.Login.Login" />
-        <activity android:name=".Controllers.MainPage" />
-        <activity android:name=".Controllers.Register.Register" />
+        <activity android:name=".View.Login" />
+        <activity android:name=".View.MainPage" />
+        <activity android:name=".View.Register" />
         <activity android:name=".Controllers.Register.ForgetPassword" />
         <activity android:name=".Controllers.Register.ResetPassword" />
-        <activity android:name=".Controllers.Location.LocationListView" />
-        <activity android:name=".Controllers.UserProfile" />
-        <activity android:name=".Controllers.Location.LocationDetail" />
+        <activity android:name=".View.LocationListView" />
+        <activity android:name=".View.UserProfile" />
+        <activity android:name=".View.LocationDetail" />
+        <activity android:name=".Controllers.Location.LocationSet"/>
+        <activity android:name=".Controllers.Location.DonationDetailControl"/>
+        <activity android:name=".View.DonationList"/>
+        <activity android:name=".View.DonationList_Own"/>
+        <activity android:name=".View.LocationListViewPriv"/>
+        <activity android:name=".Controllers.Location.DonationDetailControl_New"/>
     </application>
 
 </manifest>

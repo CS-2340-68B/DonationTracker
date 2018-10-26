@@ -1,17 +1,16 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,62 +26,45 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.UserProfile;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.DonationDetailControl;
+import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-public class LocationListViewPriv extends AppCompatActivity {
+public class DonationList extends AppCompatActivity {
 
-    private ListView locationListView;
-    private ActionBar actionBar;
-    private Button modifyLocationButton;
+    private ListView donationListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_list_view);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        locationListView = findViewById(R.id.locationList);
-        modifyLocationButton = (Button) findViewById(R.id.modifyLocationButton);
+        setContentView(R.layout.donation_list);
+        final String donation = (String) getIntent().getSerializableExtra("PLACENAME");
+        donationListView = findViewById(R.id.donationList);
 
-        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
+        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("donations/" + donation);
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                final ArrayList<DonationDetail> donationList = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    Location place = snapshot.getValue(Location.class);
+                    DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                    donationList.add(detail);
                     Map.Entry<String,String> entry =
-                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
-                    locationInfo.add(entry);
+                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                    donationInfo.add(entry);
                 }
-                Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {
-                    @Override
-                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-                        return o1.getKey().compareTo(o2.getKey());
-                    }
-                });
-                locationListView.setAdapter(new dataListAdapter(locationInfo));
+                donationListView.setAdapter(new dataListAdapter(donationInfo));
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        modifyLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationListViewPriv.this, DonationList.class);
-                startActivity(intent);
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
+
     class dataListAdapter extends BaseAdapter {
-//        String[] Title, Detail;
+        //        String[] Title, Detail;
         ArrayList<Map.Entry<String, String>> data;
 //        int[] imge;
 
@@ -122,7 +104,7 @@ public class LocationListViewPriv extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
             View row;
-            row = inflater.inflate(R.layout.list_view_layout, parent, false);
+            row = inflater.inflate(R.layout.list_view_layout, null, true);
             TextView title, detail;
 //            ImageView i1;
             title = (TextView) row.findViewById(R.id.title);
@@ -133,10 +115,7 @@ public class LocationListViewPriv extends AppCompatActivity {
 //            i1.setImageResource(imge[position]);
             title.setText(data.get(position).getKey());
             detail.setText(data.get(position).getValue());
-
             return (row);
         }
     }
 }
-
-

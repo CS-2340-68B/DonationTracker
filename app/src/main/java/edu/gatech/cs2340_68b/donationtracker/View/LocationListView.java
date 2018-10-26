@@ -1,6 +1,5 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -8,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
@@ -74,6 +71,7 @@ public class LocationListView extends AppCompatActivity {
                 locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // Sending information through intent
                         Location l = locationList.get(position);
                         Intent detail = new Intent(LocationListView.this, LocationDetail.class);
                         detail.putExtra("LOCATION", l);

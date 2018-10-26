@@ -1,21 +1,16 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers.Login;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.http.SslCertificate;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import java.util.ArrayList;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -30,9 +25,7 @@ import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.MainPage;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.AccountModify;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
@@ -106,7 +99,7 @@ public class Login extends AppCompatActivity {
                                 alert.create().show();
                             } else if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
                                 AccountModify.resetAttemptCount(userName);
-                                Welcome.currentUser = singleSnapShot.getValue(User.class);
+                                Welcome.currentUser = user;
                                 Intent intent = new Intent(Login.this, MainPage.class);
                                 startActivity(intent);
                                 finish();

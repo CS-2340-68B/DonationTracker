@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,11 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListView;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationListViewPriv;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationPage;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class MainPage extends AppCompatActivity {
 
@@ -21,6 +20,7 @@ public class MainPage extends AppCompatActivity {
     private ActionBar actionBar;
     private Button locationList;
     private Button userProfile;
+    private Button search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,8 @@ public class MainPage extends AppCompatActivity {
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Welcome.currentUser.getType().equals(UserType.MANAGER) ||
-                        Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE) ) {
+                if (currentUser.getType().toString().equals("MANAGER") || currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
+                    currentUser.setAssignedLocation("AFD Station 4");
                     Intent intent = new Intent(MainPage.this, LocationListViewPriv.class);
                     startActivity(intent);
                 } else {
@@ -62,13 +62,14 @@ public class MainPage extends AppCompatActivity {
         });
         actionBar = getSupportActionBar();
 
-
-
-
-//        actionBar.setTitle("");
-//        actionBar.setIcon(R.drawable.icon);
-//        actionBar.setDisplayUseLogoEnabled(true);
+        search = (Button) findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, SearchMenu.class);
+                startActivity(intent);
+            }
+        });
     }
-
 }
 
