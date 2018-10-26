@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,6 +17,11 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.DonationList;
+import edu.gatech.cs2340_68b.donationtracker.View.DonationList_Own;
+import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
+
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class DonationDetailControl extends AppCompatActivity {
     private ActionBar actionBar;
@@ -52,6 +58,18 @@ public class DonationDetailControl extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
+        if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
+            submit.setVisibility(View.GONE);
+            time.setTag(time.getKeyListener());
+            time.setKeyListener(null);
+
+            location.setTag(location.getKeyListener());
+            location.setKeyListener(null);
+
+
+
+        }
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +91,8 @@ public class DonationDetailControl extends AppCompatActivity {
                 item.setValue(valueI);
                 item.setComment(commentI);
 
-
+                Intent detail = new Intent(DonationDetailControl.this, DonationList_Own.class);
+                startActivity(detail);
             }
         });
 
