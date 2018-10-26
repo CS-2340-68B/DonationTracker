@@ -82,13 +82,13 @@ public class LocationListViewPriv extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
-        modifyLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
-                startActivity(intent);
-            }
-        });
+//        modifyLocationButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
+//                startActivity(intent);
+//            }
+//        });
     }
     class dataListAdapter extends BaseAdapter {
 //        String[] Title, Detail;

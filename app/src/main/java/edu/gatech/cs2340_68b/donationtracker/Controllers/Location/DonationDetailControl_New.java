@@ -40,8 +40,10 @@ public class DonationDetailControl_New extends AppCompatActivity {
     private EditText comment;
     private Spinner category;
     private Button submit;
+
+    final String donation = (String) getIntent().getSerializableExtra("PLACENAME");
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef = database.getReference("donations");
+    private DatabaseReference myRef = database.getReference("donations/" + donation);
 
 
 
@@ -98,6 +100,9 @@ public class DonationDetailControl_New extends AppCompatActivity {
                         item.setComment(commentI);
                         DatabaseReference newRef = myRef.push();
                         newRef.setValue(item);
+                        Intent detail = new Intent(DonationDetailControl_New.this, DonationList_Own.class);
+                        startActivity(detail);
+                        finish();
                     }
 
                     @Override
@@ -106,8 +111,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
                     }
                 });
 
-                Intent detail = new Intent(DonationDetailControl_New.this, DonationList_Own.class);
-                startActivity(detail);
+
             }
         });
 
