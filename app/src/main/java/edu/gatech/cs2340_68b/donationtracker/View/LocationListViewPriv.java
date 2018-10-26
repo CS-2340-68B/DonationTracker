@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -50,8 +51,10 @@ public class LocationListViewPriv extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                final ArrayList<Location> locationList = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Location place = snapshot.getValue(Location.class);
+                    locationList.add(place);
                     Map.Entry<String,String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
@@ -63,18 +66,26 @@ public class LocationListViewPriv extends AppCompatActivity {
                     }
                 });
                 locationListView.setAdapter(new dataListAdapter(locationInfo));
+                locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // Sending information through intent
+                        Location l = locationList.get(position);
+                        Intent detail = new Intent(LocationListViewPriv.this, LocationDetail.class);
+                        detail.putExtra("LOCATION", l);
+                        startActivity(detail);
+                    }
+                });
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
         modifyLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LocationListViewPriv.this, DonationList.class);
+                Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
                 startActivity(intent);
             }
         });

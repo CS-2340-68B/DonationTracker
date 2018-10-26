@@ -92,7 +92,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
                         item.setTime(timeI);
                         item.setLocation(locationI);
                         item.setFullDescription(fullDescriptionI);
-                        item.setCategory(type);
+//                        item.setCategory(type);
                         item.setShortDescription(shortDescriptionI);
                         item.setValue(valueI);
                         item.setComment(commentI);
