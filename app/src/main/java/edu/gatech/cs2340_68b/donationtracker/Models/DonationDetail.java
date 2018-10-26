@@ -84,5 +84,14 @@ public class DonationDetail {
         this.comment = comment;
     }
 
-
+    public void setValues(DonationDetail newDonationDetails) {
+        time = newDonationDetails.time;
+        name = newDonationDetails.name;
+        fullDescription = newDonationDetails.fullDescription;
+        shortDescription = newDonationDetails.shortDescription;
+        location = newDonationDetails.location;
+        value = newDonationDetails.value;
+        comment = newDonationDetails.comment;
+        category = newDonationDetails.category;
+    }
 }
