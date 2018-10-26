@@ -39,6 +39,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
     private EditText shortDescription;
     private EditText value;
     private EditText comment;
+    private EditText name;
     private Spinner category;
     private Button submit;
 
@@ -63,6 +64,7 @@ public class DonationDetailControl_New extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
         submit = (Button) findViewById(R.id.submit);
+        name = (EditText) findViewById(R.id.nameEdit);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
@@ -82,12 +84,13 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 final String shortDescriptionI = shortDescription.getText().toString();
                 final String valueI = value.getText().toString();
                 final String commentI = comment.getText().toString();
+                final String nameI = name.getText().toString();
 
 
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        DonationDetail item = new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, category.getSelectedItem().toString(), commentI, donation);
+                        DonationDetail item = new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, category.getSelectedItem().toString(), commentI, nameI);
                         DatabaseReference newRef = myRef.push();
                         newRef.setValue(item);
                         finish();

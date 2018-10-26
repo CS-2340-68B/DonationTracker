@@ -36,6 +36,7 @@ public class DonationDetailControl extends AppCompatActivity {
     private EditText shortDescription;
     private EditText value;
     private EditText comment;
+    private EditText name;
     private Spinner category;
     private Button submit;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -64,6 +65,7 @@ public class DonationDetailControl extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
         submit = (Button) findViewById(R.id.submit);
+        name = (EditText) findViewById(R.id.nameEdit);
 
         time.setText(arrayOutput[6]);
         location.setText(arrayOutput[4]);
@@ -71,6 +73,7 @@ public class DonationDetailControl extends AppCompatActivity {
         shortDescription.setText(arrayOutput[5]);
         value.setText(arrayOutput[7]);
         comment.setText(arrayOutput[2]);
+        name.setText(arrayOutput[0]);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
