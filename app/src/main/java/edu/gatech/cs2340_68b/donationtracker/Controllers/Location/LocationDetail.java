@@ -1,10 +1,15 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -20,6 +25,7 @@ public class LocationDetail extends AppCompatActivity {
     private TextView website;
     private TextView longtitude;
     private TextView latitude;
+    private Button DonationListBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class LocationDetail extends AppCompatActivity {
         website = findViewById(R.id.website);
         latitude = findViewById(R.id.latitude);
         longtitude = findViewById(R.id.longtitude);
+        DonationListBt = findViewById(R.id.donationListBt);
 
 
         name.setText(location.getLocationName());
@@ -48,5 +55,18 @@ public class LocationDetail extends AppCompatActivity {
         website.setText(location.getWebsite());
         latitude.setText(location.getLatitude());
         longtitude.setText(location.getLongitude());
+
+        DonationListBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Welcome.currentUser.getType().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
+                    Intent intent = new Intent(LocationDetail.this, Register.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(LocationDetail.this, Register.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }
