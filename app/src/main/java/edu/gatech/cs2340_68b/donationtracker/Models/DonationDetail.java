@@ -13,13 +13,24 @@ public class DonationDetail {
 
     public DonationDetail() {};
 
+    public DonationDetail(String time, String location, String fullDescription, String shortDescription, String value, String category, String comment, String name) {
+        this.time = time;
+        this.location = location;
+        this.fullDescription = fullDescription;
+        this.shortDescription = shortDescription;
+        this.value = value;
+        this.category = category;
+        this.comment = comment;
+        this.name = name;
+    };
+
     public String getTime() {
         return time;
     }
 
     public String getName() { return name; }
 
-    public void setName() { this.name = name; }
+    public void setName(String donation) { this.name = name; }
 
     public void setTime(String time) {
         this.time = time;

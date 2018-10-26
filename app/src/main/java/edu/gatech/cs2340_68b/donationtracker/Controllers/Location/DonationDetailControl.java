@@ -90,6 +90,10 @@ public class DonationDetailControl extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+//                final DatabaseReference ref = firebase.getReference("donations/" + arrayOutput[0]);
+
                 DonationDetail item = new DonationDetail();
 
                 String timeI = time.getText().toString();

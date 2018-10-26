@@ -51,34 +51,11 @@ public class DonationList extends AppCompatActivity {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     donationList.add(detail);
-//                    System.out.println(detail.getName());
                     Map.Entry<String,String> entry =
-                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getShortDescription());
+                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
                     donationInfo.add(entry);
                 }
-//                Collections.sort(donationInfo, new Comparator<Map.Entry<String, String>>() {
-//                    @Override
-//                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-//                        return o1.ge().compareTo(o2.getKey());
-//                    }
-//                });
-//                Collections.sort(donationList, new Comparator<Location>() {
-//                    @Override
-//                    public int compare(Location o1, Location o2) {
-//                        return o1.getLocationName().compareTo(o2.getLocationName());
-//                    }
-//                });
                 donationListView.setAdapter(new dataListAdapter(donationInfo));
-//                donationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        // Sending information through intent
-//                        DonationDetail l = donationList.get(position);
-//                        Intent detail = new Intent(DonationList.this, DonationDetailControl.class);
-//                        detail.putExtra("LOCATION", (Parcelable) l);
-//                        startActivity(detail);
-//                    }
-//                });
             }
 
             @Override

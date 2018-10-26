@@ -27,6 +27,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.DonationList_Own;
+import edu.gatech.cs2340_68b.donationtracker.View.LocationListViewPriv;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
@@ -41,21 +42,19 @@ public class DonationDetailControl_New extends AppCompatActivity {
     private Spinner category;
     private Button submit;
 
-    final String donation = (String) getIntent().getSerializableExtra("PLACENAME");
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef = database.getReference("donations/" + donation);
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.donation_detail_new);
         actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+        actionBar = getSupportActionBar();
 
+        final String donation = (String) getIntent().getSerializableExtra("LOCATION");
+        System.out.println("LINE             : " + donation);
+        final DatabaseReference myRef = database.getReference("donations/" + donation);
         time = (EditText) findViewById(R.id.timeInput);
         location = (EditText) findViewById(R.id.locationDonationEdit);
         fullDescription = (EditText) findViewById(R.id.fullDescriptionEdit);
@@ -85,33 +84,20 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 final String commentI = comment.getText().toString();
 
 
-
-
-                myRef.addValueEventListener(new ValueEventListener() {
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        DonationDetail item = new DonationDetail();
-                        item.setTime(timeI);
-                        item.setLocation(locationI);
-                        item.setFullDescription(fullDescriptionI);
-//                        item.setCategory(type);
-                        item.setShortDescription(shortDescriptionI);
-                        item.setValue(valueI);
-                        item.setComment(commentI);
+                        DonationDetail item = new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, category.getSelectedItem().toString(), commentI, donation);
                         DatabaseReference newRef = myRef.push();
                         newRef.setValue(item);
-                        Intent detail = new Intent(DonationDetailControl_New.this, DonationList_Own.class);
+                        Intent detail = new Intent(DonationDetailControl_New.this, LocationListViewPriv.class);
                         startActivity(detail);
                         finish();
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError error) {
-
-                    }
+                    public void onCancelled(DatabaseError error) { }
                 });
-
-
             }
         });
 
