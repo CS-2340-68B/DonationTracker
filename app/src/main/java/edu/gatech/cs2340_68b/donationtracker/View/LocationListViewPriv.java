@@ -29,7 +29,10 @@ import java.util.Comparator;
 import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
+import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class LocationListViewPriv extends AppCompatActivity {
 
@@ -40,7 +43,7 @@ public class LocationListViewPriv extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_list_view);
+        setContentView(R.layout.location_list_view_priv);
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
@@ -71,7 +74,8 @@ public class LocationListViewPriv extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         Location l = locationList.get(position);
-                        Intent detail = new Intent(LocationListViewPriv.this, LocationDetail.class);
+                        Intent detail = new Intent(
+                                LocationListViewPriv.this, LocationDetail.class);
                         detail.putExtra("LOCATION", l);
                         startActivity(detail);
                     }
@@ -82,13 +86,14 @@ public class LocationListViewPriv extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
-//        modifyLocationButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
-//                startActivity(intent);
-//            }
-//        });
+        modifyLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
+                intent.putExtra("DEFAULT", currentUser.getAssignedLocation());
+                startActivity(intent);
+            }
+        });
     }
     class dataListAdapter extends BaseAdapter {
 //        String[] Title, Detail;

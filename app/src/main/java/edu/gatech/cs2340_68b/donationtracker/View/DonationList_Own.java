@@ -37,13 +37,22 @@ public class DonationList_Own extends AppCompatActivity {
 
     private ListView donationListView;
     private Button addButton;
+    private String newLocation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donation_list_own);
         final String donation = (String) getIntent().getSerializableExtra("PLACENAME");
+        final String defaultLocation = (String) getIntent().getSerializableExtra("DEFAULT");
         donationListView = findViewById(R.id.donationList);
+        addButton = findViewById(R.id.add_button);
+
+//        if (donation == null || donation == "") {
+//            newLocation = defaultLocation;
+//        } else {
+//            newLocation = donation;
+//        }
 
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("donations/" + donation);
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -55,29 +64,38 @@ public class DonationList_Own extends AppCompatActivity {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
-                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getShortDescription());
+                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
                     donationInfo.add(entry);
                 }
-                Collections.sort(donationInfo, new Comparator<Map.Entry<String, String>>() {
-                    @Override
-                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-                        return o1.getKey().compareTo(o2.getKey());
-                    }
-                });
-                Collections.sort(donationList, new Comparator<DonationDetail>() {
-                    @Override
-                    public int compare(DonationDetail o1, DonationDetail o2) {
-                        return o1.getName().compareTo(o2.getName());
-                    }
-                });
+//                Collections.sort(donationInfo, new Comparator<Map.Entry<String, String>>() {
+//                    @Override
+//                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
+//                        return o1.getKey().compareTo(o2.getKey());
+//                    }
+//                });
+//                Collections.sort(donationList, new Comparator<DonationDetail>() {
+//                    @Override
+//                    public int compare(DonationDetail o1, DonationDetail o2) {
+//                        return o1.getName().compareTo(o2.getName());
+//                    }
+//                });
                 donationListView.setAdapter(new dataListAdapter(donationInfo));
                 donationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         DonationDetail l = donationList.get(position);
+                        String array[] = new String[8];
+                        array[0] = l.getName();
+                        array[1] = l.getCategory();
+                        array[2] = l.getComment();
+                        array[3] = l.getFullDescription();
+                        array[4] = l.getLocation();
+                        array[5] = l.getShortDescription();
+                        array[6] = l.getTime();
+                        array[7] = l.getValue();
                         Intent detail = new Intent(DonationList_Own.this, DonationDetailControl.class);
-                        detail.putExtra("DATA", (Serializable) l);
+                        detail.putExtra("DATA", array);
                         startActivity(detail);
                     }
                 });
@@ -88,15 +106,16 @@ public class DonationList_Own extends AppCompatActivity {
 
             });
 
-        addButton = (Button) findViewById(R.id.add_button);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DonationList_Own.this, DonationDetailControl_New.class);
-                intent.putExtra("PLACENAME", donation);
+                intent.putExtra("LOCATION", donation);
                 startActivity(intent);
             }
         });
+
     }
 
     class dataListAdapter extends BaseAdapter {

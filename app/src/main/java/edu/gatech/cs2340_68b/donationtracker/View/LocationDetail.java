@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.View.Register;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
@@ -60,13 +61,12 @@ public class LocationDetail extends AppCompatActivity {
         DonationListBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Welcome.currentUser.getType().toString().equals("ADMIN") || Welcome.currentUser.getType().toString().equals("USER")) {
+                if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
                     Intent intent = new Intent(LocationDetail.this, DonationList.class);
                     intent.putExtra("PLACENAME", LocationName);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
-                    System.out.println("LINE 69: " + LocationName);
                     intent.putExtra("PLACENAME", LocationName);
                     startActivity(intent);
                 }
