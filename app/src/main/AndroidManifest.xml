@@ -28,6 +28,8 @@
         <activity android:name=".View.LocationDetail" />
         <activity android:name=".Controllers.Location.LocationSet"/>
         <activity android:name=".Controllers.Location.DonationDetailControl"/>
+        <activity android:name=".View.DonationList"/>
+        <activity android:name=".View.DonationList_Own"/>
     </application>
 
 </manifest>
