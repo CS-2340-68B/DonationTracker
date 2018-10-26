@@ -66,7 +66,6 @@ public class LocationDetail extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
-                    System.out.println("LINE 69: " + LocationName);
                     intent.putExtra("PLACENAME", LocationName);
                     startActivity(intent);
                 }

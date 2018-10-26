@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
@@ -49,9 +51,11 @@ public class DonationDetailControl extends AppCompatActivity {
         setContentView(R.layout.donation_detail);
         actionBar = getSupportActionBar();
 
-        final DonationDetail donation = (DonationDetail) getIntent().getSerializableExtra("DATA");
+        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
 
-        System.out.println(donation.getName());
+//        for (int i =0; i < arrayOutput.length; i++) {
+//            System.out.println(arrayOutput[i]);
+//        }
 
         time = (EditText) findViewById(R.id.timeInput);
         location = (EditText) findViewById(R.id.locationDonationEdit);
@@ -61,6 +65,13 @@ public class DonationDetailControl extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
         submit = (Button) findViewById(R.id.submit);
+
+        time.setText(arrayOutput[6]);
+        location.setText(arrayOutput[4]);
+        fullDescription.setText(arrayOutput[3]);
+        shortDescription.setText(arrayOutput[5]);
+        value.setText(arrayOutput[7]);
+        comment.setText(arrayOutput[2]);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
@@ -74,9 +85,6 @@ public class DonationDetailControl extends AppCompatActivity {
 
             location.setTag(location.getKeyListener());
             location.setKeyListener(null);
-
-
-
         }
 
         submit.setOnClickListener(new View.OnClickListener() {

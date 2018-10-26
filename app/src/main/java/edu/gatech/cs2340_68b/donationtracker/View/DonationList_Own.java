@@ -55,7 +55,7 @@ public class DonationList_Own extends AppCompatActivity {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
-                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getShortDescription());
+                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
                     donationInfo.add(entry);
                 }
                 Collections.sort(donationInfo, new Comparator<Map.Entry<String, String>>() {
@@ -76,8 +76,18 @@ public class DonationList_Own extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         DonationDetail l = donationList.get(position);
+//                        DonationDetail array[] = new DonationDetail[1];
+                        String array[] = new String[8];
+                        array[0] = l.getName();
+                        array[1] = l.getCategory();
+                        array[2] = l.getComment();
+                        array[3] = l.getFullDescription();
+                        array[4] = l.getLocation();
+                        array[5] = l.getShortDescription();
+                        array[6] = l.getTime();
+                        array[7] = l.getValue();
                         Intent detail = new Intent(DonationList_Own.this, DonationDetailControl.class);
-                        detail.putExtra("DATA", (Serializable) l);
+                        detail.putExtra("DATA", array);
                         startActivity(detail);
                     }
                 });
