@@ -1,9 +1,12 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,17 +16,25 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ResetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
+import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.DonationList;
 import edu.gatech.cs2340_68b.donationtracker.View.DonationList_Own;
+import edu.gatech.cs2340_68b.donationtracker.View.LocationListViewPriv;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
@@ -41,8 +52,6 @@ public class DonationDetailControl extends AppCompatActivity {
     private Button submit;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("donations");
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,40 +102,41 @@ public class DonationDetailControl extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                            if (snapshot.getKey().equals(keyUsed)) {
+                                DonationDetail item = snapshot.getValue(DonationDetail.class);
+                                String timeI = time.getText().toString();
+                                String locationI = location.getText().toString();
+                                String type = category.getSelectedItem().toString();
+                                String fullDescriptionI = fullDescription.getText().toString();
+                                String shortDescriptionI = shortDescription.getText().toString();
+                                String valueI = value.getText().toString();
+                                String commentI = comment.getText().toString();
+                                String nameI = name.getText().toString();
+                                item.setValues(new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, type, commentI, nameI));
+                                ref.child(keyUsed).setValue(item);
+                                new android.os.Handler().postDelayed(
+                                        new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Intent detail = new Intent(DonationDetailControl.this, LocationListViewPriv.class);
+                                                startActivity(detail);
+                                                finish();
+                                            }
+                                        },
+                                        1000);
+                            }
+                        }
+                    }
 
-//                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-//                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
-//
-                DonationDetail item = new DonationDetail();
-
-                String timeI = time.getText().toString();
-                String locationI = location.getText().toString();
-//                Category type = (Category) category.getSelectedItem();
-                String type = (String) category.getSelectedItem();
-                String fullDescriptionI = fullDescription.getText().toString();
-                String shortDescriptionI = shortDescription.getText().toString();
-                String valueI = value.getText().toString();
-                String commentI = comment.getText().toString();
-                String nameI = name.getText().toString();
-
-
-//
-//                item.setTime(timeI);
-//                item.setLocation(locationI);s
-//                item.setFullDescription(fullDescriptionI);
-//                item.setCategory(type);
-//                item.setShortDescription(shortDescriptionI);
-//                item.setValue(valueI);
-                System.out.println(nameI);
-                item.setComment(commentI);
-
-                System.out.println(commentI);
-                System.out.println("Second " + item.getComment());
-
-
-                Intent detail = new Intent(DonationDetailControl.this, DonationList_Own.class);
-                startActivity(detail);
-                finish();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+                });
             }
         });
 
