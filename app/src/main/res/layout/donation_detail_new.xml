@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Controllers.Location.DonationDetailControl">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/donationDetailTitle"
                 android:layout_width="281dp"
@@ -29,11 +26,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="30sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold|italic"/>
 
             <TextView
                 android:id="@+id/locationDonationText"
@@ -43,23 +36,14 @@
                 android:layout_marginTop="4dp"
                 android:text="Location of Donation Name"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/timeInput"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/timeInput"
-                app:layout_constraintTop_toBottomOf="@+id/timeInput" />
-
+                android:textSize="16sp"/>
             <EditText
                 android:id="@+id/locationDonationEdit"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="@+id/locationDonationText"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/locationDonationText"
-                app:layout_constraintTop_toBottomOf="@+id/locationDonationText" />
+                android:inputType="textPersonName"/>
 
             <TextView
                 android:id="@+id/timeText"
@@ -69,11 +53,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Time"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/donationDetailTitle"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/donationDetailTitle"
-                app:layout_constraintTop_toBottomOf="@+id/donationDetailTitle" />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/timeInput"
@@ -82,11 +62,7 @@
                 android:layout_marginTop="4dp"
                 android:ems="10"
                 android:inputType="time"
-                android:singleLine="true"
-                app:layout_constraintEnd_toEndOf="@+id/timeText"
-                app:layout_constraintHorizontal_bias="0.035"
-                app:layout_constraintStart_toStartOf="@+id/timeText"
-                app:layout_constraintTop_toBottomOf="@+id/timeText" />
+                android:singleLine="true" />
 
             <TextView
                 android:id="@+id/fullDescriptionText"
@@ -96,24 +72,14 @@
                 android:layout_marginTop="4dp"
                 android:text="Full description of item"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/locationDonationEdit"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/locationDonationEdit"
-                app:layout_constraintTop_toBottomOf="@+id/locationDonationEdit" />
-
+                android:textSize="16sp"/>
             <EditText
                 android:id="@+id/fullDescriptionEdit"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/fullDescriptionText"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/fullDescriptionText"
-                app:layout_constraintTop_toBottomOf="@+id/fullDescriptionText" />
-
+                android:inputType="textMultiLine"/>
             <TextView
                 android:id="@+id/shortDescriptionText"
                 android:layout_width="wrap_content"
@@ -122,23 +88,14 @@
                 android:layout_marginTop="4dp"
                 android:text="Short description of item"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/fullDescriptionEdit"
-                app:layout_constraintTop_toBottomOf="@+id/fullDescriptionEdit" />
-
+                android:textSize="16sp"/>
             <EditText
                 android:id="@+id/shortDescriptionEdit"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
-                app:layout_constraintStart_toStartOf="@+id/shortDescriptionText"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescriptionText" />
-
+                android:inputType="textMultiLine"/>
             <TextView
                 android:id="@+id/valueText"
                 android:layout_width="wrap_content"
@@ -146,20 +103,14 @@
                 android:layout_marginTop="4dp"
                 android:text="Value"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescriptionEdit" />
-
+                android:textSize="16sp"/>
             <EditText
                 android:id="@+id/valueEdit"
                 android:layout_width="107dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/valueText"
-                app:layout_constraintTop_toBottomOf="@+id/valueText" />
-
+                android:inputType="textPersonName"/>
             <TextView
                 android:id="@+id/categoryText"
                 android:layout_width="wrap_content"
@@ -168,21 +119,12 @@
                 android:text="Category"
                 android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/shortDescriptionEdit"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescriptionEdit" />
-
+                android:textSize="16sp"/>
             <Spinner
                 android:id="@+id/categorySpinner"
                 android:layout_width="159dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="@+id/shortDescriptionEdit"
-                app:layout_constraintStart_toStartOf="@+id/categoryText"
-                app:layout_constraintTop_toBottomOf="@+id/categoryText" />
-
+                android:layout_marginTop="4dp"/>
             <TextView
                 android:id="@+id/commentText"
                 android:layout_width="wrap_content"
@@ -190,28 +132,20 @@
                 android:layout_marginTop="4dp"
                 android:text="Comment"
                 android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/valueEdit"
-                app:layout_constraintTop_toBottomOf="@+id/valueEdit" />
-
+                android:textSize="16sp"/>
             <EditText
                 android:id="@+id/commentEdit"
                 android:layout_width="180dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/commentText"
-                app:layout_constraintTop_toBottomOf="@+id/commentText" />
-
+                android:inputType="textPersonName"/>
             <Button
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Edit"
-                app:layout_constraintEnd_toEndOf="@+id/categorySpinner"
-                app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
+                android:text="Submit"/>
         </LinearLayout>
     </ScrollView>
 

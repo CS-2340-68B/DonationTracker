@@ -11,22 +11,26 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.DonationList;
 import edu.gatech.cs2340_68b.donationtracker.View.DonationList_Own;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
-public class DonationDetailControl extends AppCompatActivity {
+public class DonationDetailControl_New extends AppCompatActivity {
     private ActionBar actionBar;
     private EditText time;
     private EditText location;
@@ -37,16 +41,17 @@ public class DonationDetailControl extends AppCompatActivity {
     private Spinner category;
     private Button submit;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ref = database.getReference("donations");
+    private DatabaseReference myRef = database.getReference("donations");
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        setContentView(R.layout.donation_detail);
+        setContentView(R.layout.donation_detail_new);
         actionBar = getSupportActionBar();
 
         time = (EditText) findViewById(R.id.timeInput);
@@ -63,46 +68,48 @@ public class DonationDetailControl extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
-        if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
-            submit.setVisibility(View.GONE);
-            time.setTag(time.getKeyListener());
-            time.setKeyListener(null);
-
-            location.setTag(location.getKeyListener());
-            location.setKeyListener(null);
-
-
-
-        }
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DonationDetail item = new DonationDetail();
 
-                String timeI = time.getText().toString();
-                String locationI = location.getText().toString();
-//                Category type = (Category) category.getSelectedItem();
-                String type = (String) category.getSelectedItem();
-                String fullDescriptionI = fullDescription.getText().toString();
-                String shortDescriptionI = shortDescription.getText().toString();
-                String valueI = value.getText().toString();
-                String commentI = comment.getText().toString();
 
-                item.setTime(timeI);
-                item.setLocation(locationI);
-                item.setFullDescription(fullDescriptionI);
-                item.setCategory(type);
-                item.setShortDescription(shortDescriptionI);
-                item.setValue(valueI);
-                item.setComment(commentI);
+                final String timeI = time.getText().toString();
+                final String locationI = location.getText().toString();
+                final Category type = (Category) category.getSelectedItem();
+                final String fullDescriptionI = fullDescription.getText().toString();
+                final String shortDescriptionI = shortDescription.getText().toString();
+                final String valueI = value.getText().toString();
+                final String commentI = comment.getText().toString();
 
-                Intent detail = new Intent(DonationDetailControl.this, DonationList_Own.class);
+
+
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        DonationDetail item = new DonationDetail();
+                        item.setTime(timeI);
+                        item.setLocation(locationI);
+                        item.setFullDescription(fullDescriptionI);
+                        item.setCategory(type);
+                        item.setShortDescription(shortDescriptionI);
+                        item.setValue(valueI);
+                        item.setComment(commentI);
+                        DatabaseReference newRef = myRef.push();
+                        newRef.setValue(item);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+
+                    }
+                });
+
+                Intent detail = new Intent(DonationDetailControl_New.this, DonationList_Own.class);
                 startActivity(detail);
             }
         });
 
     }
-
-
 }
