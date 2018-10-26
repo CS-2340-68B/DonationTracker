@@ -101,6 +101,7 @@ public class DonationList_Own extends AppCompatActivity {
                         Intent detail = new Intent(DonationList_Own.this, DonationDetailControl.class);
                         detail.putExtra("DATA", array);
                         detail.putExtra("KEY", keyUsed);
+                        detail.putExtra("LOCATION", donation);
                         startActivity(detail);
                     }
                 });
