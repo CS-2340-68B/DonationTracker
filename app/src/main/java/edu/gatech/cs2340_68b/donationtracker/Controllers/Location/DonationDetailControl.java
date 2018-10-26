@@ -94,9 +94,9 @@ public class DonationDetailControl extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
-
+//                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+//                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
+//
                 DonationDetail item = new DonationDetail();
 
                 String timeI = time.getText().toString();
@@ -107,14 +107,22 @@ public class DonationDetailControl extends AppCompatActivity {
                 String shortDescriptionI = shortDescription.getText().toString();
                 String valueI = value.getText().toString();
                 String commentI = comment.getText().toString();
+                String nameI = name.getText().toString();
 
-                item.setTime(timeI);
-                item.setLocation(locationI);
-                item.setFullDescription(fullDescriptionI);
-                item.setCategory(type);
-                item.setShortDescription(shortDescriptionI);
-                item.setValue(valueI);
+
+//
+//                item.setTime(timeI);
+//                item.setLocation(locationI);s
+//                item.setFullDescription(fullDescriptionI);
+//                item.setCategory(type);
+//                item.setShortDescription(shortDescriptionI);
+//                item.setValue(valueI);
+                System.out.println(nameI);
                 item.setComment(commentI);
+
+                System.out.println(commentI);
+                System.out.println("Second " + item.getComment());
+
 
                 Intent detail = new Intent(DonationDetailControl.this, DonationList_Own.class);
                 startActivity(detail);
