@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.graphics.Color;

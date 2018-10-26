@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers;
+package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,8 +13,6 @@ import android.widget.ImageButton;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.Login;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.Register;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
