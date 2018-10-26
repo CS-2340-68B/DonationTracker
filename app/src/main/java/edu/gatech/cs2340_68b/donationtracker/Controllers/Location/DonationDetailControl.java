@@ -108,7 +108,6 @@ public class DonationDetailControl extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                            System.out.println(snapshot.getKey());
                             if (snapshot.getKey().equals(keyUsed)) {
                                 DonationDetail item = snapshot.getValue(DonationDetail.class);
                                 String timeI = time.getText().toString();
@@ -119,14 +118,7 @@ public class DonationDetailControl extends AppCompatActivity {
                                 String valueI = value.getText().toString();
                                 String commentI = comment.getText().toString();
                                 String nameI = name.getText().toString();
-                                item.setValue(valueI);
-                                item.setName(nameI);
-                                item.setLocation(locationI);
-                                item.setFullDescription(fullDescriptionI);
-                                item.setShortDescription(shortDescriptionI);
-                                item.setComment(commentI);
-                                item.setCategory(type);
-                                item.setTime(timeI);
+                                item.setValues(new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, type, commentI, nameI));
                                 ref.child(keyUsed).setValue(item);
                                 new android.os.Handler().postDelayed(
                                         new Runnable() {

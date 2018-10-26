@@ -86,8 +86,6 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 final String commentI = comment.getText().toString();
                 final String nameI = name.getText().toString();
 
-
-
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
