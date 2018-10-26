@@ -7,14 +7,19 @@ public class DonationDetail {
     private String fullDescription;
     private String shortDescription;
     private String value;
-    private Category category;
+    private String category;
     private String comment;
+    private String name;
 
     public DonationDetail() {};
 
     public String getTime() {
         return time;
     }
+
+    public String getName() { return name; }
+
+    public void setName() { this.name = name; }
 
     public void setTime(String time) {
         this.time = time;
@@ -52,11 +57,11 @@ public class DonationDetail {
         this.value = value;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
