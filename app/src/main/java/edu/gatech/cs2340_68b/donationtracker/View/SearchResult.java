@@ -26,6 +26,8 @@ public class SearchResult extends AppCompatActivity {
         locationSearch =(Location) getIntent().getSerializableExtra("LOCATIONSEARCH");
         searchString = (String) getIntent().getSerializableExtra("SearchString");
 
+        
+
         setContentView(R.layout.search_result);
 
 
