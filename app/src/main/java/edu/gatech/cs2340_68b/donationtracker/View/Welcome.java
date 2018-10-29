@@ -36,10 +36,6 @@ public class Welcome extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
-//        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-//        DatabaseReference ref = firebase.getReference("donations");
-//        ref.setValue(null);
-
 //        System.out.println("START");
 //        LocationControl a = new LocationControl(this);
 //        a.readCSVFile();

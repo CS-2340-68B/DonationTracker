@@ -32,6 +32,9 @@
         <activity android:name=".View.DonationList_Own"/>
         <activity android:name=".View.LocationListViewPriv"/>
         <activity android:name=".Controllers.Location.DonationDetailControl_New"/>
+        <activity android:name=".View.SearchMenu"/>
+        <activity android:name=".View.SearchResult"/>
+        <activity android:name=".View.LocationForSearch"/>
     </application>
 
 </manifest>
