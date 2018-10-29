@@ -21,6 +21,7 @@ public class SearchMenu extends AppCompatActivity {
     private RadioButton searchItemLocButton;
     private RadioButton searchCatLocButton;
     private int searchTypeFlag;
+    private Location locationSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class SearchMenu extends AppCompatActivity {
         searchbar = (TextInputEditText) findViewById(R.id.searchbar);
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchRadioGroup);
         searchTypeFlag = -1;
-        Location location;
 
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -40,37 +40,43 @@ public class SearchMenu extends AppCompatActivity {
 
                 View radioButton = searchRadioGroup.findViewById(checkedId);
                 int index = searchRadioGroup.indexOfChild(radioButton);
+                locationSearch = null;
 
                 switch (index) {
                     case 0: // searchItemAll
                         searchTypeFlag = 0;
+                        Intent intent1 = new Intent(SearchMenu.this, SearchResult.class);
+                        startActivity(intent1);
+                        intent1.putExtra("SearchFlag", searchTypeFlag);
+                        intent1.putExtra("LOCATIONSEARCH", locationSearch);
                         break;
                     case 1: // searchCatAll
                         searchTypeFlag = 1;
+                        Intent intent2 = new Intent(SearchMenu.this, SearchResult.class);
+                        startActivity(intent2);
+                        intent2.putExtra("SearchFlag", searchTypeFlag);
+                        intent2.putExtra("LOCATIONSEARCH", locationSearch);
                         break;
                     case 2: // searchItemLoc
                         searchTypeFlag = 2;
                         // Location List --> Come back with info?
-
+                        Intent intent3 = new Intent(SearchMenu.this, LocationForSearch.class);
+                        startActivity(intent3);
+                        intent3.putExtra("SearchFlag", searchTypeFlag);
+                        intent3.putExtra("LOCATIONSEARCH", locationSearch);
                         //location = (Location) getIntent().getSerializableExtra("LOCATION");
-
                         break;
                     case 3: // searchCatLoc
                         searchTypeFlag = 3;
                         // Location List --> Come back with info?
-
+                        Intent intent4 = new Intent(SearchMenu.this, LocationForSearch.class);
+                        startActivity(intent4);
+                        intent4.putExtra("SearchFlag", searchTypeFlag);
+                        intent4.putExtra("LOCATIONSEARCH", locationSearch);
                         //location = (Location) getIntent().getSerializableExtra("LOCATION");
-
                         break;
                 }
-
-                Intent intent = new Intent(SearchMenu.this, SearchResult.class);
-                startActivity(intent);
-                intent.putExtra("SearchFlag", searchTypeFlag);
-                //intent.putExtra("LOCATION", location);
             }
         });
-
     }
-
 }

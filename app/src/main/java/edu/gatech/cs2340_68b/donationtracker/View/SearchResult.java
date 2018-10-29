@@ -9,16 +9,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 
 public class SearchResult extends AppCompatActivity {
     private int searchTypeFlag;
+    private Location locationSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         searchTypeFlag = (int) getIntent().getSerializableExtra("SearchFlag");
+        // This should be null if it does not need location
+        locationSearch =(Location) getIntent().getSerializableExtra("LOCATIONSEARCH");
+
 
         setContentView(R.layout.search_result);
 
