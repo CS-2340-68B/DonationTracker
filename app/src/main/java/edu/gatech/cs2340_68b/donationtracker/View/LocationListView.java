@@ -42,13 +42,18 @@ public class LocationListView extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
+        // Get locations from firebase
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
+        // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 final ArrayList<Location> locationList = new ArrayList<>();
+                // Loads in all locations into the array list
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    // Create local copy of one location
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
                     Map.Entry<String,String> entry =
@@ -67,6 +72,7 @@ public class LocationListView extends AppCompatActivity {
                         return o1.getLocationName().compareTo(o2.getLocationName());
                     }
                 });
+
                 locationListView.setAdapter(new dataListAdapter(locationInfo));
                 locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

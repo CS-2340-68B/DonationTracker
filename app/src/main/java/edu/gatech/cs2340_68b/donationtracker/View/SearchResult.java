@@ -16,6 +16,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 public class SearchResult extends AppCompatActivity {
     private int searchTypeFlag;
     private Location locationSearch;
+    private String searchString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +24,12 @@ public class SearchResult extends AppCompatActivity {
         searchTypeFlag = (int) getIntent().getSerializableExtra("SearchFlag");
         // This should be null if it does not need location
         locationSearch =(Location) getIntent().getSerializableExtra("LOCATIONSEARCH");
+        searchString = (String) getIntent().getSerializableExtra("SearchString");
+
 
 
         setContentView(R.layout.search_result);
+
 
         // Show list
 
