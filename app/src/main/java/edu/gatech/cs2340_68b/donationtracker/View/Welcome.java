@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
@@ -27,6 +28,7 @@ public class Welcome extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
@@ -34,7 +36,11 @@ public class Welcome extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
+//        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = firebase.getReference("donations");
+//        ref.setValue(null);
 
+//        System.out.println("START");
 //        LocationControl a = new LocationControl(this);
 //        a.readCSVFile();
 

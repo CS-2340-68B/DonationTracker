@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.View.Register;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
@@ -26,12 +27,14 @@ public class LocationDetail extends AppCompatActivity {
     private TextView longtitude;
     private TextView latitude;
     private Button DonationListBt;
+    private String LocationName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_detail);
-        Location location = (Location) getIntent().getSerializableExtra("LOCATION");
+        final Location location = (Location) getIntent().getSerializableExtra("LOCATION");
+        LocationName = location.getLocationName();
         name = findViewById(R.id.name);
         streetAddress = findViewById(R.id.streetAddress);
         city = findViewById(R.id.city);
@@ -43,7 +46,6 @@ public class LocationDetail extends AppCompatActivity {
         latitude = findViewById(R.id.latitude);
         longtitude = findViewById(R.id.longtitude);
         DonationListBt = findViewById(R.id.donationListBt);
-
 
         name.setText(location.getLocationName());
         streetAddress.setText(location.getStreetAddress());
@@ -59,11 +61,13 @@ public class LocationDetail extends AppCompatActivity {
         DonationListBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Welcome.currentUser.getType().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
+                if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
                     Intent intent = new Intent(LocationDetail.this, DonationList.class);
+                    intent.putExtra("PLACENAME", LocationName);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
+                    intent.putExtra("PLACENAME", LocationName);
                     startActivity(intent);
                 }
             }
