@@ -23,6 +23,7 @@ public class Welcome extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     private ActionBar actionBar;
+    private Button testButton;
     public static User currentUser = new User();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -34,8 +35,9 @@ public class Welcome extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        loginButton = (Button) findViewById(R.id.LoginButton);
-        registerButton = (Button) findViewById(R.id.RegisterButton);
+        loginButton = findViewById(R.id.LoginButton);
+        registerButton = findViewById(R.id.RegisterButton);
+        testButton = findViewById(R.id.TestButton);
 //        System.out.println("START");
 //        LocationControl a = new LocationControl(this);
 //        a.readCSVFile();
@@ -52,6 +54,14 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Welcome.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Welcome.this, SearchMenu.class);
                 startActivity(intent);
             }
         });
