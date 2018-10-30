@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchMenu;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationMap;
 
 public class Welcome extends AppCompatActivity {
 

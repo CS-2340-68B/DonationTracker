@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,21 +27,28 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Register;
+import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 public class LocationListView extends AppCompatActivity {
 
     private ListView locationListView;
     private ActionBar actionBar;
+    private Button mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_list_view);
+
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
+        mapButton = findViewById(R.id.MapButton);
+
         // Get locations from firebase
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
+
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -78,6 +86,14 @@ public class LocationListView extends AppCompatActivity {
                         Intent detail = new Intent(LocationListView.this, LocationDetail.class);
                         detail.putExtra("LOCATION", l);
                         startActivity(detail);
+                    }
+                });
+
+                mapButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent locationMapView = new Intent(LocationListView.this, LocationMap.class);
+                        locationMapView.putExtra("LocationList", locationList);
+                        startActivity(locationMapView);
                     }
                 });
             }
