@@ -10,12 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchMenu;
 
 public class Welcome extends AppCompatActivity {
 
@@ -61,7 +60,7 @@ public class Welcome extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Welcome.this, SearchMenu.class);
+                Intent intent = new Intent(Welcome.this, LocationMap.class);
                 startActivity(intent);
             }
         });

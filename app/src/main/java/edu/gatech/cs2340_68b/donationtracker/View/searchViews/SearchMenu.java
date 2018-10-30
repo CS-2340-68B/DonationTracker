@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.View;
+package edu.gatech.cs2340_68b.donationtracker.View.searchViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.locationView.LocationForSearch;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationForSearch;
 
 public class SearchMenu extends AppCompatActivity {
     private TextInputEditText searchbar;

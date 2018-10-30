@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.View.donationView;
+package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

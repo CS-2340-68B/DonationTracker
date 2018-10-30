@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.View.donationView;
+package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,7 +23,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.locationView.LocationListViewPriv;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
