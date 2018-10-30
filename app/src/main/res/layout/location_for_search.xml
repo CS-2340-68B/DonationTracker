@@ -7,7 +7,7 @@
     tools:context=".View.locationViews.LocationListView">
 
     <ListView
-        android:id="@+id/locationList"
+        android:id="@+id/locationListForSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>

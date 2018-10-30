@@ -1,12 +1,10 @@
-package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
+package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,28 +12,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ResetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
-import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.DonationList;
-import edu.gatech.cs2340_68b.donationtracker.View.DonationList_Own;
-import edu.gatech.cs2340_68b.donationtracker.View.LocationListViewPriv;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 

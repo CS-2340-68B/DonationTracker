@@ -10,12 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchMenu;
 
 public class Welcome extends AppCompatActivity {
 
@@ -23,6 +22,7 @@ public class Welcome extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     private ActionBar actionBar;
+    private Button testButton;
     public static User currentUser = new User();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -34,12 +34,9 @@ public class Welcome extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        loginButton = (Button) findViewById(R.id.LoginButton);
-        registerButton = (Button) findViewById(R.id.RegisterButton);
-//        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-//        DatabaseReference ref = firebase.getReference("donations");
-//        ref.setValue(null);
-
+        loginButton = findViewById(R.id.LoginButton);
+        registerButton = findViewById(R.id.RegisterButton);
+        testButton = findViewById(R.id.TestButton);
 //        System.out.println("START");
 //        LocationControl a = new LocationControl(this);
 //        a.readCSVFile();
@@ -56,6 +53,14 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Welcome.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Welcome.this, LocationMap.class);
                 startActivity(intent);
             }
         });

@@ -1,18 +1,18 @@
-package edu.gatech.cs2340_68b.donationtracker.View;
+package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
-import edu.gatech.cs2340_68b.donationtracker.View.Register;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
+import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList;
+import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList_Own;
 
 public class LocationDetail extends AppCompatActivity {
 

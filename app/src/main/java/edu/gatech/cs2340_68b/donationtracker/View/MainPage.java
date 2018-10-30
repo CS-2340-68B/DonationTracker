@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchMenu;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
