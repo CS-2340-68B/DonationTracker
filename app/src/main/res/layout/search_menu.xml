@@ -8,7 +8,6 @@
     
     <LinearLayout
         android:id="@+id/searchLinearLayout"
-        android:layout_marginTop=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -48,28 +47,24 @@
             android:id="@+id/itemSearchAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="Search Item in All Locations" />
 
         <RadioButton
             android:id="@+id/catSearchAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="Search Category in All Locations" />
 
         <RadioButton
             android:id="@+id/itemSearchLoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="Search Item in Specific Location" />
 
         <RadioButton
             android:id="@+id/catSearchLoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="Search Category in Specific Location" />
     </RadioGroup>
 
