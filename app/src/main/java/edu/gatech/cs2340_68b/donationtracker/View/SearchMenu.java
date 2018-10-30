@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -22,6 +23,7 @@ public class SearchMenu extends AppCompatActivity {
     private RadioButton searchCatLocButton;
     private int searchTypeFlag;
     private Location locationSearch;
+    private Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class SearchMenu extends AppCompatActivity {
 
         searchbar = (TextInputEditText) findViewById(R.id.searchbar);
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchRadioGroup);
+        searchButton = (Button) findViewById(R.id.searchButton);
         searchTypeFlag = -1;
 
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -83,6 +86,10 @@ public class SearchMenu extends AppCompatActivity {
                 }
             }
         });
+
+        searchButton.setOnClickListener();
+
+
 
     }
 }
