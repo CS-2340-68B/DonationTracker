@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.DonationList_Own">
+    tools:context=".View.donationView.DonationList_Own">
 
     <ListView
         android:id="@+id/donationList"

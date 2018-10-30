@@ -1,15 +1,11 @@
-package edu.gatech.cs2340_68b.donationtracker.View;
+package edu.gatech.cs2340_68b.donationtracker.View.donationView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,17 +14,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.DonationDetailControl;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
-import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DonationList extends AppCompatActivity {
@@ -39,11 +32,12 @@ public class DonationList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donation_list);
-        final String donation = (String) getIntent().getSerializableExtra("PLACENAME");
+        final String locatioName = (String) getIntent().getSerializableExtra("PLACENAME");
         donationListView = findViewById(R.id.donationList);
 
-        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("donations/" + donation);
-        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations/");
+        Query query = donationDB.orderByChild("location").equalTo(locatioName);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();

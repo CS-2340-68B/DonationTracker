@@ -23,18 +23,18 @@
         <activity android:name=".View.Register" />
         <activity android:name=".Controllers.Register.ForgetPassword" />
         <activity android:name=".Controllers.Register.ResetPassword" />
-        <activity android:name=".View.LocationListView" />
+        <activity android:name=".View.locationView.LocationListView" />
         <activity android:name=".View.UserProfile" />
-        <activity android:name=".View.LocationDetail" />
+        <activity android:name=".View.locationView.LocationDetail" />
         <activity android:name=".Controllers.Location.LocationSet"/>
-        <activity android:name=".Controllers.Location.DonationDetailControl"/>
-        <activity android:name=".View.DonationList"/>
-        <activity android:name=".View.DonationList_Own"/>
-        <activity android:name=".View.LocationListViewPriv"/>
-        <activity android:name=".Controllers.Location.DonationDetailControl_New"/>
+        <activity android:name=".View.donationView.DonationDetailControl"/>
+        <activity android:name=".View.donationView.DonationList"/>
+        <activity android:name=".View.donationView.DonationList_Own"/>
+        <activity android:name=".View.locationView.LocationListViewPriv"/>
+        <activity android:name=".View.donationView.DonationDetailControl_New"/>
         <activity android:name=".View.SearchMenu"/>
         <activity android:name=".View.SearchResult"/>
-        <activity android:name=".View.LocationForSearch"/>
+        <activity android:name=".View.locationView.LocationForSearch"/>
     </application>
 
 </manifest>

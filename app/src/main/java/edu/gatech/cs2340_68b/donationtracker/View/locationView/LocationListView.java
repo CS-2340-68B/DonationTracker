@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.View;
+package edu.gatech.cs2340_68b.donationtracker.View.locationView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -30,23 +30,30 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-public class LocationForSearch extends AppCompatActivity {
+public class LocationListView extends AppCompatActivity {
 
-    private ListView locationListViewForSearch;
-    private Location locationSearch;
+    private ListView locationListView;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_for_search);
-        locationListViewForSearch = findViewById(R.id.locationListForSearch);
+        setContentView(R.layout.location_list_view);
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+        locationListView = findViewById(R.id.locationList);
+        // Get locations from firebase
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
+        // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 final ArrayList<Location> locationList = new ArrayList<>();
+                // Loads in all locations into the array list
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    // Create local copy of one location
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
                     Map.Entry<String,String> entry =
@@ -65,16 +72,16 @@ public class LocationForSearch extends AppCompatActivity {
                         return o1.getLocationName().compareTo(o2.getLocationName());
                     }
                 });
-                locationListViewForSearch.setAdapter(new dataListAdapter(locationInfo));
-                locationListViewForSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                locationListView.setAdapter(new dataListAdapter(locationInfo));
+                locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
-                        locationSearch = locationList.get(position);
-                        int searchTypeFlag = (int) getIntent().getSerializableExtra("SearchFlag");
-                        Intent intent = new Intent(LocationForSearch.this, SearchResult.class);
-                        intent.putExtra("SearchFlag", searchTypeFlag);
-                        intent.putExtra("LOCATIONSEARCH", locationSearch);
+                        Location l = locationList.get(position);
+                        Intent detail = new Intent(LocationListView.this, LocationDetail.class);
+                        detail.putExtra("LOCATION", l);
+                        startActivity(detail);
                     }
                 });
             }
@@ -86,11 +93,22 @@ public class LocationForSearch extends AppCompatActivity {
         });
     }
     class dataListAdapter extends BaseAdapter {
+//        String[] Title, Detail;
         ArrayList<Map.Entry<String, String>> data;
+//        int[] imge;
 
         dataListAdapter() {
+//            Title = null;
+//            Detail = null;
+//            imge=null;
             data = null;
         }
+
+//        public dataListAdapter(String[] text, String[] text1) {
+//            Title = text;
+//            Detail = text1;
+//            imge = text3;
+//        }
 
         public dataListAdapter(ArrayList<Map.Entry<String, String>> data) {
             this.data = data;
@@ -117,8 +135,13 @@ public class LocationForSearch extends AppCompatActivity {
             View row;
             row = inflater.inflate(R.layout.list_view_layout, parent, false);
             TextView title, detail;
+//            ImageView i1;
             title = (TextView) row.findViewById(R.id.title);
             detail = (TextView) row.findViewById(R.id.detail);
+//            i1=(ImageView)row.findViewById(R.id.img);
+//            title.setText(Title[position]);
+//            detail.setText(Detail[position]);
+//            i1.setImageResource(imge[position]);
             title.setText(data.get(position).getKey());
             detail.setText(data.get(position).getValue());
 

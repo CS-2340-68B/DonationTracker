@@ -1,4 +1,4 @@
-package edu.gatech.cs2340_68b.donationtracker.View;
+package edu.gatech.cs2340_68b.donationtracker.View.locationView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,13 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
-import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.donationView.DonationList_Own;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
