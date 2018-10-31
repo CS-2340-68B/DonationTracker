@@ -1,10 +1,14 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Location;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,9 +46,34 @@ public class LocationControl {
         }
     }
 
-    public void addLocationToDB(Location location) {
-        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        DatabaseReference ref = firebase.getReference("locations").push();
-        ref.setValue(location);
+    public void addLocationToDB(final Location location) {
+
+        final DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
+        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean canAdd = true;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Location currentPlace = snapshot.getValue(Location.class);
+                    if (currentPlace.getLocationName().equals(location.getLocationName()) && currentPlace.getLatitude().equals(location.getLatitude()) && currentPlace.getLongitude().equals(location.getLongitude())) {
+                        canAdd = false;
+                    }
+                }
+
+                // After the loop then check if able to add
+                if (canAdd) {
+                    DatabaseReference newRef = locationDB.push();
+                    newRef.setValue(location);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+
+        // OLD code
+//        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = firebase.getReference("locations").push();
+//        ref.setValue(location);
     }
 }
