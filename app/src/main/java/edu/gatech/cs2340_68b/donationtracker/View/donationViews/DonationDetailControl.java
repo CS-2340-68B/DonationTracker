@@ -73,10 +73,17 @@ public class DonationDetailControl extends AppCompatActivity {
         comment.setText(arrayOutput[2]);
         name.setText(arrayOutput[0]);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
+
+        // Update the category dropdown base on whatever data show in database
+        if (arrayOutput[1] != null) {
+            int spinnerPosition = getIndexSpinner(category, arrayOutput[1]);
+            if (spinnerPosition != -1) {
+                category.setSelection(spinnerPosition);
+            }
+        }
 
         if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
             submit.setVisibility(View.GONE);
@@ -91,7 +98,7 @@ public class DonationDetailControl extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
+                final DatabaseReference ref = firebase.getReference("donations");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -112,9 +119,7 @@ public class DonationDetailControl extends AppCompatActivity {
                                         new Runnable() {
                                             @Override
                                             public void run() {
-                                                Intent detail = new Intent(DonationDetailControl.this, LocationListViewPriv.class);
-                                                startActivity(detail);
-                                                finish();
+                                                finish(); // Go back to donation list view sense
                                             }
                                         },
                                         1000);
@@ -130,5 +135,23 @@ public class DonationDetailControl extends AppCompatActivity {
 
     }
 
+    /**
+     * Helper method to find out the index that store the value in enum
+     * @param spinner The spinner array list of enum
+     * @param compareString The string that hold the data
+     * @return The index of location of that enum
+     */
+    private int getIndexSpinner(Spinner spinner, String compareString) {
+        if (compareString == null || spinner.getCount() == 0) {
+            return -1;
+        } else {
+            for (int i = 0; i < spinner.getCount(); i++) {
+                if (spinner.getItemAtPosition(i).toString().equals(compareString)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
 
 }
