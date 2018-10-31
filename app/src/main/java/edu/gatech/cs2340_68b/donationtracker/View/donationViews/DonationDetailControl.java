@@ -73,7 +73,6 @@ public class DonationDetailControl extends AppCompatActivity {
         comment.setText(arrayOutput[2]);
         name.setText(arrayOutput[0]);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
@@ -91,7 +90,7 @@ public class DonationDetailControl extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
+                final DatabaseReference ref = firebase.getReference("donations");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
