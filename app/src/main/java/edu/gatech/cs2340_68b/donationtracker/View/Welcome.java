@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationMap;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
 
 public class Welcome extends AppCompatActivity {
 
@@ -37,9 +38,10 @@ public class Welcome extends AppCompatActivity {
         loginButton = findViewById(R.id.LoginButton);
         registerButton = findViewById(R.id.RegisterButton);
         testButton = findViewById(R.id.TestButton);
-//        System.out.println("START");
-//        LocationControl a = new LocationControl(this);
-//        a.readCSVFile();
+
+        // Adding location to database
+        LocationControl a = new LocationControl(this);
+        a.readCSVFile();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
