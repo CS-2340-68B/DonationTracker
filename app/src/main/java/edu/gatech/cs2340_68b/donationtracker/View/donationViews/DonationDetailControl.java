@@ -77,6 +77,14 @@ public class DonationDetailControl extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
+        // Update the category dropdown base on whatever data show in database
+        if (arrayOutput[1] != null) {
+            int spinnerPosition = getIndexSpinner(category, arrayOutput[1]);
+            if (spinnerPosition != -1) {
+                category.setSelection(spinnerPosition);
+            }
+        }
+
         if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
             submit.setVisibility(View.GONE);
             time.setTag(time.getKeyListener());
@@ -129,5 +137,23 @@ public class DonationDetailControl extends AppCompatActivity {
 
     }
 
+    /**
+     * Helper method to find out the index that store the value in enum
+     * @param spinner The spinner array list of enum
+     * @param compareString The string that hold the data
+     * @return The index of location of that enum
+     */
+    private int getIndexSpinner(Spinner spinner, String compareString) {
+        if (compareString == null || spinner.getCount() == 0) {
+            return -1;
+        } else {
+            for (int i = 0; i < spinner.getCount(); i++) {
+                if (spinner.getItemAtPosition(i).toString().equals(compareString)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
 
 }
