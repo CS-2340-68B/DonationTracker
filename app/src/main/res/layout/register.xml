@@ -16,7 +16,7 @@
         android:autoText="true"
         android:background="@drawable/cancelbutton"
         app:layout_constraintEnd_toEndOf="@+id/userTypeSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
 
     <Button
         android:id="@+id/register"
@@ -26,22 +26,22 @@
         android:autoText="true"
         android:background="@drawable/registerbutton"
         app:layout_constraintStart_toStartOf="@+id/userTypeSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="298dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/donapp" />
 
     <EditText
@@ -108,5 +108,24 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="165dp"
     </Spinner>
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        android:layout_width="245dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/userTypeSpinner"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/userTypeSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="165dp"
+        android:textColor="#000000"
+    </Spinner>
+
 
 </android.support.constraint.ConstraintLayout>

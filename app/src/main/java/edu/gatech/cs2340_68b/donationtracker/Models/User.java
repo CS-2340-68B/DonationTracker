@@ -11,12 +11,24 @@ public class User {
     private int lastLogin;
     private UserType type;
     private boolean isLock;
-    private UserType userType;
     private Contact contact;
     private String assignedLocation;
 
     // For the purpose of create instance from Firebase
     public User() {
+    }
+
+    public User(User newuser) {
+        this.userID = newuser.userID;
+        this.username = newuser.username;
+        this.password = newuser.password;
+        this.failedAttempts = newuser.failedAttempts;
+        this.lastFailed = newuser.lastFailed;
+        this.lastLogin = newuser.lastLogin;
+        this.type = newuser.type;
+        this.isLock = newuser.isLock;
+        this.contact = newuser.contact;
+        this.assignedLocation = newuser.assignedLocation;
     }
 
     public User(String username, String password, int failedAttempts, int lastFailed,
