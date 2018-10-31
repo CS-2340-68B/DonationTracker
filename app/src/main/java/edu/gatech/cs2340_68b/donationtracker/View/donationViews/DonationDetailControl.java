@@ -119,9 +119,7 @@ public class DonationDetailControl extends AppCompatActivity {
                                         new Runnable() {
                                             @Override
                                             public void run() {
-                                                Intent detail = new Intent(DonationDetailControl.this, LocationListViewPriv.class);
-                                                startActivity(detail);
-                                                finish();
+                                                finish(); // Go back to donation list view sense
                                             }
                                         },
                                         1000);
