@@ -71,8 +71,6 @@ public class Register extends AppCompatActivity {
         utspinner = (Spinner)findViewById(R.id.userTypeSpinner);
         locspinner = (Spinner) findViewById(R.id.locationSpinner);
 
-
-
         // Read in location
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
@@ -147,7 +145,7 @@ public class Register extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
+
             }
 
         });
@@ -158,7 +156,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 Log.d("MYTAG", "Stringhere"); //locationListString.get(position)
-                Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
+                //Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
                 newAccount.setAssignedLocation(locationListString.get(position));
             }
 
@@ -166,6 +164,7 @@ public class Register extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {
                 Log.d("MYTAG", "Nothing Selected"); //locationListString.get(position)
             }
+
         });
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -213,6 +212,11 @@ public class Register extends AppCompatActivity {
                                 newAccount.setUsername(username);
                                 newAccount.setPassword(PasswordEncryption.encode(password));
                                 newAccount.setType(type);
+//                                if (locspinner.getSelectedItem() == null) {
+//                                    Log.d("MYTAG", "Null");
+//                                } else {
+//                                    Log.d("MYTAG", "AssLoc: " + locspinner.getSelectedItem().toString());
+//                                }
                                 if (newAccount.getType().equals(UserType.LOCATIONEMPLOYEE)
                                         || newAccount.getType().equals(UserType.MANAGER)) {
                                     newAccount.setAssignedLocation(locspinner.getSelectedItem().toString());
