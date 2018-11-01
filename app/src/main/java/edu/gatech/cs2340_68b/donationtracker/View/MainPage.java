@@ -43,7 +43,7 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentUser.getType().toString().equals("MANAGER") || currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
-                    currentUser.setAssignedLocation("AFD Station 4");
+//                    currentUser.setAssignedLocation("AFD Station 4");
                     Intent intent = new Intent(MainPage.this, LocationListViewPriv.class);
                     startActivity(intent);
                 } else {

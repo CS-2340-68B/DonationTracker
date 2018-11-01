@@ -23,6 +23,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
@@ -61,9 +62,30 @@ public class DonationDetailControl extends AppCompatActivity {
         value = (EditText) findViewById(R.id.valueEdit);
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
+
         submit = (Button) findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
 
+        /**
+         * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
+         */
+        if (Welcome.currentUser.getType().toString().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
+            submit.setVisibility(View.INVISIBLE);
+        } else {
+            if (Welcome.currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
+                if (currentUser.getAssignedLocation().equals(locationUsed)) {
+                    submit.setVisibility(View.VISIBLE);
+                } else {
+                    submit.setVisibility(View.INVISIBLE);
+                }
+            } else if (Welcome.currentUser.getType().toString().equals("MANAGER")) {
+                submit.setVisibility(View.VISIBLE);
+            }
+        }
+
+        /**
+         * Auto fill data into the box fills
+         */
         time.setText(arrayOutput[6]);
         location.setText(arrayOutput[4]);
         fullDescription.setText(arrayOutput[3]);
@@ -76,7 +98,9 @@ public class DonationDetailControl extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
-        // Update the category dropdown base on whatever data show in database
+        /**
+         * Update the category dropdown base on whatever data show in database
+         */
         if (arrayOutput[1] != null) {
             int spinnerPosition = getIndexSpinner(category, arrayOutput[1]);
             if (spinnerPosition != -1) {
