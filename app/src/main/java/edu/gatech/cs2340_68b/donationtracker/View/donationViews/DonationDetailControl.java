@@ -91,23 +91,19 @@ public class DonationDetailControl extends AppCompatActivity {
             }
         }
 
-        System.out.println("LINE 69: " + Welcome.currentUser.getType().toString());
 
         /**
          * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
          */
-        if (Welcome.currentUser.getType().toString().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
-            System.out.println("LINE 5: HERERE");
+        if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
             submit.setVisibility(View.INVISIBLE);
-        } else if (Welcome.currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
-            System.out.println("LINE 79: HEREER");
+        } else if (Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE)) {
             if (!currentUser.getAssignedLocation().equals(locationUsed)) {
                 submit.setVisibility(View.INVISIBLE);
             }
         }
 
         if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
-            submit.setVisibility(View.GONE);
             time.setTag(time.getKeyListener());
             time.setKeyListener(null);
 
