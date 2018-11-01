@@ -35,6 +35,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
 }
 apply plugin: 'com.google.gms.google-services'
 //com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
