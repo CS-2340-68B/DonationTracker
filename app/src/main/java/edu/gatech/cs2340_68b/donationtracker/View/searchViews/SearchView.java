@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
@@ -32,11 +33,14 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
 
 public class SearchView extends AppCompatActivity {
 
     // Define Variables
     private RadioGroup searchRadioGroup;
+    private RadioButton itemRButton;
+    private RadioButton catRButton;
     private Button searchHistoryButton;
     private TextInputEditText searchBar;
     private Spinner searchCatSpinner;
@@ -48,7 +52,6 @@ public class SearchView extends AppCompatActivity {
     private Location currentLocation;
     private Category currentCat;
     private UserSearch searchCriteria;
-
     Location allLocations = new Location("All");
     final int SEARCHITEM = 0;
     final int SEARCHCAT = 1;
@@ -60,6 +63,8 @@ public class SearchView extends AppCompatActivity {
 
         // Initialize components
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchTypeRadioGroup);
+        itemRButton = (RadioButton) findViewById(R.id.searchTypeItem);
+        catRButton = (RadioButton) findViewById(R.id.searchTypeCat);
         searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
         searchBar = (TextInputEditText) findViewById(R.id.searchBar);
         searchCatSpinner = (Spinner) findViewById(R.id.searchCatSpinner);
@@ -71,6 +76,7 @@ public class SearchView extends AppCompatActivity {
         // Initialize other variables
         searchTypeFlag = -1;
         isSearchAll = true;
+        itemRButton.setChecked(true);
 
         // Radio Group Listener
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -141,15 +147,15 @@ public class SearchView extends AppCompatActivity {
                                 donationInfo.add(entry);
                             }
                             searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
-//                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                                @Override
-//                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                    // Sending information through intent
-//                                    DonationDetail l = donationList.get(position);
-//                                    Intent detail = new Intent(SearchResult.this, DonationDetail.class);
-//                                    startActivity(detail);
-//                                }
-//                            });
+                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    // Sending information through intent
+                                    DonationDetail l = donationList.get(position);
+                                    Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
+                                    startActivity(detail);
+                                }
+                            });
                         }
 
                         @Override
@@ -157,27 +163,11 @@ public class SearchView extends AppCompatActivity {
 
                         }
                     });
+                } else {
+
                 }
 
                 Log.e("Object: ", searchCriteria.toString());
-
-                switch (searchTypeFlag) {
-                    case 0: // Search Item
-                        if (isSearchAll) { // Search location in all locations
-                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
-                        } else { // Search location in specific location
-                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
-                        }
-                        break;
-                    case 1: // Search Category
-                        if (isSearchAll) { // Search category in all locations
-                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
-                        } else { // Search category in specific locations
-                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
-                        }
-                        break;
-
-                }
             }
         });
 

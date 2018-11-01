@@ -28,6 +28,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationDetail;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 
@@ -74,7 +75,7 @@ public class SearchResult extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         DonationDetail l = donationList.get(position);
-                        Intent detail = new Intent(SearchResult.this, DonationDetail.class);
+                        Intent detail = new Intent(SearchResult.this, DonationDetailControl.class);
                         startActivity(detail);
                     }
                 });
