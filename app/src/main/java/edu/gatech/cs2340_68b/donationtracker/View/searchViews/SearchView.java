@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.View.searchViews;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -115,6 +116,7 @@ public class SearchView extends AppCompatActivity {
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
         final ArrayList<String> locationListString = new ArrayList<>();
+        final Context self = this;
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -131,17 +133,17 @@ public class SearchView extends AppCompatActivity {
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
+
+                    // Set up adapter for location spinner
+                    ArrayAdapter locationAdapter = new ArrayAdapter(self, android.R.layout.simple_spinner_item, locationListString);
+                    locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    searchLocSpinner.setAdapter(locationAdapter);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
-        // Set up adapter for location spinner
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, locationListString);
-        locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        searchLocSpinner.setAdapter(locationAdapter);
 
         // Search Location Spinner
         searchLocSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -158,11 +160,10 @@ public class SearchView extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
+                Log.d("MYTAG", "Spinner Nothing Selected");
                 isSearchAll = true;
                 currentLocation = allLocations;
             }
         });
-
-
     }
 }
