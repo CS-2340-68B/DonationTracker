@@ -132,7 +132,6 @@ public class DonationDetailControl extends AppCompatActivity {
                 });
             }
         });
-
     }
 
     /**
@@ -153,5 +152,4 @@ public class DonationDetailControl extends AppCompatActivity {
             return -1;
         }
     }
-
 }
