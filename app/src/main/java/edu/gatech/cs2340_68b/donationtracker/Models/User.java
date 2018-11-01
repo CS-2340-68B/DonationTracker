@@ -1,5 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import java.util.ArrayList;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
 public class User {
@@ -13,6 +15,23 @@ public class User {
     private boolean isLock;
     private Contact contact;
     private String assignedLocation;
+    private ArrayList<UserSearch> userSearchList;
+
+    public boolean isLock() {
+        return isLock;
+    }
+
+    public void setLock(boolean lock) {
+        isLock = lock;
+    }
+
+    public ArrayList<UserSearch> getUserSearchList() {
+        return userSearchList;
+    }
+
+    public void setUserSearchList(ArrayList<UserSearch> userSearchList) {
+        this.userSearchList = userSearchList;
+    }
 
     // For the purpose of create instance from Firebase
     public User() {

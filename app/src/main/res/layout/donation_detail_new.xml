@@ -42,14 +42,13 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"/>
 
-
             <EditText
                 android:id="@+id/nameEdit"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="none"/>
 
             <TextView
                 android:id="@+id/timeText"
@@ -64,7 +63,7 @@
             <EditText
                 android:id="@+id/timeInput"
                 android:layout_width="300dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
                 android:inputType="time"

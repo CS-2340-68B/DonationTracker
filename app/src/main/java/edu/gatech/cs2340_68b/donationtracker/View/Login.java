@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +29,9 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.AccountModify;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
+import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 
@@ -78,7 +82,7 @@ public class Login extends AppCompatActivity {
             }
 
             private void gatewayLogin(final String userName, final String password) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                 Query query = reference.child("accounts").orderByChild("username").equalTo(userName);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -100,6 +104,13 @@ public class Login extends AppCompatActivity {
                             } else if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
                                 AccountModify.resetAttemptCount(userName);
                                 Welcome.currentUser = user;
+
+//                                ArrayList<UserSearch> temp = new ArrayList<>();
+//                                for (int i = 0; i < 4; i++) {
+//                                    temp.add(new UserSearch("Tuan", SearchOptions.NAME, "Nguyen", new Timestamp(System.currentTimeMillis()).getTime()));
+//                                }
+//                                reference.child("test").setValue(temp);
+
                                 Intent intent = new Intent(Login.this, MainPage.class);
                                 startActivity(intent);
                                 finish();

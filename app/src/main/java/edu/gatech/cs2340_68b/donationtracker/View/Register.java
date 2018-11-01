@@ -157,7 +157,7 @@ public class Register extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 Log.d("MYTAG", "Stringhere"); //locationListString.get(position)
                 //Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
-                newAccount.setAssignedLocation(locationListString.get(position));
+                newAccount.setAssignedLocation(locationList.get(position).getLocationName());
             }
 
             @Override
