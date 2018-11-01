@@ -41,7 +41,7 @@
         <activity android:name=".View.donationViews.DonationList_Own" />
         <activity android:name=".View.locationViews.LocationListViewPriv" />
         <activity android:name=".View.donationViews.DonationDetailControl_New" />
-        <activity android:name=".View.searchViews.SearchMenu" />
+        <activity android:name=".View.searchViews.SearchView" />
         <activity android:name=".View.searchViews.SearchResult" />
         <activity android:name=".View.locationViews.LocationForSearch" />
         <!--

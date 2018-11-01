@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +29,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 public class DonationDetailControl extends AppCompatActivity {
     private ActionBar actionBar;
     private EditText time;
-    private EditText location;
+    private TextView location;
     private EditText fullDescription;
     private EditText shortDescription;
     private EditText value;
@@ -54,7 +55,7 @@ public class DonationDetailControl extends AppCompatActivity {
         System.out.println(keyUsed);
 
         time = (EditText) findViewById(R.id.timeInput);
-        location = (EditText) findViewById(R.id.locationDonationEdit);
+        location = (TextView) findViewById(R.id.locationDonationEdit);
         fullDescription = (EditText) findViewById(R.id.fullDescriptionEdit);
         shortDescription = (EditText) findViewById(R.id.shortDescriptionEdit);
         value = (EditText) findViewById(R.id.valueEdit);

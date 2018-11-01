@@ -12,7 +12,7 @@ import android.widget.Button;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
-import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchMenu;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
@@ -68,7 +68,7 @@ public class MainPage extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this, SearchMenu.class);
+                Intent intent = new Intent(MainPage.this, SearchView.class);
                 startActivity(intent);
             }
         });
