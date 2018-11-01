@@ -81,9 +81,6 @@ public class DonationDetailControl_New extends AppCompatActivity {
                         DatabaseReference newRef = myRef.push();
                         newRef.setValue(item);
                         finish();
-//                        Intent detail = new Intent(DonationDetailControl_New.this, LocationListViewPriv.class);
-//                        startActivity(detail);
-//                        finish();
                     }
 
                     @Override
@@ -91,6 +88,5 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 });
             }
         });
-
     }
 }

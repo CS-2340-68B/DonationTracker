@@ -63,28 +63,11 @@ public class DonationDetailControl extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
 
-        submit = (Button) findViewById(R.id.submit);
+        submit = findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
 
         /**
-         * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
-         */
-        if (Welcome.currentUser.getType().toString().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
-            submit.setVisibility(View.INVISIBLE);
-        } else {
-            if (Welcome.currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
-                if (currentUser.getAssignedLocation().equals(locationUsed)) {
-                    submit.setVisibility(View.VISIBLE);
-                } else {
-                    submit.setVisibility(View.INVISIBLE);
-                }
-            } else if (Welcome.currentUser.getType().toString().equals("MANAGER")) {
-                submit.setVisibility(View.VISIBLE);
-            }
-        }
-
-        /**
-         * Auto fill data into the box fills
+         * Auto fill data into the box fills if the client want to view or edits
          */
         time.setText(arrayOutput[6]);
         location.setText(arrayOutput[4]);
@@ -105,6 +88,21 @@ public class DonationDetailControl extends AppCompatActivity {
             int spinnerPosition = getIndexSpinner(category, arrayOutput[1]);
             if (spinnerPosition != -1) {
                 category.setSelection(spinnerPosition);
+            }
+        }
+
+        System.out.println("LINE 69: " + Welcome.currentUser.getType().toString());
+
+        /**
+         * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
+         */
+        if (Welcome.currentUser.getType().toString().equals("ADMIN") || Welcome.currentUser.getType().equals("USER")) {
+            System.out.println("LINE 5: HERERE");
+            submit.setVisibility(View.INVISIBLE);
+        } else if (Welcome.currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
+            System.out.println("LINE 79: HEREER");
+            if (!currentUser.getAssignedLocation().equals(locationUsed)) {
+                submit.setVisibility(View.INVISIBLE);
             }
         }
 
