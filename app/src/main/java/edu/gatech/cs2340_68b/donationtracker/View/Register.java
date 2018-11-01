@@ -1,6 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -75,6 +76,7 @@ public class Register extends AppCompatActivity {
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
         final ArrayList<String> locationListString = new ArrayList<>();
+        final Context self = this;
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -90,6 +92,13 @@ public class Register extends AppCompatActivity {
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
+
+                     /*
+                      Set up the adapter to display the locations in the spinner
+                     */
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter(self,android.R.layout.simple_spinner_item, locationListString);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    locspinner.setAdapter(adapter2);
                 }
             }
 
@@ -105,13 +114,6 @@ public class Register extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, UserType.values());
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         utspinner.setAdapter(adapter1);
-
-        /*
-          Set up the adapter to display the locations in the spinner
-         */
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, locationListString);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        locspinner.setAdapter(adapter2);
 
         // UT Listener
         utspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

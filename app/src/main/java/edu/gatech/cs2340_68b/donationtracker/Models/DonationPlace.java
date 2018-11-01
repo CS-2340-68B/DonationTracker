@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.DonationPlaceType;
 
 public class DonationPlace {

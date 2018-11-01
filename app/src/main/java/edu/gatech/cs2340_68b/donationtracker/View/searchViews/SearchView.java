@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -87,18 +88,18 @@ public class SearchView extends AppCompatActivity {
                 String searchString = searchBar.getText().toString();
 
                 switch (searchTypeFlag) {
-                    case 0: // search item
-                        if (isSearchAll) {
-
-                        } else {
-
+                    case 0: // Search Item
+                        if (isSearchAll) { // Search location in all locations
+                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
+                        } else { // Search location in specific location
+                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
                         }
                         break;
-                    case 1: // search categori
-                        if (isSearchAll) {
-
-                        } else {
-
+                    case 1: // Search Category
+                        if (isSearchAll) { // Search category in all locations
+                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
+                        } else { // Search category in specific locations
+                            /* TO BE IMPLEMENTED BY TUAN (?) FROM SEARCHRESULT */
                         }
                         break;
 
