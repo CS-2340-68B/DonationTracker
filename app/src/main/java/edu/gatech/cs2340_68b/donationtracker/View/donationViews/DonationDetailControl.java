@@ -41,6 +41,8 @@ public class DonationDetailControl extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("donations");
 
+    // Needs DATA, KEY, LOCATION to work properly
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +54,6 @@ public class DonationDetailControl extends AppCompatActivity {
         final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
         final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
         final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
-
-        System.out.println(keyUsed);
 
         time = (EditText) findViewById(R.id.timeInput);
         location = (TextView) findViewById(R.id.locationDonationEdit);

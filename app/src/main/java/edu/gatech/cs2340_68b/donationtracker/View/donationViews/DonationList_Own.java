@@ -26,7 +26,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
-public class DonationList_Own extends AppCompatActivity {
+public class    DonationList_Own extends AppCompatActivity {
 
     private ListView donationListView;
     private Button addButton;

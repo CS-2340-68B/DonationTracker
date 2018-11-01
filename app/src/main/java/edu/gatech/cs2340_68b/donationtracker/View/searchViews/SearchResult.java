@@ -62,8 +62,10 @@ public class SearchResult extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                 final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                final ArrayList<String> keyHashFromFB = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                    keyHashFromFB.add(snapshot.getKey());
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
                             new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
@@ -77,6 +79,19 @@ public class SearchResult extends AppCompatActivity {
                         DonationDetail l = donationList.get(position);
                         Intent detail = new Intent(SearchResult.this, DonationDetailControl.class);
                         startActivity(detail);
+                        String keyUsed = keyHashFromFB.get(position);
+                        String array[] = new String[8];
+                        array[0] = l.getName();
+                        array[1] = l.getCategory();
+                        array[2] = l.getComment();
+                        array[3] = l.getFullDescription();
+                        array[4] = l.getLocation();
+                        array[5] = l.getShortDescription();
+                        array[6] = l.getTime();
+                        array[7] = l.getValue();
+                        detail.putExtra("DATA", donationList);
+                        detail.putExtra("KEY", keyHashFromFB);
+                        detail.putExtra("LOCATION", locationSearch);
                     }
                 });
             }

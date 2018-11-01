@@ -77,6 +77,7 @@ public class SearchView extends AppCompatActivity {
         searchTypeFlag = -1;
         isSearchAll = true;
         itemRButton.setChecked(true);
+        searchCriteria.setSearchOption(SearchOptions.NAME);
 
         // Radio Group Listener
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -138,8 +139,10 @@ public class SearchView extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                             final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                            final ArrayList<String> keyHashFromFB = new ArrayList<>();
                             for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                                 DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                                keyHashFromFB.add(snapshot.getKey());
                                 Log.e("Item: ", detail.getName());
                                 donationList.add(detail);
                                 Map.Entry<String,String> entry =
@@ -153,6 +156,19 @@ public class SearchView extends AppCompatActivity {
                                     // Sending information through intent
                                     DonationDetail l = donationList.get(position);
                                     Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
+                                    String keyUsed = keyHashFromFB.get(position);
+                                    String array[] = new String[8];
+                                    array[0] = l.getName();
+                                    array[1] = l.getCategory();
+                                    array[2] = l.getComment();
+                                    array[3] = l.getFullDescription();
+                                    array[4] = l.getLocation();
+                                    array[5] = l.getShortDescription();
+                                    array[6] = l.getTime();
+                                    array[7] = l.getValue();
+                                    detail.putExtra("DATA", donationList);
+                                    detail.putExtra("KEY", keyUsed);
+                                    detail.putExtra("LOCATION", currentLocation);
                                     startActivity(detail);
                                 }
                             });
@@ -233,6 +249,7 @@ public class SearchView extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 Log.d("MYTAG", "Spinner Item Select Working");
                 currentLocation = locationList.get(position);
+                searchCriteria.setLocationName(currentLocation.getLocationName());
                 if (position == 0) { // First item is All Location
                     isSearchAll = true;
                 } else {
