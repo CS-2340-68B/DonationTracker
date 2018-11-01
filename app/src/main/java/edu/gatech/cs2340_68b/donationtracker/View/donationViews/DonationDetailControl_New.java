@@ -24,7 +24,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DonationDetailControl_New extends AppCompatActivity {
     private EditText time;
-    private EditText location;
+    private TextView location;
     private EditText fullDescription;
     private EditText shortDescription;
     private EditText value;
@@ -50,6 +50,9 @@ public class DonationDetailControl_New extends AppCompatActivity {
         category = (Spinner)findViewById(R.id.categorySpinner);
         submit = (Button) findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
+        location = (TextView)  findViewById(R.id.locationDonationEdit);
+        location.setText(locationName);
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());

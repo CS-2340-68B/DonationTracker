@@ -25,8 +25,12 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
 
+import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
+import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
+import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class SearchView extends AppCompatActivity {
@@ -43,6 +47,8 @@ public class SearchView extends AppCompatActivity {
     private boolean isSearchAll;
     private Location currentLocation;
     private Category currentCat;
+    private UserSearch searchCriteria;
+
     Location allLocations = new Location("All");
     final int SEARCHITEM = 0;
     final int SEARCHCAT = 1;
@@ -60,6 +66,7 @@ public class SearchView extends AppCompatActivity {
         searchButton = (Button) findViewById(R.id.searchButton);
         searchLocSpinner = (Spinner) findViewById(R.id.searchLocSpinner);
         searchResultList = (ListView) findViewById(R.id.searchResultList);
+        searchCriteria = new UserSearch();
 
         // Initialize other variables
         searchTypeFlag = -1;
@@ -74,9 +81,12 @@ public class SearchView extends AppCompatActivity {
                 View radioButton = searchRadioGroup.findViewById(checkedId);
                 searchTypeFlag = searchRadioGroup.indexOfChild(radioButton);
                 if (searchTypeFlag == 0) { // Item search
+                    searchCriteria.setSearchOption(SearchOptions.NAME);
                     searchBar.setVisibility(View.VISIBLE);
                     searchCatSpinner.setVisibility(View.GONE);
+
                 } else {                    // Category search
+                    searchCriteria.setSearchOption(SearchOptions.CATEGORY);
                     searchBar.setVisibility(View.GONE);
                     searchCatSpinner.setVisibility(View.VISIBLE);
                 }
@@ -99,6 +109,57 @@ public class SearchView extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("MYTAG", "Search Button Working");
                 String searchString = searchBar.getText().toString();
+
+                Log.e("Tag: ", searchCriteria.getSearchOption().toString());
+                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+                    searchCriteria.setKeyword(searchBar.getText().toString());
+                } else {
+                    searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
+                }
+                searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
+
+                DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
+                Query query = null;
+
+                if (searchCriteria.getLocationName().equals("All")) {
+                    if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+                        query = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
+                    } else {
+                        query = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+                    }
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                            final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                            for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                                DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                                Log.e("Item: ", detail.getName());
+                                donationList.add(detail);
+                                Map.Entry<String,String> entry =
+                                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                                donationInfo.add(entry);
+                            }
+                            searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+//                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                @Override
+//                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                    // Sending information through intent
+//                                    DonationDetail l = donationList.get(position);
+//                                    Intent detail = new Intent(SearchResult.this, DonationDetail.class);
+//                                    startActivity(detail);
+//                                }
+//                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                Log.e("Object: ", searchCriteria.toString());
 
                 switch (searchTypeFlag) {
                     case 0: // Search Item
