@@ -61,15 +61,6 @@ public class LocationDetail extends AppCompatActivity {
         DonationListBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
-//                    Intent intent = new Intent(LocationDetail.this, DonationList.class);
-//                    intent.putExtra("PLACENAME", LocationName);
-//                    startActivity(intent);
-//                } else {
-//                    Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
-//                    intent.putExtra("PLACENAME", LocationName);
-//                    startActivity(intent);
-//                }
                 Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
                 intent.putExtra("PLACENAME", LocationName);
                 startActivity(intent);
