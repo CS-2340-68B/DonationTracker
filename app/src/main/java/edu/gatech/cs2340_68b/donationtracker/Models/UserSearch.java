@@ -6,15 +6,13 @@ public class UserSearch {
     private String keyword;
     private SearchOptions searchOption;
     private String locationName;
-    private long timeStamp;
 
     public UserSearch() {}
 
-    public UserSearch(String keyword, SearchOptions searchOption, String locationName, long timeStamp) {
+    public UserSearch(String keyword, SearchOptions searchOption, String locationName) {
         this.keyword = keyword;
         this.searchOption = searchOption;
         this.locationName = locationName;
-        this.timeStamp = timeStamp;
     }
 
     public String getKeyword() {
@@ -41,16 +39,8 @@ public class UserSearch {
         this.locationName = locationName;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
     @Override
     public String toString() {
-        return keyword + " - " + locationName;
+        return keyword + " - " + searchOption + " - " + locationName;
     }
 }
