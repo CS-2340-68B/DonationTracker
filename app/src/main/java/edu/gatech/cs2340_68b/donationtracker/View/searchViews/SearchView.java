@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
+
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -33,12 +35,14 @@ public class SearchView extends AppCompatActivity {
     private RadioGroup searchRadioGroup;
     private Button searchHistoryButton;
     private TextInputEditText searchBar;
+    private Spinner searchCatSpinner;
     private Button searchButton;
     private Spinner searchLocSpinner;
     private ListView searchResultList;
     private int searchTypeFlag;
     private boolean isSearchAll;
     private Location currentLocation;
+    private Category currentCat;
     Location allLocations = new Location("All");
     final int SEARCHITEM = 0;
     final int SEARCHCAT = 1;
@@ -52,6 +56,7 @@ public class SearchView extends AppCompatActivity {
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchTypeRadioGroup);
         searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
         searchBar = (TextInputEditText) findViewById(R.id.searchBar);
+        searchCatSpinner = (Spinner) findViewById(R.id.searchCatSpinner);
         searchButton = (Button) findViewById(R.id.searchButton);
         searchLocSpinner = (Spinner) findViewById(R.id.searchLocSpinner);
         searchResultList = (ListView) findViewById(R.id.searchResultList);
@@ -68,6 +73,13 @@ public class SearchView extends AppCompatActivity {
                 Log.d("MYTAG", "Radio Button Working");
                 View radioButton = searchRadioGroup.findViewById(checkedId);
                 searchTypeFlag = searchRadioGroup.indexOfChild(radioButton);
+                if (searchTypeFlag == 0) { // Item search
+                    searchBar.setVisibility(View.VISIBLE);
+                    searchCatSpinner.setVisibility(View.GONE);
+                } else {                    // Category search
+                    searchBar.setVisibility(View.GONE);
+                    searchCatSpinner.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -105,6 +117,25 @@ public class SearchView extends AppCompatActivity {
                         break;
 
                 }
+            }
+        });
+
+        /*
+        * CATEGORY SET UP
+        */
+        // Set up cateogry spinner adapter
+        ArrayAdapter<String> catAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
+        catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        searchCatSpinner.setAdapter(catAdapter);
+        searchCatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                currentCat = Category.values()[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                currentCat = Category.values()[0];
             }
         });
 
