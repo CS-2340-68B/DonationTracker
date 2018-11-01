@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
@@ -23,6 +24,8 @@ public class MainPage extends AppCompatActivity {
     private Button locationList;
     private Button userProfile;
     private Button search;
+
+    private Button menuT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,16 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        menuT = (Button) findViewById(R.id.menu);
+        menuT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, Menu.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
 
