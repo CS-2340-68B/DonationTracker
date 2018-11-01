@@ -2,12 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id = "@+id/nav_account"
+        android:icon="@mipmap/baseline_person_black_24dp"
         android:title="My Account" />
 
     <item android:id = "@+id/nav_search"
+        android:icon="@mipmap/baseline_search_black_24dp"
         android:title="Search" />
 
+    <item android:id = "@+id/nav_location"
+        android:icon="@mipmap/baseline_location_city_black_24dp"
+        android:title="Location List" />
+
+    <item android:id = "@+id/nav_history"
+        android:icon="@mipmap/baseline_history_black_24dp"
+        android:title="History" />
+
     <item android:id = "@+id/nav_logout"
+        android:icon="@mipmap/baseline_favorite_border_black_24dp"
         android:title="Log out" />
 
 </menu>
