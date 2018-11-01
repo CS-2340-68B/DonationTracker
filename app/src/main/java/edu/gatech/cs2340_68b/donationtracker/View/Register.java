@@ -219,10 +219,6 @@ public class Register extends AppCompatActivity {
 //                                } else {
 //                                    Log.d("MYTAG", "AssLoc: " + locspinner.getSelectedItem().toString());
 //                                }
-                                if (newAccount.getType().equals(UserType.LOCATIONEMPLOYEE)
-                                        || newAccount.getType().equals(UserType.MANAGER)) {
-                                    newAccount.setAssignedLocation(locspinner.getSelectedItem().toString());
-                                }
                                 // Creates a new empty key
                                 DatabaseReference newRef = ref.push();
                                 // Set value
