@@ -23,6 +23,7 @@ import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
@@ -107,16 +108,16 @@ public class DonationList_Own extends AppCompatActivity {
         /**
          * Turn invisible add button if the current user is Admin and or user and locationemployee (not current location)
          */
-        if (Welcome.currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
+        if (Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE)) {
             if (Welcome.currentUser.getAssignedLocation().toString().equals(newLocation)) {
                 addButton.setVisibility(View.VISIBLE);
             } else {
                 addButton.setVisibility(View.INVISIBLE);
             }
-        } else if (Welcome.currentUser.getType().toString().equals("MANAGER")) {
+        } else if (Welcome.currentUser.getType().equals(UserType.MANAGER)) {
             addButton.setVisibility(View.VISIBLE);
         }
-        else if (Welcome.currentUser.getType().toString().equals("ADMIN") || Welcome.currentUser.getType().toString().equals("USER")) {
+        else if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
             addButton.setVisibility(View.INVISIBLE);
         }
 

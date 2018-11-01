@@ -7,12 +7,24 @@
     tools:context=".View.MainPage"
     android:background="#fff">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/black"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <Button
         android:id="@+id/search"
         android:layout_width="272dp"
         android:layout_height="49dp"
         android:layout_marginBottom="12dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/search"
         app:layout_constraintBottom_toTopOf="@+id/donationLocationListButton"
         app:layout_constraintEnd_toEndOf="@+id/imageButton4"
@@ -25,21 +37,11 @@
         android:layout_height="144dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="108dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         app:srcCompat="@drawable/donapp" />
-
-    <Button
-        android:id="@+id/donationLocationMapbutton"
-        android:layout_width="272dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/donationlocationmap"
-        app:layout_constraintEnd_toEndOf="@+id/donationLocationListButton"
-        app:layout_constraintStart_toStartOf="@+id/donationLocationListButton"
-        app:layout_constraintTop_toBottomOf="@+id/donationLocationListButton" />
 
     <!--<item-->
         <!--android:id = "@+id/logout"-->
@@ -68,36 +70,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/donationLocationListButton"
         android:layout_width="272dp"
         android:layout_height="49dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/donationlocationlist"
         app:layout_constraintEnd_toEndOf="@+id/search"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/search"
         app:layout_constraintTop_toBottomOf="@+id/search" />
-
-    <Button
-        android:id="@+id/donationCategoryButton"
-        android:layout_width="272dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/donationcategory"
-        app:layout_constraintEnd_toEndOf="@+id/donationLocationMapbutton"
-        app:layout_constraintStart_toStartOf="@+id/donationLocationMapbutton"
-        app:layout_constraintTop_toBottomOf="@+id/donationLocationMapbutton" />
 
     <Button
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="menu"
+        app:layout_constraintBottom_toBottomOf="@+id/my_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

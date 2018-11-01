@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,7 +21,6 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 public class MainPage extends AppCompatActivity {
 
     private Button logout;
-    private ActionBar actionBar;
     private Button locationList;
     private Button userProfile;
     private Button search;
@@ -30,9 +30,8 @@ public class MainPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         setContentView(R.layout.main_page);
         logout = (Button) findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +64,6 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        actionBar = getSupportActionBar();
 
         search = (Button) findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
