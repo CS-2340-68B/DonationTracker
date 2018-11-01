@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Menu extends AppCompatActivity {
-    //private ActionBar actionBar;
+    private ActionBar actionBar;
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle aToggle;
 
@@ -21,8 +21,8 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.test_menu);
 
         nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
