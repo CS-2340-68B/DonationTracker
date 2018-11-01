@@ -17,7 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.Category;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 

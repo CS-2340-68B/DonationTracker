@@ -48,4 +48,9 @@ public class UserSearch {
     public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    @Override
+    public String toString() {
+        return keyword + " - " + locationName;
+    }
 }
