@@ -128,61 +128,44 @@ public class SearchView extends AppCompatActivity {
                 DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
                 Query query = null;
 
-                if (searchCriteria.getLocationName().equals("All")) {
-                    if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-                        query = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
-                    } else {
-                        query = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
-                    }
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                            final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                            final ArrayList<String> keyHashFromFB = new ArrayList<>();
-                            for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                                DonationDetail detail = snapshot.getValue(DonationDetail.class);
-                                keyHashFromFB.add(snapshot.getKey());
-                                Log.e("Item: ", detail.getName());
+                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+                    query = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
+                } else {
+                    query = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+                }
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                        final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                            DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                            Log.e("Item: ", detail.getName());
+                            if (searchCriteria.getLocationName().equals("All")
+                                    || searchCriteria.getLocationName().equals(detail.getLocation())) {
                                 donationList.add(detail);
-                                Map.Entry<String,String> entry =
+                                Map.Entry<String, String> entry =
                                         new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
                                 donationInfo.add(entry);
                             }
-                            searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+                        }
+                        searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
                             searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     // Sending information through intent
                                     DonationDetail l = donationList.get(position);
                                     Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
-                                    String keyUsed = keyHashFromFB.get(position);
-                                    String array[] = new String[8];
-                                    array[0] = l.getName();
-                                    array[1] = l.getCategory();
-                                    array[2] = l.getComment();
-                                    array[3] = l.getFullDescription();
-                                    array[4] = l.getLocation();
-                                    array[5] = l.getShortDescription();
-                                    array[6] = l.getTime();
-                                    array[7] = l.getValue();
-                                    detail.putExtra("DATA", donationList);
-                                    detail.putExtra("KEY", keyUsed);
-                                    detail.putExtra("LOCATION", currentLocation);
                                     startActivity(detail);
                                 }
                             });
-                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
-                } else {
-
-                }
-
+                    }
+                });
                 Log.e("Object: ", searchCriteria.toString());
             }
         });
