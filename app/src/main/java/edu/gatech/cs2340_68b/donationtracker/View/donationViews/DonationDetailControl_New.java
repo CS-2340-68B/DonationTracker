@@ -23,7 +23,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DonationDetailControl_New extends AppCompatActivity {
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private EditText time;
     private TextView location;
     private EditText fullDescription;
@@ -40,9 +40,9 @@ public class DonationDetailControl_New extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donation_detail_new);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        actionBar = getSupportActionBar();
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
 
         final String locationName = (String) getIntent().getSerializableExtra("LOCATION");
         final DatabaseReference myRef = database.getReference("donations/");
