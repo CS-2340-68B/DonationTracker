@@ -32,15 +32,15 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 public class LocationListViewPriv extends AppCompatActivity {
 
     private ListView locationListView;
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private Button modifyLocationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_list_view_priv);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
         modifyLocationButton = (Button) findViewById(R.id.modifyLocationButton);
 

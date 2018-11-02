@@ -33,7 +33,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 public class LocationListView extends AppCompatActivity {
 
     private ListView locationListView;
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private Button mapButton;
 
     @Override
@@ -41,8 +41,8 @@ public class LocationListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_list_view);
 
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
         mapButton = findViewById(R.id.MapButton);
 

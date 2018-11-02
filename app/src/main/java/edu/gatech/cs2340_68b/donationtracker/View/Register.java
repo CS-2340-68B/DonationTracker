@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity {
     private TextView confirmPasswordTV;
     private Button register;
     private Button cancel;
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private Spinner utspinner;
     private Spinner locspinner;
     private User newAccount = new User();
@@ -61,8 +61,8 @@ public class Register extends AppCompatActivity {
         final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
         final DatabaseReference ref = firebase.getReference("accounts");
 
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
 
         usernameTV = (TextView)findViewById(R.id.registerUsername);
         passwordTV = (TextView)findViewById(R.id.registerPassword);

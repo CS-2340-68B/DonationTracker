@@ -34,7 +34,7 @@ public class Welcome extends AppCompatActivity {
     private ImageButton imageButton;
     private Button loginButton;
     private Button registerButton;
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private Button testButton;
     public static User currentUser = new User();
 
@@ -45,8 +45,8 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = findViewById(R.id.LoginButton);
         registerButton = findViewById(R.id.RegisterButton);
         testButton = findViewById(R.id.TestButton);
