@@ -48,7 +48,8 @@ public class Login extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("accounts");
     private ChildEventListener mChildListener;
-    private ActionBar actionBar;
+
+//    private ActionBar actionBar;
     private static boolean pageOpened = true;
 
     private boolean validAccount;
@@ -57,8 +58,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         username = (TextView)findViewById(R.id.registerUsername);
         password = (TextView)findViewById(R.id.registerPassword);
         cancel = (Button)findViewById(R.id.cancel);

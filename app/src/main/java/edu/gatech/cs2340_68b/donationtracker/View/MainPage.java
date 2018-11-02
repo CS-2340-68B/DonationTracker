@@ -20,7 +20,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 public class MainPage extends AppCompatActivity {
 
     private Button logout;
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private Button locationList;
     private Button userProfile;
     private Button search;
@@ -31,8 +31,8 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.main_page);
         logout = (Button) findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        actionBar = getSupportActionBar();
+//        actionBar = getSupportActionBar();
 
         search = (Button) findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
