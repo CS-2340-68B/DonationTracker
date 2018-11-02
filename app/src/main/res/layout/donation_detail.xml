@@ -49,17 +49,26 @@
                 app:layout_constraintStart_toStartOf="@+id/timeInput"
                 app:layout_constraintTop_toBottomOf="@+id/timeInput" />
 
-            <EditText
+            <TextView
                 android:id="@+id/locationDonationEdit"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="@+id/locationDonationText"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/locationDonationText"
-                app:layout_constraintTop_toBottomOf="@+id/locationDonationText" />
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <!--<EditText-->
+                <!--android:id="@+id/locationDonationEdit"-->
+                <!--android:layout_width="300dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:ems="10"-->
+                <!--android:inputType="textPersonName"-->
+                <!--app:layout_constraintEnd_toEndOf="@+id/locationDonationText"-->
+                <!--app:layout_constraintHorizontal_bias="0.0"-->
+                <!--app:layout_constraintStart_toStartOf="@+id/locationDonationText"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/locationDonationText" />-->
 
             <TextView
                 android:id="@+id/name"
@@ -97,7 +106,7 @@
             <EditText
                 android:id="@+id/timeInput"
                 android:layout_width="300dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
                 android:inputType="time"
@@ -150,7 +159,7 @@
             <EditText
                 android:id="@+id/shortDescriptionEdit"
                 android:layout_width="300dp"
-                android:layout_height="42dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
                 android:inputType="textMultiLine"
@@ -225,6 +234,7 @@
 
             <Button
                 android:id="@+id/submit"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

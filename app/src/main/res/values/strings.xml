@@ -2,4 +2,8 @@
     <string name="app_name">Donation Tracker</string>
     <string name="title_activity_location_view">LocationView</string>
     <string name="title_activity_location_map">Map</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+
 </resources>

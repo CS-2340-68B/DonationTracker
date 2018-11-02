@@ -9,27 +9,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
-import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchMenu;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class MainPage extends AppCompatActivity {
 
     private Button logout;
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private Button locationList;
     private Button userProfile;
     private Button search;
+
+    private Button menuT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.main_page);
         logout = (Button) findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +46,7 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentUser.getType().toString().equals("MANAGER") || currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
-                    currentUser.setAssignedLocation("AFD Station 4");
+//                    currentUser.setAssignedLocation("AFD Station 4");
                     Intent intent = new Intent(MainPage.this, LocationListViewPriv.class);
                     startActivity(intent);
                 } else {
@@ -62,16 +65,26 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        actionBar = getSupportActionBar();
+//        actionBar = getSupportActionBar();
 
         search = (Button) findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this, SearchMenu.class);
+                Intent intent = new Intent(MainPage.this, SearchView.class);
                 startActivity(intent);
             }
         });
+
+        menuT = (Button) findViewById(R.id.menu);
+        menuT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, Menu.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
 

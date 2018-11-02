@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,14 +18,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.Category;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DonationDetailControl_New extends AppCompatActivity {
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private EditText time;
-    private EditText location;
+    private TextView location;
     private EditText fullDescription;
     private EditText shortDescription;
     private EditText value;
@@ -39,9 +40,9 @@ public class DonationDetailControl_New extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donation_detail_new);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        actionBar = getSupportActionBar();
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
 
         final String locationName = (String) getIntent().getSerializableExtra("LOCATION");
         final DatabaseReference myRef = database.getReference("donations/");
@@ -53,6 +54,9 @@ public class DonationDetailControl_New extends AppCompatActivity {
         category = (Spinner)findViewById(R.id.categorySpinner);
         submit = (Button) findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
+        location = (TextView)  findViewById(R.id.locationDonationEdit);
+        location.setText(locationName);
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
@@ -80,9 +84,6 @@ public class DonationDetailControl_New extends AppCompatActivity {
                         DatabaseReference newRef = myRef.push();
                         newRef.setValue(item);
                         finish();
-//                        Intent detail = new Intent(DonationDetailControl_New.this, LocationListViewPriv.class);
-//                        startActivity(detail);
-//                        finish();
                     }
 
                     @Override
@@ -90,6 +91,5 @@ public class DonationDetailControl_New extends AppCompatActivity {
                 });
             }
         });
-
     }
 }

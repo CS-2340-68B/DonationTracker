@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +29,9 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.AccountModify;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
+import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 
@@ -52,8 +56,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         username = (TextView)findViewById(R.id.registerUsername);
         password = (TextView)findViewById(R.id.registerPassword);
         cancel = (Button)findViewById(R.id.cancel);
@@ -78,7 +82,7 @@ public class Login extends AppCompatActivity {
             }
 
             private void gatewayLogin(final String userName, final String password) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                 Query query = reference.child("accounts").orderByChild("username").equalTo(userName);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -100,6 +104,7 @@ public class Login extends AppCompatActivity {
                             } else if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
                                 AccountModify.resetAttemptCount(userName);
                                 Welcome.currentUser = user;
+                                Welcome.userKey = singleSnapShot.getKey();
                                 Intent intent = new Intent(Login.this, MainPage.class);
                                 startActivity(intent);
                                 finish();

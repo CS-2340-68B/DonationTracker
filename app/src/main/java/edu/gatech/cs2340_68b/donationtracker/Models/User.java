@@ -1,5 +1,9 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
 public class User {
@@ -11,12 +15,41 @@ public class User {
     private int lastLogin;
     private UserType type;
     private boolean isLock;
-    private UserType userType;
     private Contact contact;
     private String assignedLocation;
+    private ArrayList<UserSearch> userSearchList;
+
+    public boolean isLock() {
+        return isLock;
+    }
+
+    public void setLock(boolean lock) {
+        isLock = lock;
+    }
+
+    public ArrayList<UserSearch> getUserSearchList() {
+        return userSearchList;
+    }
+
+    public void setUserSearchList(ArrayList<UserSearch> userSearchList) {
+        this.userSearchList = userSearchList;
+    }
 
     // For the purpose of create instance from Firebase
     public User() {
+    }
+
+    public User(User newuser) {
+        this.userID = newuser.userID;
+        this.username = newuser.username;
+        this.password = newuser.password;
+        this.failedAttempts = newuser.failedAttempts;
+        this.lastFailed = newuser.lastFailed;
+        this.lastLogin = newuser.lastLogin;
+        this.type = newuser.type;
+        this.isLock = newuser.isLock;
+        this.contact = newuser.contact;
+        this.assignedLocation = newuser.assignedLocation;
     }
 
     public User(String username, String password, int failedAttempts, int lastFailed,

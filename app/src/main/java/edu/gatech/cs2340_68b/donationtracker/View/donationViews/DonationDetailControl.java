@@ -1,17 +1,18 @@
 package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,18 +20,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.Category;
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
+import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class DonationDetailControl extends AppCompatActivity {
-    private ActionBar actionBar;
+//    private ActionBar actionBar;
     private EditText time;
-    private EditText location;
+    private TextView location;
     private EditText fullDescription;
     private EditText shortDescription;
     private EditText value;
@@ -41,30 +42,36 @@ public class DonationDetailControl extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("donations");
 
+    // Needs DATA, KEY, LOCATION to work properly
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
+//        actionBar = getSupportActionBar();
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.donation_detail);
-        actionBar = getSupportActionBar();
+//        actionBar = getSupportActionBar();
 
         final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
         final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
         final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
 
-        System.out.println(keyUsed);
-
         time = (EditText) findViewById(R.id.timeInput);
-        location = (EditText) findViewById(R.id.locationDonationEdit);
+        location = (TextView) findViewById(R.id.locationDonationEdit);
         fullDescription = (EditText) findViewById(R.id.fullDescriptionEdit);
         shortDescription = (EditText) findViewById(R.id.shortDescriptionEdit);
         value = (EditText) findViewById(R.id.valueEdit);
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
-        submit = (Button) findViewById(R.id.submit);
+
+        Log.d("MYTAG", Welcome.currentUser.getType().toString());
+
+        submit = findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
 
+        /**
+         * Auto fill data into the box fills if the client want to view or edits
+         */
         time.setText(arrayOutput[6]);
         location.setText(arrayOutput[4]);
         fullDescription.setText(arrayOutput[3]);
@@ -73,13 +80,33 @@ public class DonationDetailControl extends AppCompatActivity {
         comment.setText(arrayOutput[2]);
         name.setText(arrayOutput[0]);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
+        /**
+         * Update the category dropdown base on whatever data show in database
+         */
+        if (arrayOutput[1] != null) {
+            int spinnerPosition = getIndexSpinner(category, arrayOutput[1]);
+            if (spinnerPosition != -1) {
+                category.setSelection(spinnerPosition);
+            }
+        }
+
+
+        /**
+         * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
+         */
+        if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
+            submit.setVisibility(View.INVISIBLE);
+        } else if (Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE)) {
+            if (!currentUser.getAssignedLocation().equals(locationUsed)) {
+                submit.setVisibility(View.INVISIBLE);
+            }
+        }
+
         if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
-            submit.setVisibility(View.GONE);
             time.setTag(time.getKeyListener());
             time.setKeyListener(null);
 
@@ -91,7 +118,7 @@ public class DonationDetailControl extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-                final DatabaseReference ref = firebase.getReference("donations/" + locationUsed);
+                final DatabaseReference ref = firebase.getReference("donations");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -112,9 +139,7 @@ public class DonationDetailControl extends AppCompatActivity {
                                         new Runnable() {
                                             @Override
                                             public void run() {
-                                                Intent detail = new Intent(DonationDetailControl.this, LocationListViewPriv.class);
-                                                startActivity(detail);
-                                                finish();
+                                                finish(); // Go back to donation list view sense
                                             }
                                         },
                                         1000);
@@ -127,8 +152,24 @@ public class DonationDetailControl extends AppCompatActivity {
                 });
             }
         });
-
     }
 
-
+    /**
+     * Helper method to find out the index that store the value in enum
+     * @param spinner The spinner array list of enum
+     * @param compareString The string that hold the data
+     * @return The index of location of that enum
+     */
+    private int getIndexSpinner(Spinner spinner, String compareString) {
+        if (compareString == null || spinner.getCount() == 0) {
+            return -1;
+        } else {
+            for (int i = 0; i < spinner.getCount(); i++) {
+                if (spinner.getItemAtPosition(i).toString().equals(compareString)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
 }
