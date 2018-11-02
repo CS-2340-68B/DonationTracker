@@ -53,6 +53,13 @@ public class DonationList extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    (findViewById(R.id.noItemTextView)).setVisibility(View.VISIBLE);
+                    return;
+                }
+                else {
+                    (findViewById(R.id.noItemTextView)).setVisibility(View.GONE);
+                }
                 ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                 final ArrayList<DonationDetail> donationList = new ArrayList<>();
                 final ArrayList<String> keyHashFromFB = new ArrayList<>();

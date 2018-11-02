@@ -228,7 +228,6 @@ public class SearchView extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     keyHashFromFB.add(snapshot.getKey());
-                    Log.e("Item: ", detail.getName());
 
                     // Check for location requirement.
                     if (searchCriteria.getLocationName().equals("All")
@@ -240,28 +239,26 @@ public class SearchView extends AppCompatActivity {
                     }
                 }
                 searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
-                                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                                @Override
-                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                    // Sending information through intent
-                                                    String keyUsed = keyHashFromFB.get(position);
-                                                    DonationDetail donation = donationList.get(position);
-//                                                    String array[] = new String[8];
-//                                                    array[0] = l.getName();
-//                                                    array[1] = l.getCategory();
-//                                                    array[2] = l.getComment();
-//                                                    array[3] = l.getFullDescription();
-//                                                    array[4] = l.getLocation();
-//                                                    array[5] = l.getShortDescription();
-//                                                    array[6] = l.getTime();
-//                                                    array[7] = l.getValue();
-                                                    Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
-                                                    detail.putExtra("DATA", donation);
-                                                    detail.putExtra("KEY", keyUsed);
-                                                    detail.putExtra("LOCATION", searchCriteria.getLocationName());
-                                                    startActivity(detail);
-                                                }
-                                            });
+                if (donationInfo.size() == 0) {
+                    (findViewById(R.id.noItemTextView)).setVisibility(View.VISIBLE);
+                    return;
+                }
+                else {
+                    (findViewById(R.id.noItemTextView)).setVisibility(View.GONE);
+                }
+                searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // Sending information through intent
+                    String keyUsed = keyHashFromFB.get(position);
+                    DonationDetail donation = donationList.get(position);
+                    Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
+                    detail.putExtra("DATA", donation);
+                    detail.putExtra("KEY", keyUsed);
+                    detail.putExtra("LOCATION", searchCriteria.getLocationName());
+                    startActivity(detail);
+                    }
+                });
             }
 
             @Override

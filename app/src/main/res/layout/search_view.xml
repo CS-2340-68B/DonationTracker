@@ -109,9 +109,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/noItemLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/locSpinnerLayout"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="98dp">
+
+        <TextView
+            android:id="@+id/noItemTextView"
+            android:layout_width="372dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="No item to display"
+            android:textAlignment="center"
+            android:textSize="32dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locSpinnerLayout"
+        android:layout_marginTop="10dp">
         >
 
         <ListView
