@@ -123,7 +123,9 @@ public class DonationDetailControl extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Log.e("Result: ", "Found item");
                         DonationDetail item = dataSnapshot.getValue(DonationDetail.class);
-                        Log.e("Item: ", item.toString());
+                        if (item == null) {
+                            item = new DonationDetail(locationUsed);
+                        }
                         item.setTime(time.getText().toString());
                         item.setLocation(location.getText().toString());
                         item.setCategory(category.getSelectedItem().toString());

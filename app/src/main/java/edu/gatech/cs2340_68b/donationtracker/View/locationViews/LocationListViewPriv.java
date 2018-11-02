@@ -1,11 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +22,7 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList_Own;
+import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
@@ -85,7 +82,7 @@ public class LocationListViewPriv extends AppCompatActivity {
         modifyLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LocationListViewPriv.this, DonationList_Own.class);
+                Intent intent = new Intent(LocationListViewPriv.this, DonationList.class);
                 System.out.println(currentUser.getAssignedLocation());
                 intent.putExtra("DEFAULT", currentUser.getAssignedLocation());
                 startActivity(intent);

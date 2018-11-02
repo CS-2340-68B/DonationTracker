@@ -15,6 +15,10 @@ public class DonationDetail implements Serializable {
 
     public DonationDetail() {};
 
+    public DonationDetail(String location) {
+        this.location = location;
+    }
+
     public DonationDetail(String time, String location, String fullDescription, String shortDescription, String value, String category, String comment, String name) {
         this.time = time;
         this.location = location;
