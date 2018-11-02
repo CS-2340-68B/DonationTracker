@@ -1,6 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
-public class DonationDetail {
+import java.io.Serializable;
+
+public class DonationDetail implements Serializable {
 
     private String time;
     private String location;
@@ -12,6 +14,10 @@ public class DonationDetail {
     private String name;
 
     public DonationDetail() {};
+
+    public DonationDetail(String location) {
+        this.location = location;
+    }
 
     public DonationDetail(String time, String location, String fullDescription, String shortDescription, String value, String category, String comment, String name) {
         this.time = time;
@@ -94,4 +100,10 @@ public class DonationDetail {
         comment = newDonationDetails.comment;
         category = newDonationDetails.category;
     }
+
+    @Override
+    public String toString() {
+        return name + " - " + location + " - " + shortDescription;
+    }
+
 }

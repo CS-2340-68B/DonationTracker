@@ -7,12 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList;
-import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList_Own;
 
 public class LocationDetail extends AppCompatActivity {
 
@@ -61,7 +58,7 @@ public class LocationDetail extends AppCompatActivity {
         DonationListBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LocationDetail.this, DonationList_Own.class);
+                Intent intent = new Intent(LocationDetail.this, DonationList.class);
                 intent.putExtra("PLACENAME", LocationName);
                 startActivity(intent);
             }

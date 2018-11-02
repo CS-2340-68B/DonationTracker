@@ -42,9 +42,6 @@
         <activity android:name=".Controllers.Location.LocationSet" />
         <activity android:name=".View.donationViews.DonationDetailControl" />
         <activity android:name=".View.donationViews.DonationList" />
-        <activity android:name=".View.donationViews.DonationList_Own" />
-        <activity android:name=".View.locationViews.LocationListViewPriv" />
-        <activity android:name=".View.donationViews.DonationDetailControl_New" />
         <activity android:name=".View.searchViews.SearchView" />
         <activity android:name=".View.locationViews.LocationForSearch" />
         <activity android:name=".View.Menu" />
