@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity {
     private DatabaseReference ref = database.getReference("accounts");
     private ChildEventListener mChildListener;
     private ActionBar actionBar;
+    private static boolean pageOpened = true;
 
     private boolean validAccount;
 
@@ -84,7 +85,7 @@ public class Login extends AppCompatActivity {
             private void gatewayLogin(final String userName, final String password) {
                 final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                 Query query = reference.child("accounts").orderByChild("username").equalTo(userName);
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (!dataSnapshot.exists()) {
@@ -104,16 +105,14 @@ public class Login extends AppCompatActivity {
                             } else if (user.getUsername().equals(userName.trim()) && user.getPassword().equals(password.trim())) {
                                 AccountModify.resetAttemptCount(userName);
                                 Welcome.currentUser = user;
+                                Welcome.userKey = singleSnapShot.getKey();
 
-//                                ArrayList<UserSearch> temp = new ArrayList<>();
-//                                for (int i = 0; i < 4; i++) {
-//                                    temp.add(new UserSearch("Tuan", SearchOptions.NAME, "Nguyen", new Timestamp(System.currentTimeMillis()).getTime()));
-//                                }
-//                                reference.child("test").setValue(temp);
-
-                                Intent intent = new Intent(Login.this, MainPage.class);
-                                startActivity(intent);
-                                finish();
+                                if (pageOpened) {
+                                    pageOpened = false;
+                                    Intent intent = new Intent(Login.this, MainPage.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             } else {
                                 AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                         "Oops", "Wrong Username and/or Password");

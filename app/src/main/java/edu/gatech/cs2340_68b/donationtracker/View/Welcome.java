@@ -37,6 +37,7 @@ public class Welcome extends AppCompatActivity {
     private ActionBar actionBar;
     private Button testButton;
     public static User currentUser = new User();
+    public static String userKey;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
