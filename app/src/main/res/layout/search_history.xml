@@ -7,7 +7,7 @@
     tools:context=".View.searchViews.SearchHistory">
 
     <ListView
-        android:id="@+id/searchHistoryList"
+        android:id="@+id/searchHistoryListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

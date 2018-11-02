@@ -236,22 +236,8 @@ public class SearchView extends AppCompatActivity {
         searchHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("accounts");
-                Query userQuery = userDB.orderByChild("username")
-                        .equalTo(Welcome.currentUser.getUsername());
-                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                            Log.e("Key: ", snapshot.getKey());
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                Intent searchHistory = new Intent(SearchView.this, SearchHistory.class);
+                startActivity(searchHistory);
             }
         });
 
@@ -266,41 +252,21 @@ public class SearchView extends AppCompatActivity {
                 }
                 searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
 
+                // Update search history to firebase
                 final DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("accounts");
                 ArrayList<UserSearch> temp = Welcome.currentUser.getUserSearchList();
                 if (temp == null) {
                     temp = new ArrayList<>();
+
+                // Here to set the limit of the size of search history
                 } else if (temp.size() > 7) {
                     temp.remove(0);
                 }
+
                 temp.add(searchCriteria);
                 userDB.child(Welcome.userKey).child("userSearchList").setValue(temp);
-                //                Query userQuery = userDB.orderByChild("username")
-//                        .equalTo(currentUser.getUsername());
-//                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-//                            currentUser = snapshot.getValue(User.class);
-//                            ArrayList<UserSearch> temp = currentUser.getUserSearchList();
-//                            if (temp == null) {
-//                                temp = new ArrayList<>();
-//                            } else if (temp.size() > 7) {
-//                                temp.remove(0);
-//                            }
-//                            temp.add(searchCriteria);
-//                            userDB.child(snapshot.getKey()).child("userSearchList").setValue(temp);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
 
-
-
+                // Query search result
                 DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
                 Query donationQuery = null;
                 if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
