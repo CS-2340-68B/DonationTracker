@@ -235,7 +235,7 @@ public class SearchView extends AppCompatActivity {
                             || searchCriteria.getLocationName().equals(detail.getLocation())) {
                         donationList.add(detail);
                         Map.Entry<String, String> entry =
-                                new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                                new AbstractMap.SimpleEntry<>(detail.getName(), detail.getLocation());
                         donationInfo.add(entry);
                     }
                 }
@@ -245,18 +245,18 @@ public class SearchView extends AppCompatActivity {
                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                     // Sending information through intent
                                                     String keyUsed = keyHashFromFB.get(position);
-                                                    DonationDetail l = donationList.get(position);
-                                                    String array[] = new String[8];
-                                                    array[0] = l.getName();
-                                                    array[1] = l.getCategory();
-                                                    array[2] = l.getComment();
-                                                    array[3] = l.getFullDescription();
-                                                    array[4] = l.getLocation();
-                                                    array[5] = l.getShortDescription();
-                                                    array[6] = l.getTime();
-                                                    array[7] = l.getValue();
+                                                    DonationDetail donation = donationList.get(position);
+//                                                    String array[] = new String[8];
+//                                                    array[0] = l.getName();
+//                                                    array[1] = l.getCategory();
+//                                                    array[2] = l.getComment();
+//                                                    array[3] = l.getFullDescription();
+//                                                    array[4] = l.getLocation();
+//                                                    array[5] = l.getShortDescription();
+//                                                    array[6] = l.getTime();
+//                                                    array[7] = l.getValue();
                                                     Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
-                                                    detail.putExtra("DATA", array);
+                                                    detail.putExtra("DATA", donation);
                                                     detail.putExtra("KEY", keyUsed);
                                                     detail.putExtra("LOCATION", searchCriteria.getLocationName());
                                                     startActivity(detail);

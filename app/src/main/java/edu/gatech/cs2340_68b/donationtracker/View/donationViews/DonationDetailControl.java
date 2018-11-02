@@ -52,7 +52,8 @@ public class DonationDetailControl extends AppCompatActivity {
         setContentView(R.layout.donation_detail);
 //        actionBar = getSupportActionBar();
 
-        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
+//        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
+        final DonationDetail donation = (DonationDetail) getIntent().getSerializableExtra("DATA");
         final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
         final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
 
@@ -72,13 +73,13 @@ public class DonationDetailControl extends AppCompatActivity {
         /**
          * Auto fill data into the box fills if the client want to view or edits
          */
-        time.setText(arrayOutput[6]);
-        location.setText(arrayOutput[4]);
-        fullDescription.setText(arrayOutput[3]);
-        shortDescription.setText(arrayOutput[5]);
-        value.setText(arrayOutput[7]);
-        comment.setText(arrayOutput[2]);
-        name.setText(arrayOutput[0]);
+        time.setText(donation.getTime());
+        location.setText(donation.getLocation());
+        fullDescription.setText(donation.getFullDescription());
+        shortDescription.setText(donation.getShortDescription());
+        value.setText(donation.getValue());
+        comment.setText(donation.getComment());
+        name.setText(donation.getName());
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,8 +88,8 @@ public class DonationDetailControl extends AppCompatActivity {
         /**
          * Update the category dropdown base on whatever data show in database
          */
-        if (arrayOutput[1] != null) {
-            int spinnerPosition = getIndexSpinner(category, arrayOutput[1]);
+        if (donation.getCategory() != null) {
+            int spinnerPosition = getIndexSpinner(category, donation.getCategory());
             if (spinnerPosition != -1) {
                 category.setSelection(spinnerPosition);
             }
@@ -98,53 +99,41 @@ public class DonationDetailControl extends AppCompatActivity {
         /**
          * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
          */
-        if (Welcome.currentUser.getType().equals(UserType.ADMIN) || Welcome.currentUser.getType().equals(UserType.USER)) {
-            submit.setVisibility(View.INVISIBLE);
-        } else if (Welcome.currentUser.getType().equals(UserType.LOCATIONEMPLOYEE)) {
-            if (!currentUser.getAssignedLocation().equals(locationUsed)) {
-                submit.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        if (!(currentUser.getType().equals(UserType.LOCATIONEMPLOYEE))) {
-            time.setTag(time.getKeyListener());
+        if (currentUser.getAssignedLocation() == null || !currentUser.getAssignedLocation().equals(donation.getLocation())) {
             time.setKeyListener(null);
-
-            location.setTag(location.getKeyListener());
             location.setKeyListener(null);
+            name.setKeyListener(null);
+            comment.setKeyListener(null);
+            location.setKeyListener(null);
+            value.setKeyListener(null);
+            shortDescription.setKeyListener(null);
+            fullDescription.setKeyListener(null);
+            category.setEnabled(false);
+            submit.setVisibility(View.INVISIBLE);
         }
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-                final DatabaseReference ref = firebase.getReference("donations");
+                final DatabaseReference ref = firebase.getReference("donations").child(keyUsed);
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                            if (snapshot.getKey().equals(keyUsed)) {
-                                DonationDetail item = snapshot.getValue(DonationDetail.class);
-                                String timeI = time.getText().toString();
-                                String locationI = location.getText().toString();
-                                String type = category.getSelectedItem().toString();
-                                String fullDescriptionI = fullDescription.getText().toString();
-                                String shortDescriptionI = shortDescription.getText().toString();
-                                String valueI = value.getText().toString();
-                                String commentI = comment.getText().toString();
-                                String nameI = name.getText().toString();
-                                item.setValues(new DonationDetail(timeI, locationI, fullDescriptionI, shortDescriptionI, valueI, type, commentI, nameI));
-                                ref.child(keyUsed).setValue(item);
-                                new android.os.Handler().postDelayed(
-                                        new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                finish(); // Go back to donation list view sense
-                                            }
-                                        },
-                                        1000);
-                            }
-                        }
+                        Log.e("Result: ", "Found item");
+                        DonationDetail item = dataSnapshot.getValue(DonationDetail.class);
+                        Log.e("Item: ", item.toString());
+                        item.setTime(time.getText().toString());
+                        item.setLocation(location.getText().toString());
+                        item.setCategory(category.getSelectedItem().toString());
+                        item.setFullDescription(fullDescription.getText().toString());
+                        item.setShortDescription(shortDescription.getText().toString());
+                        item.setValue(value.getText().toString());
+                        item.setComment(comment.getText().toString());
+                        item.setName(name.getText().toString());
+                        ref.setValue(item);
+                        finish();
                     }
 
                     @Override
