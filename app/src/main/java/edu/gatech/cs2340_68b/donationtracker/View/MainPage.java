@@ -1,21 +1,14 @@
 package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
-import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListViewPriv;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
-
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class MainPage extends AppCompatActivity {
 
@@ -45,14 +38,8 @@ public class MainPage extends AppCompatActivity {
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentUser.getType().toString().equals("MANAGER") || currentUser.getType().toString().equals("LOCATIONEMPLOYEE")) {
-//                    currentUser.setAssignedLocation("AFD Station 4");
-                    Intent intent = new Intent(MainPage.this, LocationListViewPriv.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(MainPage.this, LocationListView.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(MainPage.this, LocationListView.class);
+                startActivity(intent);
 
             }
         });
