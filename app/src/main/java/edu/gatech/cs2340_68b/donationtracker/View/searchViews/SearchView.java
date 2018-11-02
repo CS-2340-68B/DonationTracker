@@ -138,8 +138,10 @@ public class SearchView extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                         final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                        final ArrayList<String> keyHashFromFB = new ArrayList<>();
                         for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                             DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                            keyHashFromFB.add(snapshot.getKey());
                             Log.e("Item: ", detail.getName());
                             if (searchCriteria.getLocationName().equals("All")
                                     || searchCriteria.getLocationName().equals(detail.getLocation())) {
@@ -154,8 +156,21 @@ public class SearchView extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     // Sending information through intent
+                                    String keyUsed = keyHashFromFB.get(position);
                                     DonationDetail l = donationList.get(position);
+                                    String array[] = new String[8];
+                                    array[0] = l.getName();
+                                    array[1] = l.getCategory();
+                                    array[2] = l.getComment();
+                                    array[3] = l.getFullDescription();
+                                    array[4] = l.getLocation();
+                                    array[5] = l.getShortDescription();
+                                    array[6] = l.getTime();
+                                    array[7] = l.getValue();
                                     Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
+                                    detail.putExtra("DATA", array);
+                                    detail.putExtra("KEY", keyUsed);
+                                    detail.putExtra("LOCATION", currentLocation.getLocationName());
                                     startActivity(detail);
                                 }
                             });

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -62,6 +63,8 @@ public class DonationDetailControl extends AppCompatActivity {
         value = (EditText) findViewById(R.id.valueEdit);
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
+
+        Log.d("MYTAG", Welcome.currentUser.getType().toString());
 
         submit = findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
