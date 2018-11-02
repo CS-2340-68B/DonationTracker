@@ -49,7 +49,6 @@ public class Login extends AppCompatActivity {
     private DatabaseReference ref = database.getReference("accounts");
     private ChildEventListener mChildListener;
     private ActionBar actionBar;
-    private static boolean pageOpened = true;
 
     private boolean validAccount;
 
@@ -85,7 +84,7 @@ public class Login extends AppCompatActivity {
             private void gatewayLogin(final String userName, final String password) {
                 final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                 Query query = reference.child("accounts").orderByChild("username").equalTo(userName);
-                query.addValueEventListener(new ValueEventListener() {
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (!dataSnapshot.exists()) {
@@ -106,13 +105,9 @@ public class Login extends AppCompatActivity {
                                 AccountModify.resetAttemptCount(userName);
                                 Welcome.currentUser = user;
                                 Welcome.userKey = singleSnapShot.getKey();
-
-                                if (pageOpened) {
-                                    pageOpened = false;
-                                    Intent intent = new Intent(Login.this, MainPage.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
+                                Intent intent = new Intent(Login.this, MainPage.class);
+                                startActivity(intent);
+                                finish();
                             } else {
                                 AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                         "Oops", "Wrong Username and/or Password");

@@ -1,8 +1,10 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import java.io.Serializable;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 
-public class UserSearch {
+public class UserSearch implements Serializable {
     private String keyword;
     private SearchOptions searchOption;
     private String locationName;

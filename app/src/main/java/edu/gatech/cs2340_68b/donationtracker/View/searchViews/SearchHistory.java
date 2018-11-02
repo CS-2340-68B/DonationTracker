@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.View.searchViews;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -65,17 +66,20 @@ public class SearchHistory extends AppCompatActivity {
                     searchInfo.add(entry);
                 }
                 Collections.reverse(searchInfo);
+                Collections.reverse(searchList);
                 searchHistoryListView.setAdapter(new DataListAdapter(searchInfo, getLayoutInflater()));
-//                searchHistoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        // Sending information through intent
-//                        Location l = locationList.get(position);
-//                        Intent detail = new Intent(LocationListView.this, LocationDetail.class);
-//                        detail.putExtra("LOCATION", l);
-//                        startActivity(detail);
-//                    }
-//                });
+                searchHistoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // Sending information through intent
+                        UserSearch search = searchList.get(position);
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("SEARCH", search);
+                        returnIntent.putExtra("REMOVEDINDEX", searchList.size() - position - 1);
+                        setResult(Activity.RESULT_OK, returnIntent);
+                        finish();
+                    }
+                });
             }
 
             @Override

@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.View.searchViews;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Array;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
@@ -42,6 +47,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailCo
 public class SearchView extends AppCompatActivity {
 
     // Define Variables
+    private User currentUser;
     private RadioGroup searchRadioGroup;
     private RadioButton itemRButton;
     private RadioButton catRButton;
@@ -54,6 +60,8 @@ public class SearchView extends AppCompatActivity {
     private int searchTypeFlag;
     private boolean isSearchAll;
     private UserSearch searchCriteria;
+    private ArrayList<String> locationListString;
+
     Location allLocations = new Location("All");
 
     @Override
@@ -72,6 +80,8 @@ public class SearchView extends AppCompatActivity {
         searchLocSpinner = (Spinner) findViewById(R.id.searchLocSpinner);
         searchResultList = (ListView) findViewById(R.id.searchResultList);
         searchCriteria = new UserSearch();
+        currentUser = Welcome.currentUser;
+        locationListString = new ArrayList<>();
 
         // Initialize other variables
         searchTypeFlag = -1;
@@ -86,6 +96,7 @@ public class SearchView extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Log.d("MYTAG", "Radio Button Working");
                 View radioButton = searchRadioGroup.findViewById(checkedId);
+                Log.e("Check:", checkedId + "");
                 searchTypeFlag = searchRadioGroup.indexOfChild(radioButton);
                 if (searchTypeFlag == 0) { // Item search
                     searchCriteria.setSearchOption(SearchOptions.NAME);
@@ -106,84 +117,84 @@ public class SearchView extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("MYTAG", "Search History Button Working");
                 Intent intent = new Intent(SearchView.this, SearchView.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
         // Search Button Listener
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("MYTAG", "Search Button Working");
-                String searchString = searchBar.getText().toString();
-
-                Log.e("Tag: ", searchCriteria.getSearchOption().toString());
-                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-                    searchCriteria.setKeyword(searchBar.getText().toString());
-                } else {
-                    searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
-                }
-                searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
-
-                DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
-                Query query = null;
-
-                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-                    query = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
-                } else {
-                    query = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
-                }
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                        final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                        final ArrayList<String> keyHashFromFB = new ArrayList<>();
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                            DonationDetail detail = snapshot.getValue(DonationDetail.class);
-                            keyHashFromFB.add(snapshot.getKey());
-                            Log.e("Item: ", detail.getName());
-                            if (searchCriteria.getLocationName().equals("All")
-                                    || searchCriteria.getLocationName().equals(detail.getLocation())) {
-                                donationList.add(detail);
-                                Map.Entry<String, String> entry =
-                                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
-                                donationInfo.add(entry);
-                            }
-                        }
-                        searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
-                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    // Sending information through intent
-                                    String keyUsed = keyHashFromFB.get(position);
-                                    DonationDetail l = donationList.get(position);
-                                    String array[] = new String[8];
-                                    array[0] = l.getName();
-                                    array[1] = l.getCategory();
-                                    array[2] = l.getComment();
-                                    array[3] = l.getFullDescription();
-                                    array[4] = l.getLocation();
-                                    array[5] = l.getShortDescription();
-                                    array[6] = l.getTime();
-                                    array[7] = l.getValue();
-                                    Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
-                                    detail.putExtra("DATA", array);
-                                    detail.putExtra("KEY", keyUsed);
-                                    detail.putExtra("LOCATION", searchCriteria.getLocationName());
-                                    startActivity(detail);
-                                }
-                            });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-                Log.e("Object: ", searchCriteria.toString());
-            }
-        });
+//        searchButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("MYTAG", "Search Button Working");
+//                String searchString = searchBar.getText().toString();
+//
+//                Log.e("Tag: ", searchCriteria.getSearchOption().toString());
+//                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+//                    searchCriteria.setKeyword(searchBar.getText().toString());
+//                } else {
+//                    searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
+//                }
+//                searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
+//
+//                DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
+//                Query query = null;
+//
+//                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+//                    query = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
+//                } else {
+//                    query = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+//                }
+//                query.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+//                        final ArrayList<DonationDetail> donationList = new ArrayList<>();
+//                        final ArrayList<String> keyHashFromFB = new ArrayList<>();
+//                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+//                            DonationDetail detail = snapshot.getValue(DonationDetail.class);
+//                            keyHashFromFB.add(snapshot.getKey());
+//                            Log.e("Item: ", detail.getName());
+//                            if (searchCriteria.getLocationName().equals("All")
+//                                    || searchCriteria.getLocationName().equals(detail.getLocation())) {
+//                                donationList.add(detail);
+//                                Map.Entry<String, String> entry =
+//                                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+//                                donationInfo.add(entry);
+//                            }
+//                        }
+//                        searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+//                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                @Override
+//                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                    // Sending information through intent
+//                                    String keyUsed = keyHashFromFB.get(position);
+//                                    DonationDetail l = donationList.get(position);
+//                                    String array[] = new String[8];
+//                                    array[0] = l.getName();
+//                                    array[1] = l.getCategory();
+//                                    array[2] = l.getComment();
+//                                    array[3] = l.getFullDescription();
+//                                    array[4] = l.getLocation();
+//                                    array[5] = l.getShortDescription();
+//                                    array[6] = l.getTime();
+//                                    array[7] = l.getValue();
+//                                    Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
+//                                    detail.putExtra("DATA", array);
+//                                    detail.putExtra("KEY", keyUsed);
+//                                    detail.putExtra("LOCATION", searchCriteria.getLocationName());
+//                                    startActivity(detail);
+//                                }
+//                            });
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+//                Log.e("Object: ", searchCriteria.toString());
+//            }
+//        });
 
         /*
          * CATEGORY SET UP
@@ -200,7 +211,6 @@ public class SearchView extends AppCompatActivity {
         // Read in location
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
-        final ArrayList<String> locationListString = new ArrayList<>();
         final Context self = this;
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -237,7 +247,7 @@ public class SearchView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent searchHistory = new Intent(SearchView.this, SearchHistory.class);
-                startActivity(searchHistory);
+                startActivityForResult(searchHistory, 1);
             }
         });
 
@@ -245,73 +255,192 @@ public class SearchView extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-                    searchCriteria.setKeyword(searchBar.getText().toString());
-                } else {
-                    searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
-                }
-                searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
+                search(0);
+//                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+//                    searchCriteria.setKeyword(searchBar.getText().toString());
+//                } else {
+//                    searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
+//                }
+//                searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
+//
+//                // Update search history to firebase
+//                final DatabaseReference userDB = FirebaseDatabase.getInstance()
+//                        .getReference("accounts").child(Welcome.userKey);
+//                userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        currentUser = dataSnapshot.getValue(User.class);
+//                        ArrayList<UserSearch> temp = currentUser.getUserSearchList();
+//                        if (temp == null) {
+//                            temp = new ArrayList<>();
+//
+//                            // Here to set the limit of the size of search history
+//                        } else if (temp.size() > 7) {
+//                            temp.remove(0);
+//                        }
+//
+//                        temp.add(searchCriteria);
+//                        userDB.child("userSearchList").setValue(temp);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+//
+//                // Query search result
+//                DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
+//                Query donationQuery = null;
+//                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+//                    donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
+//                } else {
+//                    donationQuery = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+//                }
+//
+//                // Get data from firebase according to our query
+//                donationQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+//                        final ArrayList<DonationDetail> donationList = new ArrayList<>();
+//                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+//                            DonationDetail detail = snapshot.getValue(DonationDetail.class);
+//                            Log.e("Item: ", detail.getName());
+//
+//                            // Check for location requirement.
+//                            if (searchCriteria.getLocationName().equals("All")
+//                                    || searchCriteria.getLocationName().equals(detail.getLocation())) {
+//                                donationList.add(detail);
+//                                Map.Entry<String, String> entry =
+//                                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+//                                donationInfo.add(entry);
+//                            }
+//                        }
+//                        searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+//    //                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//    //                                @Override
+//    //                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//    //                                    // Sending information through intent
+//    //                                    DonationDetail l = donationList.get(position);
+//    //                                    Intent detail = new Intent(SearchResult.this, DonationDetail.class);
+//    //                                    startActivity(detail);
+//    //                                }
+//    //                            });
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+            }
+        });
+    }
 
-                // Update search history to firebase
-                final DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("accounts");
-                ArrayList<UserSearch> temp = Welcome.currentUser.getUserSearchList();
+    protected void search(final int removedIndex) {
+        if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+            searchCriteria.setKeyword(searchBar.getText().toString());
+        } else {
+            searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
+        }
+        searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
+
+        // Update search history to firebase
+        final DatabaseReference userDB = FirebaseDatabase.getInstance()
+                .getReference("accounts").child(Welcome.userKey);
+        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                currentUser = dataSnapshot.getValue(User.class);
+                ArrayList<UserSearch> temp = currentUser.getUserSearchList();
                 if (temp == null) {
                     temp = new ArrayList<>();
 
-                // Here to set the limit of the size of search history
-                } else if (temp.size() > 7) {
-                    temp.remove(0);
+                    // Here to set the limit of the size of search history
                 }
-
                 temp.add(searchCriteria);
-                userDB.child(Welcome.userKey).child("userSearchList").setValue(temp);
-
-                // Query search result
-                DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
-                Query donationQuery = null;
-                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-                    donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
-                } else {
-                    donationQuery = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+                if (temp.size() > 6) {
+                    temp.remove(removedIndex);
                 }
+                userDB.child("userSearchList").setValue(temp);
+            }
 
-                // Get data from firebase according to our query
-                donationQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                        final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                            DonationDetail detail = snapshot.getValue(DonationDetail.class);
-                            Log.e("Item: ", detail.getName());
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            // Check for location requirement.
-                            if (searchCriteria.getLocationName().equals("All")
-                                    || searchCriteria.getLocationName().equals(detail.getLocation())) {
-                                donationList.add(detail);
-                                Map.Entry<String, String> entry =
-                                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
-                                donationInfo.add(entry);
-                            }
-                        }
-                        searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
-    //                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-    //                                @Override
-    //                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    //                                    // Sending information through intent
-    //                                    DonationDetail l = donationList.get(position);
-    //                                    Intent detail = new Intent(SearchResult.this, DonationDetail.class);
-    //                                    startActivity(detail);
-    //                                }
-    //                            });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
+
+        // Query search result
+        DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
+        Query donationQuery = null;
+        if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+            donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
+        } else {
+            donationQuery = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+        }
+
+        // Get data from firebase according to our query
+        donationQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                    Log.e("Item: ", detail.getName());
+
+                    // Check for location requirement.
+                    if (searchCriteria.getLocationName().equals("All")
+                            || searchCriteria.getLocationName().equals(detail.getLocation())) {
+                        donationList.add(detail);
+                        Map.Entry<String, String> entry =
+                                new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                        donationInfo.add(entry);
+                    }
+                }
+                searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+                //                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                //                                @Override
+                //                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //                                    // Sending information through intent
+                //                                    DonationDetail l = donationList.get(position);
+                //                                    Intent detail = new Intent(SearchResult.this, DonationDetail.class);
+                //                                    startActivity(detail);
+                //                                }
+                //                            });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                UserSearch search = (UserSearch) data.getSerializableExtra("SEARCH");
+                int removedIndex = data.getIntExtra("REMOVEDINDEX", 0);
+                if (search.getSearchOption().equals(SearchOptions.NAME)) {
+                    searchBar.setText(search.getKeyword());
+                    searchRadioGroup.check(R.id.searchTypeItem);
+                } else {
+                    List<Category> catList = Arrays.asList(Category.values());
+                    searchCatSpinner.setSelection(catList.indexOf(Category.valueOf(search.getKeyword())));
+                    searchRadioGroup.check(R.id.searchTypeCat);
+                }
+                searchLocSpinner.setSelection(locationListString.indexOf(search.getLocationName()));
+                search(removedIndex);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 }
