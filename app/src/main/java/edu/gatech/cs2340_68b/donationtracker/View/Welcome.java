@@ -34,7 +34,7 @@ public class Welcome extends AppCompatActivity {
     private ImageButton imageButton;
     private Button loginButton;
     private Button registerButton;
-//    private ActionBar actionBar;
+    private ActionBar actionBar;
     private Button testButton;
     public static User currentUser = new User();
     public static String userKey;
@@ -50,7 +50,7 @@ public class Welcome extends AppCompatActivity {
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         loginButton = findViewById(R.id.LoginButton);
         registerButton = findViewById(R.id.RegisterButton);
-        testButton = findViewById(R.id.TestButton);
+        //testButton = findViewById(R.id.TestButton);
 
         // Adding location to database
         LocationControl a = new LocationControl(this);
@@ -72,29 +72,29 @@ public class Welcome extends AppCompatActivity {
             }
         });
 
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HttpUtils.get("/", null, new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        // If the response is JSONObject instead of expected JSONArray
-                        try {
-                            UserSearch a = new ObjectMapper().readValue(response.toString(), UserSearch.class);
-                            Log.e("Object: ", a.toString());
-                        } catch (IOException e) {
-                            Log.e("Error: ", e.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                        // Pull out the first event on the public timeline
-                    }
-
-
-                });
-            }
-        });
+//        testButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                HttpUtils.get("/", null, new JsonHttpResponseHandler() {
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                        // If the response is JSONObject instead of expected JSONArray
+//                        try {
+//                            UserSearch a = new ObjectMapper().readValue(response.toString(), UserSearch.class);
+//                            Log.e("Object: ", a.toString());
+//                        } catch (IOException e) {
+//                            Log.e("Error: ", e.getMessage());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+//                        // Pull out the first event on the public timeline
+//                    }
+//
+//
+//                });
+//            }
+//        });
     }
 }
