@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
@@ -36,11 +37,14 @@ import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
+import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
 
 public class SearchView extends AppCompatActivity {
 
     // Define Variables
     private RadioGroup searchRadioGroup;
+    private RadioButton itemRButton;
+    private RadioButton catRButton;
     private Button searchHistoryButton;
     private TextInputEditText searchBar;
     private Spinner searchCatSpinner;
@@ -50,7 +54,6 @@ public class SearchView extends AppCompatActivity {
     private int searchTypeFlag;
     private boolean isSearchAll;
     private UserSearch searchCriteria;
-
     Location allLocations = new Location("All");
 
     @Override
@@ -60,6 +63,8 @@ public class SearchView extends AppCompatActivity {
 
         // Initialize components
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchTypeRadioGroup);
+        itemRButton = (RadioButton) findViewById(R.id.searchTypeItem);
+        catRButton = (RadioButton) findViewById(R.id.searchTypeCat);
         searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
         searchBar = (TextInputEditText) findViewById(R.id.searchBar);
         searchCatSpinner = (Spinner) findViewById(R.id.searchCatSpinner);
@@ -71,6 +76,8 @@ public class SearchView extends AppCompatActivity {
         // Initialize other variables
         searchTypeFlag = -1;
         isSearchAll = true;
+        itemRButton.setChecked(true);
+        searchCriteria.setSearchOption(SearchOptions.NAME);
 
         // Radio Group Listener
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -93,6 +100,90 @@ public class SearchView extends AppCompatActivity {
             }
         });
 
+        // Search History Button Listener
+        searchHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("MYTAG", "Search History Button Working");
+                Intent intent = new Intent(SearchView.this, SearchView.class);
+                startActivity(intent);
+            }
+        });
+
+        // Search Button Listener
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("MYTAG", "Search Button Working");
+                String searchString = searchBar.getText().toString();
+
+                Log.e("Tag: ", searchCriteria.getSearchOption().toString());
+                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+                    searchCriteria.setKeyword(searchBar.getText().toString());
+                } else {
+                    searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
+                }
+                searchCriteria.setLocationName(searchLocSpinner.getSelectedItem().toString());
+
+                DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
+                Query query = null;
+
+                if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
+                    query = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
+                } else {
+                    query = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+                }
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                        final ArrayList<DonationDetail> donationList = new ArrayList<>();
+                        final ArrayList<String> keyHashFromFB = new ArrayList<>();
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                            DonationDetail detail = snapshot.getValue(DonationDetail.class);
+                            keyHashFromFB.add(snapshot.getKey());
+                            Log.e("Item: ", detail.getName());
+                            if (searchCriteria.getLocationName().equals("All")
+                                    || searchCriteria.getLocationName().equals(detail.getLocation())) {
+                                donationList.add(detail);
+                                Map.Entry<String, String> entry =
+                                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                                donationInfo.add(entry);
+                            }
+                        }
+                        searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+                            searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    // Sending information through intent
+                                    String keyUsed = keyHashFromFB.get(position);
+                                    DonationDetail l = donationList.get(position);
+                                    String array[] = new String[8];
+                                    array[0] = l.getName();
+                                    array[1] = l.getCategory();
+                                    array[2] = l.getComment();
+                                    array[3] = l.getFullDescription();
+                                    array[4] = l.getLocation();
+                                    array[5] = l.getShortDescription();
+                                    array[6] = l.getTime();
+                                    array[7] = l.getValue();
+                                    Intent detail = new Intent(SearchView.this, DonationDetailControl.class);
+                                    detail.putExtra("DATA", array);
+                                    detail.putExtra("KEY", keyUsed);
+                                    detail.putExtra("LOCATION", searchCriteria.getLocationName());
+                                    startActivity(detail);
+                                }
+                            });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                Log.e("Object: ", searchCriteria.toString());
+            }
+        });
 
         /*
          * CATEGORY SET UP

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,6 +42,8 @@ public class DonationDetailControl extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("donations");
 
+    // Needs DATA, KEY, LOCATION to work properly
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +56,6 @@ public class DonationDetailControl extends AppCompatActivity {
         final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
         final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
 
-        System.out.println(keyUsed);
-
         time = (EditText) findViewById(R.id.timeInput);
         location = (TextView) findViewById(R.id.locationDonationEdit);
         fullDescription = (EditText) findViewById(R.id.fullDescriptionEdit);
@@ -62,6 +63,8 @@ public class DonationDetailControl extends AppCompatActivity {
         value = (EditText) findViewById(R.id.valueEdit);
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
+
+        Log.d("MYTAG", Welcome.currentUser.getType().toString());
 
         submit = findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
