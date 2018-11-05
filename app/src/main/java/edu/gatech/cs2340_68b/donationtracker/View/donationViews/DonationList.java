@@ -68,25 +68,15 @@ public class DonationList extends AppCompatActivity {
                     keyHashFromFB.add(snapshot.getKey());
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
-                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                        new AbstractMap.SimpleEntry<>(
+                                detail.getName(), detail.getFullDescription());
                     donationInfo.add(entry);
                 }
-//                Collections.sort(donationInfo, new Comparator<Map.Entry<String, String>>() {
-//                    @Override
-//                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-//                        return o1.getKey().compareTo(o2.getKey());
-//                    }
-//                });
-//                Collections.sort(donationList, new Comparator<DonationDetail>() {
-//                    @Override
-//                    public int compare(DonationDetail o1, DonationDetail o2) {
-//                        return o1.getName().compareTo(o2.getName());
-//                    }
-//                });
                 donationListView.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
                 donationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(
+                            AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         DonationDetail donation = donationList.get(position);
                         String keyUsed = keyHashFromFB.get(position);

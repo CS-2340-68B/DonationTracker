@@ -81,7 +81,9 @@ public class DonationDetailControl extends AppCompatActivity {
         comment.setText(donation.getComment());
         name.setText(donation.getName());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
+        ArrayAdapter<String> adapter = new ArrayAdapter(
+                this,android.R.layout.simple_spinner_item,
+                Category.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
@@ -99,7 +101,9 @@ public class DonationDetailControl extends AppCompatActivity {
         /**
          * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
          */
-        if (currentUser.getAssignedLocation() == null || !currentUser.getAssignedLocation().equals(donation.getLocation())) {
+        if (currentUser.getAssignedLocation() == null
+                || !currentUser.getAssignedLocation().
+                equals(donation.getLocation())) {
             time.setKeyListener(null);
             location.setKeyListener(null);
             name.setKeyListener(null);

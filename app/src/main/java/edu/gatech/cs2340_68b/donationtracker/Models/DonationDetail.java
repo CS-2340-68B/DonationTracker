@@ -19,7 +19,12 @@ public class DonationDetail implements Serializable {
         this.location = location;
     }
 
-    public DonationDetail(String time, String location, String fullDescription, String shortDescription, String value, String category, String comment, String name) {
+    public DonationDetail(String time,
+                          String location,
+                          String fullDescription,
+                          String shortDescription,
+                          String value, String category,
+                          String comment, String name) {
         this.time = time;
         this.location = location;
         this.fullDescription = fullDescription;

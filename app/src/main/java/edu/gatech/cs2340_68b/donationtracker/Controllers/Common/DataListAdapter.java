@@ -12,23 +12,13 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DataListAdapter extends BaseAdapter {
-    //        String[] Title, Detail;
     ArrayList<Map.Entry<String, String>> data;
     LayoutInflater inflater;
-//        int[] imge;
 
     DataListAdapter() {
-//            Title = null;
-//            Detail = null;
-//            imge=null;
         data = null;
     }
 
-//        public dataListAdapter(String[] text, String[] text1) {
-//            Title = text;
-//            Detail = text1;
-//            imge = text3;
-//        }
 
     public DataListAdapter(ArrayList<Map.Entry<String, String>> data, LayoutInflater inflater) {
         this.data = data;
@@ -54,16 +44,10 @@ public class DataListAdapter extends BaseAdapter {
         View row;
         row = inflater.inflate(R.layout.list_view_layout, parent, false);
         TextView title, detail;
-//            ImageView i1;
         title = (TextView) row.findViewById(R.id.title);
         detail = (TextView) row.findViewById(R.id.detail);
-//            i1=(ImageView)row.findViewById(R.id.img);
-//            title.setText(Title[position]);
-//            detail.setText(Detail[position]);
-//            i1.setImageResource(imge[position]);
         title.setText(data.get(position).getKey());
         detail.setText(data.get(position).getValue());
-
         return (row);
     }
 }
