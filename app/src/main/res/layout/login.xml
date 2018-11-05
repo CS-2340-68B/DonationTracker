@@ -80,7 +80,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.185"
-        app:srcCompat="@drawable/donapp" />
+        app:srcCompat="@drawable/donapp"
+        android:contentDescription="DonationAppImage" />
 
     <TextView
         android:id="@+id/forgetPassword"
@@ -91,9 +92,10 @@
         android:layout_marginTop="28dp"
         android:clickable="true"
         android:text="Forget Your Password?"
-        android:textSize="20dip"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/registerPassword"
         app:layout_constraintStart_toStartOf="@+id/registerPassword"
-        app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPassword"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>
