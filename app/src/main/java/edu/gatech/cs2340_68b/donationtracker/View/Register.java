@@ -24,18 +24,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
 
+import cz.msebera.android.httpclient.Header;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 
 public class Register extends AppCompatActivity {
 
@@ -72,6 +80,8 @@ public class Register extends AppCompatActivity {
         utspinner = (Spinner)findViewById(R.id.userTypeSpinner);
         locspinner = (Spinner) findViewById(R.id.locationSpinner);
 
+
+
         // Read in location
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
@@ -107,6 +117,35 @@ public class Register extends AppCompatActivity {
 
             }
         });
+
+//        final ArrayList<Location> locationList = new ArrayList<>();
+//        final ArrayList<String> locationListString = new ArrayList<>();
+//        final Context self = this;
+//
+//        // Get values from locations
+//        HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//
+//                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+//                Location[] locations = gson.fromJson(response.toString(), Location[].class);
+//                for (int i = 0; i < locations.length; i++) {
+//                    locationList.add(locations[i]);
+//                    locationListString.add(locations[i].getLocationName());
+//                    Map.Entry<String, String> entry =
+//                            new AbstractMap.SimpleEntry<>(
+//                                    locations[i].getLocationName(), locations[i].getAddress());
+//                    locationInfo.add(entry);
+//
+//                     /*
+//                      Set up the adapter to display the locations in the spinner
+//                     */
+//                    ArrayAdapter<String> adapter2 = new ArrayAdapter(self,android.R.layout.simple_spinner_item, locationListString);
+//                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    locspinner.setAdapter(adapter2);
+//                }
+//            }
+//        });
 
         /*
           Set up the adapter to display the user types in the spinner
