@@ -70,7 +70,6 @@
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:hint="Search For..."
                 android:singleLine="true"/>
 
@@ -127,7 +126,7 @@
             android:layout_marginBottom="8dp"
             android:text="No item to display"
             android:textAlignment="center"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:visibility="invisible" />
 
     </LinearLayout>
@@ -137,7 +136,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/locSpinnerLayout"
         android:layout_marginTop="10dp">
-        >
 
         <ListView
             android:id="@+id/searchResultList"
