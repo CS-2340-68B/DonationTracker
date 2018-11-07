@@ -39,7 +39,6 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationContro
 public class Welcome extends AppCompatActivity {
 
     private ImageButton imageButton;
-    private ActionBar actionBar;
     public static User currentUser = new User();
     public static String userKey;
     public static Gson gson = new Gson();
@@ -52,8 +51,6 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         Button loginButton = findViewById(R.id.LoginButton);
         Button registerButton = findViewById(R.id.RegisterButton);
 
