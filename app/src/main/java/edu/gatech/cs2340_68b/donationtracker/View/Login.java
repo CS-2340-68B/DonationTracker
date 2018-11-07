@@ -2,8 +2,6 @@ package edu.gatech.cs2340_68b.donationtracker.View;
 
 import android.content.Intent;
 import android.app.AlertDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,9 +25,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.AccountModify;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
-import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
-import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 

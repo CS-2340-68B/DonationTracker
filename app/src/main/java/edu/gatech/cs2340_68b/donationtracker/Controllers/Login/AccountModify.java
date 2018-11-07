@@ -1,6 +1,5 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Login;
 
-import android.app.AlertDialog;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -11,7 +10,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 
 public class AccountModify {
