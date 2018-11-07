@@ -13,7 +13,7 @@ public class DonationDetail implements Serializable {
     private String comment;
     private String name;
 
-    public DonationDetail() {};
+    public DonationDetail() {}
 
     public DonationDetail(String location) {
         this.location = location;
@@ -33,7 +33,7 @@ public class DonationDetail implements Serializable {
         this.category = category;
         this.comment = comment;
         this.name = name;
-    };
+    }
 
     public String getTime() {
         return time;

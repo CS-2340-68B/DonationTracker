@@ -28,6 +28,7 @@ public class ForgetPassword extends AppCompatActivity {
     private TextInputEditText userEmail;
     private TextInputLayout til;
     private ProgressBar progressBar;
+    @SuppressWarnings("FieldMayBeFinal")
     private Handler progressHandler = new Handler();
 
     @Override
@@ -47,7 +48,7 @@ public class ForgetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 progressBar.setVisibility(ProgressBar.VISIBLE);
                 String inputEmail = userEmail.getText().toString().trim();
-                if (inputEmail.length() != 0 && VerifyFormat.verifyEmailFormat(inputEmail)) {
+                if ((inputEmail.length() != 0) && VerifyFormat.verifyEmailFormat(inputEmail)) {
                     checkIfExistInDB(inputEmail);
                 } else {
                     til.setError("Email format is not correct.");
