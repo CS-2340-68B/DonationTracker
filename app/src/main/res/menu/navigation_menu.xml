@@ -3,22 +3,22 @@
 
     <item android:id = "@+id/nav_account"
         android:icon="@mipmap/baseline_person_black_24dp"
-        android:title="My Account" />
+        android:title="@string/my_account" />
 
     <item android:id = "@+id/nav_search"
         android:icon="@mipmap/baseline_search_black_24dp"
-        android:title="Search" />
+        android:title="@string/search" />
 
     <item android:id = "@+id/nav_location"
         android:icon="@mipmap/baseline_location_city_black_24dp"
-        android:title="Location List" />
+        android:title="@string/location_list" />
 
     <item android:id = "@+id/nav_history"
         android:icon="@mipmap/baseline_history_black_24dp"
-        android:title="History" />
+        android:title="@string/history" />
 
     <item android:id = "@+id/nav_logout"
         android:icon="@mipmap/baseline_favorite_border_black_24dp"
-        android:title="Log out" />
+        android:title="@string/log_out" />
 
 </menu>

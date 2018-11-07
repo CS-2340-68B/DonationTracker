@@ -27,13 +27,13 @@
                 android:id="@+id/searchTypeItem"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="Item" />
+                android:text="@string/item" />
 
             <RadioButton
                 android:id="@+id/searchTypeCat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="@string/category"
                 android:layout_weight="1"/>
 
         </RadioGroup>
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Search History" />
+                android:text="@string/search_history" />
         </LinearLayout>
     </LinearLayout>
 
@@ -70,7 +70,7 @@
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Search For..."
+                android:hint="@string/search_for"
                 android:singleLine="true"/>
 
             <Spinner
@@ -89,7 +89,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:text="Search" />
+            android:text="@string/search" />
 
     </LinearLayout>
 
@@ -124,7 +124,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="No item to display"
+            android:text="@string/no_item_to_display"
             android:textAlignment="center"
             android:textSize="32sp"
             android:visibility="invisible" />

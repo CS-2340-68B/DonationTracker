@@ -15,7 +15,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Video1"
+                    android:text="@string/video1"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#339966"
                     android:textStyle="bold" />
@@ -30,7 +30,7 @@
                     android:id="@+id/detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="video1"
+                    android:text="@string/video1"
                     android:textColor="#606060" />
             </LinearLayout>
         </LinearLayout>
