@@ -2,6 +2,7 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+@SuppressWarnings("OverlyComplexMethod")
 public class VerifyFormat {
     public static boolean verifyEmailFormat(String email) {
         return EmailValidator.getInstance().isValid(email);

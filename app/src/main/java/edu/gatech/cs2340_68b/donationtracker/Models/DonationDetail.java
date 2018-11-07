@@ -2,6 +2,7 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 
 import java.io.Serializable;
 
+@SuppressWarnings("ConstructorWithTooManyParameters")
 public class DonationDetail implements Serializable {
 
     private String time;
