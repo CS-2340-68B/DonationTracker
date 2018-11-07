@@ -9,6 +9,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
  * and password associate to them. Different types of account have different
  * access to each part of the app.
  */
+@SuppressWarnings("ConstructorWithTooManyParameters")
 public class User {
     private String userID;
     private String username = "user@gmail.com";
