@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DataListAdapter extends BaseAdapter {
+    @Nullable
     ArrayList<Map.Entry<String, String>> data;
     LayoutInflater inflater;
 
