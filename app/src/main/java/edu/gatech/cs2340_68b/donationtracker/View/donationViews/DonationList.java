@@ -21,6 +21,7 @@ import android.widget.Button;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
@@ -68,7 +69,7 @@ public class DonationList extends AppCompatActivity {
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
                         new AbstractMap.SimpleEntry<>(
-                                detail.getName(), detail.getFullDescription());
+                                Objects.requireNonNull(detail).getName(), detail.getFullDescription());
                     donationInfo.add(entry);
                 }
                 donationListView.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));

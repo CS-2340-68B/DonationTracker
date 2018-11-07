@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
@@ -77,11 +79,11 @@ public class ResetPassword extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
-                            user.setPassword(PasswordEncryption.encode(newPassword));
+                            Objects.requireNonNull(user).setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
                             System.out.println("Line 71: " + user.getPassword());
                             finishedFlag = true;
-                            ref.child(singleSnapShot.getKey()).setValue(user);
+                            ref.child(Objects.requireNonNull(singleSnapShot.getKey())).setValue(user);
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
                                 + " We will prompt you back to login page.");

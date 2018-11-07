@@ -42,6 +42,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class SearchView extends AppCompatActivity {
 
     // Define Variables

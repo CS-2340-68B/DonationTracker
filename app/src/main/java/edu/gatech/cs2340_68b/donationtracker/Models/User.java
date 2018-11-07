@@ -1,5 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
@@ -238,6 +240,7 @@ public class User {
         return this.assignedLocation;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return username + " " + password + " isLock: " + isLock;

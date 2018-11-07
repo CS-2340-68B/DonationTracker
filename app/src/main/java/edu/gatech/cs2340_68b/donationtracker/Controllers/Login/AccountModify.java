@@ -10,6 +10,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 
 public class AccountModify {
@@ -28,7 +30,7 @@ public class AccountModify {
                 }
                 for (DataSnapshot i : dataSnapshot.getChildren()) {
                     User account = i.getValue(User.class);
-                    account.incrementFailed();
+                    Objects.requireNonNull(account).incrementFailed();
                     if (account.getFailedAttempts() >= 3) {
                         account.setIsLock(true);
                     }

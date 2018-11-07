@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Menu extends AppCompatActivity {
@@ -30,7 +32,7 @@ public class Menu extends AppCompatActivity {
         aToggle.syncState();
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
 

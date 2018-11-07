@@ -73,16 +73,12 @@ public class LocationSet extends AppCompatActivity {
 
                 // Generate helper method to get longitude
                 List<Integer> data = getLongitudeAttitude(fullAddress);
-//                String longitude = Integer.toString(data[0]);
-                String longitude = null;
-//                String latitude = Integer.toString(data[1]);
-                String latitude = null;
 
                 // Get out the next key for new location
                 String newKey = getKey();
 
                 // Update the new location to DB
-                Location location = new Location(newKey, locationNameStr, null, longitude, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
+                Location location = new Location(newKey, locationNameStr, null, null, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
                 addNewLocationToDB(location);
             }
         });

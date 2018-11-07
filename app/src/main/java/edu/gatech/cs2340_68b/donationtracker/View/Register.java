@@ -50,6 +50,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class Register extends AppCompatActivity {
 
     private TextView usernameTV;
