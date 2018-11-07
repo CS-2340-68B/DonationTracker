@@ -93,7 +93,7 @@ public class DonationDetailControl extends AppCompatActivity {
 
 
         //Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
-        if (currentUser.getAssignedLocation() == null
+        if ((currentUser.getAssignedLocation() == null)
                 || !currentUser.getAssignedLocation().
                 equals(donation.getLocation())) {
             time.setKeyListener(null);
@@ -148,7 +148,7 @@ public class DonationDetailControl extends AppCompatActivity {
      * @return The index of location of that enum
      */
     private int getIndexSpinner(Spinner spinner, String compareString) {
-        if (compareString == null || spinner.getCount() == 0) {
+        if ((compareString == null) || (spinner.getCount() == 0)) {
             return -1;
         } else {
             for (int i = 0; i < spinner.getCount(); i++) {
