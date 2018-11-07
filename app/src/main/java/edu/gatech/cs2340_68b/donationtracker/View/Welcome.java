@@ -39,10 +39,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationContro
 public class Welcome extends AppCompatActivity {
 
     private ImageButton imageButton;
-    private Button loginButton;
-    private Button registerButton;
     private ActionBar actionBar;
-    private Button testButton;
     public static User currentUser = new User();
     public static String userKey;
     public static Gson gson = new Gson();
@@ -57,10 +54,10 @@ public class Welcome extends AppCompatActivity {
 
 //        actionBar = getSupportActionBar();
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        loginButton = findViewById(R.id.LoginButton);
-        registerButton = findViewById(R.id.RegisterButton);
+        Button loginButton = findViewById(R.id.LoginButton);
+        Button registerButton = findViewById(R.id.RegisterButton);
 
-        testButton = findViewById(R.id.TestButton);
+        Button testButton = findViewById(R.id.TestButton);
         testButton.setVisibility(View.VISIBLE);
 
         // Adding location to database

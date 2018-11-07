@@ -25,8 +25,6 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 
 public class ForgetPassword extends AppCompatActivity {
-    private Button resetButton;
-    private Button goBack;
     private TextInputEditText userEmail;
     private TextInputLayout til;
     private ProgressBar progressBar;
@@ -36,8 +34,8 @@ public class ForgetPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password);
-        resetButton = (Button) findViewById(R.id.resetButton);
-        goBack = (Button) findViewById(R.id.goBack);
+        Button resetButton = (Button) findViewById(R.id.resetButton);
+        Button goBack = (Button) findViewById(R.id.goBack);
         userEmail = findViewById(R.id.emailUser);
         til = (TextInputLayout) findViewById(R.id.emailInput);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

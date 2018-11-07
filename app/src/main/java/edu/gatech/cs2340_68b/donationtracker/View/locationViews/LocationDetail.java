@@ -13,17 +13,6 @@ import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList;
 
 public class LocationDetail extends AppCompatActivity {
 
-    private TextView name;
-    private TextView streetAddress;
-    private TextView city;
-    private TextView state;
-    private TextView zip;
-    private TextView type;
-    private TextView phone;
-    private TextView website;
-    private TextView longtitude;
-    private TextView latitude;
-    private Button DonationListBt;
     private String LocationName;
 
     @Override
@@ -32,17 +21,17 @@ public class LocationDetail extends AppCompatActivity {
         setContentView(R.layout.location_detail);
         final Location location = (Location) getIntent().getSerializableExtra("LOCATION");
         LocationName = location.getLocationName();
-        name = findViewById(R.id.name);
-        streetAddress = findViewById(R.id.streetAddress);
-        city = findViewById(R.id.city);
-        state = findViewById(R.id.state);
-        zip = findViewById(R.id.zip);
-        type = findViewById(R.id.type);
-        phone = findViewById(R.id.phone);
-        website = findViewById(R.id.website);
-        latitude = findViewById(R.id.latitude);
-        longtitude = findViewById(R.id.longtitude);
-        DonationListBt = findViewById(R.id.donationListBt);
+        TextView name = findViewById(R.id.name);
+        TextView streetAddress = findViewById(R.id.streetAddress);
+        TextView city = findViewById(R.id.city);
+        TextView state = findViewById(R.id.state);
+        TextView zip = findViewById(R.id.zip);
+        TextView type = findViewById(R.id.type);
+        TextView phone = findViewById(R.id.phone);
+        TextView website = findViewById(R.id.website);
+        TextView latitude = findViewById(R.id.latitude);
+        TextView longtitude = findViewById(R.id.longtitude);
+        Button donationListBt = findViewById(R.id.donationListBt);
 
         name.setText(location.getLocationName());
         streetAddress.setText(location.getStreetAddress());
@@ -55,7 +44,7 @@ public class LocationDetail extends AppCompatActivity {
         latitude.setText(location.getLatitude());
         longtitude.setText(location.getLongitude());
 
-        DonationListBt.setOnClickListener(new View.OnClickListener() {
+        donationListBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LocationDetail.this, DonationList.class);

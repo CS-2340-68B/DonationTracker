@@ -31,7 +31,6 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
-    private Button addButton;
     private String newLocation;
 
     @Override
@@ -41,7 +40,7 @@ public class DonationList extends AppCompatActivity {
         final String locationName = (String) getIntent().getSerializableExtra("PLACENAME");
         final String defaultLocation = (String) getIntent().getSerializableExtra("DEFAULT");
         donationListView = findViewById(R.id.donationList);
-        addButton = findViewById(R.id.add_button);
+        Button addButton = findViewById(R.id.add_button);
 
         if (locationName == null) {
             newLocation = defaultLocation;
@@ -96,6 +95,7 @@ public class DonationList extends AppCompatActivity {
 
         //Turn invisible add button if the current user is Admin and or user and locationemployee (not current location)
         if (currentUser.getAssignedLocation() == null || !currentUser.getAssignedLocation().equals(newLocation)) {
+
             addButton.setVisibility(View.INVISIBLE);
         }
 

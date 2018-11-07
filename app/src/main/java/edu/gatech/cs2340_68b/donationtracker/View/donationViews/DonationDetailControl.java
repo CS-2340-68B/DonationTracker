@@ -38,7 +38,6 @@ public class DonationDetailControl extends AppCompatActivity {
     private EditText comment;
     private EditText name;
     private Spinner category;
-    private Button submit;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference("donations");
 
@@ -65,7 +64,8 @@ public class DonationDetailControl extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
 
-        submit = findViewById(R.id.submit);
+
+        Button submit = findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
 
         /**
