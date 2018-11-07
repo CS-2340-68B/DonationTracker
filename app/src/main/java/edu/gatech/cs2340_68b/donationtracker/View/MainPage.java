@@ -27,6 +27,9 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.mapper;
 
+/**
+ * Controller for the main page of the app
+ */
 public class MainPage extends AppCompatActivity {
 
     @Override

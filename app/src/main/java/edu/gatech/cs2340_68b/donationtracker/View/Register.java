@@ -50,6 +50,11 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 
+/**
+ * Controller for register page, user can create a new account
+ * A new account is added to database
+ */
+
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class Register extends AppCompatActivity {
 

@@ -36,6 +36,10 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationMap;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationControl;
 
+/**
+ * The welcome page controller for the app
+ */
+
 public class Welcome extends AppCompatActivity {
 
     private ImageButton imageButton;

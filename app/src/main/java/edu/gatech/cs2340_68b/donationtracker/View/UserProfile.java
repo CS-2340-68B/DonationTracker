@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Controller for user profile page
+ */
 public class UserProfile extends AppCompatActivity {
 
 

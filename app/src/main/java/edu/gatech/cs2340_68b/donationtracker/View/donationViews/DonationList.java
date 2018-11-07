@@ -29,6 +29,10 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
+/**
+ * Get data from database and put to donation list
+ */
+
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
@@ -106,8 +110,8 @@ public class DonationList extends AppCompatActivity {
         }
 
 
-        /**
-         * ADD button implementation
+        /*
+          ADD button implementation
          */
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

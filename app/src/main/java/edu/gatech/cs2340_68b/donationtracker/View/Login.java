@@ -29,6 +29,9 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Controller for login to the app, check account in the database
+ */
 
 public class Login extends AppCompatActivity {
 
