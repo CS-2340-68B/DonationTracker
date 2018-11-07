@@ -26,6 +26,9 @@ import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
+/**
+ * Show a search history
+ */
 public class SearchHistory extends AppCompatActivity {
 
     private ListView searchHistoryListView;

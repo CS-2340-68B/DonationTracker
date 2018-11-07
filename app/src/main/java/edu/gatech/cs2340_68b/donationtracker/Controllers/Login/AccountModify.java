@@ -14,8 +14,14 @@ import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 
+/**
+ * Modify an account
+ */
 public class AccountModify {
-
+    /**
+     * Lock account after 3 login failure
+     * @param email an email to lock
+     */
     public static void lockAccount(String email) {
         final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
         final DatabaseReference ref = Firebase.getReference("accounts");
@@ -43,6 +49,10 @@ public class AccountModify {
         });
     }
 
+    /**
+     * Reset password
+     * @param email account to reset password
+     */
     public static void resetAttemptCount(String email) {
         final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
         final DatabaseReference ref = Firebase.getReference("accounts");
