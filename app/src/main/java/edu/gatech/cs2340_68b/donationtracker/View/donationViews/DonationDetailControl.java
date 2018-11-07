@@ -65,8 +65,6 @@ public class DonationDetailControl extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.commentEdit);
         category = (Spinner)findViewById(R.id.categorySpinner);
 
-        Log.d("MYTAG", Welcome.currentUser.getType().toString());
-
         submit = findViewById(R.id.submit);
         name = (EditText) findViewById(R.id.nameEdit);
 
@@ -98,9 +96,7 @@ public class DonationDetailControl extends AppCompatActivity {
         }
 
 
-        /**
-         * Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
-         */
+        //Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
         if (currentUser.getAssignedLocation() == null
                 || !currentUser.getAssignedLocation().
                 equals(donation.getLocation())) {
@@ -120,8 +116,8 @@ public class DonationDetailControl extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-                final DatabaseReference ref = firebase.getReference("donations").child(keyUsed);
+                final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
+                final DatabaseReference ref = Firebase.getReference("donations").child(keyUsed);
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -17,8 +17,8 @@ import edu.gatech.cs2340_68b.donationtracker.Models.User;
 public class AccountModify {
 
     public static void lockAccount(String email) {
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
+        final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = Firebase.getReference("accounts");
         Query accountQuery = ref.orderByChild("username").equalTo(email);
         accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -44,8 +44,8 @@ public class AccountModify {
     }
 
     public static void resetAttemptCount(String email) {
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
+        final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = Firebase.getReference("accounts");
         Query accountQuery = ref.orderByChild("username").equalTo(email);
         accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
 

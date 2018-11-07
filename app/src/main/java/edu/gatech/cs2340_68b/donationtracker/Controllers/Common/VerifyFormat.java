@@ -32,7 +32,7 @@ public class VerifyFormat {
                 letterFlag = true;
             }
             Character c = character;
-            if (c.toString().matches("[^a-z A-Z 0-9]")) {
+            if (c.toString().matches("[^a-z A-Z0-9]")) {
                 specialFlag = true;
             }
         }
