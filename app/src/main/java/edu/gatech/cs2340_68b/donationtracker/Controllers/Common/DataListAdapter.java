@@ -30,7 +30,7 @@ public class DataListAdapter extends BaseAdapter {
 
     public int getCount() {
         // TODO Auto-generated method stub
-        return data != null ? data.size() : 0;
+        return (data != null) ? data.size() : 0;
     }
 
     public Object getItem(int arg0) {
@@ -49,7 +49,7 @@ public class DataListAdapter extends BaseAdapter {
         TextView title, detail;
         title = row.findViewById(R.id.title);
         detail = row.findViewById(R.id.detail);
-        title.setText(data != null ? data.get(position).getKey() : null);
+        title.setText((data != null) ? data.get(position).getKey() : null);
         detail.setText(data.get(position).getValue());
         return (row);
     }
