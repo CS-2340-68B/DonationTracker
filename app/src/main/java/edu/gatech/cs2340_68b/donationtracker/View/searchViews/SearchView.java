@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
@@ -130,7 +131,7 @@ public class SearchView extends AppCompatActivity {
                     // Create local copy of one location
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
-                    locationListString.add(place.getLocationName());
+                    locationListString.add(Objects.requireNonNull(place).getLocationName());
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
@@ -167,7 +168,7 @@ public class SearchView extends AppCompatActivity {
 
     protected void search(final int removedIndex) {
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-            searchCriteria.setKeyword(searchBar.getText().toString());
+            searchCriteria.setKeyword(Objects.requireNonNull(searchBar.getText()).toString());
         } else {
             searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
         }
@@ -180,7 +181,7 @@ public class SearchView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUser = dataSnapshot.getValue(User.class);
-                ArrayList<UserSearch> temp = currentUser.getUserSearchList();
+                ArrayList<UserSearch> temp = Objects.requireNonNull(currentUser).getUserSearchList();
                 if (temp == null) {
                     temp = new ArrayList<>();
 
@@ -221,10 +222,10 @@ public class SearchView extends AppCompatActivity {
 
                     // Check for location requirement.
                     if ("All".equals(searchCriteria.getLocationName())
-                            || searchCriteria.getLocationName().equals(detail.getLocation())) {
+                            || searchCriteria.getLocationName().equals(Objects.requireNonNull(detail).getLocation())) {
                         donationList.add(detail);
                         Map.Entry<String, String> entry =
-                                new AbstractMap.SimpleEntry<>(detail.getName(), detail.getLocation());
+                                new AbstractMap.SimpleEntry<>(Objects.requireNonNull(detail).getName(), detail.getLocation());
                         donationInfo.add(entry);
                     }
                 }

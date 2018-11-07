@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
@@ -58,13 +59,13 @@ public class LocationSet extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Convert to string
-                String addressNameStr = addressName.getText().toString();
-                String locationNameStr = locationName.getText().toString();
-                String cityNameStr = cityName.getText().toString();
-                String zipcodeStr = zipcode.getText().toString();
+                String addressNameStr = Objects.requireNonNull(addressName.getText()).toString();
+                String locationNameStr = Objects.requireNonNull(locationName.getText()).toString();
+                String cityNameStr = Objects.requireNonNull(cityName.getText()).toString();
+                String zipcodeStr = Objects.requireNonNull(zipcode.getText()).toString();
                 String stateChooseStr = stateChoose.getSelectedItem().toString();
-                String phoneNumberStr = phoneNumber.getText().toString();
-                String websiteNameStr = websiteName.getText().toString();
+                String phoneNumberStr = Objects.requireNonNull(phoneNumber.getText()).toString();
+                String websiteNameStr = Objects.requireNonNull(websiteName.getText()).toString();
                 String locationTypeStr = locationType.getSelectedItem().toString();
 
                 // Get the full address if store
@@ -81,7 +82,7 @@ public class LocationSet extends AppCompatActivity {
                 String newKey = getKey();
 
                 // Update the new location to DB
-                Location location = new Location(newKey, locationNameStr, latitude, longitude, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
+                Location location = new Location(newKey, locationNameStr, null, longitude, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
                 addNewLocationToDB(location);
             }
         });

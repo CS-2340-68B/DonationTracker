@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
@@ -57,7 +58,7 @@ public class LocationListView extends AppCompatActivity {
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
                     Map.Entry<String,String> entry =
-                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                            new AbstractMap.SimpleEntry<>(Objects.requireNonNull(place).getLocationName(), place.getAddress());
                     locationInfo.add(entry);
                 }
                 Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {

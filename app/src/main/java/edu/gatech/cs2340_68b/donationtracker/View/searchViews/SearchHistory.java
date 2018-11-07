@@ -19,6 +19,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
@@ -56,7 +57,7 @@ public class SearchHistory extends AppCompatActivity {
                     searchList.add(search);
                     Map.Entry<String,String> entry =
                             new AbstractMap.SimpleEntry<>(
-                                    search.getSearchOption() + ": " + search.getKeyword(),
+                                    Objects.requireNonNull(search).getSearchOption() + ": " + search.getKeyword(),
                                     "Location: " + search.getLocationName());
                     searchInfo.add(entry);
                 }

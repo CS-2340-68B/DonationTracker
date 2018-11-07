@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
@@ -55,7 +56,7 @@ public class LocationControl {
                 boolean canAdd = true;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Location currentPlace = snapshot.getValue(Location.class);
-                    if (currentPlace.getLocationName().equals(location.getLocationName()) && currentPlace.getLatitude().equals(location.getLatitude()) && currentPlace.getLongitude().equals(location.getLongitude())) {
+                    if (Objects.requireNonNull(currentPlace).getLocationName().equals(location.getLocationName()) && currentPlace.getLatitude().equals(location.getLatitude()) && currentPlace.getLongitude().equals(location.getLongitude())) {
                         canAdd = false;
                     }
                 }

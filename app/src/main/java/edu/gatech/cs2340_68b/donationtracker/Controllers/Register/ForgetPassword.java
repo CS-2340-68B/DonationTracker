@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 
 
@@ -47,7 +49,7 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(ProgressBar.VISIBLE);
-                String inputEmail = userEmail.getText().toString().trim();
+                String inputEmail = Objects.requireNonNull(userEmail.getText()).toString().trim();
                 if ((inputEmail.length() != 0) && VerifyFormat.verifyEmailFormat(inputEmail)) {
                     checkIfExistInDB(inputEmail);
                 } else {

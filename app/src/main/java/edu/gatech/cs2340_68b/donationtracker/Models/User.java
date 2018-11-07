@@ -51,6 +51,7 @@ public class User {
         this.isLock = newuser.isLock;
         this.contact = newuser.contact;
         this.assignedLocation = newuser.assignedLocation;
+        this.userSearchList = newuser.userSearchList;
     }
 
     /***

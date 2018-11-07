@@ -34,6 +34,7 @@ import org.json.JSONObject;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;
@@ -101,7 +102,7 @@ public class Register extends AppCompatActivity {
                     // Create local copy of one location
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
-                    locationListString.add(place.getLocationName());
+                    locationListString.add(Objects.requireNonNull(place).getLocationName());
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);

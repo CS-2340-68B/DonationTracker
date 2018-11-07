@@ -29,10 +29,9 @@ public class PasswordTest {
     @Test (timeout = 200)
     public void testInvalid(){
         String emptyPass = "";
-        String nullPass = null;
 
         assertFalse(verifyPassword(emptyPass));
-        assertFalse(verifyPassword(nullPass));
+        assertFalse(verifyPassword(null));
     }
 
     @Test (timeout = 200)

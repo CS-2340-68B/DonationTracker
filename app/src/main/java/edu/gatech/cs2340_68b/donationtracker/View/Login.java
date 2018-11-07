@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
@@ -87,7 +88,7 @@ public class Login extends AppCompatActivity {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
 
-                            if (user.getIsLock()) {
+                            if (Objects.requireNonNull(user).getIsLock()) {
                                 AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                         "Sorry", "Account is currently lock. " +
                                                 "Please reset your password or check your email");
