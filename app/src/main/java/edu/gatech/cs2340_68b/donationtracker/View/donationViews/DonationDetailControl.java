@@ -25,7 +25,6 @@ import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
 public class DonationDetailControl extends AppCompatActivity {
-//    private ActionBar actionBar;
     private EditText time;
     private TextView location;
     private EditText fullDescription;
@@ -35,17 +34,14 @@ public class DonationDetailControl extends AppCompatActivity {
     private EditText name;
     private Spinner category;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ref = database.getReference("donations");
+    // --Commented out by Inspection (11/7/18, 10:49 AM):private DatabaseReference ref = database.getReference("donations");
 
     // Needs DATA, KEY, LOCATION to work properly
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.donation_detail);
-//        actionBar = getSupportActionBar();
 
 //        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
         final DonationDetail donation = (DonationDetail) getIntent().getSerializableExtra("DATA");

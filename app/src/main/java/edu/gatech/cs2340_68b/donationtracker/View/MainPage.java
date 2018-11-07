@@ -33,8 +33,6 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.main_page);
         Button logout = findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {

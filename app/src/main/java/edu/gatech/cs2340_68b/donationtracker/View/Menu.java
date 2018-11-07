@@ -43,7 +43,9 @@ public class Menu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (aToggle.onOptionsItemSelected(item)) {
             return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
 }
