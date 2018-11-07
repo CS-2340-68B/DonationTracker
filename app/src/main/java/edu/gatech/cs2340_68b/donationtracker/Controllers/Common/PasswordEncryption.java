@@ -1,12 +1,19 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 
+/**
+ * Encrypt a password to database
+ */
 public class PasswordEncryption {
     static final int NUM_77 = 77;
     static final int NUM_94 = 94;
     static final int NUM_33 = 33;
 
 
-
+    /**
+     * Encode a password
+     * @param password a new password
+     * @return encrypted password
+     */
     public static String encode(String password) {
         String encodedPass = "";
         for (Character each : password.toCharArray()) {
@@ -15,6 +22,11 @@ public class PasswordEncryption {
         return encodedPass;
     }
 
+    /**
+     * Decode a password
+     * @param encodedPassword decoded password
+     * @return a decoded password
+     */
     public static String decode(String encodedPassword) {
         String decodedPass = "";
         for (Character each : encodedPassword.toCharArray()) {
