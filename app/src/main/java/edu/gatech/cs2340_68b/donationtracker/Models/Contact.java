@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+@SuppressWarnings("RedundantNoArgConstructor")
 public class Contact {
     private String firstName;
     private String lastName;
