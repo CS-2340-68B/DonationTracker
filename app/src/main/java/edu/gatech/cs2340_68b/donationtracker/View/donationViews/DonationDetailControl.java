@@ -52,9 +52,9 @@ public class DonationDetailControl extends AppCompatActivity {
         final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
         final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
 
-        time = (EditText) findViewById(R.id.timeInput);
-        location = (TextView) findViewById(R.id.locationDonationEdit);
-        fullDescription = (EditText) findViewById(R.id.fullDescriptionEdit);
+        time = findViewById(R.id.timeInput);
+        location = findViewById(R.id.locationDonationEdit);
+        fullDescription = findViewById(R.id.fullDescriptionEdit);
         shortDescription = (EditText) findViewById(R.id.shortDescriptionEdit);
         value = (EditText) findViewById(R.id.valueEdit);
         comment = (EditText) findViewById(R.id.commentEdit);

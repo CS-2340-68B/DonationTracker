@@ -74,13 +74,13 @@ public class Register extends AppCompatActivity {
 //        actionBar = getSupportActionBar();
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
 
-        usernameTV = (TextView)findViewById(R.id.registerUsername);
-        passwordTV = (TextView)findViewById(R.id.registerPassword);
-        confirmPasswordTV = (TextView)findViewById(R.id.registerConfirmPassword);
-        Button register = (Button) findViewById(R.id.register);
-        Button cancel = (Button) findViewById(R.id.cancel);
-        utspinner = (Spinner)findViewById(R.id.userTypeSpinner);
-        locspinner = (Spinner) findViewById(R.id.locationSpinner);
+        usernameTV = findViewById(R.id.registerUsername);
+        passwordTV = findViewById(R.id.registerPassword);
+        confirmPasswordTV = findViewById(R.id.registerConfirmPassword);
+        Button register = findViewById(R.id.register);
+        Button cancel = findViewById(R.id.cancel);
+        utspinner = findViewById(R.id.userTypeSpinner);
+        locspinner = findViewById(R.id.locationSpinner);
 
 
 
@@ -221,14 +221,12 @@ public class Register extends AppCompatActivity {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "User account format is not correct.");
                     alert.create().show();
-                    return;
                 }
 
                 else if (!password.equals(confirmPassword)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "Password are not the same.");
                     alert.create().show();
-                    return;
                 }
 
                 else if (!VerifyFormat.verifyPassword(password)) {
@@ -236,7 +234,6 @@ public class Register extends AppCompatActivity {
                             "Error", "Your password must contain at least 1 letter, 1 number, and " +
                             "one upper case letter, and be at least 8 characters long");
                     alert.create().show();
-                    return;
                 }
 
                 else {
@@ -258,9 +255,6 @@ public class Register extends AppCompatActivity {
                             } else {
                                 Intent intent = new Intent(Register.this, Login.class);
                                 startActivity(intent);
-
-                                //Update database
-
                                 finish();
                             }
                         }

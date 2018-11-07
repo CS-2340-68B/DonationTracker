@@ -49,11 +49,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 //        actionBar = getSupportActionBar();
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        username = (TextView)findViewById(R.id.registerUsername);
-        password = (TextView)findViewById(R.id.registerPassword);
-        Button cancel = (Button) findViewById(R.id.cancel);
-        Button login = (Button) findViewById(R.id.login);
-        TextView resetPassword = (TextView) findViewById(R.id.forgetPassword);
+        username = findViewById(R.id.registerUsername);
+        password = findViewById(R.id.registerPassword);
+        Button cancel = findViewById(R.id.cancel);
+        Button login = findViewById(R.id.login);
+        TextView resetPassword = findViewById(R.id.forgetPassword);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

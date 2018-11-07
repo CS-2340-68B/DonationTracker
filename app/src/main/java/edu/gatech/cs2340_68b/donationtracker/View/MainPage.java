@@ -36,14 +36,14 @@ public class MainPage extends AppCompatActivity {
 //        actionBar = getSupportActionBar();
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.main_page);
-        Button logout = (Button) findViewById(R.id.logoutButton);
+        Button logout = findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        Button locationList = (Button) findViewById(R.id.donationLocationListButton);
+        Button locationList = findViewById(R.id.donationLocationListButton);
         (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        Button userProfile = (Button) findViewById(R.id.profileButton);
+        Button userProfile = findViewById(R.id.profileButton);
         userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class MainPage extends AppCompatActivity {
         });
 //        actionBar = getSupportActionBar();
 
-        Button search = (Button) findViewById(R.id.search);
+        Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +73,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        Button menuT = (Button) findViewById(R.id.menu);
+        Button menuT = findViewById(R.id.menu);
         menuT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

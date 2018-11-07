@@ -20,10 +20,10 @@ public class Menu extends AppCompatActivity {
 
         setContentView(R.layout.test_menu);
 
-        Toolbar aToolbar = (Toolbar) findViewById(R.id.nav_actionbar);
+        Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
 
-        DrawerLayout nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
         aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
 
         nDrawerLayout.addDrawerListener(aToggle);

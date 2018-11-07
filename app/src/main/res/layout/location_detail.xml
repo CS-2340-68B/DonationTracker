@@ -234,7 +234,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/latitude" />
 
             <TextView
-                android:id="@+id/longtitude"
+                android:id="@+id/longitude"
                 android:layout_width="233dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

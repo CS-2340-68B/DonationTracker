@@ -34,11 +34,11 @@ public class ForgetPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password);
-        Button resetButton = (Button) findViewById(R.id.resetButton);
-        Button goBack = (Button) findViewById(R.id.goBack);
+        Button resetButton = findViewById(R.id.resetButton);
+        Button goBack = findViewById(R.id.goBack);
         userEmail = findViewById(R.id.emailUser);
-        til = (TextInputLayout) findViewById(R.id.emailInput);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        til = findViewById(R.id.emailInput);
+        progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         // Reset button click

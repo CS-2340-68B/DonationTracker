@@ -62,15 +62,15 @@ public class SearchView extends AppCompatActivity {
         setContentView(R.layout.search_view);
 
         // Initialize components
-        searchRadioGroup = (RadioGroup) findViewById(R.id.searchTypeRadioGroup);
-        RadioButton itemRButton = (RadioButton) findViewById(R.id.searchTypeItem);
-        RadioButton catRButton = (RadioButton) findViewById(R.id.searchTypeCat);
-        Button searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
-        searchBar = (TextInputEditText) findViewById(R.id.searchBar);
-        searchCatSpinner = (Spinner) findViewById(R.id.searchCatSpinner);
-        Button searchButton = (Button) findViewById(R.id.searchButton);
-        searchLocSpinner = (Spinner) findViewById(R.id.searchLocSpinner);
-        searchResultList = (ListView) findViewById(R.id.searchResultList);
+        searchRadioGroup = findViewById(R.id.searchTypeRadioGroup);
+        RadioButton itemRButton = findViewById(R.id.searchTypeItem);
+        RadioButton catRButton = findViewById(R.id.searchTypeCat);
+        Button searchHistoryButton = findViewById(R.id.searchHistoryButton);
+        searchBar = findViewById(R.id.searchBar);
+        searchCatSpinner = findViewById(R.id.searchCatSpinner);
+        Button searchButton = findViewById(R.id.searchButton);
+        searchLocSpinner = findViewById(R.id.searchLocSpinner);
+        searchResultList = findViewById(R.id.searchResultList);
         searchCriteria = new UserSearch();
         currentUser = Welcome.currentUser;
         locationListString = new ArrayList<>();

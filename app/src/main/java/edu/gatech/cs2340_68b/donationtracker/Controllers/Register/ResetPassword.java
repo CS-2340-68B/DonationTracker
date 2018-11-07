@@ -37,10 +37,10 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_password);
 
-        newPassword = (EditText) findViewById(R.id.PasswordField);
-        repeatNewPassword = (EditText) findViewById(R.id.repeatPasswordField);
-        til = (TextInputLayout) findViewById(R.id.repeatPasswordOut);
-        Button resetPasswordButton = (Button) findViewById(R.id.resetButton);
+        newPassword = findViewById(R.id.PasswordField);
+        repeatNewPassword = findViewById(R.id.repeatPasswordField);
+        til = findViewById(R.id.repeatPasswordOut);
+        Button resetPasswordButton = findViewById(R.id.resetButton);
 
         // Getting current user email from reset page
         Intent intent = getIntent();
