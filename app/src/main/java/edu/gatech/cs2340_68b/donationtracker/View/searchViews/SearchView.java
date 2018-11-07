@@ -88,9 +88,7 @@ public class SearchView extends AppCompatActivity {
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Log.d("MYTAG", "Radio Button Working");
                 View radioButton = searchRadioGroup.findViewById(checkedId);
-                Log.e("Check:", checkedId + "");
                 searchTypeFlag = searchRadioGroup.indexOfChild(radioButton);
                 if (searchTypeFlag == 0) { // Item search
                     searchCriteria.setSearchOption(SearchOptions.NAME);
@@ -108,7 +106,7 @@ public class SearchView extends AppCompatActivity {
         /*
          * CATEGORY SET UP
          */
-        // Set up cateogry spinner adapter
+        // Set up category spinner adapter
         ArrayAdapter<String> catAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         searchCatSpinner.setAdapter(catAdapter);

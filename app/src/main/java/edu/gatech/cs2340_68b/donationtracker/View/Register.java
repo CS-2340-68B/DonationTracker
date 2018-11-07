@@ -198,14 +198,12 @@ public class Register extends AppCompatActivity {
         locspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                Log.d("MYTAG", "Stringhere"); //locationListString.get(position)
                 //Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
                 newAccount.setAssignedLocation(locationList.get(position).getLocationName());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                Log.d("MYTAG", "Nothing Selected"); //locationListString.get(position)
             }
 
         });
@@ -242,30 +240,7 @@ public class Register extends AppCompatActivity {
                 }
 
                 else {
-//                    try {
-//                        User u = new User();
-//                        User u1 = new User();
-//                        u1.setUsername("A");
-//                        u1.setPassword("B");
-//                        u.setUsername("Tuan");
-//                        u.setPassword("123456");
-//                        u.setEmployee(u1);
-//                        final Gson gson = new Gson();
-//
-//                        JSONObject json = new JSONObject(gson.toJson(u));
-//                        ByteArrayEntity entity = new ByteArrayEntity(json.toString().getBytes("UTF-8"));
-//                        client.post(this, "http://10.0.2.2:5000/test", entity, "application/json", new JsonHttpResponseHandler() {
-//                            @Override
-//                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                                super.onSuccess(statusCode, headers, response);
-//                                Log.e("Object: ", response.toString());
-//                                User newU = gson.fromJson(response.toString(), User.class);
-//                                Log.e("Info: ", newU.getUsername() + " - " + newU.getPassword());
-//                            }
-//                        });
-//                    } catch (Exception e) {
-//
-//                    }
+
                     RequestParams query =  new RequestParams();
                     query.put("username", username);
                     query.put("password", PasswordEncryption.encode(password));
