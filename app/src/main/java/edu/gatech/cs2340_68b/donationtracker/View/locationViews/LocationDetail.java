@@ -30,7 +30,7 @@ public class LocationDetail extends AppCompatActivity {
         TextView phone = findViewById(R.id.phone);
         TextView website = findViewById(R.id.website);
         TextView latitude = findViewById(R.id.latitude);
-        TextView longitude = findViewById(R.id.longtitude);
+        TextView longitude = findViewById(R.id.longitude);
         Button donationListBt = findViewById(R.id.donationListBt);
 
         name.setText(location.getLocationName());

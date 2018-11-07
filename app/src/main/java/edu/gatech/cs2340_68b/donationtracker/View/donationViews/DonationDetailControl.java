@@ -55,14 +55,14 @@ public class DonationDetailControl extends AppCompatActivity {
         time = findViewById(R.id.timeInput);
         location = findViewById(R.id.locationDonationEdit);
         fullDescription = findViewById(R.id.fullDescriptionEdit);
-        shortDescription = (EditText) findViewById(R.id.shortDescriptionEdit);
-        value = (EditText) findViewById(R.id.valueEdit);
-        comment = (EditText) findViewById(R.id.commentEdit);
-        category = (Spinner)findViewById(R.id.categorySpinner);
+        shortDescription = findViewById(R.id.shortDescriptionEdit);
+        value = findViewById(R.id.valueEdit);
+        comment = findViewById(R.id.commentEdit);
+        category = findViewById(R.id.categorySpinner);
 
 
         Button submit = findViewById(R.id.submit);
-        name = (EditText) findViewById(R.id.nameEdit);
+        name = findViewById(R.id.nameEdit);
 
         /**
          * Auto fill data into the box fills if the client want to view or edits

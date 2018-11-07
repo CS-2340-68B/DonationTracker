@@ -201,7 +201,7 @@ public class SearchView extends AppCompatActivity {
 
         // Query search result
         DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
-        Query donationQuery = null;
+        Query donationQuery;
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
             donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
         } else {

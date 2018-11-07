@@ -1,5 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.Models.Enum;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,6 +77,7 @@ public enum StatesList {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return name;

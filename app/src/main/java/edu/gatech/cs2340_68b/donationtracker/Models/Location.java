@@ -1,5 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /***
@@ -263,6 +265,7 @@ public class Location implements Serializable {
         this.website = website;
     }
 
+    @NonNull
     @Override
     public String toString() {
         String s = "";

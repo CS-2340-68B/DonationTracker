@@ -58,6 +58,7 @@ public class Register extends AppCompatActivity {
     private Spinner utspinner;
     private Spinner locspinner;
     private User newAccount = new User();
+    private Button register;
 
     final int ADMIN = 0;
     final int USER = 1;
@@ -77,7 +78,7 @@ public class Register extends AppCompatActivity {
         usernameTV = findViewById(R.id.registerUsername);
         passwordTV = findViewById(R.id.registerPassword);
         confirmPasswordTV = findViewById(R.id.registerConfirmPassword);
-        Button register = findViewById(R.id.register);
+        register = findViewById(R.id.register);
         Button cancel = findViewById(R.id.cancel);
         utspinner = findViewById(R.id.userTypeSpinner);
         locspinner = findViewById(R.id.locationSpinner);
@@ -85,44 +86,44 @@ public class Register extends AppCompatActivity {
 
 
         // Read in location
-//        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
-//        final ArrayList<Location> locationList = new ArrayList<>();
-//        final ArrayList<String> locationListString = new ArrayList<>();
-//        final Context self = this;
-//        // Get values from locations
-//        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
-//                // Loads in all locations into the array list
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    // Create local copy of one location
-//                    Location place = snapshot.getValue(Location.class);
-//                    locationList.add(place);
-//                    locationListString.add(place.getLocationName());
-//                    Map.Entry<String, String> entry =
-//                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
-//                    locationInfo.add(entry);
-//
-//                     /*
-//                      Set up the adapter to display the locations in the spinner
-//                     */
-//                    ArrayAdapter<String> adapter2 = new ArrayAdapter(self,android.R.layout.simple_spinner_item, locationListString);
-//                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    locspinner.setAdapter(adapter2);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
+        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
         final ArrayList<String> locationListString = new ArrayList<>();
         final Context self = this;
+        // Get values from locations
+        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                // Loads in all locations into the array list
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Create local copy of one location
+                    Location place = snapshot.getValue(Location.class);
+                    locationList.add(place);
+                    locationListString.add(place.getLocationName());
+                    Map.Entry<String, String> entry =
+                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                    locationInfo.add(entry);
+
+                     /*
+                      Set up the adapter to display the locations in the spinner
+                     */
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter(self,android.R.layout.simple_spinner_item, locationListString);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    locspinner.setAdapter(adapter2);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+//        final ArrayList<Location> locationList = new ArrayList<>();
+//        final ArrayList<String> locationListString = new ArrayList<>();
+//        final Context self = this;
 
         // Get values from locations
         HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
