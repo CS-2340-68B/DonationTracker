@@ -33,6 +33,7 @@ public class ResetPassword extends AppCompatActivity {
     private TextInputLayout til;
     private String currentUserEmail;
     public static boolean finishedFlag = false;
+    static final int NUM_1500 = 1500;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class ResetPassword extends AppCompatActivity {
                                         finish();
                                     }
                                 },
-                            1500);
+                            NUM_1500);
                         }
                     }
 
