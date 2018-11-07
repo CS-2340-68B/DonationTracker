@@ -6,6 +6,11 @@ import java.util.Queue;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
+/***
+ * User class define a specific user, each have an account with username
+ * and password associate to them. Different types of account have different
+ * access to each part of the app.
+ */
 public class User {
     private String userID;
     private String username = "user@gmail.com";

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
 
+/***
+ * Search criteria to perform search to database.
+ */
 public class UserSearch implements Serializable {
     private String keyword;
     private SearchOptions searchOption;
