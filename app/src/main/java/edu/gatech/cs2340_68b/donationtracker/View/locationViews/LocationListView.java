@@ -1,10 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,8 +24,6 @@ import java.util.Map;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.Register;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 public class LocationListView extends AppCompatActivity {
 

@@ -18,17 +18,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
-import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
-import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationDetail;
-import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
-import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationMap;
 
 public class SearchHistory extends AppCompatActivity {
 
