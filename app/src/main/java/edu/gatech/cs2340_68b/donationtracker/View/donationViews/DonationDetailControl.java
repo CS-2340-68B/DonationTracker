@@ -92,7 +92,8 @@ public class DonationDetailControl extends AppCompatActivity {
         }
 
 
-        //Limit only LOCATIONEMPLOYEE (of register location) and Manager are allow to edit the details
+        //Limit only LOCATIONEMPLOYEE (of register
+        // location) and Manager are allow to edit the details
         if ((currentUser.getAssignedLocation() == null)
                 || !currentUser.getAssignedLocation().
                 equals(donation.getLocation())) {

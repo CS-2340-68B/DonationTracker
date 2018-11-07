@@ -69,7 +69,9 @@ public class DonationList extends AppCompatActivity {
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
                         new AbstractMap.SimpleEntry<>(
-                                Objects.requireNonNull(detail).getName(), detail.getFullDescription());
+                                Objects.requireNonNull(detail)
+                                        .getName(), detail
+                                .getFullDescription());
                     donationInfo.add(entry);
                 }
                 donationListView.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
@@ -94,8 +96,11 @@ public class DonationList extends AppCompatActivity {
 
             });
 
-        //Turn invisible add button if the current user is Admin and or user and locationemployee (not current location)
-        if ((currentUser.getAssignedLocation() == null) || !currentUser.getAssignedLocation().equals(newLocation)) {
+        //Turn invisible add button if the
+        // current user is Admin and or user and locationemployee (not current location)
+        if ((currentUser.getAssignedLocation() == null)
+                || !currentUser.getAssignedLocation().
+                equals(newLocation)) {
 
             addButton.setVisibility(View.INVISIBLE);
         }
@@ -110,8 +115,12 @@ public class DonationList extends AppCompatActivity {
                 Log.e("New key: ", newLocation);
                 Intent detail = new Intent(DonationList.this, DonationDetailControl.class);
                 detail.putExtra("LOCATION", newLocation);
-                detail.putExtra("KEY", FirebaseDatabase.getInstance().getReference("donations/").push().getKey());
-                detail.putExtra("DATA", new DonationDetail(newLocation));
+                detail.putExtra("KEY",
+                        FirebaseDatabase.getInstance()
+                                .getReference(
+                                        "donations/").push().getKey());
+                detail.putExtra("DATA",
+                        new DonationDetail(newLocation));
                 startActivity(detail);
             }
         });

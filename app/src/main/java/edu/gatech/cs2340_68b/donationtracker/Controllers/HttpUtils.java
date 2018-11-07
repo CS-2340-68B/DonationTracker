@@ -13,15 +13,21 @@ public class HttpUtils {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+    public static void get(String url,
+                           RequestParams params,
+                           AsyncHttpResponseHandler responseHandler) {
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
-    public static void postForm(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+    public static void postForm(String url,
+                                RequestParams params,
+                                AsyncHttpResponseHandler responseHandler) {
         client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 
-    public static void postJson(Context c, String url, ByteArrayEntity entity, AsyncHttpResponseHandler handler) {
+    public static void postJson(Context c,
+                                String url, ByteArrayEntity entity,
+                                AsyncHttpResponseHandler handler) {
         client.post(c, url, entity, "application/json", handler);
     }
 

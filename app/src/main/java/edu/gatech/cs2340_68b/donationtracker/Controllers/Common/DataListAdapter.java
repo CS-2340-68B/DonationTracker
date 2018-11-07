@@ -22,7 +22,8 @@ public class DataListAdapter extends BaseAdapter {
     }
 
 
-    public DataListAdapter(@Nullable ArrayList<Map.Entry<String, String>> data, LayoutInflater inflater) {
+    public DataListAdapter(@Nullable ArrayList<Map.Entry<String,
+            String>> data, LayoutInflater inflater) {
         this.data = data;
         this.inflater = inflater;
     }
