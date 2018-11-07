@@ -28,7 +28,6 @@ public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;
     private EditText repeatNewPassword;
-    private Button resetPasswordButton;
     private TextInputLayout til;
     private String currentUserEmail;
     public static boolean finishedFlag = false;
@@ -41,7 +40,7 @@ public class ResetPassword extends AppCompatActivity {
         newPassword = (EditText) findViewById(R.id.PasswordField);
         repeatNewPassword = (EditText) findViewById(R.id.repeatPasswordField);
         til = (TextInputLayout) findViewById(R.id.repeatPasswordOut);
-        resetPasswordButton = (Button) findViewById(R.id.resetButton);
+        Button resetPasswordButton = (Button) findViewById(R.id.resetButton);
 
         // Getting current user email from reset page
         Intent intent = getIntent();

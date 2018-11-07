@@ -49,16 +49,11 @@ public class SearchView extends AppCompatActivity {
     // Define Variables
     private User currentUser;
     private RadioGroup searchRadioGroup;
-    private RadioButton itemRButton;
-    private RadioButton catRButton;
-    private Button searchHistoryButton;
     private TextInputEditText searchBar;
     private Spinner searchCatSpinner;
-    private Button searchButton;
     private Spinner searchLocSpinner;
     private ListView searchResultList;
     private int searchTypeFlag;
-    private boolean isSearchAll;
     private UserSearch searchCriteria;
     private ArrayList<String> locationListString;
 
@@ -71,12 +66,12 @@ public class SearchView extends AppCompatActivity {
 
         // Initialize components
         searchRadioGroup = (RadioGroup) findViewById(R.id.searchTypeRadioGroup);
-        itemRButton = (RadioButton) findViewById(R.id.searchTypeItem);
-        catRButton = (RadioButton) findViewById(R.id.searchTypeCat);
-        searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
+        RadioButton itemRButton = (RadioButton) findViewById(R.id.searchTypeItem);
+        RadioButton catRButton = (RadioButton) findViewById(R.id.searchTypeCat);
+        Button searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
         searchBar = (TextInputEditText) findViewById(R.id.searchBar);
         searchCatSpinner = (Spinner) findViewById(R.id.searchCatSpinner);
-        searchButton = (Button) findViewById(R.id.searchButton);
+        Button searchButton = (Button) findViewById(R.id.searchButton);
         searchLocSpinner = (Spinner) findViewById(R.id.searchLocSpinner);
         searchResultList = (ListView) findViewById(R.id.searchResultList);
         searchCriteria = new UserSearch();
@@ -85,7 +80,7 @@ public class SearchView extends AppCompatActivity {
 
         // Initialize other variables
         searchTypeFlag = -1;
-        isSearchAll = true;
+        boolean isSearchAll = true;
         itemRButton.setChecked(true);
         searchCriteria.setSearchOption(SearchOptions.NAME);
 

@@ -26,7 +26,6 @@ import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 public class LocationMap extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     private Button detailButton;
     private Location clickedLocation;
 
@@ -55,7 +54,7 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        GoogleMap mMap = googleMap;
         LatLngBounds.Builder latBuilder = new LatLngBounds.Builder();
 
         final ArrayList<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");

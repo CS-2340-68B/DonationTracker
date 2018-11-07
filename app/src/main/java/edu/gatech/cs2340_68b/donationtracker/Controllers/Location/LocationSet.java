@@ -29,13 +29,6 @@ public class LocationSet extends AppCompatActivity {
     private TextInputEditText phoneNumber;
     private TextInputEditText websiteName;
     private TextInputEditText zipcode;
-    private TextInputLayout locationLayout;
-    private TextInputLayout cityLayout;
-    private TextInputLayout addressLayout;
-    private TextInputLayout phoneLayout;
-    private TextInputLayout zipLayout;
-    private TextInputLayout webLayout;
-    private Button submitButton;
     private Spinner stateChoose;
     private Spinner locationType;
 
@@ -45,21 +38,21 @@ public class LocationSet extends AppCompatActivity {
         setContentView(R.layout.location_set);
 
         // Initialize variables
-        submitButton = findViewById(R.id.submitButton);
+        Button submitButton = findViewById(R.id.submitButton);
         stateChoose = findViewById(R.id.stateChoose);
         locationType = findViewById(R.id.locationType);
         locationName = findViewById(R.id.locationInput);
-        locationLayout = findViewById(R.id.locationBox);
+        TextInputLayout locationLayout = findViewById(R.id.locationBox);
         cityName = findViewById(R.id.cityInput);
-        cityLayout = findViewById(R.id.cityBox);
+        TextInputLayout cityLayout = findViewById(R.id.cityBox);
         addressName = findViewById(R.id.addressInput);
-        addressLayout = findViewById(R.id.addressBox);
+        TextInputLayout addressLayout = findViewById(R.id.addressBox);
         phoneNumber = findViewById(R.id.phoneInput);
-        phoneLayout = findViewById(R.id.phoneBox);
+        TextInputLayout phoneLayout = findViewById(R.id.phoneBox);
         websiteName = findViewById(R.id.websiteInput);
-        webLayout = findViewById(R.id.websiteBox);
+        TextInputLayout webLayout = findViewById(R.id.websiteBox);
         zipcode = findViewById(R.id.zipcodeInput);
-        zipLayout = findViewById(R.id.zipcodeBox);
+        TextInputLayout zipLayout = findViewById(R.id.zipcodeBox);
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
