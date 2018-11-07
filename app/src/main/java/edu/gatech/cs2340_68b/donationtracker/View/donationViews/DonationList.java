@@ -31,7 +31,6 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
-    private Button addButton;
     private String newLocation;
 
     @Override
@@ -41,7 +40,7 @@ public class DonationList extends AppCompatActivity {
         final String locationName = (String) getIntent().getSerializableExtra("PLACENAME");
         final String defaultLocation = (String) getIntent().getSerializableExtra("DEFAULT");
         donationListView = findViewById(R.id.donationList);
-        addButton = findViewById(R.id.add_button);
+        Button addButton = findViewById(R.id.add_button);
 
         if (locationName == null) {
             newLocation = defaultLocation;
