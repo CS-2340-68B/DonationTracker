@@ -3,7 +3,6 @@ package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,11 +17,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.Register;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 public class LocationMap extends FragmentActivity implements OnMapReadyCallback {
 

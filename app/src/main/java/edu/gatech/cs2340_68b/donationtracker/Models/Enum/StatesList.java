@@ -36,7 +36,7 @@ public enum StatesList {
     /**
      * The set of states addressed by abbreviations.
      */
-    private static final Map<String, StatesList> STATES_BY_ABBR = new HashMap<String, StatesList>();
+    private static final Map<String, StatesList> STATES_BY_ABBR = new HashMap<>();
 
     /* static initializer */
     static {

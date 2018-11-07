@@ -1,10 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
-import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 

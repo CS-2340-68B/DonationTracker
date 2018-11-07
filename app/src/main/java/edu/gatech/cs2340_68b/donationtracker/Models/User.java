@@ -1,8 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
