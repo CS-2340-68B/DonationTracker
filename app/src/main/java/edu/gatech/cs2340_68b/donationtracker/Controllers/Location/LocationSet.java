@@ -65,7 +65,7 @@ public class LocationSet extends AppCompatActivity {
                 String cityNameStr = cityName.getText().toString();
                 String zipcodeStr = zipcode.getText().toString();
                 String stateChooseStr = stateChoose.getSelectedItem().toString();
-                String phoneNumnberStr = phoneNumber.getText().toString();
+                String phoneNumberStr = phoneNumber.getText().toString();
                 String websiteNameStr = websiteName.getText().toString();
                 String locationTypeStr = locationType.getSelectedItem().toString();
 
@@ -83,7 +83,7 @@ public class LocationSet extends AppCompatActivity {
                 String newKey = getKey();
 
                 // Update the new location to DB
-                Location location = new Location(newKey, locationNameStr, latitude, longitude, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumnberStr, websiteNameStr);
+                Location location = new Location(newKey, locationNameStr, latitude, longitude, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
                 addNewLocationToDB(location);
             }
         });

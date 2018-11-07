@@ -30,7 +30,7 @@ public class LocationDetail extends AppCompatActivity {
         TextView phone = findViewById(R.id.phone);
         TextView website = findViewById(R.id.website);
         TextView latitude = findViewById(R.id.latitude);
-        TextView longtitude = findViewById(R.id.longtitude);
+        TextView longitude = findViewById(R.id.longtitude);
         Button donationListBt = findViewById(R.id.donationListBt);
 
         name.setText(location.getLocationName());
@@ -42,7 +42,7 @@ public class LocationDetail extends AppCompatActivity {
         phone.setText(location.getPhone());
         website.setText(location.getWebsite());
         latitude.setText(location.getLatitude());
-        longtitude.setText(location.getLongitude());
+        longitude.setText(location.getLongitude());
 
         donationListBt.setOnClickListener(new View.OnClickListener() {
             @Override

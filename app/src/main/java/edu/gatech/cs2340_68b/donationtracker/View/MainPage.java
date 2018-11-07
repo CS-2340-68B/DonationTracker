@@ -82,27 +82,6 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-//        Map<String, String> map = mapper.convertValue(new Location(), Map.class);
-//        RequestParams body = new RequestParams(map);
-////        body.put("", map);
-////        body.put(map);
-//        HttpUtils.post("/test", body, new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                Log.e("Object", "456");
-//            }
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                // Pull out the first event on the public timeline
-////                        Log.e("Array", timeline.toString());
-//                Location[] locations = gson.fromJson(response.toString(), Location[].class);
-//                for (int i = 0; i < locations.length; i++) {
-//                    Log.e("Index: ", "" + i);
-//                    Log.e("Location: ", locations[i].getAddress());
-//                }
-//            }
-//        });
     }
 }
 

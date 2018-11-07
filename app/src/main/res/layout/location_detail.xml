@@ -223,12 +223,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/latitudeStatic" />
 
             <TextView
-                android:id="@+id/longtitudeStatic"
+                android:id="@+id/longitudeStatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Longtitude:"
+                android:text="Longitude:"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/latitude" />
@@ -243,7 +243,7 @@
                 android:textColor="#191414"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/longtitudeStatic" />
+                app:layout_constraintTop_toBottomOf="@+id/longitudeStatic" />
 
 
         </LinearLayout>
