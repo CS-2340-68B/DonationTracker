@@ -11,9 +11,7 @@ import android.support.v7.widget.Toolbar;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class Menu extends AppCompatActivity {
-    private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle aToggle;
-    private Toolbar aToolbar;
 
 
     @Override
@@ -22,10 +20,10 @@ public class Menu extends AppCompatActivity {
 
         setContentView(R.layout.test_menu);
 
-        aToolbar = (Toolbar) findViewById(R.id.nav_actionbar);
+        Toolbar aToolbar = (Toolbar) findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
 
-        nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
 
         nDrawerLayout.addDrawerListener(aToggle);

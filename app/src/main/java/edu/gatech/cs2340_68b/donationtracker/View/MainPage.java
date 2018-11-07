@@ -29,14 +29,6 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.mapper;
 
 public class MainPage extends AppCompatActivity {
 
-    private Button logout;
-//    private ActionBar actionBar;
-    private Button locationList;
-    private Button userProfile;
-    private Button search;
-
-    private Button menuT;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +36,14 @@ public class MainPage extends AppCompatActivity {
 //        actionBar = getSupportActionBar();
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.main_page);
-        logout = (Button) findViewById(R.id.logoutButton);
+        Button logout = (Button) findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        locationList = (Button) findViewById(R.id.donationLocationListButton);
+        Button locationList = (Button) findViewById(R.id.donationLocationListButton);
         (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +54,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        userProfile = (Button) findViewById(R.id.profileButton);
+        Button userProfile = (Button) findViewById(R.id.profileButton);
         userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +64,7 @@ public class MainPage extends AppCompatActivity {
         });
 //        actionBar = getSupportActionBar();
 
-        search = (Button) findViewById(R.id.search);
+        Button search = (Button) findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +73,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        menuT = (Button) findViewById(R.id.menu);
+        Button menuT = (Button) findViewById(R.id.menu);
         menuT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

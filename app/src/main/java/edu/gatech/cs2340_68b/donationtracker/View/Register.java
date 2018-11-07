@@ -54,9 +54,7 @@ public class Register extends AppCompatActivity {
     private TextView usernameTV;
     private TextView passwordTV;
     private TextView confirmPasswordTV;
-    private Button register;
-    private Button cancel;
-//    private ActionBar actionBar;
+    //    private ActionBar actionBar;
     private Spinner utspinner;
     private Spinner locspinner;
     private User newAccount = new User();
@@ -79,8 +77,8 @@ public class Register extends AppCompatActivity {
         usernameTV = (TextView)findViewById(R.id.registerUsername);
         passwordTV = (TextView)findViewById(R.id.registerPassword);
         confirmPasswordTV = (TextView)findViewById(R.id.registerConfirmPassword);
-        register = (Button)findViewById(R.id.register);
-        cancel = (Button)findViewById(R.id.cancel);
+        Button register = (Button) findViewById(R.id.register);
+        Button cancel = (Button) findViewById(R.id.cancel);
         utspinner = (Spinner)findViewById(R.id.userTypeSpinner);
         locspinner = (Spinner) findViewById(R.id.locationSpinner);
 

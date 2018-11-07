@@ -39,10 +39,7 @@ public class Login extends AppCompatActivity {
 
     private TextView username;
     private TextView password;
-    private Button login;
-    private Button cancel;
     private int loginClick = 0;
-    private TextView resetPassword;
     private Map<String, Integer> typedUsername = new HashMap<>();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -60,9 +57,9 @@ public class Login extends AppCompatActivity {
 //        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         username = (TextView)findViewById(R.id.registerUsername);
         password = (TextView)findViewById(R.id.registerPassword);
-        cancel = (Button)findViewById(R.id.cancel);
-        login = (Button)findViewById(R.id.login);
-        resetPassword = (TextView)findViewById(R.id.forgetPassword);
+        Button cancel = (Button) findViewById(R.id.cancel);
+        Button login = (Button) findViewById(R.id.login);
+        TextView resetPassword = (TextView) findViewById(R.id.forgetPassword);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
