@@ -5,7 +5,7 @@ public class PasswordEncryption {
     public static String encode(String password) {
         String encodedPass = "";
         for (Character each : password.toCharArray()) {
-            encodedPass += (char) ((each + 77) * 94 + 33);
+            encodedPass += (char) (((each + 77) * 94) + 33);
         }
         return encodedPass;
     }
@@ -13,7 +13,7 @@ public class PasswordEncryption {
     public static String decode(String encodedPassword) {
         String decodedPass = "";
         for (Character each : encodedPassword.toCharArray()) {
-            decodedPass += (char) ((each - 33) / 94 - 77);
+            decodedPass += (char) (((each - 33) / 94) - 77);
         }
         return decodedPass;
     }

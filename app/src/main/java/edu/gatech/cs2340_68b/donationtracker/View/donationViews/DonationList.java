@@ -94,7 +94,7 @@ public class DonationList extends AppCompatActivity {
             });
 
         //Turn invisible add button if the current user is Admin and or user and locationemployee (not current location)
-        if (currentUser.getAssignedLocation() == null || !currentUser.getAssignedLocation().equals(newLocation)) {
+        if ((currentUser.getAssignedLocation() == null) || !currentUser.getAssignedLocation().equals(newLocation)) {
 
             addButton.setVisibility(View.INVISIBLE);
         }

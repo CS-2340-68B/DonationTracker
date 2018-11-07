@@ -9,7 +9,7 @@ public class VerifyFormat {
 
 
     public static boolean verifyPassword (String pass) {
-        if (pass == null || pass.length() == 0) {
+        if ((pass == null) || (pass.length() == 0)) {
             return false;
         }
 

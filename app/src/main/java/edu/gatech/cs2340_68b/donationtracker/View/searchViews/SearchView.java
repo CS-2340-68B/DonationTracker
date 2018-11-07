@@ -220,7 +220,7 @@ public class SearchView extends AppCompatActivity {
                     keyHashFromFB.add(snapshot.getKey());
 
                     // Check for location requirement.
-                    if (searchCriteria.getLocationName().equals("All")
+                    if ("All".equals(searchCriteria.getLocationName())
                             || searchCriteria.getLocationName().equals(detail.getLocation())) {
                         donationList.add(detail);
                         Map.Entry<String, String> entry =
