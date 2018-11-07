@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Enum fo all states
+ */
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public enum StatesList {
 
@@ -68,7 +71,11 @@ public enum StatesList {
         return abbreviation;
     }
 
-
+    /**
+     * Get the value of the state
+     * @param name name of the state
+     * @return value of the name
+     */
     public static StatesList valueOfName(final String name) {
         final String enumName = name.toUpperCase().replaceAll(" ", "_");
         try {

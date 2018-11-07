@@ -26,6 +26,9 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Control the view of location list
+ */
 public class LocationListView extends AppCompatActivity {
 
     private ListView locationListView;

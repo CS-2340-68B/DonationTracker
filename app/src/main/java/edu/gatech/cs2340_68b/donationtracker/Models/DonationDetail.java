@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
+/**
+ * Donation detail class
+ */
 @SuppressWarnings("ConstructorWithTooManyParameters")
 public class DonationDetail implements Serializable {
 

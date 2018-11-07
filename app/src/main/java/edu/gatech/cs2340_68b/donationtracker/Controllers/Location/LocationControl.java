@@ -20,13 +20,24 @@ import java.util.Objects;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Control location list, get data from database and add data to database
+ */
+
 public class LocationControl {
     private Context context;
 
+    /**
+     * A constructor for LocationControl class
+     * @param context a context
+     */
     public LocationControl(Context context) {
         this.context = context;
     }
 
+    /**
+     * Read csv file
+     */
     public void readCSVFile() {
         try {
             //Open a stream on the raw file
@@ -47,6 +58,10 @@ public class LocationControl {
         }
     }
 
+    /**
+     * Add a new location to the database
+     * @param location a location
+     */
     public void addLocationToDB(final Location location) {
 
         final DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");

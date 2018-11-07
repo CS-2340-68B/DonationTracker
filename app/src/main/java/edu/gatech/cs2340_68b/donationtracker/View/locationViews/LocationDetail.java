@@ -11,6 +11,10 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationList;
 
+/**
+ * This class control location detail
+ * @version 1.0
+ */
 public class LocationDetail extends AppCompatActivity {
 
     private String LocationName;

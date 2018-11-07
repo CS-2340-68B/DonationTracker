@@ -25,6 +25,10 @@ public class User {
     private String assignedLocation;
     private ArrayList<UserSearch> userSearchList;
 
+    /**
+     * Get a user search list
+     * @return user list
+     */
     public ArrayList<UserSearch> getUserSearchList() {
         return userSearchList;
     }

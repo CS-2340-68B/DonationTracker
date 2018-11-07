@@ -24,6 +24,10 @@ import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
+/**
+ * Control donation detail page, get data from database
+ */
+
 public class DonationDetailControl extends AppCompatActivity {
     private EditText time;
     private TextView location;
@@ -60,8 +64,8 @@ public class DonationDetailControl extends AppCompatActivity {
         Button submit = findViewById(R.id.submit);
         name = findViewById(R.id.nameEdit);
 
-        /**
-         * Auto fill data into the box fills if the client want to view or edits
+        /*
+          Auto fill data into the box fills if the client want to view or edits
          */
         time.setText(donation.getTime());
         location.setText(donation.getLocation());
@@ -77,8 +81,8 @@ public class DonationDetailControl extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
-        /**
-         * Update the category dropdown base on whatever data show in database
+        /*
+          Update the category dropdown base on whatever data show in database
          */
         if (donation.getCategory() != null) {
             int spinnerPosition = getIndexSpinner(category, donation.getCategory());

@@ -12,6 +12,9 @@ import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Controller for the action bar menu
+ */
 public class Menu extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
 
