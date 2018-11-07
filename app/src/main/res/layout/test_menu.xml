@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="menu test" />
+            android:text="@string/menu_test" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

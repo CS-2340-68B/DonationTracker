@@ -13,7 +13,7 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif"
-        android:text="Donation Tracker"
+        android:text="@string/donation_tracker"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 </RelativeLayout>
