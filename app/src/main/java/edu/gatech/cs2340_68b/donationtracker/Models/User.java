@@ -171,7 +171,7 @@ public class User {
     /***
      * Setter for the count of failed attempts
      *
-     * @param failedAttempts number of current failed attemps
+     * @param failedAttempts number of current failed attempts
      */
     public void setFailedAttempts(int failedAttempts) {
         this.failedAttempts = failedAttempts;
