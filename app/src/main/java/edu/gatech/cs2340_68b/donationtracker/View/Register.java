@@ -56,7 +56,6 @@ public class Register extends AppCompatActivity {
     private Spinner utspinner;
     private Spinner locspinner;
     private User newAccount = new User();
-    private Button register;
 
     final int ADMIN = 0;
     final int USER = 1;
@@ -73,7 +72,7 @@ public class Register extends AppCompatActivity {
         usernameTV = findViewById(R.id.registerUsername);
         passwordTV = findViewById(R.id.registerPassword);
         confirmPasswordTV = findViewById(R.id.registerConfirmPassword);
-        register = findViewById(R.id.register);
+        Button register = findViewById(R.id.register);
         Button cancel = findViewById(R.id.cancel);
         utspinner = findViewById(R.id.userTypeSpinner);
         locspinner = findViewById(R.id.locationSpinner);
