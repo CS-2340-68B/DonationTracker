@@ -1,9 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
 import java.io.Serializable;
+import android.support.annotation.NonNull;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
@@ -35,6 +34,10 @@ public class User implements Serializable {
     private String userKey;
     private ArrayList<UserSearch> userSearchList;
 
+    /**
+     * Get a user search list
+     * @return user list
+     */
     public ArrayList<UserSearch> getUserSearchList() {
         return userSearchList;
     }
@@ -63,6 +66,7 @@ public class User implements Serializable {
         this.isLock = newuser.isLock;
         this.contact = newuser.contact;
         this.assignedLocation = newuser.assignedLocation;
+        this.userSearchList = newuser.userSearchList;
     }
 
     /***
@@ -76,13 +80,11 @@ public class User implements Serializable {
      * @param type user type
      * @param assignedLocation user's assigned location.
      */
-    public User(String username, String password, int failedAttempts, int lastFailed,
-                int lastLogin, UserType type, String assignedLocation) {
+    public User(String username, String password, int failedAttempts,
+                UserType type, String assignedLocation) {
         this.username = username;
         this.password = password;
         this.failedAttempts = failedAttempts;
-        this.lastFailed = lastFailed;
-        this.lastLogin = lastLogin;
         this.type = type;
         this.assignedLocation = assignedLocation;
     }
@@ -95,7 +97,7 @@ public class User implements Serializable {
      */
     public User(String username, String password) {
         //this.userID = java.util.UUID.randomUUID().toString();
-        this(username, password, 0, 0, 0, UserType.USER, null);
+        this(username, password, 0, UserType.USER, null);
     }
 
     /***
@@ -182,7 +184,7 @@ public class User implements Serializable {
     /***
      * Setter for the count of failed attempts
      *
-     * @param failedAttempts number of current failed attemps
+     * @param failedAttempts number of current failed attempts
      */
     public void setFailedAttempts(int failedAttempts) {
         this.failedAttempts = failedAttempts;
@@ -249,6 +251,7 @@ public class User implements Serializable {
         return this.assignedLocation;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return username + " " + password +

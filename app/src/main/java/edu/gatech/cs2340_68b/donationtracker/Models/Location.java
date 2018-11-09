@@ -1,11 +1,14 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /***
  * All information about the location, include external information like
  * phone number and website.
  */
+@SuppressWarnings({"ConstructorWithTooManyParameters", "OverlyComplexMethod", "EqualsAndHashcode"})
 public class Location implements Serializable {
     private String key;
     private String locationName;
@@ -262,6 +265,7 @@ public class Location implements Serializable {
         this.website = website;
     }
 
+    @NonNull
     @Override
     public String toString() {
         String s = "";

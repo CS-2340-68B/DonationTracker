@@ -21,7 +21,7 @@ android:layout_height="match_parent">
         android:id="@+id/locationInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="@string/name"
         tools:text="Location Name" />
 </android.support.design.widget.TextInputLayout>
 
@@ -39,8 +39,8 @@ android:layout_height="match_parent">
         android:id="@+id/cityInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="City"
-        android:text="City" />
+        android:hint="@string/city"
+        android:text="@string/city" />
 </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
@@ -57,8 +57,8 @@ android:layout_height="match_parent">
         android:id="@+id/addressInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Address"
-        android:text="Address" />
+        android:hint="@string/address"
+        android:text="@string/address" />
 </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
@@ -75,8 +75,8 @@ android:layout_height="match_parent">
         android:id="@+id/phoneInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:text="Phone" />
+        android:hint="@string/phone_number"
+        android:text="@string/phone" />
 </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
@@ -91,8 +91,8 @@ android:layout_height="match_parent">
         android:id="@+id/websiteInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="http://"
-        android:text="Website" />
+        android:hint="@string/http"
+        android:text="@string/website" />
 </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
@@ -108,8 +108,8 @@ android:layout_height="match_parent">
         android:id="@+id/zipcodeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Zipcode"
-        android:text="Zipcode" />
+        android:hint="@string/Zipcode"
+        android:text="@string/Zipcode" />
 </android.support.design.widget.TextInputLayout>
 
 <Spinner
@@ -145,7 +145,7 @@ android:layout_height="match_parent">
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:text="Button"
+    android:text="@string/button"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="@+id/websiteBox"
     app:layout_constraintHorizontal_bias="0.494"

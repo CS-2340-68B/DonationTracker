@@ -43,7 +43,6 @@
         <activity android:name=".View.donationViews.DonationDetailControl" />
         <activity android:name=".View.donationViews.DonationList" />
         <activity android:name=".View.searchViews.SearchView" />
-        <activity android:name=".View.locationViews.LocationForSearch" />
         <activity android:name=".View.Menu" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -60,7 +59,7 @@
         <activity
             android:name=".View.locationViews.LocationMap"
             android:label="@string/title_activity_location_map" />
-        <activity android:name=".View.searchViews.SearchHistory"></activity>
+        <activity android:name=".View.searchViews.SearchHistory" />
     </application>
 
 </manifest>

@@ -3,28 +3,21 @@ package edu.gatech.cs2340_68b.donationtracker.View;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -34,9 +27,9 @@ import org.json.JSONObject;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.entity.ByteArrayEntity;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
@@ -50,14 +43,17 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 
+/**
+ * Controller for register page, user can create a new account
+ * A new account is added to database
+ */
+
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class Register extends AppCompatActivity {
 
     private TextView usernameTV;
     private TextView passwordTV;
     private TextView confirmPasswordTV;
-    private Button register;
-    private Button cancel;
-//    private ActionBar actionBar;
     private Spinner utspinner;
     private Spinner locspinner;
     private User newAccount = new User();
@@ -74,58 +70,55 @@ public class Register extends AppCompatActivity {
         final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
         final DatabaseReference ref = firebase.getReference("accounts");
 
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-
-        usernameTV = (TextView)findViewById(R.id.registerUsername);
-        passwordTV = (TextView)findViewById(R.id.registerPassword);
-        confirmPasswordTV = (TextView)findViewById(R.id.registerConfirmPassword);
-        register = (Button)findViewById(R.id.register);
-        cancel = (Button)findViewById(R.id.cancel);
-        utspinner = (Spinner)findViewById(R.id.userTypeSpinner);
-        locspinner = (Spinner) findViewById(R.id.locationSpinner);
+        usernameTV = findViewById(R.id.registerUsername);
+        passwordTV = findViewById(R.id.registerPassword);
+        confirmPasswordTV = findViewById(R.id.registerConfirmPassword);
+        Button register = findViewById(R.id.register);
+        Button cancel = findViewById(R.id.cancel);
+        utspinner = findViewById(R.id.userTypeSpinner);
+        locspinner = findViewById(R.id.locationSpinner);
 
 
 
         // Read in location
-//        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
-//        final ArrayList<Location> locationList = new ArrayList<>();
-//        final ArrayList<String> locationListString = new ArrayList<>();
-//        final Context self = this;
-//        // Get values from locations
-//        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
-//                // Loads in all locations into the array list
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    // Create local copy of one location
-//                    Location place = snapshot.getValue(Location.class);
-//                    locationList.add(place);
-//                    locationListString.add(place.getLocationName());
-//                    Map.Entry<String, String> entry =
-//                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
-//                    locationInfo.add(entry);
-//
-//                     /*
-//                      Set up the adapter to display the locations in the spinner
-//                     */
-//                    ArrayAdapter<String> adapter2 = new ArrayAdapter(self,android.R.layout.simple_spinner_item, locationListString);
-//                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    locspinner.setAdapter(adapter2);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
+        DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         final ArrayList<Location> locationList = new ArrayList<>();
         final ArrayList<String> locationListString = new ArrayList<>();
         final Context self = this;
+        // Get values from locations
+        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                // Loads in all locations into the array list
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Create local copy of one location
+                    Location place = snapshot.getValue(Location.class);
+                    locationList.add(place);
+                    locationListString.add(Objects.requireNonNull(place).getLocationName());
+                    Map.Entry<String, String> entry =
+                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                    locationInfo.add(entry);
+
+                     /*
+                      Set up the adapter to display the locations in the spinner
+                     */
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter(self,android.R.layout.simple_spinner_item, locationListString);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    locspinner.setAdapter(adapter2);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+//        final ArrayList<Location> locationList = new ArrayList<>();
+//        final ArrayList<String> locationListString = new ArrayList<>();
+//        final Context self = this;
 
         // Get values from locations
         HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
@@ -201,14 +194,12 @@ public class Register extends AppCompatActivity {
         locspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                Log.d("MYTAG", "Stringhere"); //locationListString.get(position)
                 //Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
                 newAccount.setAssignedLocation(locationList.get(position).getLocationName());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                Log.d("MYTAG", "Nothing Selected"); //locationListString.get(position)
             }
 
         });
@@ -226,14 +217,12 @@ public class Register extends AppCompatActivity {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "User account format is not correct.");
                     alert.create().show();
-                    return;
                 }
 
                 else if (!password.equals(confirmPassword)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                             "Error", "Password are not the same.");
                     alert.create().show();
-                    return;
                 }
 
                 else if (!VerifyFormat.verifyPassword(password)) {
@@ -241,34 +230,10 @@ public class Register extends AppCompatActivity {
                             "Error", "Your password must contain at least 1 letter, 1 number, and " +
                             "one upper case letter, and be at least 8 characters long");
                     alert.create().show();
-                    return;
                 }
 
                 else {
-//                    try {
-//                        User u = new User();
-//                        User u1 = new User();
-//                        u1.setUsername("A");
-//                        u1.setPassword("B");
-//                        u.setUsername("Tuan");
-//                        u.setPassword("123456");
-//                        u.setEmployee(u1);
-//                        final Gson gson = new Gson();
-//
-//                        JSONObject json = new JSONObject(gson.toJson(u));
-//                        ByteArrayEntity entity = new ByteArrayEntity(json.toString().getBytes("UTF-8"));
-//                        client.post(this, "http://10.0.2.2:5000/test", entity, "application/json", new JsonHttpResponseHandler() {
-//                            @Override
-//                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                                super.onSuccess(statusCode, headers, response);
-//                                Log.e("Object: ", response.toString());
-//                                User newU = gson.fromJson(response.toString(), User.class);
-//                                Log.e("Info: ", newU.getUsername() + " - " + newU.getPassword());
-//                            }
-//                        });
-//                    } catch (Exception e) {
-//
-//                    }
+
                     RequestParams query =  new RequestParams();
                     query.put("username", username);
                     query.put("password", PasswordEncryption.encode(password));
@@ -286,9 +251,6 @@ public class Register extends AppCompatActivity {
                             } else {
                                 Intent intent = new Intent(Register.this, Login.class);
                                 startActivity(intent);
-
-                                //Update database
-
                                 finish();
                             }
                         }

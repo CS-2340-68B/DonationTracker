@@ -1,10 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,17 +20,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.Register;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
+/**
+ * Control the view of location list
+ */
 public class LocationListView extends AppCompatActivity {
 
     private ListView locationListView;
-//    private ActionBar actionBar;
     private Button mapButton;
 
     @Override
@@ -41,8 +39,6 @@ public class LocationListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_list_view);
 
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         locationListView = findViewById(R.id.locationList);
         mapButton = findViewById(R.id.MapButton);
 
@@ -62,7 +58,7 @@ public class LocationListView extends AppCompatActivity {
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
                     Map.Entry<String,String> entry =
-                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                            new AbstractMap.SimpleEntry<>(Objects.requireNonNull(place).getLocationName(), place.getAddress());
                     locationInfo.add(entry);
                 }
                 Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {
@@ -90,6 +86,7 @@ public class LocationListView extends AppCompatActivity {
                 });
 
                 mapButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         Intent locationMapView = new Intent(LocationListView.this, LocationMap.class);
                         locationMapView.putExtra("LocationList", locationList);

@@ -3,55 +3,31 @@ package edu.gatech.cs2340_68b.donationtracker.View;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.Map;
-
-import cz.msebera.android.httpclient.Header;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
-import edu.gatech.cs2340_68b.donationtracker.Models.Location;
-import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.mapper;
-
+/**
+ * Controller for the main page of the app
+ */
 public class MainPage extends AppCompatActivity {
-
-    private Button logout;
-//    private ActionBar actionBar;
-    private Button locationList;
-    private Button userProfile;
-    private Button search;
-
-    private Button menuT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
         setContentView(R.layout.main_page);
-        logout = (Button) findViewById(R.id.logoutButton);
+        Button logout = findViewById(R.id.logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        locationList = (Button) findViewById(R.id.donationLocationListButton);
+        Button locationList = findViewById(R.id.donationLocationListButton);
         (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +38,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        userProfile = (Button) findViewById(R.id.profileButton);
+        Button userProfile = findViewById(R.id.profileButton);
         userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +48,7 @@ public class MainPage extends AppCompatActivity {
         });
 //        actionBar = getSupportActionBar();
 
-        search = (Button) findViewById(R.id.search);
+        Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +57,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        menuT = (Button) findViewById(R.id.menu);
+        Button menuT = findViewById(R.id.menu);
         menuT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,27 +66,6 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-//        Map<String, String> map = mapper.convertValue(new Location(), Map.class);
-//        RequestParams body = new RequestParams(map);
-////        body.put("", map);
-////        body.put(map);
-//        HttpUtils.post("/test", body, new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                Log.e("Object", "456");
-//            }
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                // Pull out the first event on the public timeline
-////                        Log.e("Array", timeline.toString());
-//                Location[] locations = gson.fromJson(response.toString(), Location[].class);
-//                for (int i = 0; i < locations.length; i++) {
-//                    Log.e("Index: ", "" + i);
-//                    Log.e("Location: ", locations[i].getAddress());
-//                }
-//            }
-//        });
     }
 }
 

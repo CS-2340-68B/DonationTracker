@@ -20,7 +20,9 @@ import android.widget.Button;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
@@ -28,10 +30,13 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
+/**
+ * Get data from database and put to donation list
+ */
+
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
-    private Button addButton;
     private String newLocation;
 
     @Override
@@ -41,7 +46,7 @@ public class DonationList extends AppCompatActivity {
         final String locationName = (String) getIntent().getSerializableExtra("PLACENAME");
         final String defaultLocation = (String) getIntent().getSerializableExtra("DEFAULT");
         donationListView = findViewById(R.id.donationList);
-        addButton = findViewById(R.id.add_button);
+        Button addButton = findViewById(R.id.add_button);
 
         if (locationName == null) {
             newLocation = defaultLocation;
@@ -61,32 +66,24 @@ public class DonationList extends AppCompatActivity {
                     (findViewById(R.id.noItemTextView)).setVisibility(View.GONE);
                 }
                 ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                final ArrayList<String> keyHashFromFB = new ArrayList<>();
+                final List<DonationDetail> donationList = new ArrayList<>();
+                final List<String> keyHashFromFB = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     keyHashFromFB.add(snapshot.getKey());
                     donationList.add(detail);
                     Map.Entry<String,String> entry =
-                        new AbstractMap.SimpleEntry<>(detail.getName(), detail.getFullDescription());
+                        new AbstractMap.SimpleEntry<>(
+                                Objects.requireNonNull(detail)
+                                        .getName(), detail
+                                .getFullDescription());
                     donationInfo.add(entry);
                 }
-//                Collections.sort(donationInfo, new Comparator<Map.Entry<String, String>>() {
-//                    @Override
-//                    public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-//                        return o1.getKey().compareTo(o2.getKey());
-//                    }
-//                });
-//                Collections.sort(donationList, new Comparator<DonationDetail>() {
-//                    @Override
-//                    public int compare(DonationDetail o1, DonationDetail o2) {
-//                        return o1.getName().compareTo(o2.getName());
-//                    }
-//                });
                 donationListView.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
                 donationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(
+                            AdapterView<?> parent, View view, int position, long id) {
                         // Sending information through intent
                         DonationDetail donation = donationList.get(position);
                         String keyUsed = keyHashFromFB.get(position);
@@ -104,16 +101,18 @@ public class DonationList extends AppCompatActivity {
 
             });
 
-        /**
-         * Turn invisible add button if the current user is Admin and or user and locationemployee (not current location)
-         */
-        if (currentUser.getAssignedLocation() == null || !currentUser.getAssignedLocation().equals(newLocation)) {
+        //Turn invisible add button if the
+        // current user is Admin and or user and locationemployee (not current location)
+        if ((currentUser.getAssignedLocation() == null)
+                || !currentUser.getAssignedLocation().
+                equals(newLocation)) {
+
             addButton.setVisibility(View.INVISIBLE);
         }
 
 
-        /**
-         * ADD button implementation
+        /*
+          ADD button implementation
          */
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +120,12 @@ public class DonationList extends AppCompatActivity {
                 Log.e("New key: ", newLocation);
                 Intent detail = new Intent(DonationList.this, DonationDetailControl.class);
                 detail.putExtra("LOCATION", newLocation);
-                detail.putExtra("KEY", FirebaseDatabase.getInstance().getReference("donations/").push().getKey());
-                detail.putExtra("DATA", new DonationDetail(newLocation));
+                detail.putExtra("KEY",
+                        FirebaseDatabase.getInstance()
+                                .getReference(
+                                        "donations/").push().getKey());
+                detail.putExtra("DATA",
+                        new DonationDetail(newLocation));
                 startActivity(detail);
             }
         });

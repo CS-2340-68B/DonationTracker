@@ -1,5 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
@@ -83,6 +85,7 @@ public class UserSearch implements Serializable {
         this.locationName = locationName;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return keyword + " - " + searchOption + " - " + locationName;

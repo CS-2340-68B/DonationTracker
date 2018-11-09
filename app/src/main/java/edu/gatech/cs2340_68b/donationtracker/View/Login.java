@@ -1,14 +1,10 @@
 package edu.gatech.cs2340_68b.donationtracker.View;
 
-import android.content.Intent;
 import android.app.AlertDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,60 +16,36 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.JsonObject;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONObject;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import cz.msebera.android.httpclient.Header;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.AccountModify;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
-import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
-import edu.gatech.cs2340_68b.donationtracker.Models.Response;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
-import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
-
-
+/**
+ * Controller for login to the app, check account in the database
+ */
 public class Login extends AppCompatActivity {
 
     private TextView username;
     private TextView password;
-    private Button login;
-    private Button cancel;
-    private int loginClick = 0;
-    private TextView resetPassword;
     private Map<String, Integer> typedUsername = new HashMap<>();
-
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ref = database.getReference("accounts");
-    private ChildEventListener mChildListener;
-    private ActionBar actionBar;
-
-    private boolean validAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-//        actionBar = getSupportActionBar();
-//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1C2331")));
-        username = (TextView)findViewById(R.id.registerUsername);
-        password = (TextView)findViewById(R.id.registerPassword);
-        cancel = (Button)findViewById(R.id.cancel);
-        login = (Button)findViewById(R.id.login);
-        resetPassword = (TextView)findViewById(R.id.forgetPassword);
+        username = findViewById(R.id.registerUsername);
+        password = findViewById(R.id.registerPassword);
+        Button cancel = findViewById(R.id.cancel);
+        Button login = findViewById(R.id.login);
+        TextView resetPassword = findViewById(R.id.forgetPassword);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +114,7 @@ public class Login extends AppCompatActivity {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
 
-                            if (user.getIsLock()) {
+                            if (Objects.requireNonNull(user).getIsLock()) {
                                 AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                         "Sorry", "Account is currently lock. " +
                                                 "Please reset your password or check your email");
