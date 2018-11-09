@@ -8,13 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DataListAdapter extends BaseAdapter {
     @Nullable
-    ArrayList<Map.Entry<String, String>> data;
+    List<Map.Entry<String, String>> data;
     LayoutInflater inflater;
 
     DataListAdapter() {

@@ -20,6 +20,7 @@ import android.widget.Button;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -65,8 +66,8 @@ public class DonationList extends AppCompatActivity {
                     (findViewById(R.id.noItemTextView)).setVisibility(View.GONE);
                 }
                 ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                final ArrayList<String> keyHashFromFB = new ArrayList<>();
+                final List<DonationDetail> donationList = new ArrayList<>();
+                final List<String> keyHashFromFB = new ArrayList<>();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     keyHashFromFB.add(snapshot.getKey());
