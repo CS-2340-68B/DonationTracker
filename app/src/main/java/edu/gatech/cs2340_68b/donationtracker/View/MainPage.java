@@ -3,29 +3,12 @@ package edu.gatech.cs2340_68b.donationtracker.View;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.Map;
-
-import cz.msebera.android.httpclient.Header;
-import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
-import edu.gatech.cs2340_68b.donationtracker.Models.Location;
-import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
-
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
-import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.mapper;
 
 /**
  * Controller for the main page of the app
