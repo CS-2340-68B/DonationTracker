@@ -75,7 +75,7 @@ public class DonationDetail implements Serializable {
 
     /**
      * Set a new name
-     * @param name
+     * @param name a new name
      */
     public void setName(String name) { this.name = name; }
 
@@ -89,7 +89,7 @@ public class DonationDetail implements Serializable {
 
     /**
      * Get a location of the donation
-     * @return
+     * @return a location
      */
     public String getLocation() {
         return location;

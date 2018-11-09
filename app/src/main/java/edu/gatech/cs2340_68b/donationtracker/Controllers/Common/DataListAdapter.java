@@ -28,21 +28,25 @@ public class DataListAdapter extends BaseAdapter {
         this.inflater = inflater;
     }
 
+    @Override
     public int getCount() {
         // TODO Auto-generated method stub
         return (data != null) ? data.size() : 0;
     }
 
+    @Override
     public Object getItem(int arg0) {
         // TODO Auto-generated method stub
         return null;
     }
 
+    @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
         return position;
     }
 
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row;
         row = inflater.inflate(R.layout.list_view_layout, parent, false);

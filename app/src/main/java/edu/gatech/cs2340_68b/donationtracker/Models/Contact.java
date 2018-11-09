@@ -1,5 +1,7 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
-
+/**
+ * This class hold user information
+ */
 @SuppressWarnings("RedundantNoArgConstructor")
 public class Contact {
     private String firstName;
@@ -9,7 +11,7 @@ public class Contact {
     private Location location;
 
     /**
-     * This class hold user information
+     * A no argument contractor for the contact class
      */
     public Contact() {}
 
