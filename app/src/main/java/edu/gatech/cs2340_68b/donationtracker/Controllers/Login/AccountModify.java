@@ -1,6 +1,5 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers.Login;
 
-import android.app.AlertDialog;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -11,14 +10,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 
+/**
+ * Modify an account
+ */
 public class AccountModify {
-
+    /**
+     * Lock account after 3 login failure
+     * @param email an email to lock
+     */
     public static void lockAccount(String email) {
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
+        final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = Firebase.getReference("accounts");
         Query accountQuery = ref.orderByChild("username").equalTo(email);
         accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -30,7 +36,7 @@ public class AccountModify {
                 }
                 for (DataSnapshot i : dataSnapshot.getChildren()) {
                     User account = i.getValue(User.class);
-                    account.incrementFailed();
+                    Objects.requireNonNull(account).incrementFailed();
                     if (account.getFailedAttempts() >= 3) {
                         account.setIsLock(true);
                     }
@@ -43,9 +49,13 @@ public class AccountModify {
         });
     }
 
+    /**
+     * Reset password
+     * @param email account to reset password
+     */
     public static void resetAttemptCount(String email) {
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
+        final FirebaseDatabase Firebase = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = Firebase.getReference("accounts");
         Query accountQuery = ref.orderByChild("username").equalTo(email);
         accountQuery.addListenerForSingleValueEvent(new ValueEventListener() {
 

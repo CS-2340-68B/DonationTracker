@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 
 
@@ -25,22 +27,21 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 
 public class ForgetPassword extends AppCompatActivity {
-    private Button resetButton;
-    private Button goBack;
     private TextInputEditText userEmail;
     private TextInputLayout til;
     private ProgressBar progressBar;
+    @SuppressWarnings("FieldMayBeFinal")
     private Handler progressHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password);
-        resetButton = (Button) findViewById(R.id.resetButton);
-        goBack = (Button) findViewById(R.id.goBack);
+        Button resetButton = findViewById(R.id.resetButton);
+        Button goBack = findViewById(R.id.goBack);
         userEmail = findViewById(R.id.emailUser);
-        til = (TextInputLayout) findViewById(R.id.emailInput);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        til = findViewById(R.id.emailInput);
+        progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         // Reset button click
@@ -48,8 +49,8 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(ProgressBar.VISIBLE);
-                String inputEmail = userEmail.getText().toString().trim();
-                if (inputEmail.length() != 0 && VerifyFormat.verifyEmailFormat(inputEmail)) {
+                String inputEmail = Objects.requireNonNull(userEmail.getText()).toString().trim();
+                if ((inputEmail.length() != 0) && VerifyFormat.verifyEmailFormat(inputEmail)) {
                     checkIfExistInDB(inputEmail);
                 } else {
                     til.setError("Email format is not correct.");

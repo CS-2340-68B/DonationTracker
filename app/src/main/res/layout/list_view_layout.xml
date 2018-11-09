@@ -4,14 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
 
-        <LinearLayout
-            android:layout_width="255dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -22,7 +15,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Video1"
+                    android:text="@string/video1"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#339966"
                     android:textStyle="bold" />
@@ -37,7 +30,7 @@
                     android:id="@+id/detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="video1"
+                    android:text="@string/video1"
                     android:textColor="#606060" />
             </LinearLayout>
         </LinearLayout>
@@ -48,6 +41,3 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:src="@drawable/ic_launcher" />-->
 
-    </LinearLayout>
-
-</LinearLayout>

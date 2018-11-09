@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,7 +14,6 @@
         android:layout_width="105dp"
         android:layout_height="43dp"
         android:layout_marginTop="20dp"
-        android:autoText="true"
         android:background="@drawable/cancelbutton"
         app:layout_constraintEnd_toEndOf="@+id/userTypeSpinner"
         app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
@@ -23,7 +23,6 @@
         android:layout_width="105dp"
         android:layout_height="43dp"
         android:layout_marginTop="20dp"
-        android:autoText="true"
         android:background="@drawable/registerbutton"
         app:layout_constraintStart_toStartOf="@+id/userTypeSpinner"
         app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
@@ -42,7 +41,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/donapp" />
+        app:srcCompat="@drawable/donapp"
+        android:contentDescription="@string/donationappimage" />
 
     <EditText
         android:id="@+id/registerUsername"
@@ -52,7 +52,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textEmailAddress|textPersonName"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +84,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,12 +101,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/registerConfirmPassword"
         app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword">
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerConfirmPassword"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="165dp"
     </Spinner>
 
     <Spinner
@@ -118,13 +112,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/userTypeSpinner"
         app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner">
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="165dp"
-        android:textColor="#000000"
     </Spinner>
 
 
