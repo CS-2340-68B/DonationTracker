@@ -185,7 +185,7 @@ public class DonationDetail implements Serializable {
 
     /**
      * Set values
-     * @param newDonationDetails donaiton details
+     * @param newDonationDetails donation details
      */
     public void setValues(DonationDetail newDonationDetails) {
         time = newDonationDetails.time;
