@@ -1,8 +1,14 @@
 package edu.gatech.cs2340_68b.donationtracker.Models.Enum;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Enum fo all states
+ */
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public enum StatesList {
 
     ALABAMA("Alabama", "AL"), ALASKA("Alaska", "AK"), AMERICAN_SAMOA("American Samoa", "AS"), ARIZONA("Arizona", "AZ"), ARKANSAS(
@@ -11,7 +17,7 @@ public enum StatesList {
             "Federated States of Micronesia", "FM"), FLORIDA("Florida", "FL"), GEORGIA("Georgia", "GA"), GUAM("Guam", "GU"), HAWAII(
             "Hawaii", "HI"), IDAHO("Idaho", "ID"), ILLINOIS("Illinois", "IL"), INDIANA("Indiana", "IN"), IOWA("Iowa", "IA"), KANSAS(
             "Kansas", "KS"), KENTUCKY("Kentucky", "KY"), LOUISIANA("Louisiana", "LA"), MAINE("Maine", "ME"), MARYLAND("Maryland", "MD"), MARSHALL_ISLANDS(
-            "Marshall Islands", "MH"), MASSACHUSETTS("Massachusetts", "MA"), MICHIGAN("Michigan", "MI"), MINNESOTA("Minnesota", "MN"), MISSISSIPPI(
+            "Marshall Islands", "MH"), MASSACHUSETTS("Massachusetts", "MA"), @SuppressWarnings("LongLine") MICHIGAN("Michigan", "MI"), MINNESOTA("Minnesota", "MN"), MISSISSIPPI(
             "Mississippi", "MS"), MISSOURI("Missouri", "MO"), MONTANA("Montana", "MT"), NEBRASKA("Nebraska", "NE"), NEVADA("Nevada",
             "NV"), NEW_HAMPSHIRE("New Hampshire", "NH"), NEW_JERSEY("New Jersey", "NJ"), NEW_MEXICO("New Mexico", "NM"), NEW_YORK(
             "New York", "NY"), NORTH_CAROLINA("North Carolina", "NC"), NORTH_DAKOTA("North Dakota", "ND"), NORTHERN_MARIANA_ISLANDS(
@@ -36,7 +42,7 @@ public enum StatesList {
     /**
      * The set of states addressed by abbreviations.
      */
-    private static final Map<String, StatesList> STATES_BY_ABBR = new HashMap<String, StatesList>();
+    private static final Map<String, StatesList> STATES_BY_ABBR = new HashMap<>();
 
     /* static initializer */
     static {
@@ -65,7 +71,11 @@ public enum StatesList {
         return abbreviation;
     }
 
-
+    /**
+     * Get the value of the state
+     * @param name name of the state
+     * @return value of the name
+     */
     public static StatesList valueOfName(final String name) {
         final String enumName = name.toUpperCase().replaceAll(" ", "_");
         try {
@@ -75,6 +85,7 @@ public enum StatesList {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return name;

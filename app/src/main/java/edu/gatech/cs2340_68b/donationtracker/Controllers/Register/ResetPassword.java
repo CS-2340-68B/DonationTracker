@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
@@ -28,20 +30,20 @@ public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;
     private EditText repeatNewPassword;
-    private Button resetPasswordButton;
     private TextInputLayout til;
     private String currentUserEmail;
     public static boolean finishedFlag = false;
+    static final int NUM_1500 = 1500;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_password);
 
-        newPassword = (EditText) findViewById(R.id.PasswordField);
-        repeatNewPassword = (EditText) findViewById(R.id.repeatPasswordField);
-        til = (TextInputLayout) findViewById(R.id.repeatPasswordOut);
-        resetPasswordButton = (Button) findViewById(R.id.resetButton);
+        newPassword = findViewById(R.id.PasswordField);
+        repeatNewPassword = findViewById(R.id.repeatPasswordField);
+        til = findViewById(R.id.repeatPasswordOut);
+        Button resetPasswordButton = findViewById(R.id.resetButton);
 
         // Getting current user email from reset page
         Intent intent = getIntent();
@@ -78,11 +80,11 @@ public class ResetPassword extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
-                            user.setPassword(PasswordEncryption.encode(newPassword));
+                            Objects.requireNonNull(user).setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
                             System.out.println("Line 71: " + user.getPassword());
                             finishedFlag = true;
-                            ref.child(singleSnapShot.getKey()).setValue(user);
+                            ref.child(Objects.requireNonNull(singleSnapShot.getKey())).setValue(user);
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
                                 + " We will prompt you back to login page.");
@@ -94,7 +96,7 @@ public class ResetPassword extends AppCompatActivity {
                                         finish();
                                     }
                                 },
-                            1500);
+                            NUM_1500);
                         }
                     }
 

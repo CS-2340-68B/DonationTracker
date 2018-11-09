@@ -3,7 +3,6 @@ package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,16 +16,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
-import edu.gatech.cs2340_68b.donationtracker.View.Register;
-import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 
+/**
+ * Controller for the map
+ */
 public class LocationMap extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     private Button detailButton;
     private Location clickedLocation;
 
@@ -40,7 +39,7 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        Objects.requireNonNull(mapFragment).getMapAsync(this);
     }
 
 
@@ -55,13 +54,19 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        GoogleMap mMap = googleMap;
         LatLngBounds.Builder latBuilder = new LatLngBounds.Builder();
 
-        final ArrayList<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");
+        final Iterable<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");
         for (Location l: locations) {
             LatLng location = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
-            Marker marker = mMap.addMarker(new MarkerOptions().position(location).title(l.getLocationName()));
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(l.getLocationName())
+                    .snippet("Phone: " + l.getPhone()
+                            + " - Website: " + l.getWebsite())
+
+            );
             latBuilder.include(location);
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latBuilder.build(), 100));

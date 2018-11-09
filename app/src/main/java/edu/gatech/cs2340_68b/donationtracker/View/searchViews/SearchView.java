@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,14 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
@@ -44,21 +41,20 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
 
+/**
+ * Controller for search view
+ */
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class SearchView extends AppCompatActivity {
 
     // Define Variables
     private User currentUser;
     private RadioGroup searchRadioGroup;
-    private RadioButton itemRButton;
-    private RadioButton catRButton;
-    private Button searchHistoryButton;
     private TextInputEditText searchBar;
     private Spinner searchCatSpinner;
-    private Button searchButton;
     private Spinner searchLocSpinner;
     private ListView searchResultList;
     private int searchTypeFlag;
-    private boolean isSearchAll;
     private UserSearch searchCriteria;
     private ArrayList<String> locationListString;
 
@@ -70,22 +66,22 @@ public class SearchView extends AppCompatActivity {
         setContentView(R.layout.search_view);
 
         // Initialize components
-        searchRadioGroup = (RadioGroup) findViewById(R.id.searchTypeRadioGroup);
-        itemRButton = (RadioButton) findViewById(R.id.searchTypeItem);
-        catRButton = (RadioButton) findViewById(R.id.searchTypeCat);
-        searchHistoryButton = (Button) findViewById(R.id.searchHistoryButton);
-        searchBar = (TextInputEditText) findViewById(R.id.searchBar);
-        searchCatSpinner = (Spinner) findViewById(R.id.searchCatSpinner);
-        searchButton = (Button) findViewById(R.id.searchButton);
-        searchLocSpinner = (Spinner) findViewById(R.id.searchLocSpinner);
-        searchResultList = (ListView) findViewById(R.id.searchResultList);
+        searchRadioGroup = findViewById(R.id.searchTypeRadioGroup);
+        RadioButton itemRButton = findViewById(R.id.searchTypeItem);
+        RadioButton catRButton = findViewById(R.id.searchTypeCat);
+        Button searchHistoryButton = findViewById(R.id.searchHistoryButton);
+        searchBar = findViewById(R.id.searchBar);
+        searchCatSpinner = findViewById(R.id.searchCatSpinner);
+        Button searchButton = findViewById(R.id.searchButton);
+        searchLocSpinner = findViewById(R.id.searchLocSpinner);
+        searchResultList = findViewById(R.id.searchResultList);
         searchCriteria = new UserSearch();
         currentUser = Welcome.currentUser;
         locationListString = new ArrayList<>();
 
         // Initialize other variables
         searchTypeFlag = -1;
-        isSearchAll = true;
+        boolean isSearchAll = true;
         itemRButton.setChecked(true);
         searchCriteria.setSearchOption(SearchOptions.NAME);
 
@@ -93,9 +89,7 @@ public class SearchView extends AppCompatActivity {
         searchRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Log.d("MYTAG", "Radio Button Working");
                 View radioButton = searchRadioGroup.findViewById(checkedId);
-                Log.e("Check:", checkedId + "");
                 searchTypeFlag = searchRadioGroup.indexOfChild(radioButton);
                 if (searchTypeFlag == 0) { // Item search
                     searchCriteria.setSearchOption(SearchOptions.NAME);
@@ -113,7 +107,7 @@ public class SearchView extends AppCompatActivity {
         /*
          * CATEGORY SET UP
          */
-        // Set up cateogry spinner adapter
+        // Set up category spinner adapter
         ArrayAdapter<String> catAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         searchCatSpinner.setAdapter(catAdapter);
@@ -140,7 +134,7 @@ public class SearchView extends AppCompatActivity {
                     // Create local copy of one location
                     Location place = snapshot.getValue(Location.class);
                     locationList.add(place);
-                    locationListString.add(place.getLocationName());
+                    locationListString.add(Objects.requireNonNull(place).getLocationName());
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
                     locationInfo.add(entry);
@@ -177,7 +171,7 @@ public class SearchView extends AppCompatActivity {
 
     protected void search(final int removedIndex) {
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
-            searchCriteria.setKeyword(searchBar.getText().toString());
+            searchCriteria.setKeyword(Objects.requireNonNull(searchBar.getText()).toString());
         } else {
             searchCriteria.setKeyword(searchCatSpinner.getSelectedItem().toString());
         }
@@ -190,7 +184,7 @@ public class SearchView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUser = dataSnapshot.getValue(User.class);
-                ArrayList<UserSearch> temp = currentUser.getUserSearchList();
+                ArrayList<UserSearch> temp = Objects.requireNonNull(currentUser).getUserSearchList();
                 if (temp == null) {
                     temp = new ArrayList<>();
 
@@ -211,7 +205,7 @@ public class SearchView extends AppCompatActivity {
 
         // Query search result
         DatabaseReference donationDB = FirebaseDatabase.getInstance().getReference("donations");
-        Query donationQuery = null;
+        Query donationQuery;
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
             donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
         } else {
@@ -230,11 +224,11 @@ public class SearchView extends AppCompatActivity {
                     keyHashFromFB.add(snapshot.getKey());
 
                     // Check for location requirement.
-                    if (searchCriteria.getLocationName().equals("All")
-                            || searchCriteria.getLocationName().equals(detail.getLocation())) {
+                    if ("All".equals(searchCriteria.getLocationName())
+                            || searchCriteria.getLocationName().equals(Objects.requireNonNull(detail).getLocation())) {
                         donationList.add(detail);
                         Map.Entry<String, String> entry =
-                                new AbstractMap.SimpleEntry<>(detail.getName(), detail.getLocation());
+                                new AbstractMap.SimpleEntry<>(Objects.requireNonNull(detail).getName(), detail.getLocation());
                         donationInfo.add(entry);
                     }
                 }
