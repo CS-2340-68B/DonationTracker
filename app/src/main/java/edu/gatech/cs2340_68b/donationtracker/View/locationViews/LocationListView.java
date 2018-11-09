@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -14,6 +15,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -22,9 +26,13 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Objects;
 
+import cz.msebera.android.httpclient.Header;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 
 /**
  * Control the view of location list
@@ -45,20 +53,19 @@ public class LocationListView extends AppCompatActivity {
         // Get locations from firebase
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
 
-        // Get values from locations
-        locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+        HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
                 ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 final ArrayList<Location> locationList = new ArrayList<>();
-                // Loads in all locations into the array list
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    // Create local copy of one location
-                    Location place = snapshot.getValue(Location.class);
-                    locationList.add(place);
+                Location[] locations = gson.fromJson(response.toString(), Location[].class);
+                for (int i = 0; i < locations.length; i++) {
+                    locationList.add(locations[i]);
                     Map.Entry<String,String> entry =
-                            new AbstractMap.SimpleEntry<>(Objects.requireNonNull(place).getLocationName(), place.getAddress());
+                            new AbstractMap.SimpleEntry<>(
+                                    Objects.requireNonNull(locations[i]).getLocationName(),
+                                    locations[i].getAddress());
                     locationInfo.add(entry);
                 }
                 Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {
@@ -93,11 +100,6 @@ public class LocationListView extends AppCompatActivity {
                         startActivity(locationMapView);
                     }
                 });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

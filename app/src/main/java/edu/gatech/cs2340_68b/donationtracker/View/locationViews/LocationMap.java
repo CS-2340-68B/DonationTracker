@@ -60,7 +60,13 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
         final Iterable<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");
         for (Location l: locations) {
             LatLng location = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
-            Marker marker = mMap.addMarker(new MarkerOptions().position(location).title(l.getLocationName()));
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(l.getLocationName())
+                    .snippet("Phone: " + l.getPhone()
+                            + " - Website: " + l.getWebsite())
+
+            );
             latBuilder.include(location);
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latBuilder.build(), 100));
