@@ -18,6 +18,7 @@ public class DonationDetail implements Serializable {
     private String category;
     private String comment;
     private String name;
+    private String donationKey;
 
     /**
      * Hold donation information
@@ -176,12 +177,29 @@ public class DonationDetail implements Serializable {
     }
 
     /**
-     * Set a comment
+     * Get a comment
      * @param comment a new comment
      */
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    /**
+     * Get donation's key
+     * @return donation's key
+     */
+    public String getDonationKey() {
+        return donationKey;
+    }
+
+    /**
+     * Set the key for donation
+     * @param donationKey donation's key
+     */
+    public void setDonationKey(String donationKey) {
+        this.donationKey = donationKey;
+    }
+
 
     /**
      * Set values

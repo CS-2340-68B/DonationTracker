@@ -23,11 +23,17 @@ public class PasswordEncryption {
     }
 
     /**
+     *
      * Decode a password
      * @param encodedPassword decoded password
      * @return a decoded password
+     * @throws IllegalArgumentException throw when pass in null String
      */
     public static String decode(String encodedPassword) {
+        if (encodedPassword == null) {
+            throw new IllegalArgumentException(
+                    "Encode String cannot be null");
+        }
         String decodedPass = "";
         for (Character each : encodedPassword.toCharArray()) {
             decodedPass += (char) (((each - NUM_33) / NUM_94) - NUM_77);
