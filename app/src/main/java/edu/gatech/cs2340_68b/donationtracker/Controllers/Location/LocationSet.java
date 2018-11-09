@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.location.Geocoder;
-import android.location.Address;
 
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,10 +15,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * A controller that connect to the location set view and gather and populate data from database
+ */
 public class LocationSet extends AppCompatActivity {
 
     private TextInputEditText locationName;
@@ -29,13 +31,6 @@ public class LocationSet extends AppCompatActivity {
     private TextInputEditText phoneNumber;
     private TextInputEditText websiteName;
     private TextInputEditText zipcode;
-    private TextInputLayout locationLayout;
-    private TextInputLayout cityLayout;
-    private TextInputLayout addressLayout;
-    private TextInputLayout phoneLayout;
-    private TextInputLayout zipLayout;
-    private TextInputLayout webLayout;
-    private Button submitButton;
     private Spinner stateChoose;
     private Spinner locationType;
 
@@ -45,21 +40,21 @@ public class LocationSet extends AppCompatActivity {
         setContentView(R.layout.location_set);
 
         // Initialize variables
-        submitButton = findViewById(R.id.submitButton);
+        Button submitButton = findViewById(R.id.submitButton);
         stateChoose = findViewById(R.id.stateChoose);
         locationType = findViewById(R.id.locationType);
         locationName = findViewById(R.id.locationInput);
-        locationLayout = findViewById(R.id.locationBox);
+        TextInputLayout locationLayout = findViewById(R.id.locationBox);
         cityName = findViewById(R.id.cityInput);
-        cityLayout = findViewById(R.id.cityBox);
+        TextInputLayout cityLayout = findViewById(R.id.cityBox);
         addressName = findViewById(R.id.addressInput);
-        addressLayout = findViewById(R.id.addressBox);
+        TextInputLayout addressLayout = findViewById(R.id.addressBox);
         phoneNumber = findViewById(R.id.phoneInput);
-        phoneLayout = findViewById(R.id.phoneBox);
+        TextInputLayout phoneLayout = findViewById(R.id.phoneBox);
         websiteName = findViewById(R.id.websiteInput);
-        webLayout = findViewById(R.id.websiteBox);
+        TextInputLayout webLayout = findViewById(R.id.websiteBox);
         zipcode = findViewById(R.id.zipcodeInput);
-        zipLayout = findViewById(R.id.zipcodeBox);
+        TextInputLayout zipLayout = findViewById(R.id.zipcodeBox);
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +62,13 @@ public class LocationSet extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Convert to string
-                String addressNameStr = addressName.getText().toString();
-                String locationNameStr = locationName.getText().toString();
-                String cityNameStr = cityName.getText().toString();
-                String zipcodeStr = zipcode.getText().toString();
+                String addressNameStr = Objects.requireNonNull(addressName.getText()).toString();
+                String locationNameStr = Objects.requireNonNull(locationName.getText()).toString();
+                String cityNameStr = Objects.requireNonNull(cityName.getText()).toString();
+                String zipcodeStr = Objects.requireNonNull(zipcode.getText()).toString();
                 String stateChooseStr = stateChoose.getSelectedItem().toString();
-                String phoneNumnberStr = phoneNumber.getText().toString();
-                String websiteNameStr = websiteName.getText().toString();
+                String phoneNumberStr = Objects.requireNonNull(phoneNumber.getText()).toString();
+                String websiteNameStr = Objects.requireNonNull(websiteName.getText()).toString();
                 String locationTypeStr = locationType.getSelectedItem().toString();
 
                 // Get the full address if store
@@ -81,16 +76,12 @@ public class LocationSet extends AppCompatActivity {
 
                 // Generate helper method to get longitude
                 List<Integer> data = getLongitudeAttitude(fullAddress);
-//                String longitude = Integer.toString(data[0]);
-                String longitude = null;
-//                String latitude = Integer.toString(data[1]);
-                String latitude = null;
 
                 // Get out the next key for new location
                 String newKey = getKey();
 
                 // Update the new location to DB
-                Location location = new Location(newKey, locationNameStr, latitude, longitude, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumnberStr, websiteNameStr);
+                Location location = new Location(newKey, locationNameStr, null, null, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
                 addNewLocationToDB(location);
             }
         });

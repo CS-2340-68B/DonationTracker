@@ -8,12 +8,15 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Controller for the action bar menu
+ */
 public class Menu extends AppCompatActivity {
-    private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle aToggle;
-    private Toolbar aToolbar;
 
 
     @Override
@@ -22,17 +25,17 @@ public class Menu extends AppCompatActivity {
 
         setContentView(R.layout.test_menu);
 
-        aToolbar = (Toolbar) findViewById(R.id.nav_actionbar);
+        Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
 
-        nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
         aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
 
         nDrawerLayout.addDrawerListener(aToggle);
         aToggle.syncState();
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -43,7 +46,9 @@ public class Menu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (aToggle.onOptionsItemSelected(item)) {
             return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
 }

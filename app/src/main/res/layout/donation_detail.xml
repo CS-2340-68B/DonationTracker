@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,7 +26,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="serif"
-                android:text="Donation Detail"
+                android:text="@string/donation_detail"
                 android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="30sp"
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="4dp"
-                android:text="Location of Donation Name"
+                android:text="@string/location_of_donation_name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/timeInput"
@@ -76,7 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="4dp"
-                android:text="Name"
+                android:text="@string/name"
+                android:labelFor="@id/nameEdit"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"/>
 
@@ -87,7 +89,8 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                />
 
             <TextView
                 android:id="@+id/timeText"
@@ -95,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Time"
+                android:text="@string/time"
+                android:labelFor="@id/timeInput"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/donationDetailTitle"
@@ -122,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="4dp"
-                android:text="Full description of item"
+                android:text="@string/full_description_of_item"
+                android:labelFor="@id/fullDescriptionEdit"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/locationDonationEdit"
@@ -148,10 +153,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="4dp"
-                android:text="Short description of item"
+                android:text="@string/short_description_of_item"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
+                android:labelFor="@id/shortDescriptionEdit"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/fullDescriptionEdit"
                 app:layout_constraintTop_toBottomOf="@+id/fullDescriptionEdit" />
@@ -172,7 +178,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Value"
+                android:text="@string/value"
+                android:labelFor="@id/valueEdit"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
@@ -193,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Category"
+                android:text="@string/category"
                 android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
@@ -216,9 +223,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Comment"
+                android:text="@string/comment"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
+                android:labelFor="@id/commentEdit"
                 app:layout_constraintStart_toStartOf="@+id/valueEdit"
                 app:layout_constraintTop_toBottomOf="@+id/valueEdit" />
 
@@ -238,7 +246,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Edit"
+                android:text="@string/edit"
                 app:layout_constraintEnd_toEndOf="@+id/categorySpinner"
                 app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
         </LinearLayout>
