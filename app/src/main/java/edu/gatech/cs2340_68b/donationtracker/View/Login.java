@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,20 +20,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonObject;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import cz.msebera.android.httpclient.Header;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncryption;
+import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Login.AccountModify;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Register.ForgetPassword;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.SearchOptions;
+import edu.gatech.cs2340_68b.donationtracker.Models.Response;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
+
+import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 
 
 public class Login extends AppCompatActivity {
@@ -79,6 +90,41 @@ public class Login extends AppCompatActivity {
                 String inputPassword = password.getText().toString();
                 inputPassword = PasswordEncryption.encode(inputPassword);
                 gatewayLogin(inputUsername, inputPassword);
+
+//                RequestParams query =  new RequestParams();
+//                query.put("email_signin", inputUsername);
+//                query.put("password_signin", inputPassword);
+//                HttpUtils.postForm("/signin", query, new JsonHttpResponseHandler() {
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                        super.onSuccess(statusCode, headers, response);
+//                        Response res = gson.fromJson(response.toString(), Response.class);
+//                        Log.e("Tag: ", res.status);
+//                        if (res.status.equals("noAccount")) {
+//                            AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
+//                                    "Oops", "Email does not exist.");
+//                            alert.create().show();
+//                            return;
+//                        } else if (res.status.equals("wrongPassword")) {
+//                            AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
+//                                    "Oops", "Wrong password.");
+//                            alert.create().show();
+//                        } else if (res.status.equals("accountLock")) {
+//                            AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
+//                                    "Sorry", "Account is currently lock. " +
+//                                            "Please reset your password or check your email");
+//                            alert.create().show();
+//                        } else {
+//                            User user = gson.fromJson(
+//                                    gson.toJsonTree(res.data).getAsJsonObject(), User.class);
+//                            Welcome.currentUser = user;
+//                            Welcome.userKey = user.getUserKey();
+//                            Intent intent = new Intent(Login.this, MainPage.class);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    }
+//                });
             }
 
             private void gatewayLogin(final String userName, final String password) {

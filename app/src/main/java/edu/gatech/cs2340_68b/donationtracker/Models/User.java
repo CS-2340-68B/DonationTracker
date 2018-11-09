@@ -1,5 +1,6 @@
 package edu.gatech.cs2340_68b.donationtracker.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -11,7 +12,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
  * and password associate to them. Different types of account have different
  * access to each part of the app.
  */
-public class User {
+public class User implements Serializable {
     private String userID;
     private String username = "user@gmail.com";
     private String password = "pass";
@@ -22,6 +23,16 @@ public class User {
     private boolean isLock;
     private Contact contact;
     private String assignedLocation;
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
+    }
+
+    private String userKey;
     private ArrayList<UserSearch> userSearchList;
 
     public ArrayList<UserSearch> getUserSearchList() {
@@ -240,6 +251,7 @@ public class User {
 
     @Override
     public String toString() {
-        return username + " " + password + " isLock: " + isLock;
+        return username + " " + password +
+                " isLock: " + isLock + ", userKey: " + userKey;
     }
 }

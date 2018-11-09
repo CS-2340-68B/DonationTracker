@@ -42,6 +42,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncrypti
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
+import edu.gatech.cs2340_68b.donationtracker.Models.Response;
 import edu.gatech.cs2340_68b.donationtracker.Models.Status;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
@@ -277,7 +278,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             super.onSuccess(statusCode, headers, response);
-                            Status res = gson.fromJson(response.toString(), Status.class);
+                            Response res = gson.fromJson(response.toString(), Response.class);
                             if (res.status.equals("fail")) {
                                 AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                                         "Registration Error", "Username already exists");

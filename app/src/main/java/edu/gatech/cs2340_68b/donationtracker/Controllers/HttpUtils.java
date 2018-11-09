@@ -22,7 +22,7 @@ public class HttpUtils {
     }
 
     public static void postJson(Context c, String url, ByteArrayEntity entity, AsyncHttpResponseHandler handler) {
-        client.post(c, url, entity, "application/json", handler);
+        client.post(c, getAbsoluteUrl(url), entity, "application/json", handler);
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {
