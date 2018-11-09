@@ -20,6 +20,9 @@ import java.util.Objects;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * A controller that connect to the location set view and gather and populate data from database
+ */
 public class LocationSet extends AppCompatActivity {
 
     private TextInputEditText locationName;

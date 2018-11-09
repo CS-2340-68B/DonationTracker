@@ -2,13 +2,25 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+/**
+ * Verify the email and password format of the account
+ */
 @SuppressWarnings("OverlyComplexMethod")
 public class VerifyFormat {
+    /**
+     * Verifies an email format
+     * @param email user email
+     * @return a boolean if email format is valid
+     */
     public static boolean verifyEmailFormat(String email) {
         return EmailValidator.getInstance().isValid(email);
     }
 
-
+    /**
+     * Verifies a password format
+     * @param pass a new password
+     * @return if a new password format is valid
+     */
     public static boolean verifyPassword (String pass) {
         if ((pass == null) || (pass.length() == 0)) {
             return false;
