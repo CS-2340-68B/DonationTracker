@@ -7,19 +7,38 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncrypti
 import static org.junit.Assert.assertEquals;
 
 public class PasswordEncryptionEncodeTest {
-    String pass = "Trinh123";
-    char nt = (('T' + 77) * 94 + 33);
-    char nr = (('r' + 77) * 94 + 33);
-    char ni = (('i' + 77) * 94 + 33);
-    char nn = (('n' + 77) * 94 + 33);
-    char nh = (('h' + 77) * 94 + 33);
-    char n1 = (('1' + 77) * 94 + 33);
-    char n2 = (('2' + 77) * 94 + 33);
-    char n3 = (('3' + 77) * 94 + 33);
-   String ex = String.valueOf(nt + nr + ni + nn + nh + n1+ n2+ n3);
-    public void EncodeTest(){
-        assertEquals(ex, PasswordEncryption.encode(pass));
+    String pass  = "Trinh";
+    String pass2 = "hellooooooo";
+    String pass3 = "BangPham";
+    String pass4 = "Tuancho.com";
+
+    @Test
+    public void EncodeTest1(){
+        assertEquals("㬿䙃䋵䓋䊗", PasswordEncryption.encode(pass));
     }
+
+    @Test
+    public void EncodeTest2(){
+        assertEquals("䊗䅽䐏䐏䔩䔩䔩䔩䔩䔩䔩", PasswordEncryption.encode(pass2));
+    }
+
+    @Test
+    public void EncodeTest3(){
+        assertEquals("㒣䀅䓋䈹㧇䊗䀅䑭", PasswordEncryption.encode(pass3));
+    }
+
+    @Test
+    public void EncodeTest4(){
+        assertEquals("㬿䝝䀅䓋䃁䊗䔩ⵋ䃁䔩䑭", PasswordEncryption.encode(pass4));
+    }
+
+    @Test
+    public void EncodeTestEmpty(){
+        assertEquals("", PasswordEncryption.encode(""));
+    }
+
+
+
 
 
 }
