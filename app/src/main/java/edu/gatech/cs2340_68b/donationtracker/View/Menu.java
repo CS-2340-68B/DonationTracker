@@ -24,17 +24,12 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.test_menu);
-
         Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
-
         DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
         aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
-
         nDrawerLayout.addDrawerListener(aToggle);
         aToggle.syncState();
-
-
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
