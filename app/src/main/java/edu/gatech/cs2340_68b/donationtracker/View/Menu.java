@@ -16,6 +16,7 @@ import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
 /**
@@ -66,7 +67,7 @@ public class Menu extends AppCompatActivity {
                             startActivity(intent);
                         }
                         if (menuItem.getItemId() == R.id.nav_history) {
-                            Intent intent = new Intent(contect ,UserProfile.class);
+                            Intent intent = new Intent(contect ,SearchHistory.class);
                             startActivity(intent);
                         }
                         if (menuItem.getItemId() == R.id.nav_logout) {
