@@ -56,7 +56,7 @@ public class MainPage extends AppCompatActivity {
 //            }
 //        });
         Button locationList = findViewById(R.id.donationLocationListButton);
-//        (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
+        (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
         locationList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
