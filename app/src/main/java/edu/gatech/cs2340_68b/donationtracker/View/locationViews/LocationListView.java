@@ -38,6 +38,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
+import edu.gatech.cs2340_68b.donationtracker.View.Login;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
@@ -93,7 +94,9 @@ public class LocationListView extends AppCompatActivity {
                             startActivity(intent);
                         }
                         if (menuItem.getItemId() == R.id.nav_logout) {
-                            finish();
+//                            finish();
+                            Intent intent = new Intent(contect, Login.class);
+                            startActivity(intent);
                         }
                         // close drawer when item is tapped
                         drawer.closeDrawers();
