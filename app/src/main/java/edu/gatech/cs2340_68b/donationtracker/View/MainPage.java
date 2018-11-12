@@ -1,6 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
  */
 public class MainPage extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
+    private DrawerLayout drawer;
 
 
 
@@ -30,6 +33,10 @@ public class MainPage extends AppCompatActivity {
 
 
         setContentView(R.layout.main_page);
+        final Context contect = this;
+
+        drawer = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
         Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
@@ -41,13 +48,13 @@ public class MainPage extends AppCompatActivity {
 
 
 
-        Button logout = findViewById(R.id.logoutButton);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        Button logout = findViewById(R.id.logoutButton);
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
         Button locationList = findViewById(R.id.donationLocationListButton);
 //        (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
         locationList.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +66,14 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        Button userProfile = findViewById(R.id.profileButton);
-        userProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this, UserProfile.class);
-                startActivity(intent);
-            }
-        });
+//        Button userProfile = findViewById(R.id.profileButton);
+//        userProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainPage.this, UserProfile.class);
+//                startActivity(intent);
+//            }
+//        });
 //        actionBar = getSupportActionBar();
 
         Button search = findViewById(R.id.search);
@@ -86,6 +93,45 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        if (menuItem.getItemId() == R.id.nav_account) {
+                            Intent intent = new Intent(contect ,UserProfile.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_search) {
+                            Intent intent = new Intent(contect ,SearchView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_location) {
+                            Intent intent = new Intent(contect ,LocationListView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_history) {
+                            Intent intent = new Intent(contect ,UserProfile.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_logout) {
+                            finish();
+                        }
+
+
+
+                        // close drawer when item is tapped
+                        drawer.closeDrawers();
+
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+
+                        return true;
+                    }
+                });
 
 
 

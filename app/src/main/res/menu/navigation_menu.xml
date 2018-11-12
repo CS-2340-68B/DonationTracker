@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item android:id = "@+id/nav_account"
+            android:icon="@mipmap/baseline_person_black_24dp"
+            app:showAsAction = "always"
+            android:title="@string/my_account" />
 
-    <item android:id = "@+id/nav_account"
-        android:icon="@mipmap/baseline_person_black_24dp"
-        android:title="@string/my_account" />
+        <item android:id = "@+id/nav_search"
+            android:icon="@mipmap/baseline_search_black_24dp"
+            android:title="@string/search" />
 
-    <item android:id = "@+id/nav_search"
-        android:icon="@mipmap/baseline_search_black_24dp"
-        android:title="@string/search" />
+        <item android:id = "@+id/nav_location"
+            android:icon="@mipmap/baseline_location_city_black_24dp"
+            android:title="@string/location_list" />
 
-    <item android:id = "@+id/nav_location"
-        android:icon="@mipmap/baseline_location_city_black_24dp"
-        android:title="@string/location_list" />
+        <item android:id = "@+id/nav_history"
+            android:icon="@mipmap/baseline_history_black_24dp"
+            android:title="@string/history" />
 
-    <item android:id = "@+id/nav_history"
-        android:icon="@mipmap/baseline_history_black_24dp"
-        android:title="@string/history" />
-
-    <item android:id = "@+id/nav_logout"
-        android:icon="@mipmap/baseline_favorite_border_black_24dp"
-        android:title="@string/log_out" />
+        <item android:id = "@+id/nav_logout"
+            android:icon="@mipmap/baseline_favorite_border_black_24dp"
+            android:title="@string/log_out" />
+    </group>
 
 </menu>
