@@ -73,7 +73,6 @@ public class Login extends AppCompatActivity {
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                     "Oops", "Email does not exist.");
                             alert.create().show();
-                            return;
                         } else if (res.status.equals("wrongPassword")) {
                             AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
                                     "Oops", "Wrong password.");

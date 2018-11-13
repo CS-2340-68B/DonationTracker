@@ -54,13 +54,12 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        GoogleMap mMap = googleMap;
         LatLngBounds.Builder latBuilder = new LatLngBounds.Builder();
 
         final Iterable<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");
         for (Location l: locations) {
             LatLng location = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
-            Marker marker = mMap.addMarker(new MarkerOptions()
+            Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(location)
                     .title(l.getLocationName())
                     .snippet("Phone: " + l.getPhone()
@@ -69,9 +68,9 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
             );
             latBuilder.include(location);
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latBuilder.build(), 100));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latBuilder.build(), 100));
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker m) {
                 m.showInfoWindow();

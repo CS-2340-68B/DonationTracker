@@ -75,8 +75,6 @@ public class User implements Serializable {
      * @param username account's username
      * @param password account's password
      * @param failedAttempts number of failed attempts
-     * @param lastFailed last failed, set to 0
-     * @param lastLogin last time user login, set to 0
      * @param type user type
      * @param assignedLocation user's assigned location.
      */

@@ -15,11 +15,11 @@ public class PasswordEncryption {
      * @return encrypted password
      */
     public static String encode(String password) {
-        String encodedPass = "";
+        StringBuilder encodedPass = new StringBuilder();
         for (Character each : password.toCharArray()) {
-            encodedPass += (char) (((each + NUM_77) * NUM_94) + NUM_33);
+            encodedPass.append((char) (((each + NUM_77) * NUM_94) + NUM_33));
         }
-        return encodedPass;
+        return encodedPass.toString();
     }
 
     /**

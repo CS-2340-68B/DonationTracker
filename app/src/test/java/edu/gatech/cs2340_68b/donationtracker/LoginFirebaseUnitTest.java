@@ -36,7 +36,7 @@ public class LoginFirebaseUnitTest {
             assertEquals(userName, classUser.getUsername());
             assertEquals(password, classUser.getPassword());
         } else {
-            assertFalse(true);
+            fail();
         }
     }
 
@@ -48,7 +48,7 @@ public class LoginFirebaseUnitTest {
 
         // In case if both password and username are not match
         if (!verifyFormat.verifyEmailFormat(classUser.getUsername()) && !verifyFormat.verifyPassword(classUser.getPassword())) {
-            assertFalse(true);
+            fail();
         } else {
             assertNotEquals(userName, classUser.getUsername());
             assertNotEquals(password, classUser.getPassword());
