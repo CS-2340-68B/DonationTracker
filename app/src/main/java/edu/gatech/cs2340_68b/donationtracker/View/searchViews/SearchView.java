@@ -58,7 +58,7 @@ public class SearchView extends AppCompatActivity {
     private UserSearch searchCriteria;
     private ArrayList<String> locationListString;
 
-    Location allLocations = new Location("All");
+    private final Location allLocations = new Location("All");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +169,7 @@ public class SearchView extends AppCompatActivity {
         });
     }
 
-    protected void search(final int removedIndex) {
+    private void search(final int removedIndex) {
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
             searchCriteria.setKeyword(Objects.requireNonNull(searchBar.getText()).toString());
         } else {

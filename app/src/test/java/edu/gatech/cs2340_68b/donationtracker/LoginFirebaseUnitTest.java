@@ -31,7 +31,7 @@ public class LoginFirebaseUnitTest {
         when(classUser.getUsername()).thenReturn("test1@gatech.edu");
         when(classUser.getPassword()).thenReturn("12Th34567890");
 
-        if (verifyFormat.verifyEmailFormat(classUser.getUsername()) && verifyFormat.verifyPassword(classUser.getPassword())) {
+        if (VerifyFormat.verifyEmailFormat(classUser.getUsername()) && VerifyFormat.verifyPassword(classUser.getPassword())) {
             // In case if both password and username are match
             assertEquals(userName, classUser.getUsername());
             assertEquals(password, classUser.getPassword());
@@ -47,7 +47,7 @@ public class LoginFirebaseUnitTest {
         when(classUser.getPassword()).thenReturn("12Th34567890./");
 
         // In case if both password and username are not match
-        if (!verifyFormat.verifyEmailFormat(classUser.getUsername()) && !verifyFormat.verifyPassword(classUser.getPassword())) {
+        if (!VerifyFormat.verifyEmailFormat(classUser.getUsername()) && !VerifyFormat.verifyPassword(classUser.getPassword())) {
             fail();
         } else {
             assertNotEquals(userName, classUser.getUsername());
@@ -67,8 +67,8 @@ public class LoginFirebaseUnitTest {
         when(classUser.getUsername()).thenReturn("132323223");
         assertFalse(classUser.getUsername(), false);
 
-        assertFalse(verifyFormat.verifyEmailFormat("tnn123232"));
-        assertFalse(verifyFormat.verifyEmailFormat("tnn@mail"));
+        assertFalse(VerifyFormat.verifyEmailFormat("tnn123232"));
+        assertFalse(VerifyFormat.verifyEmailFormat("tnn@mail"));
     }
 
     @Test
@@ -77,25 +77,25 @@ public class LoginFirebaseUnitTest {
         when(classUser.getUsername()).thenReturn("tnn@gatech.edu");
         assertTrue(classUser.getUsername(), true);
 
-        assertTrue(verifyFormat.verifyEmailFormat("tnn123232@gatech.edu"));
-        assertTrue(verifyFormat.verifyEmailFormat("tesst@gmail.com"));
+        assertTrue(VerifyFormat.verifyEmailFormat("tnn123232@gatech.edu"));
+        assertTrue(VerifyFormat.verifyEmailFormat("tesst@gmail.com"));
     }
 
     @Test
     public void testValidPassword() {
-        assertTrue(verifyFormat.verifyPassword(password));
-        assertTrue(verifyFormat.verifyPassword("123231231Thg"));
+        assertTrue(VerifyFormat.verifyPassword(password));
+        assertTrue(VerifyFormat.verifyPassword("123231231Thg"));
 
         String fake = "1234Th34567890";
-        assertTrue(verifyFormat.verifyPassword(fake) && fake.length() >= 8);
+        assertTrue(VerifyFormat.verifyPassword(fake) && fake.length() >= 8);
     }
 
     @Test
     public void testNotValidPassword() {
-        assertFalse(verifyFormat.verifyPassword(password + "///."));
-        assertFalse(verifyFormat.verifyPassword("123231231hhg./"));
+        assertFalse(VerifyFormat.verifyPassword(password + "///."));
+        assertFalse(VerifyFormat.verifyPassword("123231231hhg./"));
 
         String fake = "1234Th";
-        assertFalse(verifyFormat.verifyPassword(fake) && fake.length() >= 8);
+        assertFalse(VerifyFormat.verifyPassword(fake) && fake.length() >= 8);
     }
 }

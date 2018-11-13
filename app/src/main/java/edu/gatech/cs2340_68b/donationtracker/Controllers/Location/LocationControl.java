@@ -25,7 +25,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
  */
 
 public class LocationControl {
-    private Context context;
+    private final Context context;
 
     /**
      * A constructor for LocationControl class
@@ -62,7 +62,7 @@ public class LocationControl {
      * Add a new location to the database
      * @param location a location
      */
-    public void addLocationToDB(final Location location) {
+    private void addLocationToDB(final Location location) {
 
         final DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {

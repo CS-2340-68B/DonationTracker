@@ -24,7 +24,7 @@ public class Welcome extends AppCompatActivity {
     private ImageButton imageButton;
     public static User currentUser = new User();
     public static String userKey;
-    public static Gson gson = new Gson();
+    public static final Gson gson = new Gson();
     public static ObjectMapper mapper = new ObjectMapper();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();

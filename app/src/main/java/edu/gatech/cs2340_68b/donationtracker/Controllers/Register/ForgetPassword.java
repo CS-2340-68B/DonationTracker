@@ -31,7 +31,7 @@ public class ForgetPassword extends AppCompatActivity {
     private TextInputLayout til;
     private ProgressBar progressBar;
     @SuppressWarnings("FieldMayBeFinal")
-    private Handler progressHandler = new Handler();
+    private final Handler progressHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class ForgetPassword extends AppCompatActivity {
                                 Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
-                                if (ResetPassword.finishedFlag == true) {
+                                if (ResetPassword.finishedFlag) {
                                     ResetPassword.finishedFlag = false;
                                     finish();
                                 }

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * @author Chanhee Lee
  */
 public class PasswordTest {
-    String correctPass;
+    private String correctPass;
 
     @Before
     public void setUp() {

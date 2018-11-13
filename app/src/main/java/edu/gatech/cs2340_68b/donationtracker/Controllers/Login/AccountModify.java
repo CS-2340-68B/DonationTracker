@@ -17,7 +17,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.User;
 /**
  * Modify an account
  */
-public class AccountModify {
+class AccountModify {
     /**
      * Lock account after 3 login failure
      * @param email an email to lock

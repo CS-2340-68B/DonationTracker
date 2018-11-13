@@ -15,8 +15,9 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 
 public class DataListAdapter extends BaseAdapter {
     @Nullable
+    private final
     List<Map.Entry<String, String>> data;
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
 
     DataListAdapter() {
         data = null;

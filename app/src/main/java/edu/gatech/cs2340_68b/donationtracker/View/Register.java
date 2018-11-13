@@ -50,12 +50,12 @@ public class Register extends AppCompatActivity {
     private TextView confirmPasswordTV;
     private Spinner utspinner;
     private Spinner locspinner;
-    private User newAccount = new User();
+    private final User newAccount = new User();
 
-    final int ADMIN = 0;
-    final int USER = 1;
-    final int LOCATIONEMPLOYEE = 2;
-    final int MANAGER = 3;
+    private final int ADMIN = 0;
+    private final int USER = 1;
+    private final int LOCATIONEMPLOYEE = 2;
+    private final int MANAGER = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

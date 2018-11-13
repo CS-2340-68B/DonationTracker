@@ -7,10 +7,10 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.PasswordEncrypti
 import static org.junit.Assert.assertEquals;
 
 public class PasswordEncryptionEncodeTest {
-    String pass  = "Trinh";
-    String pass2 = "hellooooooo";
-    String pass3 = "BangPham";
-    String pass4 = "Tuancho.com";
+    private final String pass  = "Trinh";
+    private final String pass2 = "hellooooooo";
+    private final String pass3 = "BangPham";
+    private final String pass4 = "Tuancho.com";
 
     @Test
     public void EncodeTest1(){

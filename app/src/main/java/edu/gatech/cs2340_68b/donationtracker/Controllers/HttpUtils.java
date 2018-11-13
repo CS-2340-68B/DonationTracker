@@ -15,7 +15,7 @@ public class HttpUtils {
     // URL to hosting server
     private static final String BASE_URL = "https://donation-tracker-server-heroku.herokuapp.com";
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static final AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url,
                            RequestParams params,

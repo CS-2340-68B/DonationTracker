@@ -4,9 +4,9 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
  * Encrypt a password to database
  */
 public class PasswordEncryption {
-    static final int NUM_77 = 77;
-    static final int NUM_94 = 94;
-    static final int NUM_33 = 33;
+    private static final int NUM_77 = 77;
+    private static final int NUM_94 = 94;
+    private static final int NUM_33 = 33;
 
 
     /**

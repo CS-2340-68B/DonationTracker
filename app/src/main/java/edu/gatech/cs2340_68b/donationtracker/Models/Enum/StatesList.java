@@ -67,7 +67,7 @@ public enum StatesList {
      *
      * @return the state's abbreviation.
      */
-    public String getAbbreviation() {
+    private String getAbbreviation() {
         return abbreviation;
     }
 
