@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
@@ -75,15 +76,15 @@ public class Register extends AppCompatActivity {
 
 
         // Read in location
-        final ArrayList<Location> locationList = new ArrayList<>();
-        final ArrayList<String> locationListString = new ArrayList<>();
+        final List<Location> locationList = new ArrayList<>();
+        final List<String> locationListString = new ArrayList<>();
         final Context self = this;
         // Get values from locations
         HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                List<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 Location[] locations = gson.fromJson(response.toString(), Location[].class);
                 for (int i = 0; i < locations.length; i++) {
                     locationList.add(locations[i]);
@@ -108,14 +109,17 @@ public class Register extends AppCompatActivity {
           Set up the adapter to display the user types in the spinner
          */
         ArrayAdapter<String> adapter1 = new ArrayAdapter(
-                this,android.R.layout.simple_spinner_item, UserType.values());
+                this,android.R.layout.simple_spinner_item,
+                UserType.values());
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         utspinner.setAdapter(adapter1);
 
         // UT Listener
         utspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemSelected(
+                    AdapterView<?> parentView,
+                    View selectedItemView, int position, long id) {
                 switch (position) {
                     case USER:
                         newAccount.setType(UserType.USER);
@@ -153,8 +157,10 @@ public class Register extends AppCompatActivity {
         // Location Listener
         locspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                //Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
+            public void onItemSelected(AdapterView<?> parentView,
+                                       View selectedItemView,
+                                       int position,
+                                       long id) {
                 newAccount.setAssignedLocation(locationList.get(position).getLocationName());
             }
 
@@ -187,7 +193,8 @@ public class Register extends AppCompatActivity {
 
                 else if (!VerifyFormat.verifyPassword(password)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                            "Error", "Your password must contain at least 1 letter, 1 number, and " +
+                            "Error", "Your password must " +
+                                    "contain at least 1 letter, 1 number, and " +
                             "one upper case letter, and be at least 8 characters long");
                     alert.create().show();
                 }
@@ -201,7 +208,9 @@ public class Register extends AppCompatActivity {
                     query.put("locationName", locationName);
                     HttpUtils.postForm("/register", query, new JsonHttpResponseHandler() {
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        public void onSuccess(
+                                int statusCode, Header[] headers,
+                                JSONObject response) {
                             super.onSuccess(statusCode, headers, response);
                             Response res = gson.fromJson(response.toString(), Response.class);
                             if (res.status.equals("fail")) {

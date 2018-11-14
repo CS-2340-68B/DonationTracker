@@ -56,9 +56,17 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         LatLngBounds.Builder latBuilder = new LatLngBounds.Builder();
 
-        final Iterable<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");
+        final Iterable<Location> locations =
+                (ArrayList<Location>)
+                        getIntent()
+                                .getSerializableExtra(
+                                "LocationList");
         for (Location l: locations) {
-            LatLng location = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
+            LatLng location =
+                    new LatLng(Double.parseDouble(
+                            l.getLatitude()),
+                            Double.parseDouble(
+                                    l.getLongitude()));
             Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(location)
                     .title(l.getLocationName())

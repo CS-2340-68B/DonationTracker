@@ -31,7 +31,10 @@ public class LoginFirebaseUnitTest {
         when(classUser.getUsername()).thenReturn("test1@gatech.edu");
         when(classUser.getPassword()).thenReturn("12Th34567890");
 
-        if (VerifyFormat.verifyEmailFormat(classUser.getUsername()) && VerifyFormat.verifyPassword(classUser.getPassword())) {
+        if (VerifyFormat.verifyEmailFormat(
+                classUser.getUsername())
+                && VerifyFormat.verifyPassword(
+                        classUser.getPassword())) {
             // In case if both password and username are match
             assertEquals(userName, classUser.getUsername());
             assertEquals(password, classUser.getPassword());
@@ -47,7 +50,9 @@ public class LoginFirebaseUnitTest {
         when(classUser.getPassword()).thenReturn("12Th34567890./");
 
         // In case if both password and username are not match
-        if (!VerifyFormat.verifyEmailFormat(classUser.getUsername()) && !VerifyFormat.verifyPassword(classUser.getPassword())) {
+        if (!VerifyFormat.verifyEmailFormat(classUser.getUsername())
+                && !VerifyFormat
+                .verifyPassword(classUser.getPassword())) {
             fail();
         } else {
             assertNotEquals(userName, classUser.getUsername());

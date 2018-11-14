@@ -74,18 +74,25 @@ public class ResetPassword extends AppCompatActivity {
                 final DatabaseReference ref = firebase.getReference("accounts");
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                 System.out.println("Line 63: " + currentUserEmail);
-                Query query = reference.child("accounts").orderByChild("username").equalTo(currentUserEmail);
+                Query query = reference.child(
+                        "accounts").orderByChild(
+                                "username").equalTo(
+                                        currentUserEmail);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
-                            Objects.requireNonNull(user).setPassword(PasswordEncryption.encode(newPassword));
+                            Objects.requireNonNull(user)
+                                    .setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
                             System.out.println("Line 71: " + user.getPassword());
                             finishedFlag = true;
-                            ref.child(Objects.requireNonNull(singleSnapShot.getKey())).setValue(user);
-                            AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
+                            ref.child(Objects
+                                    .requireNonNull(singleSnapShot
+                                            .getKey())).setValue(user);
+                            AlertDialog.Builder alert  = CustomDialog.errorDialog(
+                                    ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
                                 + " We will prompt you back to login page.");
                             alert.create().show();

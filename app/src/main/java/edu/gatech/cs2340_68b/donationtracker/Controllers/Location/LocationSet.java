@@ -130,7 +130,9 @@ public class LocationSet extends AppCompatActivity {
                 String locationTypeStr = locationType.getSelectedItem().toString();
 
                 // Get the full address if store
-                String fullAddress = "" + addressNameStr + ", " + cityNameStr + ", " + zipcodeStr + " " + stateChooseStr;
+                String fullAddress = "" + addressNameStr + ", "
+                        + cityNameStr + ", " + zipcodeStr + " "
+                        + stateChooseStr;
 
                 // Generate helper method to get longitude
                 List<Integer> data = getLongitudeAttitude(fullAddress);
@@ -139,7 +141,13 @@ public class LocationSet extends AppCompatActivity {
                 String newKey = getKey();
 
                 // Update the new location to DB
-                Location location = new Location(newKey, locationNameStr, null, null, addressNameStr, cityNameStr, stateChooseStr, zipcodeStr, locationTypeStr, phoneNumberStr, websiteNameStr);
+                Location location =
+                        new Location(newKey, locationNameStr,
+                                null, null,
+                                addressNameStr, cityNameStr,
+                                stateChooseStr, zipcodeStr,
+                                locationTypeStr, phoneNumberStr,
+                                websiteNameStr);
                 addNewLocationToDB(location);
             }
         });

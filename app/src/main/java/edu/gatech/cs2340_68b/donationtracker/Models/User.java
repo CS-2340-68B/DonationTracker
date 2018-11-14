@@ -3,6 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 import java.io.Serializable;
 import android.support.annotation.NonNull;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
@@ -38,7 +39,7 @@ public class User implements Serializable {
      * Get a user search list
      * @return user list
      */
-    public ArrayList<UserSearch> getUserSearchList() {
+    public List<UserSearch> getUserSearchList() {
         return userSearchList;
     }
 

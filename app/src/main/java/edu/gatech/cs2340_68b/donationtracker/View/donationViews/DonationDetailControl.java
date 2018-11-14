@@ -53,7 +53,6 @@ public class DonationDetailControl extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;
-    // --Commented out by Inspection (11/7/18, 10:49 AM):private DatabaseReference ref = database.getReference("donations");
 
     // Needs DATA, KEY, LOCATION to work properly
 
@@ -67,9 +66,8 @@ public class DonationDetailControl extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
-        DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
-        aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
-        nDrawerLayout.addDrawerListener(aToggle);
+        aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer.addDrawerListener(aToggle);
         aToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(

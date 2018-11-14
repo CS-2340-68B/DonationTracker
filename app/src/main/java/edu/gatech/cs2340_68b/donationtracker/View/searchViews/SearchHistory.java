@@ -101,7 +101,7 @@ public class SearchHistory extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 ArrayList<Map.Entry<String, String>> searchInfo = new ArrayList<>();
-                final ArrayList<UserSearch> searchList = new ArrayList<>();
+                final List<UserSearch> searchList = new ArrayList<>();
 
                 // Loads in all searches into the array list
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
@@ -111,16 +111,20 @@ public class SearchHistory extends AppCompatActivity {
                     searchList.add(search);
                     Map.Entry<String,String> entry =
                             new AbstractMap.SimpleEntry<>(
-                                    Objects.requireNonNull(search).getSearchOption() + ": " + search.getKeyword(),
+                                    Objects.requireNonNull(search).getSearchOption()
+                                            + ": " + search.getKeyword(),
                                     "Location: " + search.getLocationName());
                     searchInfo.add(entry);
                 }
                 Collections.reverse(searchInfo);
                 Collections.reverse(searchList);
-                searchHistoryListView.setAdapter(new DataListAdapter(searchInfo, getLayoutInflater()));
+                searchHistoryListView.setAdapter(
+                        new DataListAdapter(searchInfo, getLayoutInflater()));
                 searchHistoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(
+                            AdapterView<?> parent,
+                            View view, int position, long id) {
                         // Sending information through intent
                         UserSearch search = searchList.get(position);
                         Intent returnIntent = new Intent();

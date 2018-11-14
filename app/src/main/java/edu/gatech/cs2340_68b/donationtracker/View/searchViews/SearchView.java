@@ -159,7 +159,8 @@ public class SearchView extends AppCompatActivity {
          * CATEGORY SET UP
          */
         // Set up category spinner adapter
-        ArrayAdapter<String> catAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
+        ArrayAdapter<String> catAdapter = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, Category.values());
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         searchCatSpinner.setAdapter(catAdapter);
 
@@ -169,13 +170,13 @@ public class SearchView extends AppCompatActivity {
 
         // Read in location
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
-        final ArrayList<Location> locationList = new ArrayList<>();
+        final List<Location> locationList = new ArrayList<>();
         final Context self = this;
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                List<Map.Entry<String, String>> locationInfo = new ArrayList<>();
 
                 // Loads in all locations into the array list
                 locationList.add(allLocations);
@@ -187,12 +188,18 @@ public class SearchView extends AppCompatActivity {
                     locationList.add(place);
                     locationListString.add(Objects.requireNonNull(place).getLocationName());
                     Map.Entry<String, String> entry =
-                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                            new AbstractMap.SimpleEntry<>(place
+                                    .getLocationName(),
+                                    place.getAddress());
                     locationInfo.add(entry);
 
                     // Set up adapter for location spinner
-                    ArrayAdapter locationAdapter = new ArrayAdapter(self, android.R.layout.simple_spinner_item, locationListString);
-                    locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    ArrayAdapter locationAdapter;
+                    locationAdapter = new ArrayAdapter(self,
+                    android.R.layout.simple_spinner_item,
+                    locationListString);
+                    locationAdapter.setDropDownViewResource(
+                            android.R.layout.simple_spinner_dropdown_item);
                     searchLocSpinner.setAdapter(locationAdapter);
                 }
             }
@@ -235,7 +242,8 @@ public class SearchView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUser = dataSnapshot.getValue(User.class);
-                ArrayList<UserSearch> temp = Objects.requireNonNull(currentUser).getUserSearchList();
+                List<UserSearch> temp =
+                        Objects.requireNonNull(currentUser).getUserSearchList();
                 if (temp == null) {
                     temp = new ArrayList<>();
 
@@ -260,26 +268,32 @@ public class SearchView extends AppCompatActivity {
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
             donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
         } else {
-            donationQuery = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+            donationQuery =
+                    donationDB.orderByChild("category").equalTo(
+                            searchCriteria.getKeyword());
         }
 
         // Get data from firebase according to our query
         donationQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                final ArrayList<String> keyHashFromFB = new ArrayList<>();
+                final List<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                final List<DonationDetail> donationList = new ArrayList<>();
+                final List<String> keyHashFromFB = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     keyHashFromFB.add(snapshot.getKey());
 
                     // Check for location requirement.
                     if ("All".equals(searchCriteria.getLocationName())
-                            || searchCriteria.getLocationName().equals(Objects.requireNonNull(detail).getLocation())) {
+                            || searchCriteria.getLocationName().equals(
+                                    Objects.requireNonNull(detail).getLocation())) {
                         donationList.add(detail);
                         Map.Entry<String, String> entry =
-                                new AbstractMap.SimpleEntry<>(Objects.requireNonNull(detail).getName(), detail.getLocation());
+                                new AbstractMap.SimpleEntry<>(
+                                        Objects.requireNonNull(detail)
+                                                .getName(),
+                                        detail.getLocation());
                         donationInfo.add(entry);
                     }
                 }
@@ -293,7 +307,11 @@ public class SearchView extends AppCompatActivity {
                 }
                 searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(
+                            AdapterView<?> parent,
+                            View view,
+                            int position,
+                            long id) {
                     // Sending information through intent
                     String keyUsed = keyHashFromFB.get(position);
                     DonationDetail donation = donationList.get(position);
@@ -326,7 +344,10 @@ public class SearchView extends AppCompatActivity {
                     searchRadioGroup.check(R.id.searchTypeItem);
                 } else {
                     List<Category> catList = Arrays.asList(Category.values());
-                    searchCatSpinner.setSelection(catList.indexOf(Category.valueOf(search.getKeyword())));
+                    searchCatSpinner.setSelection(
+                            catList.indexOf(
+                                    Category.valueOf(
+                                            search.getKeyword())));
                     searchRadioGroup.check(R.id.searchTypeCat);
                 }
                 searchLocSpinner.setSelection(locationListString.indexOf(search.getLocationName()));

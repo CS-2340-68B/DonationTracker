@@ -135,7 +135,10 @@ public class LocationListView extends AppCompatActivity {
                 locationListView.setAdapter(new DataListAdapter(locationInfo, getLayoutInflater()));
                 locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(AdapterView<?> parent,
+                                            View view,
+                                            int position,
+                                            long id) {
                         // Sending information through intent
                         Location l = locationList.get(position);
                         Intent detail = new Intent(LocationListView.this, LocationDetail.class);
@@ -147,7 +150,9 @@ public class LocationListView extends AppCompatActivity {
                 mapButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent locationMapView = new Intent(LocationListView.this, LocationMap.class);
+                        Intent locationMapView = new Intent(
+                                LocationListView.this,
+                                LocationMap.class);
                         locationMapView.putExtra("LocationList", locationList);
                         startActivity(locationMapView);
                     }
