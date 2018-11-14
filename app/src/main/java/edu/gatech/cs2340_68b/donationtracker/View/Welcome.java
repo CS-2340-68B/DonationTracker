@@ -21,13 +21,11 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationContro
 
 public class Welcome extends AppCompatActivity {
 
-    private ImageButton imageButton;
     public static User currentUser = new User();
     public static String userKey;
     public static final Gson gson = new Gson();
     public static ObjectMapper mapper = new ObjectMapper();
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

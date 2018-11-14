@@ -53,7 +53,8 @@ public class DataListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View row;
         row = inflater.inflate(R.layout.list_view_layout, parent, false);
-        TextView title, detail;
+        TextView title;
+        TextView detail;
         title = row.findViewById(R.id.title);
         detail = row.findViewById(R.id.detail);
         title.setText((data != null) ? data.get(position).getKey() : null);

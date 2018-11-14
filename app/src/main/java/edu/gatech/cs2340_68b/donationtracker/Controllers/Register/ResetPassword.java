@@ -36,7 +36,7 @@ public class ResetPassword extends AppCompatActivity {
     private EditText repeatNewPassword;
     private TextInputLayout til;
     private String currentUserEmail;
-    public static boolean finishedFlag = false;
+    public static boolean finishedFlag;
     private static final int NUM_1500 = 1500;
 
     @Override

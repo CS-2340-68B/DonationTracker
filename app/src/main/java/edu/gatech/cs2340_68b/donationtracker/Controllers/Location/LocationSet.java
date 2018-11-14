@@ -160,9 +160,8 @@ public class LocationSet extends AppCompatActivity {
 
     // Generate the longitude and attitude base on the email address
     private List<Integer> getLongitudeAttitude(String locationAddress) {
-        List<Integer> output = new ArrayList<>(2);
 
-        return output;
+        return new ArrayList<>(2);
     }
 
     // Get out the next key should do

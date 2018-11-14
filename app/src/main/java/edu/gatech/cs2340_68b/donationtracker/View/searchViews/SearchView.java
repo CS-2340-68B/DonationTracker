@@ -300,7 +300,7 @@ public class SearchView extends AppCompatActivity {
                     }
                 }
                 searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
-                if (donationInfo.size() == 0) {
+                if (donationInfo.isEmpty()) {
                     (findViewById(R.id.noItemTextView)).setVisibility(View.VISIBLE);
                     return;
                 }

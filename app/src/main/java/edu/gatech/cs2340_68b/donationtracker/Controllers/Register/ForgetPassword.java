@@ -52,7 +52,7 @@ public class ForgetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 progressBar.setVisibility(ProgressBar.VISIBLE);
                 String inputEmail = Objects.requireNonNull(userEmail.getText()).toString().trim();
-                if ((inputEmail.length() != 0) && VerifyFormat.verifyEmailFormat(inputEmail)) {
+                if ((!inputEmail.isEmpty()) && VerifyFormat.verifyEmailFormat(inputEmail)) {
                     checkIfExistInDB(inputEmail);
                 } else {
                     til.setError("Email format is not correct.");
