@@ -340,7 +340,7 @@ public class SearchView extends AppCompatActivity {
             }
         }
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (aToggle.onOptionsItemSelected(item)) {
