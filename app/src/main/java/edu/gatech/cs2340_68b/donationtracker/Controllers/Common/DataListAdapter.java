@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
@@ -56,7 +57,7 @@ public class DataListAdapter extends BaseAdapter {
         title = row.findViewById(R.id.title);
         detail = row.findViewById(R.id.detail);
         title.setText((data != null) ? data.get(position).getKey() : null);
-        detail.setText(data.get(position).getValue());
+        detail.setText(Objects.requireNonNull(data).get(position).getValue());
         return (row);
     }
 }

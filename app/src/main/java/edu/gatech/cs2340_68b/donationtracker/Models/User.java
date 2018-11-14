@@ -67,6 +67,7 @@ public class User implements Serializable {
         this.contact = newuser.contact;
         this.assignedLocation = newuser.assignedLocation;
         this.userSearchList = newuser.userSearchList;
+        this.userKey = newuser.userKey;
     }
 
     /***
