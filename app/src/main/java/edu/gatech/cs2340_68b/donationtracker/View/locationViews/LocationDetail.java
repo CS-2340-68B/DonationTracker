@@ -76,15 +76,10 @@ public class LocationDetail extends AppCompatActivity {
                             Intent intent = new Intent(contect, Login.class);
                             startActivity(intent);
                         }
-
-
-
                         // close drawer when item is tapped
                         drawer.closeDrawers();
-
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
-
                         return true;
                     }
                 });
@@ -130,13 +125,6 @@ public class LocationDetail extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println(item.getItemId());
-        if (item.getItemId() == R.id.nav_account) {
-            Intent intent = new Intent(this,UserProfile.class);
-            this.startActivity(intent);
-            return true;
-
-        }
         if (aToggle.onOptionsItemSelected(item)) {
             return true;
         } else {

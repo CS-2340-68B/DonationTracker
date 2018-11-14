@@ -5,8 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,8 +43,11 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 
 /**
  * Controller for search view
@@ -57,6 +65,8 @@ public class SearchView extends AppCompatActivity {
     private int searchTypeFlag;
     private UserSearch searchCriteria;
     private ArrayList<String> locationListString;
+    private ActionBarDrawerToggle aToggle;
+    private DrawerLayout drawer;
 
     private final Location allLocations = new Location("All");
 
@@ -64,6 +74,50 @@ public class SearchView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_view);
+        //create menu
+        final Context contect = this;
+        drawer = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar aToolbar = findViewById(R.id.nav_actionbar);
+        setSupportActionBar(aToolbar);
+        DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
+        aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
+        nDrawerLayout.addDrawerListener(aToggle);
+        aToggle.syncState();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        if (menuItem.getItemId() == R.id.nav_account) {
+                            Intent intent = new Intent(contect ,UserProfile.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_search) {
+//                            Intent intent = new Intent(contect ,SearchView.class);
+//                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_location) {
+                            Intent intent = new Intent(contect ,LocationListView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_history) {
+                            Intent intent = new Intent(contect ,SearchHistory.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_logout) {
+                            Intent intent = new Intent(contect, Login.class);
+                            startActivity(intent);
+                        }
+                        // close drawer when item is tapped
+                        drawer.closeDrawers();
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+                        return true;
+                    }
+                });
 
         // Initialize components
         searchRadioGroup = findViewById(R.id.searchTypeRadioGroup);
@@ -284,6 +338,15 @@ public class SearchView extends AppCompatActivity {
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
+        }
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (aToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }
