@@ -98,6 +98,7 @@ public class DonationDetailControl extends AppCompatActivity {
                             Intent intent = new Intent(contect, Login.class);
                             startActivity(intent);
                         }
+
                         // close drawer when item is tapped
                         drawer.closeDrawers();
                         // Add code here to update the UI based on the item selected
