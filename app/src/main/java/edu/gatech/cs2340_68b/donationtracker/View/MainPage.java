@@ -46,16 +46,6 @@ public class MainPage extends AppCompatActivity {
         nDrawerLayout.addDrawerListener(aToggle);
         aToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-
-
-//        Button logout = findViewById(R.id.logoutButton);
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
         Button locationList = findViewById(R.id.donationLocationListButton);
         (findViewById(R.id.menu)).setVisibility(View.INVISIBLE);
         locationList.setOnClickListener(new View.OnClickListener() {
@@ -66,16 +56,6 @@ public class MainPage extends AppCompatActivity {
 
             }
         });
-
-//        Button userProfile = findViewById(R.id.profileButton);
-//        userProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainPage.this, UserProfile.class);
-//                startActivity(intent);
-//            }
-//        });
-//        actionBar = getSupportActionBar();
 
         Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
