@@ -103,7 +103,9 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="4dp"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <TextView
                     android:id="@+id/timeText"
@@ -131,7 +133,9 @@
                     app:layout_constraintEnd_toEndOf="@+id/timeText"
                     app:layout_constraintHorizontal_bias="0.035"
                     app:layout_constraintStart_toStartOf="@+id/timeText"
-                    app:layout_constraintTop_toBottomOf="@+id/timeText" />
+                    app:layout_constraintTop_toBottomOf="@+id/timeText"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <TextView
                     android:id="@+id/fullDescriptionText"
@@ -158,7 +162,9 @@
                     app:layout_constraintEnd_toEndOf="@+id/fullDescriptionText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/fullDescriptionText"
-                    app:layout_constraintTop_toBottomOf="@+id/fullDescriptionText" />
+                    app:layout_constraintTop_toBottomOf="@+id/fullDescriptionText"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <TextView
                     android:id="@+id/shortDescriptionText"
@@ -184,7 +190,9 @@
                     android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
                     app:layout_constraintStart_toStartOf="@+id/shortDescriptionText"
-                    app:layout_constraintTop_toBottomOf="@+id/shortDescriptionText" />
+                    app:layout_constraintTop_toBottomOf="@+id/shortDescriptionText"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <TextView
                     android:id="@+id/valueText"
@@ -206,7 +214,9 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     app:layout_constraintStart_toStartOf="@+id/valueText"
-                    app:layout_constraintTop_toBottomOf="@+id/valueText" />
+                    app:layout_constraintTop_toBottomOf="@+id/valueText"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <TextView
                     android:id="@+id/categoryText"
@@ -251,7 +261,9 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     app:layout_constraintStart_toStartOf="@+id/commentText"
-                    app:layout_constraintTop_toBottomOf="@+id/commentText" />
+                    app:layout_constraintTop_toBottomOf="@+id/commentText"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <Button
                     android:id="@+id/submit"
