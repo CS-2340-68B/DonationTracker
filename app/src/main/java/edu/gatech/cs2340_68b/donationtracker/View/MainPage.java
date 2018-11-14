@@ -41,9 +41,8 @@ public class MainPage extends AppCompatActivity {
 
         Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
-        DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
-        aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
-        nDrawerLayout.addDrawerListener(aToggle);
+        aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer.addDrawerListener(aToggle);
         aToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Button locationList = findViewById(R.id.donationLocationListButton);
