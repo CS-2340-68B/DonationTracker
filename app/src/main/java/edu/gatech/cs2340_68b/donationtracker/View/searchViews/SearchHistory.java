@@ -77,10 +77,6 @@ public class SearchHistory extends AppCompatActivity {
                             Intent intent = new Intent(contect ,LocationListView.class);
                             startActivity(intent);
                         }
-                        if (menuItem.getItemId() == R.id.nav_history) {
-//                            Intent intent = new Intent(contect ,SearchHistory.class);
-//                            startActivity(intent);
-                        }
                         if (menuItem.getItemId() == R.id.nav_logout) {
                             Intent intent = new Intent(contect, Login.class);
                             startActivity(intent);

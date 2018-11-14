@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -94,10 +95,6 @@ public class SearchView extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_account) {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
-                        }
-                        if (menuItem.getItemId() == R.id.nav_search) {
-//                            Intent intent = new Intent(contect ,SearchView.class);
-//                            startActivity(intent);
                         }
                         if (menuItem.getItemId() == R.id.nav_location) {
                             Intent intent = new Intent(contect ,LocationListView.class);
@@ -334,9 +331,6 @@ public class SearchView extends AppCompatActivity {
                 }
                 searchLocSpinner.setSelection(locationListString.indexOf(search.getLocationName()));
                 search(removedIndex);
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
             }
         }
     }
