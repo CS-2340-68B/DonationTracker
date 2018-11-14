@@ -43,6 +43,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 /**
  * Control the view of location list
  */
+@SuppressWarnings("FeatureEnvy")
 public class LocationListView extends AppCompatActivity {
 
     private ListView locationListView;

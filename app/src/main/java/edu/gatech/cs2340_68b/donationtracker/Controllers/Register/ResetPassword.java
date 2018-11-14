@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "PublicField"})
+@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "PublicField", "FeatureEnvy"})
 /**
  * Resets password
  */
@@ -77,7 +78,7 @@ public class ResetPassword extends AppCompatActivity {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
                 final DatabaseReference ref = firebase.getReference("accounts");
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                System.out.println("Line 63: " + currentUserEmail);
+                Log.d("Line 63: " + currentUserEmail);
                 Query query = reference.child(
                         "accounts").orderByChild(
                                 "username").equalTo(
@@ -90,7 +91,7 @@ public class ResetPassword extends AppCompatActivity {
                             Objects.requireNonNull(user)
                                     .setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
-                            System.out.println("Line 71: " + user.getPassword());
+                            Log.d("Line 71: " + user.getPassword());
                             finishedFlag = true;
                             ref.child(Objects
                                     .requireNonNull(singleSnapShot

@@ -6,6 +6,7 @@ import android.content.Context;
 /**
  * Sets up custom dialog
  */
+@SuppressWarnings("UtilityClass")
 public class CustomDialog {
     /** Sets up the error
      *

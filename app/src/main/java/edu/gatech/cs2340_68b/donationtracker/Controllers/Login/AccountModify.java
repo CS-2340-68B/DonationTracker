@@ -17,6 +17,7 @@ import edu.gatech.cs2340_68b.donationtracker.Models.User;
 /**
  * Modify an account
  */
+@SuppressWarnings({"FeatureEnvy", "UtilityClass"})
 class AccountModify {
     /**
      * Lock account after 3 login failure

@@ -30,7 +30,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 /**
  * Controller for login to the app, check account in the database
  */
-@SuppressWarnings("AssignmentToStaticFieldFromInstanceMethod")
+@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "FeatureEnvy"})
 public class Login extends AppCompatActivity {
 
     private TextView username;

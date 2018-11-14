@@ -28,6 +28,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
  * This class control location detail
  * @version 1.0
  */
+@SuppressWarnings("FeatureEnvy")
 public class LocationDetail extends AppCompatActivity {
 
     private String LocationName;

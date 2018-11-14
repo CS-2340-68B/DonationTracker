@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
  *
  * @author Thinh Nguyen
  */
+@SuppressWarnings("FeatureEnvy")
 public class LoginFirebaseUnitTest {
     private String userName;
     private String password;

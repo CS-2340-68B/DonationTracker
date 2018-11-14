@@ -48,6 +48,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * Get data from database and put to donation list
  */
 
+@SuppressWarnings("FeatureEnvy")
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
@@ -199,7 +200,7 @@ public class DonationList extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println(item.getItemId());
+        Log.d("TAG",item.getItemId());
         if (item.getItemId() == R.id.nav_account) {
             Intent intent = new Intent(this,UserProfile.class);
             this.startActivity(intent);

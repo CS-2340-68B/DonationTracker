@@ -41,6 +41,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
  * Control donation detail page, get data from database
  */
 
+@SuppressWarnings("FeatureEnvy")
 public class DonationDetailControl extends AppCompatActivity {
     private EditText time;
     private TextView location;

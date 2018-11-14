@@ -3,6 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 /**
  * Encrypt a password to database
  */
+@SuppressWarnings("UtilityClass")
 public class PasswordEncryption {
     private static final int NUM_77 = 77;
     private static final int NUM_94 = 94;

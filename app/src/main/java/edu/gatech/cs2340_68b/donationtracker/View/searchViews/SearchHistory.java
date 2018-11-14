@@ -39,6 +39,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView
 /**
  * Show a search history
  */
+@SuppressWarnings("FeatureEnvy")
 public class SearchHistory extends AppCompatActivity {
 
     private ListView searchHistoryListView;

@@ -44,7 +44,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * A new account is added to database
  */
 
-@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "FeatureEnvy"})
 public class Register extends AppCompatActivity {
 
     private TextView usernameTV;
