@@ -15,6 +15,7 @@ import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+@SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
 public class DataListAdapter extends BaseAdapter {
     @Nullable
     private final

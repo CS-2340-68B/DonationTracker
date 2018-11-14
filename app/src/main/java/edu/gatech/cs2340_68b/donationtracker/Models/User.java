@@ -3,6 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 import java.io.Serializable;
 import android.support.annotation.NonNull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
@@ -40,7 +41,7 @@ public class User implements Serializable {
      * @return user list
      */
     public List<UserSearch> getUserSearchList() {
-        return userSearchList;
+        return Collections.unmodifiableList(userSearchList);
     }
 
     // For the purpose of create instance from Firebase
