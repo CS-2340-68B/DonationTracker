@@ -60,7 +60,8 @@ public class ForgetPassword extends AppCompatActivity {
             // Helper method to check if email is in DB
             private void checkIfExistInDB(final String inputEmail) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                Query query = reference.child("accounts").orderByChild("username").equalTo(inputEmail);
+                Query query = reference.child("accounts")
+                        .orderByChild("username").equalTo(inputEmail);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,7 +79,8 @@ public class ForgetPassword extends AppCompatActivity {
                             } else {
                                 // Move to reset page
                                 status = false;
-                                Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
+                                Intent intent = new Intent(
+                                        ForgetPassword.this, ResetPassword.class);
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
                                 if (ResetPassword.finishedFlag) {

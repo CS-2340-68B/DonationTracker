@@ -146,7 +146,8 @@ public class DonationList extends AppCompatActivity {
                                         .getFullDescription());
                         donationInfo.add(entry);
                     }
-                    donationListView.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+                    donationListView.setAdapter(new DataListAdapter
+                            (donationInfo, getLayoutInflater()));
                     donationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(
@@ -154,7 +155,9 @@ public class DonationList extends AppCompatActivity {
                             // Sending information through intent
                             DonationDetail donation = donationList.get(position);
                             String keyUsed = keyHashFromFB.get(position);
-                            Intent detail = new Intent(DonationList.this, DonationDetailControl.class);
+                            Intent detail = new Intent(
+                                    DonationList.this,
+                                    DonationDetailControl.class);
                             detail.putExtra("DATA", donation);
                             detail.putExtra("KEY", keyUsed);
                             detail.putExtra("LOCATION", locationName);
