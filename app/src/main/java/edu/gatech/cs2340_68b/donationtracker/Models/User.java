@@ -25,10 +25,18 @@ public class User implements Serializable {
     private Contact contact;
     private String assignedLocation;
 
+    /**
+     * Returns user key
+     * @return User key
+     */
     public String getUserKey() {
         return userKey;
     }
 
+    /**
+     * Sets user key
+     * @param userKey user key to be set
+     */
     public void setUserKey(String userKey) {
         this.userKey = userKey;
     }

@@ -25,7 +25,9 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-
+/**
+ * Activity when password is forgotten
+ */
 public class ForgetPassword extends AppCompatActivity {
     private TextInputEditText userEmail;
     private TextInputLayout til;

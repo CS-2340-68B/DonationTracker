@@ -27,6 +27,9 @@ import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 @SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "PublicField"})
+/**
+ * Resets password
+ */
 public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;
