@@ -78,7 +78,6 @@ public class ResetPassword extends AppCompatActivity {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
                 final DatabaseReference ref = firebase.getReference("accounts");
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                Log.d("Line 63: " + currentUserEmail);
                 Query query = reference.child(
                         "accounts").orderByChild(
                                 "username").equalTo(
@@ -91,7 +90,7 @@ public class ResetPassword extends AppCompatActivity {
                             Objects.requireNonNull(user)
                                     .setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
-                            Log.d("Line 71: " + user.getPassword());
+                            Log.d("Tag","Line 71: " + user.getPassword());
                             finishedFlag = true;
                             ref.child(Objects
                                     .requireNonNull(singleSnapShot

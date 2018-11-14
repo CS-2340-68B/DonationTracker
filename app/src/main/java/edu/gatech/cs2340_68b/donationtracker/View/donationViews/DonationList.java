@@ -200,7 +200,6 @@ public class DonationList extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d("TAG",item.getItemId());
         if (item.getItemId() == R.id.nav_account) {
             Intent intent = new Intent(this,UserProfile.class);
             this.startActivity(intent);
