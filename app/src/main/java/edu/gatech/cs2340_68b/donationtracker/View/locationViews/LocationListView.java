@@ -2,6 +2,7 @@ package edu.gatech.cs2340_68b.donationtracker.View.locationViews;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -72,7 +73,7 @@ public class LocationListView extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         if (menuItem.getItemId() == R.id.nav_account) {
@@ -111,12 +112,12 @@ public class LocationListView extends AppCompatActivity {
                 ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 final ArrayList<Location> locationList = new ArrayList<>();
                 Location[] locations = gson.fromJson(response.toString(), Location[].class);
-                for (int i = 0; i < locations.length; i++) {
-                    locationList.add(locations[i]);
-                    Map.Entry<String,String> entry =
+                for (Location location : locations) {
+                    locationList.add(location);
+                    Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(
-                                    Objects.requireNonNull(locations[i]).getLocationName(),
-                                    locations[i].getAddress());
+                                    Objects.requireNonNull(location).getLocationName(),
+                                    location.getAddress());
                     locationInfo.add(entry);
                 }
                 Collections.sort(locationInfo, new Comparator<Map.Entry<String, String>>() {

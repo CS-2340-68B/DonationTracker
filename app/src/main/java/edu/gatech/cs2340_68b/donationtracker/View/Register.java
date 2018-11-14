@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +59,7 @@ public class Register extends AppCompatActivity {
     private final int LOCATIONEMPLOYEE = 2;
     private final int MANAGER = 3;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,21 +86,21 @@ public class Register extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-                List<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                Collection<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 Location[] locations = gson.fromJson(response.toString(), Location[].class);
-                for (int i = 0; i < locations.length; i++) {
-                    locationList.add(locations[i]);
-                    locationListString.add(locations[i].getLocationName());
+                for (Location location : locations) {
+                    locationList.add(location);
+                    locationListString.add(location.getLocationName());
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(
-                                    locations[i].getLocationName(), locations[i].getAddress());
+                                    location.getLocationName(), location.getAddress());
                     locationInfo.add(entry);
 
                      /*
                       Set up the adapter to display the locations in the spinner
                      */
                     ArrayAdapter<String> adapter2 = new ArrayAdapter(
-                            self,android.R.layout.simple_spinner_item, locationListString);
+                            self, android.R.layout.simple_spinner_item, locationListString);
                     adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     locspinner.setAdapter(adapter2);
                 }

@@ -3,6 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -73,7 +74,7 @@ public class DonationList extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         if (menuItem.getItemId() == R.id.nav_account) {
@@ -134,11 +135,10 @@ public class DonationList extends AppCompatActivity {
                     ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                     final List<DonationDetail> donationList = new ArrayList<>();
                     final List<String> keyHashFromFB = new ArrayList<>();
-                    for (int i = 0; i < donations.length; i++) {
-                        DonationDetail detail = donations[i];
+                    for (DonationDetail detail : donations) {
                         keyHashFromFB.add(detail.getDonationKey());
                         donationList.add(detail);
-                        Map.Entry<String,String> entry =
+                        Map.Entry<String, String> entry =
                                 new AbstractMap.SimpleEntry<>(
                                         Objects.requireNonNull(detail)
                                                 .getName(), detail

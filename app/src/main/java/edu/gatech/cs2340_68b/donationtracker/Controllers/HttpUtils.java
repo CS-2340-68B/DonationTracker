@@ -5,7 +5,9 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
 
+import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;
 
 public class HttpUtils {
@@ -19,19 +21,19 @@ public class HttpUtils {
 
     public static void get(String url,
                            RequestParams params,
-                           AsyncHttpResponseHandler responseHandler) {
+                           ResponseHandlerInterface responseHandler) {
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void postForm(String url,
                                 RequestParams params,
-                                AsyncHttpResponseHandler responseHandler) {
+                                ResponseHandlerInterface responseHandler) {
         client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void postJson(Context c,
-                                String url, ByteArrayEntity entity,
-                                AsyncHttpResponseHandler handler) {
+                                String url, HttpEntity entity,
+                                ResponseHandlerInterface handler) {
         client.post(c, getAbsoluteUrl(url),
                 entity, "application/json", handler);
     }

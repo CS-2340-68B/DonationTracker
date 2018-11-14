@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -71,6 +72,7 @@ public class SearchView extends AppCompatActivity {
 
     private final Location allLocations = new Location("All");
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +90,7 @@ public class SearchView extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         if (menuItem.getItemId() == R.id.nav_account) {
@@ -169,13 +171,14 @@ public class SearchView extends AppCompatActivity {
 
         // Read in location
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
-        final List<Location> locationList = new ArrayList<>();
+        final Collection<Location> locationList = new ArrayList<>();
         final Context self = this;
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                Collection<Map.Entry<String, String>> locationInfo = new ArrayList<>();
 
                 // Loads in all locations into the array list
                 locationList.add(allLocations);

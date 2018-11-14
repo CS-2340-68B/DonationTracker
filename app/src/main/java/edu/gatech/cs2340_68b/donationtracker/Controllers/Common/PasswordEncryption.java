@@ -34,10 +34,10 @@ public class PasswordEncryption {
             throw new IllegalArgumentException(
                     "Encode String cannot be null");
         }
-        String decodedPass = "";
+        StringBuilder decodedPass = new StringBuilder();
         for (Character each : encodedPassword.toCharArray()) {
-            decodedPass += (char) (((each - NUM_33) / NUM_94) - NUM_77);
+            decodedPass.append((char) (((each - NUM_33) / NUM_94) - NUM_77));
         }
-        return decodedPass;
+        return decodedPass.toString();
     }
 }

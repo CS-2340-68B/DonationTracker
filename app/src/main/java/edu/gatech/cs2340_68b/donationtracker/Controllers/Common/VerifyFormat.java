@@ -21,7 +21,7 @@ public class VerifyFormat {
      * @param pass a new password
      * @return if a new password format is valid
      */
-    public static boolean verifyPassword (String pass) {
+    public static boolean verifyPassword (CharSequence pass) {
         if ((pass == null) || (pass.length() == 0)) {
             return false;
         }

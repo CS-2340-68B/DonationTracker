@@ -84,6 +84,7 @@ public class ForgetPassword extends AppCompatActivity {
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
                                 if (ResetPassword.finishedFlag) {
+                                    //noinspection AssignmentToStaticFieldFromInstanceMethod
                                     ResetPassword.finishedFlag = false;
                                     finish();
                                 }

@@ -30,6 +30,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 /**
  * Controller for login to the app, check account in the database
  */
+@SuppressWarnings("AssignmentToStaticFieldFromInstanceMethod")
 public class Login extends AppCompatActivity {
 
     private TextView username;
@@ -69,27 +70,35 @@ public class Login extends AppCompatActivity {
                         super.onSuccess(statusCode, headers, response);
                         Response res = gson.fromJson(response.toString(), Response.class);
                         Log.e("Tag: ", res.status);
-                        if (res.status.equals("noAccount")) {
-                            AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
-                                    "Oops", "Email does not exist.");
-                            alert.create().show();
-                        } else if (res.status.equals("wrongPassword")) {
-                            AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
-                                    "Oops", "Wrong password.");
-                            alert.create().show();
-                        } else if (res.status.equals("accountLock")) {
-                            AlertDialog.Builder alert  = CustomDialog.errorDialog(Login.this,
-                                    "Sorry", "Account is currently lock. " +
-                                            "Please reset your password or check your email");
-                            alert.create().show();
-                        } else {
-                            User user = gson.fromJson(
-                                    gson.toJsonTree(res.data).getAsJsonObject(), User.class);
-                            Welcome.currentUser = user;
-                            Welcome.userKey = user.getUserKey();
-                            Intent intent = new Intent(Login.this, MainPage.class);
-                            startActivity(intent);
-                            finish();
+                        switch (res.status) {
+                            case "noAccount": {
+                                AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
+                                        "Oops", "Email does not exist.");
+                                alert.create().show();
+                                break;
+                            }
+                            case "wrongPassword": {
+                                AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
+                                        "Oops", "Wrong password.");
+                                alert.create().show();
+                                break;
+                            }
+                            case "accountLock": {
+                                AlertDialog.Builder alert = CustomDialog.errorDialog(Login.this,
+                                        "Sorry", "Account is currently lock. " +
+                                                "Please reset your password or check your email");
+                                alert.create().show();
+                                break;
+                            }
+                            default:
+                                User user = gson.fromJson(
+                                        gson.toJsonTree(res.data).getAsJsonObject(), User.class);
+                                Welcome.currentUser = user;
+                                Welcome.userKey = user.getUserKey();
+                                Intent intent = new Intent(Login.this, MainPage.class);
+                                startActivity(intent);
+                                finish();
+                                break;
                         }
                     }
                 });

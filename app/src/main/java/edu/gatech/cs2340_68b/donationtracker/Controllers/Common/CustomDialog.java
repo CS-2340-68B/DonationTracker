@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 
 public class CustomDialog {
-    public static AlertDialog.Builder errorDialog(Context context, String tittle, String message) {
+    public static AlertDialog.Builder errorDialog(Context context, CharSequence tittle, CharSequence message) {
         AlertDialog.Builder alert  = new AlertDialog.Builder(context);
 
         alert.setMessage(message);
