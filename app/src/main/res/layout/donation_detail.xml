@@ -1,65 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.donationViews.DonationDetailControl">
+    tools:context=".View.donationViews.DonationDetailControl"
+    android:id="@+id/drawerLayout">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <include
+            layout="@layout/navigation_actionbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/donationDetailTitle"
-                android:layout_width="281dp"
-                android:layout_height="57dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="serif"
-                android:text="@string/donation_detail"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textSize="30sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="513dp"
+            android:layout_marginTop="56dp"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/locationDonationText"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/location_of_donation_name"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/timeInput"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/timeInput"
-                app:layout_constraintTop_toBottomOf="@+id/timeInput" />
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/locationDonationEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="4dp"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/donationDetailTitle"
+                    android:layout_width="281dp"
+                    android:layout_height="57dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="serif"
+                    android:text="@string/donation_detail"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="30sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <!--<EditText-->
+                <TextView
+                    android:id="@+id/locationDonationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/location_of_donation_name"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/timeInput"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/timeInput"
+                    app:layout_constraintTop_toBottomOf="@+id/timeInput" />
+
+                <TextView
+                    android:id="@+id/locationDonationEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <!--<EditText-->
                 <!--android:id="@+id/locationDonationEdit"-->
                 <!--android:layout_width="300dp"-->
                 <!--android:layout_height="40dp"-->
@@ -71,185 +85,195 @@
                 <!--app:layout_constraintStart_toStartOf="@+id/locationDonationText"-->
                 <!--app:layout_constraintTop_toBottomOf="@+id/locationDonationText" />-->
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/name"
-                android:labelFor="@id/nameEdit"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:labelFor="@id/nameEdit"
+                    android:text="@string/name"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
 
 
-            <EditText
-                android:id="@+id/nameEdit"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
+                <EditText
+                    android:id="@+id/nameEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/timeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/time"
-                android:labelFor="@id/timeInput"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/donationDetailTitle"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/donationDetailTitle"
-                app:layout_constraintTop_toBottomOf="@+id/donationDetailTitle" />
+                <TextView
+                    android:id="@+id/timeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:labelFor="@id/timeInput"
+                    android:text="@string/time"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/donationDetailTitle"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/donationDetailTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/donationDetailTitle" />
 
-            <EditText
-                android:id="@+id/timeInput"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="time"
-                android:singleLine="true"
-                app:layout_constraintEnd_toEndOf="@+id/timeText"
-                app:layout_constraintHorizontal_bias="0.035"
-                app:layout_constraintStart_toStartOf="@+id/timeText"
-                app:layout_constraintTop_toBottomOf="@+id/timeText" />
+                <EditText
+                    android:id="@+id/timeInput"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:inputType="time"
+                    android:singleLine="true"
+                    app:layout_constraintEnd_toEndOf="@+id/timeText"
+                    app:layout_constraintHorizontal_bias="0.035"
+                    app:layout_constraintStart_toStartOf="@+id/timeText"
+                    app:layout_constraintTop_toBottomOf="@+id/timeText" />
 
-            <TextView
-                android:id="@+id/fullDescriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/full_description_of_item"
-                android:labelFor="@id/fullDescriptionEdit"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/locationDonationEdit"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/locationDonationEdit"
-                app:layout_constraintTop_toBottomOf="@+id/locationDonationEdit" />
+                <TextView
+                    android:id="@+id/fullDescriptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:labelFor="@id/fullDescriptionEdit"
+                    android:text="@string/full_description_of_item"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/locationDonationEdit"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/locationDonationEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/locationDonationEdit" />
 
-            <EditText
-                android:id="@+id/fullDescriptionEdit"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/fullDescriptionText"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/fullDescriptionText"
-                app:layout_constraintTop_toBottomOf="@+id/fullDescriptionText" />
+                <EditText
+                    android:id="@+id/fullDescriptionEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    app:layout_constraintEnd_toEndOf="@+id/fullDescriptionText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/fullDescriptionText"
+                    app:layout_constraintTop_toBottomOf="@+id/fullDescriptionText" />
 
-            <TextView
-                android:id="@+id/shortDescriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/short_description_of_item"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
-                android:labelFor="@id/shortDescriptionEdit"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/fullDescriptionEdit"
-                app:layout_constraintTop_toBottomOf="@+id/fullDescriptionEdit" />
+                <TextView
+                    android:id="@+id/shortDescriptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:labelFor="@id/shortDescriptionEdit"
+                    android:text="@string/short_description_of_item"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/fullDescriptionEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/fullDescriptionEdit" />
 
-            <EditText
-                android:id="@+id/shortDescriptionEdit"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
-                app:layout_constraintStart_toStartOf="@+id/shortDescriptionText"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescriptionText" />
+                <EditText
+                    android:id="@+id/shortDescriptionEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    app:layout_constraintEnd_toEndOf="@+id/fullDescriptionEdit"
+                    app:layout_constraintStart_toStartOf="@+id/shortDescriptionText"
+                    app:layout_constraintTop_toBottomOf="@+id/shortDescriptionText" />
 
-            <TextView
-                android:id="@+id/valueText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/value"
-                android:labelFor="@id/valueEdit"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescriptionEdit" />
+                <TextView
+                    android:id="@+id/valueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:labelFor="@id/valueEdit"
+                    android:text="@string/value"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/shortDescriptionEdit" />
 
-            <EditText
-                android:id="@+id/valueEdit"
-                android:layout_width="107dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/valueText"
-                app:layout_constraintTop_toBottomOf="@+id/valueText" />
+                <EditText
+                    android:id="@+id/valueEdit"
+                    android:layout_width="107dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    app:layout_constraintStart_toStartOf="@+id/valueText"
+                    app:layout_constraintTop_toBottomOf="@+id/valueText" />
 
-            <TextView
-                android:id="@+id/categoryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/category"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/shortDescriptionEdit"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescriptionEdit" />
+                <TextView
+                    android:id="@+id/categoryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/category"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/shortDescriptionEdit"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/shortDescriptionEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/shortDescriptionEdit" />
 
-            <Spinner
-                android:id="@+id/categorySpinner"
-                android:layout_width="159dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="@+id/shortDescriptionEdit"
-                app:layout_constraintStart_toStartOf="@+id/categoryText"
-                app:layout_constraintTop_toBottomOf="@+id/categoryText" />
+                <Spinner
+                    android:id="@+id/categorySpinner"
+                    android:layout_width="159dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/shortDescriptionEdit"
+                    app:layout_constraintStart_toStartOf="@+id/categoryText"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryText" />
 
-            <TextView
-                android:id="@+id/commentText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/comment"
-                android:textColor="@android:color/background_dark"
-                android:textSize="16sp"
-                android:labelFor="@id/commentEdit"
-                app:layout_constraintStart_toStartOf="@+id/valueEdit"
-                app:layout_constraintTop_toBottomOf="@+id/valueEdit" />
+                <TextView
+                    android:id="@+id/commentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:labelFor="@id/commentEdit"
+                    android:text="@string/comment"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/valueEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/valueEdit" />
 
-            <EditText
-                android:id="@+id/commentEdit"
-                android:layout_width="180dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/commentText"
-                app:layout_constraintTop_toBottomOf="@+id/commentText" />
+                <EditText
+                    android:id="@+id/commentEdit"
+                    android:layout_width="180dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    app:layout_constraintStart_toStartOf="@+id/commentText"
+                    app:layout_constraintTop_toBottomOf="@+id/commentText" />
 
-            <Button
-                android:id="@+id/submit"
-                android:visibility="visible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/edit"
-                app:layout_constraintEnd_toEndOf="@+id/categorySpinner"
-                app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
-        </LinearLayout>
-    </ScrollView>
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/edit"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/categorySpinner"
+                    app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
+            </LinearLayout>
+        </ScrollView>
+    </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.NavigationView
+        android:id = "@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_header">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

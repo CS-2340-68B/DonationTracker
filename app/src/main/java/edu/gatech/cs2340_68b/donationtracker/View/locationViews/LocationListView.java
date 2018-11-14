@@ -158,13 +158,6 @@ public class LocationListView extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println(item.getItemId());
-        if (item.getItemId() == R.id.nav_account) {
-            Intent intent = new Intent(this,UserProfile.class);
-            this.startActivity(intent);
-            return true;
-
-        }
         if (aToggle.onOptionsItemSelected(item)) {
             return true;
         } else {
