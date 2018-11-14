@@ -87,9 +87,7 @@ public class ForgetPassword extends AppCompatActivity {
                                 }
                             }
                         }
-                        if (!status) {
-                            progressBar.setVisibility(ProgressBar.INVISIBLE);
-                        }
+                        progressBar.setVisibility(ProgressBar.INVISIBLE);
                     }
 
                     @Override

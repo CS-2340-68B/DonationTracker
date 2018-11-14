@@ -40,7 +40,7 @@ class AccountModify {
                     if (account.getFailedAttempts() >= 3) {
                         account.setIsLock(true);
                     }
-                    ref.child(i.getKey()).setValue(account);
+                    ref.child(Objects.requireNonNull(i.getKey())).setValue(account);
                 }
             }
 
@@ -63,9 +63,9 @@ class AccountModify {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot i : dataSnapshot.getChildren()) {
                     User account = i.getValue(User.class);
-                    account.setFailedAttempts(0);
+                    Objects.requireNonNull(account).setFailedAttempts(0);
                     account.setIsLock(false);
-                    ref.child(i.getKey()).setValue(account);
+                    ref.child(Objects.requireNonNull(i.getKey())).setValue(account);
                 }
             }
 
