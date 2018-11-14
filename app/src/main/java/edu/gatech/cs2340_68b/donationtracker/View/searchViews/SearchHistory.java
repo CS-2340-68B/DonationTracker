@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -54,9 +55,8 @@ public class SearchHistory extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         Toolbar aToolbar = findViewById(R.id.nav_actionbar);
         setSupportActionBar(aToolbar);
-        DrawerLayout nDrawerLayout = findViewById(R.id.drawerLayout);
-        aToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
-        nDrawerLayout.addDrawerListener(aToggle);
+        aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer.addDrawerListener(aToggle);
         aToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(
