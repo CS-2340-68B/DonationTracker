@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.User;

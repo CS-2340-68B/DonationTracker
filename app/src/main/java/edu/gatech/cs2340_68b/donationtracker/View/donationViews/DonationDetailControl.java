@@ -51,7 +51,6 @@ public class DonationDetailControl extends AppCompatActivity {
     private EditText comment;
     private EditText name;
     private Spinner category;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;
 

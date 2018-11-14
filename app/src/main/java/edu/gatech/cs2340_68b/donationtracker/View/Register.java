@@ -215,7 +215,7 @@ public class Register extends AppCompatActivity {
                                 JSONObject response) {
                             super.onSuccess(statusCode, headers, response);
                             Response res = gson.fromJson(response.toString(), Response.class);
-                            if (res.status.equals("fail")) {
+                            if ("fail".equals(res.status)) {
                                 AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                                         "Registration Error", "Username already exists");
                                 alert.create().show();

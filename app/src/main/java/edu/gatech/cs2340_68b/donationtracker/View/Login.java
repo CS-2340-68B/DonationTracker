@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity {
 
     private TextView username;
     private TextView password;
-    private Map<String, Integer> typedUsername = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
