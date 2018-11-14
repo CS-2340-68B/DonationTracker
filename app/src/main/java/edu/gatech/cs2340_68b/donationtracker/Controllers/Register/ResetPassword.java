@@ -26,7 +26,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-@SuppressWarnings("AssignmentToStaticFieldFromInstanceMethod")
+@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "PublicField"})
 public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;
