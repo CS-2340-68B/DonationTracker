@@ -37,6 +37,7 @@ public class User implements Serializable {
      * Sets user key
      * @param userKey user key to be set
      */
+    @SuppressWarnings("unused")
     public void setUserKey(String userKey) {
         this.userKey = userKey;
     }
@@ -49,7 +50,7 @@ public class User implements Serializable {
      * @return user list
      */
     public List<UserSearch> getUserSearchList() {
-        return Collections.unmodifiableList(userSearchList);
+        return userSearchList;
     }
 
     // For the purpose of create instance from Firebase
@@ -114,6 +115,7 @@ public class User implements Serializable {
      *
      * @return user id
      */
+    @SuppressWarnings("unused")
     public String getUserID() {
         return userID;
     }
@@ -123,6 +125,7 @@ public class User implements Serializable {
      *
      * @param userID new user id
      */
+    @SuppressWarnings("unused")
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -132,6 +135,7 @@ public class User implements Serializable {
      *
      * @return user's contact
      */
+    @SuppressWarnings("unused")
     public Contact getContact() {
         return contact;
     }
@@ -141,6 +145,7 @@ public class User implements Serializable {
      *
      * @param contact new contact info
      */
+    @SuppressWarnings("unused")
     public void setContact(Contact contact) {
         this.contact = contact;
     }
@@ -159,6 +164,7 @@ public class User implements Serializable {
      *
      * @param username new username
      */
+    @SuppressWarnings("unused")
     public void setUsername(String username) {
         this.username = username;
     }
@@ -186,6 +192,7 @@ public class User implements Serializable {
      *
      * @return count of failed attempt
      */
+    @SuppressWarnings("unused")
     public int getFailedAttempts() {
         return failedAttempts;
     }
@@ -202,6 +209,7 @@ public class User implements Serializable {
     /***
      * Increase failed attempt by one
      */
+    @SuppressWarnings("unused")
     public void incrementFailed() {
         this.failedAttempts++;
     }
@@ -211,6 +219,7 @@ public class User implements Serializable {
      *
      * @return user type
      */
+    @SuppressWarnings("unused")
     public UserType getType() {
         return this.type;
     }
@@ -229,6 +238,7 @@ public class User implements Serializable {
      *
      * @return lock status
      */
+    @SuppressWarnings("unused")
     public boolean getIsLock() {
         return isLock;
     }
@@ -238,6 +248,7 @@ public class User implements Serializable {
      *
      * @param status current lock status
      */
+    @SuppressWarnings("unused")
     public void setIsLock(boolean status) {
         this.isLock = status;
     }

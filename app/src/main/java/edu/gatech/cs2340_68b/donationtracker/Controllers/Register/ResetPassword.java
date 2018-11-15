@@ -27,9 +27,8 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "PublicField", "FeatureEnvy"})
 /**
- * Resets password
+ * Reset password component, use to reset user's password.
  */
 public class ResetPassword extends AppCompatActivity {
 

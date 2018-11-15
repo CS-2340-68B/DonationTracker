@@ -14,9 +14,6 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import cz.msebera.android.httpclient.Header;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;

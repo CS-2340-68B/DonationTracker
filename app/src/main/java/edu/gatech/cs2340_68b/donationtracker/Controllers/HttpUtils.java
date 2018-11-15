@@ -30,12 +30,14 @@ public class HttpUtils {
         client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 
-    public static void postJson(Context c,
-                                String url, HttpEntity entity,
-                                ResponseHandlerInterface handler) {
-        client.post(c, getAbsoluteUrl(url),
-                entity, "application/json", handler);
-    }
+// --Commented out by Inspection START (11/14/18, 8:14 PM):
+//    public static void postJson(Context c,
+//                                String url, HttpEntity entity,
+//                                ResponseHandlerInterface handler) {
+//        client.post(c, getAbsoluteUrl(url),
+//                entity, "application/json", handler);
+//    }
+// --Commented out by Inspection STOP (11/14/18, 8:14 PM)
 
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;

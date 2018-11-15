@@ -69,7 +69,8 @@ public class SearchView extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;
 
-    private final Location allLocations = new Location("All");
+//    private final Location allLocations = new Location("All");
+    Location allLocations = new Location("All");
 
     @SuppressWarnings("unchecked")
     @Override
@@ -119,7 +120,6 @@ public class SearchView extends AppCompatActivity {
         // Initialize components
         searchRadioGroup = findViewById(R.id.searchTypeRadioGroup);
         RadioButton itemRButton = findViewById(R.id.searchTypeItem);
-        RadioButton catRButton = findViewById(R.id.searchTypeCat);
         Button searchHistoryButton = findViewById(R.id.searchHistoryButton);
         searchBar = findViewById(R.id.searchBar);
         searchCatSpinner = findViewById(R.id.searchCatSpinner);
@@ -132,7 +132,6 @@ public class SearchView extends AppCompatActivity {
 
         // Initialize other variables
         searchTypeFlag = -1;
-        boolean isSearchAll = true;
         itemRButton.setChecked(true);
         searchCriteria.setSearchOption(SearchOptions.NAME);
 

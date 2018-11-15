@@ -22,7 +22,6 @@ public class Welcome extends AppCompatActivity {
     public static User currentUser = new User();
     public static String userKey;
     public static final Gson gson = new Gson();
-    public static ObjectMapper mapper = new ObjectMapper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

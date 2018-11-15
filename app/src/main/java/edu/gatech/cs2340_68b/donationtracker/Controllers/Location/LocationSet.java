@@ -165,13 +165,13 @@ public class LocationSet extends AppCompatActivity {
     }
 
     // Get out the next key should do
+    @SuppressWarnings("SameReturnValue")
     private String getKey() {
-        String output = "0";
 
         // Loop through every single key find the max + 1
 
         // output += 1
-        return output;
+        return "0";
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

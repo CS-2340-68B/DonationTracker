@@ -64,8 +64,6 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout .register);
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
 
         usernameTV = findViewById(R.id.registerUsername);
         passwordTV = findViewById(R.id.registerPassword);
