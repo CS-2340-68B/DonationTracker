@@ -15,7 +15,9 @@ public class CustomDialog {
      * @param message message for error
      * @return returns custom dialog with error message
      */
-    public static AlertDialog.Builder errorDialog(Context context, CharSequence title, CharSequence message) {
+    public static AlertDialog.Builder errorDialog(
+            Context context, CharSequence title,
+            CharSequence message) {
         AlertDialog.Builder alert  = new AlertDialog.Builder(context);
 
         alert.setMessage(message);

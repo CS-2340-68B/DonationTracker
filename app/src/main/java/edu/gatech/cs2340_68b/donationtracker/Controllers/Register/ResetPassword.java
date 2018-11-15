@@ -30,6 +30,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 /**
  * Reset password component, use to reset user's password.
  */
+@SuppressWarnings("FeatureEnvy")
 public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;
@@ -90,6 +91,7 @@ public class ResetPassword extends AppCompatActivity {
                                     .setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
                             Log.d("Tag","Line 71: " + user.getPassword());
+                            //noinspection AssignmentToStaticFieldFromInstanceMethod
                             finishedFlag = true;
                             ref.child(Objects
                                     .requireNonNull(singleSnapShot
