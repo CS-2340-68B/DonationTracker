@@ -2,6 +2,9 @@ package edu.gatech.cs2340_68b.donationtracker;
 
 import org.junit.Test;
 
+import edu.gatech.cs2340_68b.donationtracker.Models.Enum.StatesList;
+import static org.junit.Assert.*;
+
 /**
  * Test valueOfName method in the StatesList class
  * @author Nhat Lan Le Tu
