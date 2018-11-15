@@ -16,15 +16,12 @@ import static org.junit.Assert.*;
 public class PasswordTest {
     private String correctPass;
 
+    /***
+     * Initialize data
+     */
     @Before
     public void setUp() {
         correctPass = "Password123";
-
-//        boolean capitalFlag = false;
-//        boolean numberFlag = false;
-//        boolean letterFlag = false;
-//        boolean lengthFlag = false;
-
     }
 
     /***

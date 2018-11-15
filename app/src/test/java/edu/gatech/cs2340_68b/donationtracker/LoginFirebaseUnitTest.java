@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
  *
  * @author Thinh Nguyen
  */
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall"})
 public class LoginFirebaseUnitTest {
     private String userName;
     private String password;
@@ -123,6 +123,6 @@ public class LoginFirebaseUnitTest {
         assertFalse(VerifyFormat.verifyPassword("123231231hhg./"));
 
         String fake = "1234Th";
-        assertFalse(VerifyFormat.verifyPassword(fake) && fake.length() >= 8);
+        assertFalse(VerifyFormat.verifyPassword(fake) && (fake.length() >= 8));
     }
 }

@@ -2,7 +2,6 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 /**
  * This class hold user information
  */
-@SuppressWarnings("RedundantNoArgConstructor")
 public class Contact {
     private String firstName;
     private String lastName;

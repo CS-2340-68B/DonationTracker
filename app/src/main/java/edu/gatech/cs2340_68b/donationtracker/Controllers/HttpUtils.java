@@ -4,10 +4,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.ResponseHandlerInterface;
 
-@SuppressWarnings("UtilityClass")
 /***
- * Instance that helps send request to the server and
- * also receive response from it.
+ * Instance to send request and receive response from server
  */
 public class HttpUtils {
     // Uncomment for local testing
