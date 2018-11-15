@@ -102,6 +102,6 @@ public class LoginFirebaseUnitTest {
         assertFalse(VerifyFormat.verifyPassword("123231231hhg./"));
 
         String fake = "1234Th";
-        assertFalse(VerifyFormat.verifyPassword(fake) && fake.length() >= 8);
+        assertFalse(VerifyFormat.verifyPassword(fake) && (fake.length() >= 8));
     }
 }

@@ -55,7 +55,7 @@ public class DataListAdapter extends BaseAdapter {
         String temp1key = temp1.getKey();
         title.setText((data != null) ? temp1key : null);
         Map.Entry<String,String> temp2 = data.get(position);
-        String temp2val =  temp2.getValue()
+        String temp2val =  temp2.getValue();
         detail.setText(temp2val);
         return (row);
     }

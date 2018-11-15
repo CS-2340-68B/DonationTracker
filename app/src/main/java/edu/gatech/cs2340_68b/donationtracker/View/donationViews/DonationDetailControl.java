@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,10 +107,11 @@ public class DonationDetailControl extends AppCompatActivity {
                     }
                 });
 
+        Intent var = getIntent();
 //        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
-        final DonationDetail donation = (DonationDetail) getIntent().getSerializableExtra("DATA");
-        final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
-        final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
+        final DonationDetail donation = (DonationDetail) var.getSerializableExtra("DATA");
+        final String keyUsed = (String) var.getSerializableExtra("KEY");
+        final String locationUsed = (String) var.getSerializableExtra("LOCATION");
 
         time = findViewById(R.id.timeInput);
         location = findViewById(R.id.locationDonationEdit);
@@ -153,8 +155,9 @@ public class DonationDetailControl extends AppCompatActivity {
 
         //Limit only LOCATIONEMPLOYEE (of register
         // location) and Manager are allow to edit the details
+        String loc = currentUser.getAssignedLocation();
         if ((currentUser.getAssignedLocation() == null)
-                || !currentUser.getAssignedLocation().
+                || !loc.
                 equals(donation.getLocation())) {
             time.setKeyListener(null);
             location.setKeyListener(null);
@@ -182,14 +185,22 @@ public class DonationDetailControl extends AppCompatActivity {
                         if (item == null) {
                             item = new DonationDetail(locationUsed);
                         }
-                        item.setTime(time.getText().toString());
-                        item.setLocation(location.getText().toString());
-                        item.setCategory(category.getSelectedItem().toString());
-                        item.setFullDescription(fullDescription.getText().toString());
-                        item.setShortDescription(shortDescription.getText().toString());
-                        item.setValue(value.getText().toString());
-                        item.setComment(comment.getText().toString());
-                        item.setName(name.getText().toString());
+                        Editable timetext = time.getText();
+                        item.setTime(timetext.toString());
+                        CharSequence loctest = location.getText();
+                        item.setLocation(loctest.toString());
+                        Object cat = category.getSelectedItem();
+                        item.setCategory(cat.toString());
+                        Object fd = fullDescription.getText();
+                        item.setFullDescription(fd.toString());
+                        Object sd = shortDescription.getText();
+                        item.setShortDescription(sd.toString());
+                        Object val = value.getText();
+                        item.setValue(val.toString());
+                        Object com = comment.getText();
+                        item.setComment(com.toString());
+                        Object nametxt = name.getText();
+                        item.setName(nametxt.toString());
                         ref.setValue(item);
                         finish();
                     }
