@@ -70,7 +70,7 @@ public class SearchView extends AppCompatActivity {
     private DrawerLayout drawer;
 
 //    private final Location allLocations = new Location("All");
-    Location allLocations = new Location("All");
+private final Location allLocations = new Location("All");
 
     @SuppressWarnings("unchecked")
     @Override
@@ -274,7 +274,7 @@ public class SearchView extends AppCompatActivity {
         }
 
         // Get data from firebase according to our query
-        donationQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        donationQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final List<Map.Entry<String, String>> donationInfo = new ArrayList<>();
