@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.gatech.cs2340_68b.donationtracker">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="edu.gatech.cs2340_68b.donationtracker"
+    tools:ignore="GoogleAppIndexingWarning">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -25,26 +27,40 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".View.Welcome">
+        <activity android:name=".View.Welcome"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Login" />
-        <activity android:name=".View.MainPage" />
-        <activity android:name=".View.Register" />
-        <activity android:name=".Controllers.Register.ForgetPassword" />
-        <activity android:name=".Controllers.Register.ResetPassword" />
-        <activity android:name=".View.locationViews.LocationListView" />
-        <activity android:name=".View.UserProfile" />
-        <activity android:name=".View.locationViews.LocationDetail" />
-        <activity android:name=".Controllers.Location.LocationSet" />
-        <activity android:name=".View.donationViews.DonationDetailControl" />
-        <activity android:name=".View.donationViews.DonationList" />
-        <activity android:name=".View.searchViews.SearchView" />
-        <activity android:name=".View.Menu" />
+        <activity android:name=".View.Login"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.MainPage"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.Register"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Controllers.Register.ForgetPassword"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Controllers.Register.ResetPassword"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.locationViews.LocationListView"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.UserProfile"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.locationViews.LocationDetail"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Controllers.Location.LocationSet"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.donationViews.DonationDetailControl"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.donationViews.DonationList"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.searchViews.SearchView"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.Menu"
+            tools:ignore="InnerclassSeparator" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -59,8 +75,10 @@
 
         <activity
             android:name=".View.locationViews.LocationMap"
-            android:label="@string/title_activity_location_map" />
-        <activity android:name=".View.searchViews.SearchHistory" />
+            android:label="@string/title_activity_location_map"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".View.searchViews.SearchHistory"
+            tools:ignore="InnerclassSeparator" />
     </application>
 
 </manifest>

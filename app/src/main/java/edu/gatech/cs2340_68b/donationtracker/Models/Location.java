@@ -8,7 +8,7 @@ import java.io.Serializable;
  * All information about the location, include external information like
  * phone number and website.
  */
-@SuppressWarnings({"ConstructorWithTooManyParameters", "OverlyComplexMethod", "EqualsAndHashcode"})
+@SuppressWarnings({"ConstructorWithTooManyParameters", "OverlyComplexMethod", "EqualsAndHashcode", "unused"})
 public class Location implements Serializable {
     private String key;
     private String locationName;

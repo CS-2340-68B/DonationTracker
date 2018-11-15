@@ -1,12 +1,8 @@
 package edu.gatech.cs2340_68b.donationtracker.Controllers;
 
-import android.content.Context;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.ResponseHandlerInterface;
-
-import cz.msebera.android.httpclient.HttpEntity;
 
 @SuppressWarnings("UtilityClass")
 public class HttpUtils {

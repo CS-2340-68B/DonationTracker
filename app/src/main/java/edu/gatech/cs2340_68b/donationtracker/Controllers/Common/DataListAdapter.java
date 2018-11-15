@@ -19,12 +19,7 @@ public class DataListAdapter extends BaseAdapter {
     @Nullable
     private final
     List<Map.Entry<String, String>> data;
-    private LayoutInflater inflater;
-
-    DataListAdapter() {
-        data = null;
-    }
-
+    private final LayoutInflater inflater;
 
     public DataListAdapter(@Nullable List<Map.Entry<String,
             String>> data, LayoutInflater inflater) {

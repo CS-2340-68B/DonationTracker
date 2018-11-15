@@ -70,7 +70,7 @@ public class SearchView extends AppCompatActivity {
     private DrawerLayout drawer;
 
 //    private final Location allLocations = new Location("All");
-    Location allLocations = new Location("All");
+private final Location allLocations = new Location("All");
 
     @SuppressWarnings("unchecked")
     @Override
