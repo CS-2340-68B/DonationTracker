@@ -21,6 +21,7 @@ import com.loopj.android.http.RequestParams;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 
@@ -48,7 +49,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * Get data from database and put to donation list
  */
 
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall", "ConstantConditions"})
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
@@ -70,7 +71,7 @@ public class DonationList extends AppCompatActivity {
         aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
         drawer.addDrawerListener(aToggle);
         aToggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -130,9 +131,11 @@ public class DonationList extends AppCompatActivity {
                 DonationDetail[] donations = gson
                         .fromJson(response.toString(), DonationDetail[].class);
                 if (donations.length == 0) {
-                    (findViewById(R.id.noItemTextView)).setVisibility(View.VISIBLE);
+                    TextView tv = findViewById(R.id.noItemTextView);
+                    tv.setVisibility(View.VISIBLE);
                 } else {
-                    (findViewById(R.id.noItemTextView)).setVisibility(View.GONE);
+                    TextView tv2 = (findViewById(R.id.noItemTextView));
+                    tv2.setVisibility(View.GONE);
                     ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                     final List<DonationDetail> donationList = new ArrayList<>();
                     final List<String> keyHashFromFB = new ArrayList<>();

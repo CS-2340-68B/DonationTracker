@@ -23,6 +23,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 /**
  * Controller for the main page of the app
  */
+@SuppressWarnings("ChainedMethodCall")
 public class MainPage extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;

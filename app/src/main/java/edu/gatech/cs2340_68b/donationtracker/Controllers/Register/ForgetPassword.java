@@ -28,6 +28,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 /**
  * Activity when password is forgotten
  */
+@SuppressWarnings("ChainedMethodCall")
 public class ForgetPassword extends AppCompatActivity {
     private TextInputEditText userEmail;
     private TextInputLayout til;

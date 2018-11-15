@@ -22,6 +22,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 /**
  * Controller for the action bar menu
  */
+@SuppressWarnings("ChainedMethodCall")
 public class Menu extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;

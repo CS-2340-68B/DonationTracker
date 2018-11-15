@@ -14,7 +14,7 @@ import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-@SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
+@SuppressWarnings({"AssignmentOrReturnOfFieldWithMutableType", "UnclearExpression"})
 public class DataListAdapter extends BaseAdapter {
     @Nullable
     private final
@@ -51,7 +51,7 @@ public class DataListAdapter extends BaseAdapter {
         TextView detail;
         title = row.findViewById(R.id.title);
         detail = row.findViewById(R.id.detail);
-        Map.Entry<String,String> temp1 = data.get(position);
+        Map.Entry<String,String> temp1 = data != null ? data.get(position) : null;
         String temp1key = temp1.getKey();
         title.setText((data != null) ? temp1key : null);
         Map.Entry<String,String> temp2 = data.get(position);

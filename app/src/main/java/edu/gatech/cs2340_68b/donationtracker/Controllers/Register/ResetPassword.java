@@ -30,7 +30,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 /**
  * Reset password component, use to reset user's password.
  */
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall"})
 public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;

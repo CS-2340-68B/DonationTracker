@@ -42,7 +42,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
  * Control donation detail page, get data from database
  */
 
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall", "ConstantConditions"})
 public class DonationDetailControl extends AppCompatActivity {
     private EditText time;
     private TextView location;
@@ -71,7 +71,8 @@ public class DonationDetailControl extends AppCompatActivity {
         aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
         drawer.addDrawerListener(aToggle);
         aToggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //noinspection ConstantConditions
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -223,7 +224,9 @@ public class DonationDetailControl extends AppCompatActivity {
             return -1;
         } else {
             for (int i = 0; i < spinner.getCount(); i++) {
-                if (spinner.getItemAtPosition(i).toString().equals(compareString)) {
+                Object pos = spinner.getItemAtPosition(i);
+                String posString = pos.toString();
+                if (posString.equals(compareString)) {
                     return i;
                 }
             }

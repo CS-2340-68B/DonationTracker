@@ -27,7 +27,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 /**
  * Controller for login to the app, check account in the database
  */
-@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "FeatureEnvy"})
+@SuppressWarnings({"AssignmentToStaticFieldFromInstanceMethod", "FeatureEnvy", "ChainedMethodCall"})
 public class Login extends AppCompatActivity {
 
     private TextView username;
@@ -54,8 +54,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String inputUsername = username.getText().toString();
-                String inputPassword = password.getText().toString();
+                Object txt = username.getText();
+                String inputUsername = txt.toString();
+                Object pass = password.getText();
+                String inputPassword = pass.toString();
 
                 RequestParams query =  new RequestParams();
                 query.put("email_signin", inputUsername);
