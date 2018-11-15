@@ -19,6 +19,9 @@ public class LoginFirebaseUnitTest {
     private String password;
     private VerifyFormat verifyFormat;
 
+    /***
+     * Set up default value
+     */
     @Before
     public void setup() {
         // Correct email and password format
@@ -26,6 +29,9 @@ public class LoginFirebaseUnitTest {
         password = "12Th34567890";
     }
 
+    /***
+     * Unit test for when username and password are correct
+     */
     @Test
     public void testValidLogin() {
         User classUser = mock(User.class);
@@ -44,6 +50,9 @@ public class LoginFirebaseUnitTest {
         }
     }
 
+    /***
+     * Unit test for when username and password are incorrect
+     */
     @Test
     public void testInvalidLogin() {
         User classUser = mock(User.class);
@@ -61,6 +70,9 @@ public class LoginFirebaseUnitTest {
         }
     }
 
+    /***
+     * Unit test for when email is invalid
+     */
     @Test
     public void testInvalidEmailFormat() {
         User classUser = mock(User.class);
@@ -77,6 +89,9 @@ public class LoginFirebaseUnitTest {
         assertFalse(VerifyFormat.verifyEmailFormat("tnn@mail"));
     }
 
+    /***
+     * Unit test for when email is valid
+     */
     @Test
     public void testValidEmailFormat() {
         User classUser = mock(User.class);
@@ -87,6 +102,9 @@ public class LoginFirebaseUnitTest {
         assertTrue(VerifyFormat.verifyEmailFormat("tesst@gmail.com"));
     }
 
+    /***
+     * Unit test for when password is valid
+     */
     @Test
     public void testValidPassword() {
         assertTrue(VerifyFormat.verifyPassword(password));
@@ -96,6 +114,9 @@ public class LoginFirebaseUnitTest {
         assertTrue(VerifyFormat.verifyPassword(fake) && (fake.length() >= 8));
     }
 
+    /***
+     * Unit test for when password is invalid
+     */
     @Test
     public void testNotValidPassword() {
         assertFalse(VerifyFormat.verifyPassword(password + "///."));

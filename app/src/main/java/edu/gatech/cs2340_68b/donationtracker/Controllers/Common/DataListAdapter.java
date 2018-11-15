@@ -15,12 +15,21 @@ import java.util.Objects;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
 @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
+/**
+ * Generate a adapter class to provide data for list view
+ */
 public class DataListAdapter extends BaseAdapter {
     @Nullable
     private final
     List<Map.Entry<String, String>> data;
     private final LayoutInflater inflater;
 
+    /**
+     * Constructor to create instance
+     *
+     * @param data list of elements to populate list view
+     * @param inflater layout inflater
+     */
     public DataListAdapter(@Nullable List<Map.Entry<String,
             String>> data, LayoutInflater inflater) {
         this.data = data;
