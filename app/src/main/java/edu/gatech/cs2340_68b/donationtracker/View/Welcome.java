@@ -5,10 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
@@ -21,13 +18,10 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationContro
 
 public class Welcome extends AppCompatActivity {
 
-    private ImageButton imageButton;
     public static User currentUser = new User();
     public static String userKey;
-    public static Gson gson = new Gson();
-    public static ObjectMapper mapper = new ObjectMapper();
+    public static final Gson gson = new Gson();
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -5,7 +5,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 /**
  * Verify the email and password format of the account
  */
-@SuppressWarnings("OverlyComplexMethod")
+@SuppressWarnings({"OverlyComplexMethod", "UtilityClass"})
 public class VerifyFormat {
     /**
      * Verifies an email format
@@ -21,7 +21,7 @@ public class VerifyFormat {
      * @param pass a new password
      * @return if a new password format is valid
      */
-    public static boolean verifyPassword (String pass) {
+    public static boolean verifyPassword (CharSequence pass) {
         if ((pass == null) || (pass.length() == 0)) {
             return false;
         }

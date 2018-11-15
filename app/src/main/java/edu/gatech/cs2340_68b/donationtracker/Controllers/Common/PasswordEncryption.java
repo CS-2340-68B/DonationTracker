@@ -3,10 +3,11 @@ package edu.gatech.cs2340_68b.donationtracker.Controllers.Common;
 /**
  * Encrypt a password to database
  */
+@SuppressWarnings("UtilityClass")
 public class PasswordEncryption {
-    static final int NUM_77 = 77;
-    static final int NUM_94 = 94;
-    static final int NUM_33 = 33;
+    private static final int NUM_77 = 77;
+    private static final int NUM_94 = 94;
+    private static final int NUM_33 = 33;
 
 
     /**
@@ -15,11 +16,11 @@ public class PasswordEncryption {
      * @return encrypted password
      */
     public static String encode(String password) {
-        String encodedPass = "";
+        StringBuilder encodedPass = new StringBuilder();
         for (Character each : password.toCharArray()) {
-            encodedPass += (char) (((each + NUM_77) * NUM_94) + NUM_33);
+            encodedPass.append((char) (((each + NUM_77) * NUM_94) + NUM_33));
         }
-        return encodedPass;
+        return encodedPass.toString();
     }
 
     /**
@@ -34,10 +35,10 @@ public class PasswordEncryption {
             throw new IllegalArgumentException(
                     "Encode String cannot be null");
         }
-        String decodedPass = "";
+        StringBuilder decodedPass = new StringBuilder();
         for (Character each : encodedPassword.toCharArray()) {
-            decodedPass += (char) (((each - NUM_33) / NUM_94) - NUM_77);
+            decodedPass.append((char) (((each - NUM_33) / NUM_94) - NUM_77));
         }
-        return decodedPass;
+        return decodedPass.toString();
     }
 }

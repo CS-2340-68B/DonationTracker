@@ -25,13 +25,15 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
-
+/**
+ * Activity when password is forgotten
+ */
 public class ForgetPassword extends AppCompatActivity {
     private TextInputEditText userEmail;
     private TextInputLayout til;
     private ProgressBar progressBar;
     @SuppressWarnings("FieldMayBeFinal")
-    private Handler progressHandler = new Handler();
+    private final Handler progressHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class ForgetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 progressBar.setVisibility(ProgressBar.VISIBLE);
                 String inputEmail = Objects.requireNonNull(userEmail.getText()).toString().trim();
-                if ((inputEmail.length() != 0) && VerifyFormat.verifyEmailFormat(inputEmail)) {
+                if ((!inputEmail.isEmpty()) && VerifyFormat.verifyEmailFormat(inputEmail)) {
                     checkIfExistInDB(inputEmail);
                 } else {
                     til.setError("Email format is not correct.");
@@ -60,7 +62,8 @@ public class ForgetPassword extends AppCompatActivity {
             // Helper method to check if email is in DB
             private void checkIfExistInDB(final String inputEmail) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                Query query = reference.child("accounts").orderByChild("username").equalTo(inputEmail);
+                Query query = reference.child("accounts")
+                        .orderByChild("username").equalTo(inputEmail);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,18 +81,18 @@ public class ForgetPassword extends AppCompatActivity {
                             } else {
                                 // Move to reset page
                                 status = false;
-                                Intent intent = new Intent(ForgetPassword.this, ResetPassword.class);
+                                Intent intent = new Intent(
+                                        ForgetPassword.this, ResetPassword.class);
                                 intent.putExtra("userEmail", inputEmail);
                                 startActivity(intent);
-                                if (ResetPassword.finishedFlag == true) {
+                                if (ResetPassword.finishedFlag) {
+                                    //noinspection AssignmentToStaticFieldFromInstanceMethod
                                     ResetPassword.finishedFlag = false;
                                     finish();
                                 }
                             }
                         }
-                        if (!status) {
-                            progressBar.setVisibility(ProgressBar.INVISIBLE);
-                        }
+                        progressBar.setVisibility(ProgressBar.INVISIBLE);
                     }
 
                     @Override

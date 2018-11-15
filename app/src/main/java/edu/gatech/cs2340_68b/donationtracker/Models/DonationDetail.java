@@ -196,6 +196,7 @@ public class DonationDetail implements Serializable {
      * Set the key for donation
      * @param donationKey donation's key
      */
+    @SuppressWarnings("unused")
     public void setDonationKey(String donationKey) {
         this.donationKey = donationKey;
     }
@@ -205,6 +206,7 @@ public class DonationDetail implements Serializable {
      * Set values
      * @param newDonationDetails donation details
      */
+    @SuppressWarnings("unused")
     public void setValues(DonationDetail newDonationDetails) {
         time = newDonationDetails.time;
         name = newDonationDetails.name;

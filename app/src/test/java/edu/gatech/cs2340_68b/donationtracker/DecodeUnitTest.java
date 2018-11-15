@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  *
  * @author tnguyen467
  */
+@SuppressWarnings("FeatureEnvy")
 public class DecodeUnitTest {
     @Test
     public void decodeEmptyString() {

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,7 +18,9 @@
         android:hint="@string/Zipcode"
         android:inputType="textEmailAddress|textPersonName"
         app:layout_constraintStart_toStartOf="@+id/city"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/state"
@@ -32,7 +35,9 @@
         android:inputType="textEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/streetAddress"
         app:layout_constraintStart_toEndOf="@+id/city"
-        app:layout_constraintTop_toBottomOf="@+id/streetAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/streetAddress"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/city"
@@ -48,7 +53,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/streetAddress"
         app:layout_constraintTop_toBottomOf="@+id/streetAddress"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/firstName"
@@ -63,7 +70,9 @@
         app:layout_constraintEnd_toEndOf="@+id/userInformation"
         app:layout_constraintHorizontal_bias="0.016"
         app:layout_constraintStart_toStartOf="@+id/userInformation"
-        app:layout_constraintTop_toBottomOf="@+id/userInformation" />
+        app:layout_constraintTop_toBottomOf="@+id/userInformation"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/emergencyContact"
@@ -77,7 +86,9 @@
         android:inputType="textEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/phoneNumber"
         app:layout_constraintStart_toStartOf="@+id/phoneNumber"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/phoneNumber"
@@ -91,7 +102,10 @@
         android:inputType="textEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/lastName"
         app:layout_constraintStart_toStartOf="@+id/lastName"
-        app:layout_constraintTop_toBottomOf="@+id/lastName" />
+        app:layout_constraintTop_toBottomOf="@+id/lastName"
+        tools:ignore="TextFields"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/lastName"
@@ -105,7 +119,9 @@
         android:inputType="textEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/firstName"
         app:layout_constraintStart_toStartOf="@+id/firstName"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/streetAddress"
@@ -119,7 +135,9 @@
         android:inputType="textEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/emergencyContact"
         app:layout_constraintStart_toStartOf="@+id/emergencyContact"
-        app:layout_constraintTop_toBottomOf="@+id/emergencyContact" />
+        app:layout_constraintTop_toBottomOf="@+id/emergencyContact"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <TextView
         android:id="@+id/address"

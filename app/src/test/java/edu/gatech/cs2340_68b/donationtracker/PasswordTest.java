@@ -12,8 +12,9 @@ import static org.junit.Assert.*;
  *
  * @author Chanhee Lee
  */
+@SuppressWarnings("FeatureEnvy")
 public class PasswordTest {
-    String correctPass;
+    private String correctPass;
 
     @Before
     public void setUp() {

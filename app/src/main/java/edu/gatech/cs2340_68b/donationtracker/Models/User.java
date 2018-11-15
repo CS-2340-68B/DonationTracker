@@ -3,6 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 import java.io.Serializable;
 import android.support.annotation.NonNull;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 
@@ -23,10 +24,19 @@ public class User implements Serializable {
     private Contact contact;
     private String assignedLocation;
 
+    /**
+     * Returns user key
+     * @return User key
+     */
     public String getUserKey() {
         return userKey;
     }
 
+    /**
+     * Sets user key
+     * @param userKey user key to be set
+     */
+    @SuppressWarnings("unused")
     public void setUserKey(String userKey) {
         this.userKey = userKey;
     }
@@ -38,7 +48,7 @@ public class User implements Serializable {
      * Get a user search list
      * @return user list
      */
-    public ArrayList<UserSearch> getUserSearchList() {
+    public List<UserSearch> getUserSearchList() {
         return userSearchList;
     }
 
@@ -67,6 +77,7 @@ public class User implements Serializable {
         this.contact = newuser.contact;
         this.assignedLocation = newuser.assignedLocation;
         this.userSearchList = newuser.userSearchList;
+        this.userKey = newuser.userKey;
     }
 
     /***
@@ -75,8 +86,6 @@ public class User implements Serializable {
      * @param username account's username
      * @param password account's password
      * @param failedAttempts number of failed attempts
-     * @param lastFailed last failed, set to 0
-     * @param lastLogin last time user login, set to 0
      * @param type user type
      * @param assignedLocation user's assigned location.
      */
@@ -105,6 +114,7 @@ public class User implements Serializable {
      *
      * @return user id
      */
+    @SuppressWarnings("unused")
     public String getUserID() {
         return userID;
     }
@@ -114,6 +124,7 @@ public class User implements Serializable {
      *
      * @param userID new user id
      */
+    @SuppressWarnings("unused")
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -123,6 +134,7 @@ public class User implements Serializable {
      *
      * @return user's contact
      */
+    @SuppressWarnings("unused")
     public Contact getContact() {
         return contact;
     }
@@ -132,6 +144,7 @@ public class User implements Serializable {
      *
      * @param contact new contact info
      */
+    @SuppressWarnings("unused")
     public void setContact(Contact contact) {
         this.contact = contact;
     }
@@ -150,6 +163,7 @@ public class User implements Serializable {
      *
      * @param username new username
      */
+    @SuppressWarnings("unused")
     public void setUsername(String username) {
         this.username = username;
     }
@@ -177,6 +191,7 @@ public class User implements Serializable {
      *
      * @return count of failed attempt
      */
+    @SuppressWarnings("unused")
     public int getFailedAttempts() {
         return failedAttempts;
     }
@@ -193,6 +208,7 @@ public class User implements Serializable {
     /***
      * Increase failed attempt by one
      */
+    @SuppressWarnings("unused")
     public void incrementFailed() {
         this.failedAttempts++;
     }
@@ -202,6 +218,7 @@ public class User implements Serializable {
      *
      * @return user type
      */
+    @SuppressWarnings("unused")
     public UserType getType() {
         return this.type;
     }
@@ -220,6 +237,7 @@ public class User implements Serializable {
      *
      * @return lock status
      */
+    @SuppressWarnings("unused")
     public boolean getIsLock() {
         return isLock;
     }
@@ -229,6 +247,7 @@ public class User implements Serializable {
      *
      * @param status current lock status
      */
+    @SuppressWarnings("unused")
     public void setIsLock(boolean status) {
         this.isLock = status;
     }

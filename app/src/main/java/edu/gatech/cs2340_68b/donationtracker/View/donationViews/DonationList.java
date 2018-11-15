@@ -1,20 +1,21 @@
 package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -34,6 +35,11 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
@@ -42,15 +48,69 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * Get data from database and put to donation list
  */
 
+@SuppressWarnings("FeatureEnvy")
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
     private String newLocation;
+    private ActionBarDrawerToggle aToggle;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donation_list);
+        final Context contect = this;
+
+        drawer = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        Toolbar aToolbar = findViewById(R.id.nav_actionbar);
+        setSupportActionBar(aToolbar);
+        aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer.addDrawerListener(aToggle);
+        aToggle.syncState();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        if (menuItem.getItemId() == R.id.nav_account) {
+                            Intent intent = new Intent(contect ,UserProfile.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_search) {
+                            Intent intent = new Intent(contect ,SearchView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_location) {
+                            Intent intent = new Intent(contect ,LocationListView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_history) {
+                            Intent intent = new Intent(contect ,SearchHistory.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_logout) {
+                            Intent intent = new Intent(contect, Login.class);
+                            startActivity(intent);
+                        }
+
+
+
+                        // close drawer when item is tapped
+                        drawer.closeDrawers();
+
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+
+                        return true;
+                    }
+                });
+
         final String locationName = (String) getIntent().getSerializableExtra("PLACENAME");
         final String defaultLocation = (String) getIntent().getSerializableExtra("DEFAULT");
         donationListView = findViewById(R.id.donationList);
@@ -76,18 +136,18 @@ public class DonationList extends AppCompatActivity {
                     ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                     final List<DonationDetail> donationList = new ArrayList<>();
                     final List<String> keyHashFromFB = new ArrayList<>();
-                    for (int i = 0; i < donations.length; i++) {
-                        DonationDetail detail = donations[i];
+                    for (DonationDetail detail : donations) {
                         keyHashFromFB.add(detail.getDonationKey());
                         donationList.add(detail);
-                        Map.Entry<String,String> entry =
+                        Map.Entry<String, String> entry =
                                 new AbstractMap.SimpleEntry<>(
                                         Objects.requireNonNull(detail)
                                                 .getName(), detail
                                         .getFullDescription());
                         donationInfo.add(entry);
                     }
-                    donationListView.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
+                    donationListView.setAdapter(new DataListAdapter
+                            (donationInfo, getLayoutInflater()));
                     donationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(
@@ -95,7 +155,9 @@ public class DonationList extends AppCompatActivity {
                             // Sending information through intent
                             DonationDetail donation = donationList.get(position);
                             String keyUsed = keyHashFromFB.get(position);
-                            Intent detail = new Intent(DonationList.this, DonationDetailControl.class);
+                            Intent detail = new Intent(
+                                    DonationList.this,
+                                    DonationDetailControl.class);
                             detail.putExtra("DATA", donation);
                             detail.putExtra("KEY", keyUsed);
                             detail.putExtra("LOCATION", locationName);
@@ -134,6 +196,21 @@ public class DonationList extends AppCompatActivity {
                 startActivity(detail);
             }
         });
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.nav_account) {
+            Intent intent = new Intent(this,UserProfile.class);
+            this.startActivity(intent);
+            return true;
+
+        }
+        if (aToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
 
     }
 }

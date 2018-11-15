@@ -1,9 +1,16 @@
 package edu.gatech.cs2340_68b.donationtracker.View.donationViews;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,9 +24,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
+import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 
 import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
 
@@ -27,6 +41,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
  * Control donation detail page, get data from database
  */
 
+@SuppressWarnings("FeatureEnvy")
 public class DonationDetailControl extends AppCompatActivity {
     private EditText time;
     private TextView location;
@@ -36,15 +51,60 @@ public class DonationDetailControl extends AppCompatActivity {
     private EditText comment;
     private EditText name;
     private Spinner category;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    // --Commented out by Inspection (11/7/18, 10:49 AM):private DatabaseReference ref = database.getReference("donations");
+    private ActionBarDrawerToggle aToggle;
+    private DrawerLayout drawer;
 
     // Needs DATA, KEY, LOCATION to work properly
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donation_detail);
+        //create menu
+        final Context contect = this;
+        drawer = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar aToolbar = findViewById(R.id.nav_actionbar);
+        setSupportActionBar(aToolbar);
+        aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer.addDrawerListener(aToggle);
+        aToggle.syncState();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        if (menuItem.getItemId() == R.id.nav_account) {
+                            Intent intent = new Intent(contect ,UserProfile.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_search) {
+                            Intent intent = new Intent(contect ,SearchView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_location) {
+                            Intent intent = new Intent(contect ,LocationListView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_history) {
+                            Intent intent = new Intent(contect ,SearchHistory.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_logout) {
+                            Intent intent = new Intent(contect, Login.class);
+                            startActivity(intent);
+                        }
+
+                        // close drawer when item is tapped
+                        drawer.closeDrawers();
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+                        return true;
+                    }
+                });
 
 //        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
         final DonationDetail donation = (DonationDetail) getIntent().getSerializableExtra("DATA");
@@ -157,6 +217,15 @@ public class DonationDetailControl extends AppCompatActivity {
                 }
             }
             return -1;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (aToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }

@@ -24,6 +24,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 /**
  * Controller for the map
  */
+@SuppressWarnings("FeatureEnvy")
 public class LocationMap extends FragmentActivity implements OnMapReadyCallback {
 
     private Button detailButton;
@@ -52,15 +53,23 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        GoogleMap mMap = googleMap;
         LatLngBounds.Builder latBuilder = new LatLngBounds.Builder();
 
-        final Iterable<Location> locations = (ArrayList<Location>) getIntent().getSerializableExtra("LocationList");
+        final Iterable<Location> locations =
+                (ArrayList<Location>)
+                        getIntent()
+                                .getSerializableExtra(
+                                "LocationList");
         for (Location l: locations) {
-            LatLng location = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
-            Marker marker = mMap.addMarker(new MarkerOptions()
+            LatLng location =
+                    new LatLng(Double.parseDouble(
+                            l.getLatitude()),
+                            Double.parseDouble(
+                                    l.getLongitude()));
+            Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(location)
                     .title(l.getLocationName())
                     .snippet("Phone: " + l.getPhone()
@@ -69,9 +78,9 @@ public class LocationMap extends FragmentActivity implements OnMapReadyCallback 
             );
             latBuilder.include(location);
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latBuilder.build(), 100));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latBuilder.build(), 100));
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker m) {
                 m.showInfoWindow();

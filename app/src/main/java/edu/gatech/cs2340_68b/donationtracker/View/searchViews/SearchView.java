@@ -5,8 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -38,13 +44,16 @@ import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.View.donationViews.DonationDetailControl;
+import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 
 /**
  * Controller for search view
  */
-@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "FeatureEnvy"})
 public class SearchView extends AppCompatActivity {
 
     // Define Variables
@@ -57,18 +66,60 @@ public class SearchView extends AppCompatActivity {
     private int searchTypeFlag;
     private UserSearch searchCriteria;
     private ArrayList<String> locationListString;
+    private ActionBarDrawerToggle aToggle;
+    private DrawerLayout drawer;
 
-    Location allLocations = new Location("All");
+//    private final Location allLocations = new Location("All");
+private final Location allLocations = new Location("All");
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_view);
+        //create menu
+        final Context contect = this;
+        drawer = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar aToolbar = findViewById(R.id.nav_actionbar);
+        setSupportActionBar(aToolbar);
+        aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer.addDrawerListener(aToggle);
+        aToggle.syncState();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        if (menuItem.getItemId() == R.id.nav_account) {
+                            Intent intent = new Intent(contect ,UserProfile.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_location) {
+                            Intent intent = new Intent(contect ,LocationListView.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_history) {
+                            Intent intent = new Intent(contect ,SearchHistory.class);
+                            startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_logout) {
+                            Intent intent = new Intent(contect, Login.class);
+                            startActivity(intent);
+                        }
+                        // close drawer when item is tapped
+                        drawer.closeDrawers();
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+                        return true;
+                    }
+                });
 
         // Initialize components
         searchRadioGroup = findViewById(R.id.searchTypeRadioGroup);
         RadioButton itemRButton = findViewById(R.id.searchTypeItem);
-        RadioButton catRButton = findViewById(R.id.searchTypeCat);
         Button searchHistoryButton = findViewById(R.id.searchHistoryButton);
         searchBar = findViewById(R.id.searchBar);
         searchCatSpinner = findViewById(R.id.searchCatSpinner);
@@ -81,7 +132,6 @@ public class SearchView extends AppCompatActivity {
 
         // Initialize other variables
         searchTypeFlag = -1;
-        boolean isSearchAll = true;
         itemRButton.setChecked(true);
         searchCriteria.setSearchOption(SearchOptions.NAME);
 
@@ -108,7 +158,8 @@ public class SearchView extends AppCompatActivity {
          * CATEGORY SET UP
          */
         // Set up category spinner adapter
-        ArrayAdapter<String> catAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
+        ArrayAdapter<String> catAdapter = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, Category.values());
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         searchCatSpinner.setAdapter(catAdapter);
 
@@ -118,13 +169,14 @@ public class SearchView extends AppCompatActivity {
 
         // Read in location
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
-        final ArrayList<Location> locationList = new ArrayList<>();
+        final Collection<Location> locationList = new ArrayList<>();
         final Context self = this;
         // Get values from locations
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                Collection<Map.Entry<String, String>> locationInfo = new ArrayList<>();
 
                 // Loads in all locations into the array list
                 locationList.add(allLocations);
@@ -136,12 +188,18 @@ public class SearchView extends AppCompatActivity {
                     locationList.add(place);
                     locationListString.add(Objects.requireNonNull(place).getLocationName());
                     Map.Entry<String, String> entry =
-                            new AbstractMap.SimpleEntry<>(place.getLocationName(), place.getAddress());
+                            new AbstractMap.SimpleEntry<>(place
+                                    .getLocationName(),
+                                    place.getAddress());
                     locationInfo.add(entry);
 
                     // Set up adapter for location spinner
-                    ArrayAdapter locationAdapter = new ArrayAdapter(self, android.R.layout.simple_spinner_item, locationListString);
-                    locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    ArrayAdapter locationAdapter;
+                    locationAdapter = new ArrayAdapter(self,
+                    android.R.layout.simple_spinner_item,
+                    locationListString);
+                    locationAdapter.setDropDownViewResource(
+                            android.R.layout.simple_spinner_dropdown_item);
                     searchLocSpinner.setAdapter(locationAdapter);
                 }
             }
@@ -169,7 +227,7 @@ public class SearchView extends AppCompatActivity {
         });
     }
 
-    protected void search(final int removedIndex) {
+    private void search(final int removedIndex) {
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
             searchCriteria.setKeyword(Objects.requireNonNull(searchBar.getText()).toString());
         } else {
@@ -184,7 +242,8 @@ public class SearchView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUser = dataSnapshot.getValue(User.class);
-                ArrayList<UserSearch> temp = Objects.requireNonNull(currentUser).getUserSearchList();
+                List<UserSearch> temp =
+                        Objects.requireNonNull(currentUser).getUserSearchList();
                 if (temp == null) {
                     temp = new ArrayList<>();
 
@@ -209,31 +268,37 @@ public class SearchView extends AppCompatActivity {
         if (searchCriteria.getSearchOption().equals(SearchOptions.NAME)) {
             donationQuery = donationDB.orderByChild("name").equalTo(searchCriteria.getKeyword());
         } else {
-            donationQuery = donationDB.orderByChild("category").equalTo(searchCriteria.getKeyword());
+            donationQuery =
+                    donationDB.orderByChild("category").equalTo(
+                            searchCriteria.getKeyword());
         }
 
         // Get data from firebase according to our query
-        donationQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        donationQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                final ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
-                final ArrayList<DonationDetail> donationList = new ArrayList<>();
-                final ArrayList<String> keyHashFromFB = new ArrayList<>();
+                final List<Map.Entry<String, String>> donationInfo = new ArrayList<>();
+                final List<DonationDetail> donationList = new ArrayList<>();
+                final List<String> keyHashFromFB = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     DonationDetail detail = snapshot.getValue(DonationDetail.class);
                     keyHashFromFB.add(snapshot.getKey());
 
                     // Check for location requirement.
                     if ("All".equals(searchCriteria.getLocationName())
-                            || searchCriteria.getLocationName().equals(Objects.requireNonNull(detail).getLocation())) {
+                            || searchCriteria.getLocationName().equals(
+                                    Objects.requireNonNull(detail).getLocation())) {
                         donationList.add(detail);
                         Map.Entry<String, String> entry =
-                                new AbstractMap.SimpleEntry<>(Objects.requireNonNull(detail).getName(), detail.getLocation());
+                                new AbstractMap.SimpleEntry<>(
+                                        Objects.requireNonNull(detail)
+                                                .getName(),
+                                        detail.getLocation());
                         donationInfo.add(entry);
                     }
                 }
                 searchResultList.setAdapter(new DataListAdapter(donationInfo, getLayoutInflater()));
-                if (donationInfo.size() == 0) {
+                if (donationInfo.isEmpty()) {
                     (findViewById(R.id.noItemTextView)).setVisibility(View.VISIBLE);
                     return;
                 }
@@ -242,7 +307,11 @@ public class SearchView extends AppCompatActivity {
                 }
                 searchResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(
+                            AdapterView<?> parent,
+                            View view,
+                            int position,
+                            long id) {
                     // Sending information through intent
                     String keyUsed = keyHashFromFB.get(position);
                     DonationDetail donation = donationList.get(position);
@@ -275,15 +344,24 @@ public class SearchView extends AppCompatActivity {
                     searchRadioGroup.check(R.id.searchTypeItem);
                 } else {
                     List<Category> catList = Arrays.asList(Category.values());
-                    searchCatSpinner.setSelection(catList.indexOf(Category.valueOf(search.getKeyword())));
+                    searchCatSpinner.setSelection(
+                            catList.indexOf(
+                                    Category.valueOf(
+                                            search.getKeyword())));
                     searchRadioGroup.check(R.id.searchTypeCat);
                 }
                 searchLocSpinner.setSelection(locationListString.indexOf(search.getLocationName()));
                 search(removedIndex);
             }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (aToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }

@@ -3,7 +3,6 @@ package edu.gatech.cs2340_68b.donationtracker.View;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +12,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -26,8 +20,9 @@ import org.json.JSONObject;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.CustomDialog;
@@ -36,7 +31,6 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.Models.Response;
-import edu.gatech.cs2340_68b.donationtracker.Models.Status;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.UserType;
 import edu.gatech.cs2340_68b.donationtracker.R;
@@ -48,7 +42,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * A new account is added to database
  */
 
-@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "FeatureEnvy"})
 public class Register extends AppCompatActivity {
 
     private TextView usernameTV;
@@ -56,19 +50,18 @@ public class Register extends AppCompatActivity {
     private TextView confirmPasswordTV;
     private Spinner utspinner;
     private Spinner locspinner;
-    private User newAccount = new User();
+    private final User newAccount = new User();
 
-    final int ADMIN = 0;
-    final int USER = 1;
-    final int LOCATIONEMPLOYEE = 2;
-    final int MANAGER = 3;
+    private final int ADMIN = 0;
+    private final int USER = 1;
+    private final int LOCATIONEMPLOYEE = 2;
+    private final int MANAGER = 3;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout .register);
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = firebase.getReference("accounts");
 
         usernameTV = findViewById(R.id.registerUsername);
         passwordTV = findViewById(R.id.registerPassword);
@@ -81,29 +74,29 @@ public class Register extends AppCompatActivity {
 
 
         // Read in location
-        final ArrayList<Location> locationList = new ArrayList<>();
-        final ArrayList<String> locationListString = new ArrayList<>();
+        final List<Location> locationList = new ArrayList<>();
+        final List<String> locationListString = new ArrayList<>();
         final Context self = this;
         // Get values from locations
         HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-                ArrayList<Map.Entry<String, String>> locationInfo = new ArrayList<>();
+                Collection<Map.Entry<String, String>> locationInfo = new ArrayList<>();
                 Location[] locations = gson.fromJson(response.toString(), Location[].class);
-                for (int i = 0; i < locations.length; i++) {
-                    locationList.add(locations[i]);
-                    locationListString.add(locations[i].getLocationName());
+                for (Location location : locations) {
+                    locationList.add(location);
+                    locationListString.add(location.getLocationName());
                     Map.Entry<String, String> entry =
                             new AbstractMap.SimpleEntry<>(
-                                    locations[i].getLocationName(), locations[i].getAddress());
+                                    location.getLocationName(), location.getAddress());
                     locationInfo.add(entry);
 
                      /*
                       Set up the adapter to display the locations in the spinner
                      */
                     ArrayAdapter<String> adapter2 = new ArrayAdapter(
-                            self,android.R.layout.simple_spinner_item, locationListString);
+                            self, android.R.layout.simple_spinner_item, locationListString);
                     adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     locspinner.setAdapter(adapter2);
                 }
@@ -114,14 +107,17 @@ public class Register extends AppCompatActivity {
           Set up the adapter to display the user types in the spinner
          */
         ArrayAdapter<String> adapter1 = new ArrayAdapter(
-                this,android.R.layout.simple_spinner_item, UserType.values());
+                this,android.R.layout.simple_spinner_item,
+                UserType.values());
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         utspinner.setAdapter(adapter1);
 
         // UT Listener
         utspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemSelected(
+                    AdapterView<?> parentView,
+                    View selectedItemView, int position, long id) {
                 switch (position) {
                     case USER:
                         newAccount.setType(UserType.USER);
@@ -159,8 +155,10 @@ public class Register extends AppCompatActivity {
         // Location Listener
         locspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                //Toast.makeText(parentView.getContext(),locationListString.get(position), Toast.LENGTH_LONG).show();
+            public void onItemSelected(AdapterView<?> parentView,
+                                       View selectedItemView,
+                                       int position,
+                                       long id) {
                 newAccount.setAssignedLocation(locationList.get(position).getLocationName());
             }
 
@@ -193,7 +191,8 @@ public class Register extends AppCompatActivity {
 
                 else if (!VerifyFormat.verifyPassword(password)) {
                     AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
-                            "Error", "Your password must contain at least 1 letter, 1 number, and " +
+                            "Error", "Your password must " +
+                                    "contain at least 1 letter, 1 number, and " +
                             "one upper case letter, and be at least 8 characters long");
                     alert.create().show();
                 }
@@ -207,10 +206,12 @@ public class Register extends AppCompatActivity {
                     query.put("locationName", locationName);
                     HttpUtils.postForm("/register", query, new JsonHttpResponseHandler() {
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        public void onSuccess(
+                                int statusCode, Header[] headers,
+                                JSONObject response) {
                             super.onSuccess(statusCode, headers, response);
                             Response res = gson.fromJson(response.toString(), Response.class);
-                            if (res.status.equals("fail")) {
+                            if ("fail".equals(res.status)) {
                                 AlertDialog.Builder alert = CustomDialog.errorDialog(Register.this,
                                         "Registration Error", "Username already exists");
                                 alert.create().show();

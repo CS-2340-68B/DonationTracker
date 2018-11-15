@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,14 +27,17 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.VerifyFormat;
 import edu.gatech.cs2340_68b.donationtracker.Models.User;
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/**
+ * Reset password component, use to reset user's password.
+ */
 public class ResetPassword extends AppCompatActivity {
 
     private EditText newPassword;
     private EditText repeatNewPassword;
     private TextInputLayout til;
     private String currentUserEmail;
-    public static boolean finishedFlag = false;
-    static final int NUM_1500 = 1500;
+    public static boolean finishedFlag;
+    private static final int NUM_1500 = 1500;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,19 +77,25 @@ public class ResetPassword extends AppCompatActivity {
                 final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
                 final DatabaseReference ref = firebase.getReference("accounts");
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                System.out.println("Line 63: " + currentUserEmail);
-                Query query = reference.child("accounts").orderByChild("username").equalTo(currentUserEmail);
+                Query query = reference.child(
+                        "accounts").orderByChild(
+                                "username").equalTo(
+                                        currentUserEmail);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot singleSnapShot: dataSnapshot.getChildren()) {
                             User user = singleSnapShot.getValue(User.class);
-                            Objects.requireNonNull(user).setPassword(PasswordEncryption.encode(newPassword));
+                            Objects.requireNonNull(user)
+                                    .setPassword(PasswordEncryption.encode(newPassword));
                             user.setFailedAttempts(0);
-                            System.out.println("Line 71: " + user.getPassword());
+                            Log.d("Tag","Line 71: " + user.getPassword());
                             finishedFlag = true;
-                            ref.child(Objects.requireNonNull(singleSnapShot.getKey())).setValue(user);
-                            AlertDialog.Builder alert  = CustomDialog.errorDialog(ResetPassword.this,
+                            ref.child(Objects
+                                    .requireNonNull(singleSnapShot
+                                            .getKey())).setValue(user);
+                            AlertDialog.Builder alert  = CustomDialog.errorDialog(
+                                    ResetPassword.this,
                                     "Congratulation", "You have successfully changed your password."
                                 + " We will prompt you back to login page.");
                             alert.create().show();

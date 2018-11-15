@@ -24,8 +24,9 @@ import edu.gatech.cs2340_68b.donationtracker.R;
  * Control location list, get data from database and add data to database
  */
 
+@SuppressWarnings("FeatureEnvy")
 public class LocationControl {
-    private Context context;
+    private final Context context;
 
     /**
      * A constructor for LocationControl class
@@ -38,17 +39,27 @@ public class LocationControl {
     /**
      * Read csv file
      */
+    @SuppressWarnings("NestedAssignment")
     public void readCSVFile() {
         try {
             //Open a stream on the raw file
             InputStream is =  context.getResources().openRawResource(R.raw.locationdata);
-            BufferedReader br1 = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            BufferedReader br1 =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    is,
+                                    StandardCharsets.UTF_8));
             String readline;
             br1.readLine(); //get rid of header line
             while ((readline = br1.readLine()) != null) {
                 String[] token = readline.split(",");
-                Location location = new Location(token[0], token[1], token[2], token[3], token[4], token[5],
-                        token[6], token[7], token[8], token[9], token[10]);
+                Location location =
+                        new Location(token[0],
+                                token[1], token[2],
+                                token[3], token[4],
+                                token[5],
+                        token[6], token[7], token[8],
+                                token[9], token[10]);
                 addLocationToDB(location);
             }
             br1.close();
@@ -62,16 +73,21 @@ public class LocationControl {
      * Add a new location to the database
      * @param location a location
      */
-    public void addLocationToDB(final Location location) {
+    private void addLocationToDB(final Location location) {
 
-        final DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
+        final DatabaseReference locationDB =
+                FirebaseDatabase.getInstance()
+                        .getReference("locations");
         locationDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 boolean canAdd = true;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Location currentPlace = snapshot.getValue(Location.class);
-                    if (Objects.requireNonNull(currentPlace).getLocationName().equals(location.getLocationName()) && currentPlace.getLatitude().equals(location.getLatitude()) && currentPlace.getLongitude().equals(location.getLongitude())) {
+                    if (Objects.requireNonNull(currentPlace)
+                            .getLocationName().equals(location.getLocationName())
+                            && currentPlace.getLatitude().equals(location.getLatitude())
+                            && currentPlace.getLongitude().equals(location.getLongitude())) {
                         canAdd = false;
                     }
                 }
