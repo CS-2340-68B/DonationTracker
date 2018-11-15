@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
+
+        <item android:id = "@+id/nav_main"
+            android:icon="@mipmap/baseline_home_black_24dp"
+            android:title="@string/main" />
+
         <item android:id = "@+id/nav_account"
             android:icon="@mipmap/baseline_person_black_24dp"
             app:showAsAction = "always"

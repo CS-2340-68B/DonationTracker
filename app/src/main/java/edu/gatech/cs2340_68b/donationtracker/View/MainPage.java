@@ -90,6 +90,7 @@ public class MainPage extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
                             startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_location) {
                             Intent intent = new Intent(contect ,LocationListView.class);
@@ -102,12 +103,8 @@ public class MainPage extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_logout) {
                             finish();
                         }
-
-
-
                         // close drawer when item is tapped
                         drawer.closeDrawers();
-
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
 
