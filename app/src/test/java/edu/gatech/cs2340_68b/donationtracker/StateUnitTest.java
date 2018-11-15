@@ -66,6 +66,7 @@ public class StateUnitTest {
      */
     @Test(expected = NullPointerException.class)
     public void invalidInputFormat() {
+        //noinspection ConstantConditions
         StatesList.valueOfName(null);
     }
 

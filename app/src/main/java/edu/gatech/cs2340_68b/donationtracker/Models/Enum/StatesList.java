@@ -107,7 +107,9 @@ public enum StatesList {
      * @return value of the name
      */
     public static StatesList valueOfName(final String name) {
-        final String enumName = name.toUpperCase().replaceAll(" ", "_");
+        String eName = name.toUpperCase();
+        final String enumName = eName.replaceAll(" ", "_");
+
         try {
             return valueOf(enumName);
         } catch (final IllegalArgumentException e) {
