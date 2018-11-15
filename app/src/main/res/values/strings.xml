@@ -68,6 +68,7 @@
     <string name="time">Time</string>
     <string name="location_of_donation_name">Location of Donation Name</string>
     <string name="donation_detail">Donation Detail</string>
+    <string name="main">Main Page</string>
 
 
 </resources>

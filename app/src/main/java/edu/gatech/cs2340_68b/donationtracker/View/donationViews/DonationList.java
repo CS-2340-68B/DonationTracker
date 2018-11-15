@@ -37,6 +37,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
@@ -83,6 +84,11 @@ public class DonationList extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_account) {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);

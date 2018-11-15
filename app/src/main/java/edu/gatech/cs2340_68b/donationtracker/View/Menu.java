@@ -55,6 +55,11 @@ public class Menu extends AppCompatActivity {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
                         }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
+                        }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
                             startActivity(intent);

@@ -32,6 +32,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Models.UserSearch;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.Welcome;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
@@ -69,6 +70,11 @@ public class SearchHistory extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_account) {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
