@@ -53,7 +53,8 @@ import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView
 /**
  * Controller for search view
  */
-@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "FeatureEnvy", "ChainedMethodCall", "ClassWithTooManyDependencies"})
+@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection",
+        "FeatureEnvy", "ChainedMethodCall", "ClassWithTooManyDependencies"})
 public class SearchView extends AppCompatActivity {
 
     // Define Variables

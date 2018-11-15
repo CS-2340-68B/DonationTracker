@@ -59,9 +59,10 @@ public class DataListAdapter extends BaseAdapter {
         TextView detail;
         title = row.findViewById(R.id.title);
         detail = row.findViewById(R.id.detail);
-        Map.Entry<String,String> temp1 = data != null ? data.get(position) : null;
+        Map.Entry<String,String> temp1 = (data != null) ? data.get(position) : null;
+        assert temp1 != null;
         String temp1key = temp1.getKey();
-        title.setText((data != null) ? temp1key : null);
+        title.setText(temp1key);
         Map.Entry<String,String> temp2 = data.get(position);
         String temp2val =  temp2.getValue();
         detail.setText(temp2val);

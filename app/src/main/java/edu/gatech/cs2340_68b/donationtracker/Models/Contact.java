@@ -10,11 +10,6 @@ public class Contact {
     private Location location;
 
     /**
-     * A no argument contractor for the contact class
-     */
-    public Contact() {}
-
-    /**
      * Get a first name
      * @return first name
      */

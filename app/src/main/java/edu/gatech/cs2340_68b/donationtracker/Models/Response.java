@@ -3,7 +3,7 @@ package edu.gatech.cs2340_68b.donationtracker.Models;
 /**
  * Response of server
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "PublicField"})
 public class Response {
 
     /**

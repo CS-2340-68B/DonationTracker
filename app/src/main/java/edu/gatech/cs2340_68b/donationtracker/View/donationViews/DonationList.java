@@ -49,7 +49,8 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * Get data from database and put to donation list
  */
 
-@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall", "ConstantConditions", "ClassWithTooManyDependencies"})
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall",
+        "ConstantConditions", "ClassWithTooManyDependencies"})
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
