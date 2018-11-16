@@ -62,12 +62,12 @@ public enum StatesList {
     /**
      * The state's name.
      */
-    private String name;
+    private final String name;
 
     /**
      * The state's abbreviation.
      */
-    private String abbreviation;
+    private final String abbreviation;
 
     /**
      * The set of states addressed by abbreviations.

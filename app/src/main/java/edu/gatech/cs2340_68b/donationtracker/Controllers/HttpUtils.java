@@ -7,6 +7,7 @@ import com.loopj.android.http.ResponseHandlerInterface;
 /***
  * Instance to send request and receive response from server
  */
+@SuppressWarnings("UtilityClass")
 public class HttpUtils {
     // Uncomment for local testing
 //    private static final String BASE_URL = "http://10.0.2.2:5000";
