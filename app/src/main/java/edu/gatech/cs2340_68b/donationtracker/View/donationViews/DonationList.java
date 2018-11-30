@@ -131,7 +131,7 @@ public class DonationList extends AppCompatActivity {
         }
 
         RequestParams params = new RequestParams("locationName", locationName);
-        HttpUtils.postForm("/getDonations", params, new JsonHttpResponseHandler() {
+        HttpUtils.postForm("/getDonations/" + locationName.replace(" ",  "%20"), params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);

@@ -10,10 +10,10 @@ import com.loopj.android.http.ResponseHandlerInterface;
 @SuppressWarnings("UtilityClass")
 public class HttpUtils {
     // Uncomment for local testing
-//    private static final String BASE_URL = "http://10.0.2.2:5000";
+    private static final String BASE_URL = "http://10.0.2.2:5000";
 
     // URL to hosting server
-    private static final String BASE_URL = "https://donation-tracker-server-heroku.herokuapp.com";
+//    private static final String BASE_URL = "https://donation-tracker-server-heroku.herokuapp.com";
 
     private static final AsyncHttpClient client = new AsyncHttpClient();
 

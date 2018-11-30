@@ -89,6 +89,7 @@ public class Login extends AppCompatActivity {
                                 break;
                             }
                             default:
+                                Log.e("What?", "Problem");
                                 User user = gson.fromJson(
                                         gson.toJsonTree(res.data).getAsJsonObject(), User.class);
                                 Welcome.currentUser = user;
