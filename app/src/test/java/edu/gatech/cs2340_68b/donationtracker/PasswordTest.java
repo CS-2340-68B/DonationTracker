@@ -16,17 +16,17 @@ import static org.junit.Assert.*;
 public class PasswordTest {
     private String correctPass;
 
+    /***
+     * Initialize data
+     */
     @Before
     public void setUp() {
         correctPass = "Password123";
-
-//        boolean capitalFlag = false;
-//        boolean numberFlag = false;
-//        boolean letterFlag = false;
-//        boolean lengthFlag = false;
-
     }
 
+    /***
+     * Invalid password input
+     */
     @Test (timeout = 200)
     public void testInvalid(){
         String emptyPass = "";
@@ -35,6 +35,9 @@ public class PasswordTest {
         assertFalse(verifyPassword(null));
     }
 
+    /***
+     * Incorrect password input
+     */
     @Test (timeout = 200)
     public void testIncorrect() {
         // Capital Flag is false
@@ -60,6 +63,9 @@ public class PasswordTest {
         }
     }
 
+    /***
+     * Correct password input
+     */
     @Test (timeout = 200)
     public void testCorrect() {
         assertTrue(verifyPassword(correctPass));

@@ -5,7 +5,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 /**
  * Verify the email and password format of the account
  */
-@SuppressWarnings({"OverlyComplexMethod", "UtilityClass"})
+@SuppressWarnings({"OverlyComplexMethod", "UtilityClass", "ChainedMethodCall"})
 public class VerifyFormat {
     /**
      * Verifies an email format

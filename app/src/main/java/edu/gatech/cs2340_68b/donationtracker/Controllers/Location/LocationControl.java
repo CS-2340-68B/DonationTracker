@@ -24,7 +24,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
  * Control location list, get data from database and add data to database
  */
 
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall"})
 public class LocationControl {
     private final Context context;
 
@@ -39,7 +39,7 @@ public class LocationControl {
     /**
      * Read csv file
      */
-    @SuppressWarnings("NestedAssignment")
+    @SuppressWarnings({"NestedAssignment", "ChainedMethodCall"})
     public void readCSVFile() {
         try {
             //Open a stream on the raw file

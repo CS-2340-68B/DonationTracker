@@ -264,11 +264,12 @@
 
         <Button
             android:id="@+id/donationListBt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="168dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/donationlistbutton"
             android:text="@string/donation_list"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/scrollView3"

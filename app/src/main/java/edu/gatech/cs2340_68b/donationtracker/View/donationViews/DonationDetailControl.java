@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,12 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
-
 import edu.gatech.cs2340_68b.donationtracker.Models.Enum.Category;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
@@ -41,7 +41,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.currentUser;
  * Control donation detail page, get data from database
  */
 
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall", "ConstantConditions"})
 public class DonationDetailControl extends AppCompatActivity {
     private EditText time;
     private TextView location;
@@ -70,7 +70,8 @@ public class DonationDetailControl extends AppCompatActivity {
         aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
         drawer.addDrawerListener(aToggle);
         aToggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //noinspection ConstantConditions
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -80,6 +81,11 @@ public class DonationDetailControl extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_account) {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
@@ -106,10 +112,11 @@ public class DonationDetailControl extends AppCompatActivity {
                     }
                 });
 
+        Intent var = getIntent();
 //        final String[] arrayOutput = (String[]) getIntent().getSerializableExtra("DATA");
-        final DonationDetail donation = (DonationDetail) getIntent().getSerializableExtra("DATA");
-        final String keyUsed = (String) getIntent().getSerializableExtra("KEY");
-        final String locationUsed = (String) getIntent().getSerializableExtra("LOCATION");
+        final DonationDetail donation = (DonationDetail) var.getSerializableExtra("DATA");
+        final String keyUsed = (String) var.getSerializableExtra("KEY");
+        final String locationUsed = (String) var.getSerializableExtra("LOCATION");
 
         time = findViewById(R.id.timeInput);
         location = findViewById(R.id.locationDonationEdit);
@@ -153,8 +160,9 @@ public class DonationDetailControl extends AppCompatActivity {
 
         //Limit only LOCATIONEMPLOYEE (of register
         // location) and Manager are allow to edit the details
+        String loc = currentUser.getAssignedLocation();
         if ((currentUser.getAssignedLocation() == null)
-                || !currentUser.getAssignedLocation().
+                || !loc.
                 equals(donation.getLocation())) {
             time.setKeyListener(null);
             location.setKeyListener(null);
@@ -182,14 +190,22 @@ public class DonationDetailControl extends AppCompatActivity {
                         if (item == null) {
                             item = new DonationDetail(locationUsed);
                         }
-                        item.setTime(time.getText().toString());
-                        item.setLocation(location.getText().toString());
-                        item.setCategory(category.getSelectedItem().toString());
-                        item.setFullDescription(fullDescription.getText().toString());
-                        item.setShortDescription(shortDescription.getText().toString());
-                        item.setValue(value.getText().toString());
-                        item.setComment(comment.getText().toString());
-                        item.setName(name.getText().toString());
+                        Editable timetext = time.getText();
+                        item.setTime(timetext.toString());
+                        CharSequence loctest = location.getText();
+                        item.setLocation(loctest.toString());
+                        Object cat = category.getSelectedItem();
+                        item.setCategory(cat.toString());
+                        Object fd = fullDescription.getText();
+                        item.setFullDescription(fd.toString());
+                        Object sd = shortDescription.getText();
+                        item.setShortDescription(sd.toString());
+                        Object val = value.getText();
+                        item.setValue(val.toString());
+                        Object com = comment.getText();
+                        item.setComment(com.toString());
+                        Object nametxt = name.getText();
+                        item.setName(nametxt.toString());
                         ref.setValue(item);
                         finish();
                     }
@@ -212,7 +228,9 @@ public class DonationDetailControl extends AppCompatActivity {
             return -1;
         } else {
             for (int i = 0; i < spinner.getCount(); i++) {
-                if (spinner.getItemAtPosition(i).toString().equals(compareString)) {
+                Object pos = spinner.getItemAtPosition(i);
+                String posString = pos.toString();
+                if (posString.equals(compareString)) {
                     return i;
                 }
             }

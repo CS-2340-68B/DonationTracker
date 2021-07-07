@@ -90,7 +90,8 @@ public class LocationSet extends AppCompatActivity {
 //
 //                // Convert to string
 //                String addressNameStr = Objects.requireNonNull(addressName.getText()).toString();
-//                String locationNameStr = Objects.requireNonNull(locationName.getText()).toString();
+//                String locationNameStr = Objects.requireNonNull
+// (locationName.getText()).toString();
 //                String cityNameStr = Objects.requireNonNull(cityName.getText()).toString();
 //                String zipcodeStr = Objects.requireNonNull(zipcode.getText()).toString();
 //                String stateChooseStr = stateChoose.getSelectedItem().toString();

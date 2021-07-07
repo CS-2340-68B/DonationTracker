@@ -33,6 +33,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Common.DataListAdapter;
 import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.Location;
 import edu.gatech.cs2340_68b.donationtracker.R;
+import edu.gatech.cs2340_68b.donationtracker.View.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.Login;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
@@ -43,7 +44,7 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
 /**
  * Control the view of location list
  */
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall"})
 public class LocationListView extends AppCompatActivity {
 
     private ListView locationListView;
@@ -81,6 +82,11 @@ public class LocationListView extends AppCompatActivity {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
                         }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
+                        }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
                             startActivity(intent);
@@ -107,6 +113,7 @@ public class LocationListView extends AppCompatActivity {
         DatabaseReference locationDB = FirebaseDatabase.getInstance().getReference("locations");
 
         HttpUtils.get("/getLocations", null, new JsonHttpResponseHandler() {
+            @SuppressWarnings("ChainedMethodCall")
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 

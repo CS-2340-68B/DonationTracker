@@ -21,6 +21,7 @@ import com.loopj.android.http.RequestParams;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 
@@ -36,6 +37,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.HttpUtils;
 import edu.gatech.cs2340_68b.donationtracker.Models.DonationDetail;
 import edu.gatech.cs2340_68b.donationtracker.R;
 import edu.gatech.cs2340_68b.donationtracker.View.Login;
+import edu.gatech.cs2340_68b.donationtracker.View.MainPage;
 import edu.gatech.cs2340_68b.donationtracker.View.UserProfile;
 import edu.gatech.cs2340_68b.donationtracker.View.locationViews.LocationListView;
 import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchHistory;
@@ -48,7 +50,8 @@ import static edu.gatech.cs2340_68b.donationtracker.View.Welcome.gson;
  * Get data from database and put to donation list
  */
 
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall",
+        "ConstantConditions", "ClassWithTooManyDependencies"})
 public class DonationList extends AppCompatActivity {
 
     private ListView donationListView;
@@ -70,7 +73,7 @@ public class DonationList extends AppCompatActivity {
         aToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
         drawer.addDrawerListener(aToggle);
         aToggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -81,6 +84,11 @@ public class DonationList extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_account) {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
@@ -123,16 +131,18 @@ public class DonationList extends AppCompatActivity {
         }
 
         RequestParams params = new RequestParams("locationName", locationName);
-        HttpUtils.postForm("/getDonations", params, new JsonHttpResponseHandler() {
+        HttpUtils.postForm("/getDonations/" + locationName.replace(" ",  "%20"), params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
                 DonationDetail[] donations = gson
                         .fromJson(response.toString(), DonationDetail[].class);
                 if (donations.length == 0) {
-                    (findViewById(R.id.noItemTextView)).setVisibility(View.VISIBLE);
+                    TextView tv = findViewById(R.id.noItemTextView);
+                    tv.setVisibility(View.VISIBLE);
                 } else {
-                    (findViewById(R.id.noItemTextView)).setVisibility(View.GONE);
+                    TextView tv2 = (findViewById(R.id.noItemTextView));
+                    tv2.setVisibility(View.GONE);
                     ArrayList<Map.Entry<String, String>> donationInfo = new ArrayList<>();
                     final List<DonationDetail> donationList = new ArrayList<>();
                     final List<String> keyHashFromFB = new ArrayList<>();

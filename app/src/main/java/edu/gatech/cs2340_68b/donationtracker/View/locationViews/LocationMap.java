@@ -24,7 +24,7 @@ import edu.gatech.cs2340_68b.donationtracker.R;
 /**
  * Controller for the map
  */
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ChainedMethodCall"})
 public class LocationMap extends FragmentActivity implements OnMapReadyCallback {
 
     private Button detailButton;

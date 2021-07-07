@@ -23,6 +23,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 /**
  * Controller for the main page of the app
  */
+@SuppressWarnings("ChainedMethodCall")
 public class MainPage extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;
@@ -89,6 +90,7 @@ public class MainPage extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);
                             startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_location) {
                             Intent intent = new Intent(contect ,LocationListView.class);
@@ -101,12 +103,8 @@ public class MainPage extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_logout) {
                             finish();
                         }
-
-
-
                         // close drawer when item is tapped
                         drawer.closeDrawers();
-
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
 

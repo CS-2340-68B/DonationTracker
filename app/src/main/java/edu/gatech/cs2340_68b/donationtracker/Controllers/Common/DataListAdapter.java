@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import edu.gatech.cs2340_68b.donationtracker.R;
 
+/***
+ * Generate a adapter class to provide data for list view
+ */
 @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
 public class DataListAdapter extends BaseAdapter {
     @Nullable
@@ -21,6 +23,12 @@ public class DataListAdapter extends BaseAdapter {
     List<Map.Entry<String, String>> data;
     private final LayoutInflater inflater;
 
+    /**
+     * Constructor to create instance
+     *
+     * @param data list of elements to populate list view
+     * @param inflater layout inflater
+     */
     public DataListAdapter(@Nullable List<Map.Entry<String,
             String>> data, LayoutInflater inflater) {
         this.data = data;
@@ -51,8 +59,13 @@ public class DataListAdapter extends BaseAdapter {
         TextView detail;
         title = row.findViewById(R.id.title);
         detail = row.findViewById(R.id.detail);
-        title.setText((data != null) ? data.get(position).getKey() : null);
-        detail.setText(Objects.requireNonNull(data).get(position).getValue());
+        Map.Entry<String,String> temp1 = (data != null) ? data.get(position) : null;
+        assert temp1 != null;
+        String temp1key = temp1.getKey();
+        title.setText(temp1key);
+        Map.Entry<String,String> temp2 = data.get(position);
+        String temp2val =  temp2.getValue();
+        detail.setText(temp2val);
         return (row);
     }
 }

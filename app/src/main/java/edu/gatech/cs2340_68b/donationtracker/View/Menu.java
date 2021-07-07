@@ -22,6 +22,7 @@ import edu.gatech.cs2340_68b.donationtracker.View.searchViews.SearchView;
 /**
  * Controller for the action bar menu
  */
+@SuppressWarnings("ChainedMethodCall")
 public class Menu extends AppCompatActivity {
     private ActionBarDrawerToggle aToggle;
     private DrawerLayout drawer;
@@ -53,6 +54,11 @@ public class Menu extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.nav_account) {
                             Intent intent = new Intent(contect ,UserProfile.class);
                             startActivity(intent);
+                        }
+                        if (menuItem.getItemId() == R.id.nav_main) {
+                            Intent intent = new Intent(contect ,MainPage.class);
+                            startActivity(intent);
+                            finish();
                         }
                         if (menuItem.getItemId() == R.id.nav_search) {
                             Intent intent = new Intent(contect ,SearchView.class);

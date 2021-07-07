@@ -16,6 +16,7 @@ import edu.gatech.cs2340_68b.donationtracker.Controllers.Location.LocationContro
  * The welcome page controller for the app
  */
 
+@SuppressWarnings("PublicField")
 public class Welcome extends AppCompatActivity {
 
     public static User currentUser = new User();
